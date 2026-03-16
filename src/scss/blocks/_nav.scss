@@ -1,0 +1,19 @@
+@use './../mixins' as *;
+
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 7rem;
+
+  @include md {
+    display: none;
+  }
+
+  a {
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: 100%;
+    text-transform: uppercase;
+  }
+}

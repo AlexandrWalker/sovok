@@ -1,0 +1,17 @@
+@use './../mixins' as *;
+
+.logo {
+  display: flex;
+  width: fit-content;
+  height: 7rem;
+  flex-shrink: 0;
+
+  img {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .header-theme-dark & {}
+}

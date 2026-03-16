@@ -1,0 +1,9 @@
+@use './../mixins' as *;
+
+.footer {
+  height: 100vh;
+  height: 100dvh;
+  background-color: var(--red);
+
+  z-index: 600;
+}

@@ -1,0 +1,35 @@
+@use './../mixins' as *;
+
+.inform {
+
+  &__cover {
+    width: auto;
+    height: 78rem;
+
+    position: absolute;
+    top: 5.3rem;
+    left: -21.3rem;
+    z-index: 1;
+    
+    img {
+      width: auto;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    &-active {
+      width: 30rem;
+      height: 52rem;
+      opacity: 0;
+
+      position: absolute;
+      top: 1.2rem;
+      left: 41rem;
+      z-index: 2;
+
+      @include md {
+        left: 24rem;
+      }
+    }
+  }
+}

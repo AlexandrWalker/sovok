@@ -1,0 +1,52 @@
+@use './../mixins' as *;
+
+.header {
+  width: 100%;
+  height: var(--header-height);
+  background-color: rgba(255, 255, 255, 0);
+  box-sizing: border-box;
+  will-change: transform;
+  padding-top: env(safe-area-inset-top);
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 500;
+
+  &.header-out {
+    pointer-events: none;
+  }
+
+  &.html.header-fixed {}
+
+  /* хедер зафиксировался */
+  &.html.header-off-top {}
+
+  /* прошли первую секцию */
+  &.html.header-at-footer {}
+
+  &__inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8rem;
+    padding: 5rem 0;
+
+    @include md {
+      gap: 3rem;
+      padding: 2rem 0;
+    }
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5rem;
+
+    @include md {
+      gap: 3rem;
+    }
+  }
+}

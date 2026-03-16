@@ -1,0 +1,55 @@
+@use './../mixins' as *;
+
+/* Кнопки */
+.btn {
+  --btn-width: fit-content;
+  --btn-height: 8rem;
+  --btn-padding-x: 2rem;
+  --btn-color: var(--black);
+  --btn-background: var(--white);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0 0.5rem;
+  flex-shrink: 0;
+  width: var(--btn-width);
+  min-width: var(--btn-height);
+  height: var(--btn-height);
+  padding: 0 var(--btn-padding-x);
+  background-color: var(--btn-background);
+  transition: all 0.5s ease;
+
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 3rem;
+  line-height: 100%;
+  text-align: center;
+  white-space: nowrap;
+  text-transform: uppercase;
+  color: var(--btn-color);
+
+  position: relative;
+
+  @include md {
+    --btn-height: 7rem;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &:hover {
+
+    @include dosm {
+      --btn-color: var(--white);
+      --btn-background: var(--black);
+    }
+  }
+
+  &--red {
+    --btn-color: var(--white);
+    --btn-background: var(--red);
+  }
+}

@@ -1,0 +1,146 @@
+@use './../mixins' as *;
+
+.swiper {
+  max-width: 100%;
+  overflow: visible;
+
+  &-slide {
+    height: auto;
+    transition: opacity 0.5s ease;
+
+    &-visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+
+  &-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+
+    @include sm {
+      display: none;
+    }
+
+    .general__foot & {
+
+      @include sm {
+        display: flex;
+      }
+    }
+  }
+
+  &-button {
+
+    &-prev {
+      left: -7rem;
+
+      i {
+        transform: scale(-1, -1);
+      }
+    }
+
+    &-next {
+      right: -7rem;
+    }
+
+    &-disabled {
+      opacity: 0.5 !important;
+      pointer-events: none;
+    }
+  }
+
+  &-pagination {
+    line-height: 0.5rem;
+    font-size: 0.5rem;
+
+    top: calc(100% + 1.5rem) !important;
+    bottom: unset !important;
+
+    @include domd {
+      display: none;
+    }
+
+    &-bullet {
+      width: 0.5rem;
+      height: 0.5rem;
+      margin: 0 0.25rem !important;
+      background-color: var(--gray);
+      opacity: 1;
+
+      &-active {
+        background-color: var(--black);
+      }
+    }
+  }
+}
+
+[class^="swiper-button-"],
+[class*=" swiper-button-"] {
+  width: 5rem;
+  height: 5rem;
+  background-color: var(--white);
+  border-radius: 50%;
+  margin: 0;
+  transition: all 0.3s ease;
+
+  color: var(--black);
+
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  @include sm {
+    display: none;
+  }
+
+  &:hover {
+    background-color: var(--blue);
+
+    color: var(--white);
+  }
+
+  &::after {
+    display: none;
+  }
+
+  i {
+    --font-size: 4rem;
+  }
+
+  .general__foot & {
+
+    @include sm {
+      display: flex;
+    }
+  }
+
+  .swiper-navigation-icon {
+    display: none;
+  }
+}
+
+// [data-direction="next"] {
+//   transform-origin: left center;
+// }
+
+// /* Фон заезжает слева */
+// [data-direction="prev"] {
+//   transform-origin: right center;
+// }
+
+// .category__slider-highlight {
+//   /* вместо простого transition на transform */
+//   clip-path: inset(0 100% 0 0);
+//   transition: clip-path 0.35s ease, transform 0.35s ease, width 0.35s ease;
+// }
+
+// .category__slider-highlight[data-direction="next"] {
+//   clip-path: inset(0 0% 0 0);
+// }
+
+// .category__slider-highlight[data-direction="prev"] {
+//   clip-path: inset(0 0% 0 0);
+// }

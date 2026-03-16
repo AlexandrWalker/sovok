@@ -1,0 +1,22 @@
+@use './../mixins' as *;
+
+.burger {
+
+  &-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.7rem;
+    width: 7rem;
+    height: 7rem;
+    background-color: var(--black);
+    flex-shrink: 0;
+
+    &__line {
+      width: 2rem;
+      height: 0.3rem;
+      background-color: var(--white);
+    }
+  }
+}

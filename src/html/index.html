@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru" class="main-page">
+@@include('blocks/head.html', {"title": "СОВОК"})
+
+<body>
+  <div class="wrapper">
+    <!-- Шапка -->
+    @@include('./blocks/header.html')
+    <main class="main">
+
+      <section class="hero">
+        <div class="container">
+          <div class="hero__inner">
+
+            <button class="btn btn--red" data-btn-sound="poehali">
+              поехали!
+            </button>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="inform" class="sound-section" data-scroll-sound="levitan">
+        <div class="container">
+          <div class="inform__inner">
+
+            <div class="inform__cover">
+              <img src="./../images/temp/rupor.png" alt="">
+            </div>
+
+            <div class="inform__cover-active sound-image">
+              <img src="./../images/temp/rupor-active.png" alt="">
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+    <!-- Подвал -->
+    @@include('blocks/footer.html')
