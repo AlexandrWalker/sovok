@@ -1,0 +1,129 @@
+@use './../mixins' as *;
+
+.hero {
+  padding-top: 8.5rem;
+  overflow: visible;
+
+  &__content {
+    position: relative;
+    z-index: 3;
+  }
+
+  &__suptitle {
+    font-family: var(--second-family);
+    font-weight: 400;
+    font-size: 4rem;
+    line-height: 150%;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+
+    margin-bottom: 5rem;
+
+    @include md {
+      font-size: 2.4rem;
+      margin-bottom: 2rem;
+    }
+
+    @include sm {
+      font-size: 1.8rem;
+    }
+  }
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+
+    font-family: var(--second-family);
+    font-weight: 1000;
+    font-size: 27rem;
+    text-transform: uppercase;
+
+    @include md {
+      font-size: calc(100vw/(1920/270));
+    }
+
+    &-word {
+      line-height: 85%;
+      letter-spacing: -0.05em;
+      color: var(--black);
+      display: inline-block;
+    }
+
+    &-line {
+      display: flex;
+      align-items: center;
+      gap: 0.1em;
+      line-height: 1.2;
+
+      &:last-child {
+
+        .hero__title-cursor,
+        .hero__title-word {
+          font-size: 10rem;
+
+          @include md {
+            font-size: calc(100vw/(1920/100));
+          }
+        }
+      }
+    }
+
+    &-cursor {
+      line-height: 85%;
+      will-change: opacity;
+    }
+  }
+
+  &__cover {
+    width: auto;
+    height: 77rem;
+
+    position: absolute;
+    top: -5.9rem;
+    right: 12.3rem;
+    z-index: 2;
+
+    @include md {
+      display: none;
+    }
+
+    img {
+      width: auto;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__mask {
+    width: auto;
+    height: 73.1rem;
+
+    position: absolute;
+    top: calc(((var(--header-height)) + 20.2rem) * -1);
+    right: 21.9rem;
+    z-index: 1;
+
+    @include md {
+      display: none;
+    }
+
+    img {
+      width: auto;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
+/* Стилизация конкретных слов через data-word */
+[data-word="уровень"] {
+  color: #DC143C;
+}
+
+[data-word="фраза"] {
+  color: #2a9d8f;
+}
+
+[data-word="одна"] {
+  color: #e9c46a;
+}

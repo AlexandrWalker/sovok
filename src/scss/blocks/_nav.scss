@@ -4,7 +4,7 @@ nav {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 7rem;
+  gap: 4rem;
 
   @include md {
     display: none;
@@ -15,5 +15,10 @@ nav {
     font-size: 3rem;
     line-height: 100%;
     text-transform: uppercase;
+    text-decoration: underline !important;
+
+    .menu--open & {
+      color: var(--white);
+    }
   }
 }

@@ -15,10 +15,19 @@
   left: calc(100% - 5.2rem);
   z-index: 600;
 
+  @include md {
+    display: none;
+  }
+
   .callback--open & {
     grid-template-columns: 0fr 1fr;
 
-    left: 5rem;
+    left: 4.2rem;
+  }
+
+  .header-at-footer &,
+  .menu--open & {
+    left: calc(100% + 5.2rem);
   }
 
   * {
@@ -89,5 +98,9 @@
         }
       }
     }
+  }
+
+  &__inner {
+    padding: 11rem 9rem 8rem 9rem;
   }
 }
