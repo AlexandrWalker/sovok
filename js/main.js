@@ -73,19 +73,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /**
+   * Функция воспроизведения звука при нажатии на кнопку
+   */
   (function () {
-    // ─── Конфиг: название звука → путь до файла ───────────────────────────────
+    // Конфиг: название звука - путь до файла
     const SOUND_MAP = {
       poehali: './sound/poehali.mp3',
     };
 
-    // ─── Кэш AudioBuffer'ов (Web Audio API) ───────────────────────────────────
+    // Кэш AudioBuffer'ов (Web Audio API)
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const bufferCache = {};           // { soundName: AudioBuffer }
+    const bufferCache = {};          // { soundName: AudioBuffer }
     const loadingSet = new Set();    // звуки в процессе загрузки
     const playingSet = new Set();    // звуки сейчас воспроизводятся (защита от спама)
 
-    // ─── Предзагрузка всех звуков ─────────────────────────────────────────────
+    // Предзагрузка всех звуков
     async function preloadSound(name) {
       if (bufferCache[name] || loadingSet.has(name)) return;
 
@@ -110,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Предзагружаем все звуки из SOUND_MAP при старте
     Object.keys(SOUND_MAP).forEach(preloadSound);
 
-    // ─── Воспроизведение через Web Audio API ──────────────────────────────────
+    // Воспроизведение через Web Audio API
     // Web Audio API - лучший вариант для мобильных:
     // корректно работает на iOS Safari и Android Chrome.
     // Важно: AudioContext должен быть разблокирован через user gesture.
@@ -150,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
       source.start(0);
     }
 
-    // ─── Вешаем обработчики на все кнопки с атрибутом data-btn-sound ──────────
+    // Вешаем обработчики на все кнопки с атрибутом data-btn-sound
     document.querySelectorAll('[data-btn-sound]').forEach(btn => {
       btn.addEventListener('click', () => {
         const soundName = btn.dataset.btnSound;
@@ -158,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // ─── Fallback для старых браузеров без Web Audio API ──────────────────────
+    // Fallback для старых браузеров без Web Audio API
     // (очень редкий кейс, но на всякий случай)
     if (!window.AudioContext && !window.webkitAudioContext) {
       console.warn('[Sound] Web Audio API не поддерживается. Используем <audio>.');
@@ -683,6 +686,63 @@ document.addEventListener('DOMContentLoaded', () => {
 
   })();
 
+  /**
+   * Управляет поведением меню-бургера.
+   */
+  function burgerNav() {
+    const burgerBtn = document.getElementById('burger-btn');
+    const burgerMenu = document.getElementById('burger-menu');
+    const menuNav = document.querySelector('#burger-menu .menu__nav');
+
+    const openMenu = () => {
+      burgerBtn.classList.add('burger--open');
+      document.documentElement.classList.add('menu--open');
+      lenis.stop();
+    };
+
+    const closeMenu = () => {
+      burgerBtn.classList.remove('burger--open');
+      document.documentElement.classList.remove('menu--open');
+      lenis.start();
+    };
+
+    const toggleMenu = (e) => {
+      e.preventDefault();
+      const isOpen = document.documentElement.classList.contains('menu--open');
+      isOpen ? closeMenu() : openMenu();
+    };
+
+    burgerBtn.addEventListener('click', toggleMenu);
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === "Escape" && document.documentElement.classList.contains('menu--open')) {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener('click', (event) => {
+      const isMenuOpen = document.documentElement.classList.contains('menu--open');
+      const clickInsideMenu = burgerMenu.contains(event.target);
+      const clickOnButton = burgerBtn.contains(event.target);
+
+      // Проверяем, кликнули ли по ссылке внутри menu__list
+      const clickOnMenuLink = menuNav && menuNav.contains(event.target) && event.target.tagName === 'A';
+
+      if (isMenuOpen && !clickInsideMenu && !clickOnButton) {
+        closeMenu();
+      }
+
+      // Дополнительно: закрываем меню при клике по ссылке внутри меню
+      if (isMenuOpen && clickOnMenuLink) {
+        closeMenu();
+      }
+    });
+  }
+  burgerNav();
+
+  /**
+   * Анимация посимвольной печати
+   */
   (function () {
 
     // ─── Конфиг ────────────────────────────────────────────────────────────────
@@ -972,7 +1032,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
   })();
 
-  // === iOS-safe ScrollTrigger refresh handler ===
+  /**
+   * Анимация наслоения блоков
+   */
+  function initSectionAnimations() {
+    document.querySelectorAll("[data-animate]").forEach((section) => {
+
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top bottom-=30%",
+        },
+      });
+
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "bottom bottom",
+          end: "bottom top",
+          pin: true,
+          pinSpacing: false,
+        },
+      });
+    });
+  }
+  initSectionAnimations();
+
+  /**
+   * callback
+   */
+  (function() {
+    const callbackBtn = document.querySelector('.callback__btn');
+
+    callbackBtn.addEventListener('click', () => {
+      document.documentElement.classList.toggle('callback--open')
+    })
+  })();
+
+  // iOS-safe ScrollTrigger refresh handler
   (function () {
     let resizeTimer;
     let lastWidth = window.innerWidth;

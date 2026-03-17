@@ -145,74 +145,10 @@ img {
 }
 
 @font-face {
-  font-family: Montserrat;
+  font-family: Redoctober;
   font-display: swap;
-  src: url("../fonts/Montserrat-Bold.woff2") format("woff2"), url("../fonts/Montserrat-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Montserrat;
-  font-display: swap;
-  src: url("../fonts/Montserrat-Black.woff2") format("woff2"), url("../fonts/Montserrat-Black.woff") format("woff");
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Montserrat;
-  font-display: swap;
-  src: url("../fonts/Montserrat-ExtraLight.woff2") format("woff2"), url("../fonts/Montserrat-ExtraLight.woff") format("woff");
-  font-weight: 200;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Montserrat;
-  font-display: swap;
-  src: url("../fonts/Montserrat-Light.woff2") format("woff2"), url("../fonts/Montserrat-Light.woff") format("woff");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Montserrat;
-  font-display: swap;
-  src: url("../fonts/Montserrat-ExtraBold.woff2") format("woff2"), url("../fonts/Montserrat-ExtraBold.woff") format("woff");
-  font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Montserrat;
-  font-display: swap;
-  src: url("../fonts/Montserrat-Medium.woff2") format("woff2"), url("../fonts/Montserrat-Medium.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Montserrat;
-  font-display: swap;
-  src: url("../fonts/Montserrat-Regular.woff2") format("woff2"), url("../fonts/Montserrat-Regular.woff") format("woff");
+  src: url("../fonts/Redoctober-regular.woff2") format("woff2"), url("../fonts/Redoctober-regular.woff") format("woff");
   font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Montserrat;
-  font-display: swap;
-  src: url("../fonts/Montserrat-SemiBold.woff2") format("woff2"), url("../fonts/Montserrat-SemiBold.woff") format("woff");
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Montserrat;
-  font-display: swap;
-  src: url("../fonts/Montserrat-Thin.woff2") format("woff2"), url("../fonts/Montserrat-Thin.woff") format("woff");
-  font-weight: 100;
   font-style: normal;
 }
 
@@ -221,6 +157,14 @@ img {
   font-display: swap;
   src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
   font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Redoctober;
+  font-display: swap;
+  src: url("../fonts/Redoctober-ultra.woff2") format("woff2"), url("../fonts/Redoctober-ultra.woff") format("woff");
+  font-weight: 1000;
   font-style: normal;
 }
 
@@ -251,16 +195,16 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
-  font-weight: 500;
+  src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
-  font-weight: 300;
+  src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -284,6 +228,78 @@ img {
   font-family: Roboto;
   font-display: swap;
   src: url("../fonts/Roboto-Thin.woff2") format("woff2"), url("../fonts/Roboto-Thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoCondensed;
+  font-display: swap;
+  src: url("../fonts/RobotoCondensed-Black.woff2") format("woff2"), url("../fonts/RobotoCondensed-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoCondensed;
+  font-display: swap;
+  src: url("../fonts/RobotoCondensed-Bold.woff2") format("woff2"), url("../fonts/RobotoCondensed-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoCondensed;
+  font-display: swap;
+  src: url("../fonts/RobotoCondensed-ExtraBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraBold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoCondensed;
+  font-display: swap;
+  src: url("../fonts/RobotoCondensed-ExtraLight.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraLight.woff") format("woff");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoCondensed;
+  font-display: swap;
+  src: url("../fonts/RobotoCondensed-Light.woff2") format("woff2"), url("../fonts/RobotoCondensed-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoCondensed;
+  font-display: swap;
+  src: url("../fonts/RobotoCondensed-Medium.woff2") format("woff2"), url("../fonts/RobotoCondensed-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoCondensed;
+  font-display: swap;
+  src: url("../fonts/RobotoCondensed-Regular.woff2") format("woff2"), url("../fonts/RobotoCondensed-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoCondensed;
+  font-display: swap;
+  src: url("../fonts/RobotoCondensed-SemiBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoCondensed;
+  font-display: swap;
+  src: url("../fonts/RobotoCondensed-Thin.woff2") format("woff2"), url("../fonts/RobotoCondensed-Thin.woff") format("woff");
   font-weight: 100;
   font-style: normal;
 }
@@ -616,7 +632,9 @@ body {
 }
 
 :root {
-  --font-family: "Roboto", "Montserrat", Arial, Verdana, sans-serif;
+  --font-family: "RobotoCondensed", Arial, Verdana, sans-serif;
+  --second-family: "Redoctober", Arial, Verdana, sans-serif;
+  --third-family: "Roboto", Arial, Verdana, sans-serif;
   --container-padding: 5rem;
   --container-width: 182rem;
   --header-height: 17rem;
@@ -930,21 +948,171 @@ p {
   background-color: var(--black);
   -ms-flex-negative: 0;
   flex-shrink: 0;
+  position: relative;
+}
+
+.burger-btn.burger--open {
+  gap: 0;
+}
+
+.burger-btn * {
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .burger-btn__line {
   width: 2rem;
   height: 0.3rem;
   background-color: var(--white);
+  position: absolute;
+  top: 50%;
+}
+
+.burger-btn__line--first {
+  -webkit-transform: translateY(calc(-50% - 0.5rem));
+  -ms-transform: translateY(calc(-50% - 0.5rem));
+  transform: translateY(calc(-50% - 0.5rem));
+}
+
+.burger--open .burger-btn__line--first {
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.burger-btn__line--second {
+  -webkit-transform: translateY(calc(-50% + 0.5rem));
+  -ms-transform: translateY(calc(-50% + 0.5rem));
+  transform: translateY(calc(-50% + 0.5rem));
+}
+
+.burger--open .burger-btn__line--second {
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 /* Blocks */
+
+.callback {
+  display: grid;
+  grid-template-columns: 5.2rem 1fr;
+  background-color: var(--red);
+  width: 100dvw;
+  width: 100vw;
+  height: 100dvh;
+  height: 100vh;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  position: fixed;
+  top: 0;
+  left: calc(100% - 5.2rem);
+  z-index: 600;
+}
+
+.callback--open .callback {
+  grid-template-columns: 0fr 1fr;
+  left: 5rem;
+}
+
+.callback * {
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.callback__side {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 4.5rem 0;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  overflow: hidden;
+}
+
+.callback__side-text {
+  font-family: var(--second-family);
+  font-weight: 400;
+  font-size: 3rem;
+  line-height: 100%;
+  text-transform: uppercase;
+  color: #FAF4ED;
+  white-space: nowrap;
+  -webkit-writing-mode: sideways-lr;
+  -ms-writing-mode: sideways-lr;
+  writing-mode: sideways-lr;
+}
+
+.callback__btn {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background-color: var(--black);
+  position: absolute;
+  top: 50%;
+  left: -2.4rem;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.callback__btn-line {
+  width: 1.15rem;
+  height: 0.3rem;
+  background-color: var(--white);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.callback--open .callback__btn-line {
+  width: 2rem;
+}
+
+.callback__btn-line--first {
+  -webkit-transform: translate(-50%, calc(-50% - 0.3rem)) rotate(-45deg);
+  -ms-transform: translate(-50%, calc(-50% - 0.3rem)) rotate(-45deg);
+  transform: translate(-50%, calc(-50% - 0.3rem)) rotate(-45deg);
+}
+
+.callback--open .callback__btn-line--first {
+  -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+  -ms-transform: translate(-50%, -50%) rotate(-45deg);
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.callback__btn-line--second {
+  -webkit-transform: translate(-50%, calc(-50% + 0.3rem)) rotate(45deg);
+  -ms-transform: translate(-50%, calc(-50% + 0.3rem)) rotate(45deg);
+  transform: translate(-50%, calc(-50% + 0.3rem)) rotate(45deg);
+}
+
+.callback--open .callback__btn-line--second {
+  -webkit-transform: translate(-50%, -50%) rotate(45deg);
+  -ms-transform: translate(-50%, -50%) rotate(45deg);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
 
 .footer {
   height: 100vh;
   height: 100dvh;
   background-color: var(--red);
-  z-index: 600;
+  z-index: 300;
 }
 
 .header {
@@ -1022,6 +1190,53 @@ p {
   object-fit: contain;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+.menu {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  background-color: var(--red);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  -webkit-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  transform: translateY(-100%);
+  padding-top: var(--header-height);
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  z-index: 400;
+}
+
+.menu--open .menu {
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.menu .container {
+  overflow-y: auto;
+}
+
+.menu__inner {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 2rem 0;
+}
+
+.menu__nav nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
 }
 
 nav {
@@ -1476,6 +1691,478 @@ nav a {
 /* Pages */
 
 /* Sections */
+
+/* ── Обёртка всей сцены ── */
+
+.dynamite-scene {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  gap: 0;
+}
+
+/* ── Сам динамит ── */
+
+.dynamite {
+  width: 60px;
+  height: 120px;
+  background: linear-gradient(135deg, #c0392b, #922b21);
+  border-radius: 6px 6px 4px 4px;
+  position: relative;
+  -webkit-box-shadow: inset -4px 0 8px rgba(0, 0, 0, 0.4), 0 4px 15px rgba(0, 0, 0, 0.5);
+  box-shadow: inset -4px 0 8px rgba(0, 0, 0, 0.4), 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Полоски на динамите */
+
+.dynamite::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(180deg, transparent 0px, transparent 18px, rgba(0, 0, 0, 0.15) 18px, rgba(0, 0, 0, 0.15) 20px);
+  border-radius: inherit;
+}
+
+/* Крышка сверху */
+
+.dynamite::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 40px;
+  height: 10px;
+  background: #7b241c;
+  border-radius: 4px 4px 0 0;
+}
+
+/* ── Контейнер фитиля ──
+    SVG-путь даёт изгиб, как у настоящего фитиля.
+    Высота контейнера = длина видимой части фитиля.
+*/
+
+.fuse-container {
+  position: absolute;
+  top: -130px;
+  /* уходит вверх над динамитом */
+  left: 50%;
+  -webkit-transform: translateX(-2px);
+  -ms-transform: translateX(-2px);
+  transform: translateX(-2px);
+  width: 60px;
+  height: 130px;
+}
+
+/* ── SVG фитиль ── */
+
+.fuse-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/*
+    Сам путь фитиля — волнистая линия.
+    stroke-dasharray = длина всей линии (считаем через JS).
+    stroke-dashoffset = сколько линии "скрыто".
+    Анимируем dashoffset от 0 до полной длины — линия "исчезает" снизу вверх,
+    создавая эффект сгорания.
+*/
+
+.fuse-path {
+  fill: none;
+  stroke: #8B7355;
+  stroke-width: 3;
+  stroke-linecap: round;
+  /* Джутовая текстура через пунктир */
+  stroke-dasharray: 6 3;
+}
+
+/*
+    Горящая часть фитиля — тонкий красный след сразу за огнём.
+    Имитирует уже обугленный фитиль.
+*/
+
+.fuse-burned {
+  fill: none;
+  stroke: #2c1a0e;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+}
+
+/* ── Огонь на кончике фитиля ──
+    Позиционируется через JS в точку текущего прогресса.
+*/
+
+.flame-wrapper {
+  position: absolute;
+  /* Начальная позиция — верхушка фитиля, JS её двигает */
+  top: 0;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Основной язык пламени */
+
+.flame {
+  position: relative;
+  width: 14px;
+  height: 20px;
+}
+
+/* Каждый слой огня — отдельный div с border-radius-трюком */
+
+.flame-layer {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  border-radius: 50% 50% 30% 30%/60% 60% 40% 40%;
+  -webkit-animation: flicker var(--speed) ease-in-out infinite alternate;
+  animation: flicker var(--speed) ease-in-out infinite alternate;
+  -webkit-transform-origin: bottom center;
+  -ms-transform-origin: bottom center;
+  transform-origin: bottom center;
+}
+
+/* Внешний оранжевый огонь */
+
+.flame-layer:nth-child(1) {
+  --speed: 0.08s;
+  width: 14px;
+  height: 20px;
+  background: radial-gradient(ellipse at 50% 80%, #ff6600, #ff4400 60%, transparent 100%);
+  -webkit-filter: blur(0.5px);
+  filter: blur(0.5px);
+}
+
+/* Внутренний жёлтый огонь */
+
+.flame-layer:nth-child(2) {
+  --speed: 0.06s;
+  width: 8px;
+  height: 14px;
+  background: radial-gradient(ellipse at 50% 80%, #ffee00, #ffaa00 70%, transparent 100%);
+  -webkit-filter: blur(0.3px);
+  filter: blur(0.3px);
+}
+
+/* Белое ядро — самая горячая точка */
+
+.flame-layer:nth-child(3) {
+  --speed: 0.05s;
+  width: 4px;
+  height: 7px;
+  background: radial-gradient(ellipse at 50% 80%, #ffffff, #ffffaa 80%, transparent 100%);
+}
+
+/* Искры */
+
+.spark {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #ffdd00;
+  pointer-events: none;
+  -webkit-animation: spark-fly var(--dur) ease-out forwards;
+  animation: spark-fly var(--dur) ease-out forwards;
+}
+
+/* Свечение вокруг огня */
+
+.flame-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -40%);
+  -ms-transform: translate(-50%, -40%);
+  transform: translate(-50%, -40%);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 150, 0, 0.5) 0%, transparent 70%);
+  -webkit-animation: glow-pulse 0.1s ease-in-out infinite alternate;
+  animation: glow-pulse 0.1s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+/* ── Дым над огнём ── */
+
+.smoke-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(180, 180, 180, 0.6);
+  pointer-events: none;
+  -webkit-animation: smoke-rise var(--dur) ease-out forwards;
+  animation: smoke-rise var(--dur) ease-out forwards;
+}
+
+/* ── Вспышка взрыва ── */
+
+.explosion {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, #ffee00 20%, #ff6600 50%, #ff2200 70%, transparent 100%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ── Кейфреймы ── */
+
+/* Мерцание языков пламени — быстрое и хаотичное */
+
+@-webkit-keyframes flicker {
+  0% {
+    -webkit-transform: translateX(-50%) scaleX(1) scaleY(1) rotate(-2deg);
+    transform: translateX(-50%) scaleX(1) scaleY(1) rotate(-2deg);
+  }
+
+  33% {
+    -webkit-transform: translateX(-50%) scaleX(0.85) scaleY(1.1) rotate(1deg);
+    transform: translateX(-50%) scaleX(0.85) scaleY(1.1) rotate(1deg);
+  }
+
+  66% {
+    -webkit-transform: translateX(-50%) scaleX(1.1) scaleY(0.95) rotate(-1deg);
+    transform: translateX(-50%) scaleX(1.1) scaleY(0.95) rotate(-1deg);
+  }
+
+  100% {
+    -webkit-transform: translateX(-50%) scaleX(0.9) scaleY(1.05) rotate(2deg);
+    transform: translateX(-50%) scaleX(0.9) scaleY(1.05) rotate(2deg);
+  }
+}
+
+@keyframes flicker {
+  0% {
+    -webkit-transform: translateX(-50%) scaleX(1) scaleY(1) rotate(-2deg);
+    transform: translateX(-50%) scaleX(1) scaleY(1) rotate(-2deg);
+  }
+
+  33% {
+    -webkit-transform: translateX(-50%) scaleX(0.85) scaleY(1.1) rotate(1deg);
+    transform: translateX(-50%) scaleX(0.85) scaleY(1.1) rotate(1deg);
+  }
+
+  66% {
+    -webkit-transform: translateX(-50%) scaleX(1.1) scaleY(0.95) rotate(-1deg);
+    transform: translateX(-50%) scaleX(1.1) scaleY(0.95) rotate(-1deg);
+  }
+
+  100% {
+    -webkit-transform: translateX(-50%) scaleX(0.9) scaleY(1.05) rotate(2deg);
+    transform: translateX(-50%) scaleX(0.9) scaleY(1.05) rotate(2deg);
+  }
+}
+
+/* Пульсация свечения */
+
+@-webkit-keyframes glow-pulse {
+  from {
+    -webkit-transform: translate(-50%, -40%) scale(0.9);
+    transform: translate(-50%, -40%) scale(0.9);
+    opacity: 0.6;
+  }
+
+  to {
+    -webkit-transform: translate(-50%, -40%) scale(1.2);
+    transform: translate(-50%, -40%) scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes glow-pulse {
+  from {
+    -webkit-transform: translate(-50%, -40%) scale(0.9);
+    transform: translate(-50%, -40%) scale(0.9);
+    opacity: 0.6;
+  }
+
+  to {
+    -webkit-transform: translate(-50%, -40%) scale(1.2);
+    transform: translate(-50%, -40%) scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* Искры летят в случайные стороны — направление задаётся через CSS-переменные в JS */
+
+@-webkit-keyframes spark-fly {
+  0% {
+    -webkit-transform: translate(0, 0) scale(1);
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: translate(var(--dx), var(--dy)) scale(0);
+    transform: translate(var(--dx), var(--dy)) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes spark-fly {
+  0% {
+    -webkit-transform: translate(0, 0) scale(1);
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: translate(var(--dx), var(--dy)) scale(0);
+    transform: translate(var(--dx), var(--dy)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Дым поднимается и растворяется */
+
+@-webkit-keyframes smoke-rise {
+  0% {
+    -webkit-transform: translate(var(--sx), 0) scale(0.3);
+    transform: translate(var(--sx), 0) scale(0.3);
+    opacity: 0.6;
+  }
+
+  100% {
+    -webkit-transform: translate(var(--sx), -40px) scale(1.5);
+    transform: translate(var(--sx), -40px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes smoke-rise {
+  0% {
+    -webkit-transform: translate(var(--sx), 0) scale(0.3);
+    transform: translate(var(--sx), 0) scale(0.3);
+    opacity: 0.6;
+  }
+
+  100% {
+    -webkit-transform: translate(var(--sx), -40px) scale(1.5);
+    transform: translate(var(--sx), -40px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Взрыв разворачивается */
+
+@-webkit-keyframes explode {
+  0% {
+    -webkit-transform: translate(-50%, -50%) scale(0);
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+
+  60% {
+    -webkit-transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.9;
+  }
+
+  100% {
+    -webkit-transform: translate(-50%, -50%) scale(1.5);
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes explode {
+  0% {
+    -webkit-transform: translate(-50%, -50%) scale(0);
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+
+  60% {
+    -webkit-transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.9;
+  }
+
+  100% {
+    -webkit-transform: translate(-50%, -50%) scale(1.5);
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Динамит трясётся перед взрывом */
+
+@-webkit-keyframes shake {
+  0%, 100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+
+  20% {
+    -webkit-transform: translateX(-4px) rotate(-1deg);
+    transform: translateX(-4px) rotate(-1deg);
+  }
+
+  40% {
+    -webkit-transform: translateX(4px) rotate(1deg);
+    transform: translateX(4px) rotate(1deg);
+  }
+
+  60% {
+    -webkit-transform: translateX(-3px) rotate(-0.5deg);
+    transform: translateX(-3px) rotate(-0.5deg);
+  }
+
+  80% {
+    -webkit-transform: translateX(3px) rotate(0.5deg);
+    transform: translateX(3px) rotate(0.5deg);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+
+  20% {
+    -webkit-transform: translateX(-4px) rotate(-1deg);
+    transform: translateX(-4px) rotate(-1deg);
+  }
+
+  40% {
+    -webkit-transform: translateX(4px) rotate(1deg);
+    transform: translateX(4px) rotate(1deg);
+  }
+
+  60% {
+    -webkit-transform: translateX(-3px) rotate(-0.5deg);
+    transform: translateX(-3px) rotate(-0.5deg);
+  }
+
+  80% {
+    -webkit-transform: translateX(3px) rotate(0.5deg);
+    transform: translateX(3px) rotate(0.5deg);
+  }
+}
 
 .inform__cover {
   width: auto;
