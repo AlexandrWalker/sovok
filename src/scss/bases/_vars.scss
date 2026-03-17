@@ -1,7 +1,9 @@
 @use './../mixins' as *;
 
 :root {
-  --font-family: "Roboto", "Montserrat", Arial, Verdana, sans-serif;
+  --font-family: "RobotoCondensed", Arial, Verdana, sans-serif;
+  --second-family: "Redoctober", Arial, Verdana, sans-serif;
+  --third-family: "Roboto", Arial, Verdana, sans-serif;
 
   --container-padding: 5rem;
   --container-width: 182rem;

@@ -302,7 +302,7 @@ gulp.task('fontsStyle', () => {
             fontWeight = 800;
           } else if (fontWeight.toLowerCase() === 'black') {
             fontWeight = 900;
-          } else if (fontWeight.toLowerCase() === 'ultra') {
+          } else if (fontWeight.toLowerCase() === 'ultra' || fontWeight.toLowerCase() === 'fat') {
             fontWeight = 1000;
           } else {
             fontWeight = 400;

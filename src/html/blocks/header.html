@@ -7,30 +7,14 @@
           <img src="./../../images/logo/logo.svg" alt="">
         </a>
         <span class="line-col"></span>
-        <button class="burger-btn">
-          <span class="burger-btn__line burger-btn__line-first"></span>
-          <span class="burger-btn__line burger-btn__line-second"></span>
+        <button id="burger-btn" class="burger-btn">
+          <span class="burger-btn__line burger-btn__line--first"></span>
+          <span class="burger-btn__line burger-btn__line--second"></span>
         </button>
       </div>
 
       <div class="header__right">
-        <nav>
-          <a href="/">
-            политбюро
-          </a>
-          <a href="/">
-            услуги
-          </a>
-          <a href="/">
-            портфолио
-          </a>
-          <a href="/">
-            газета
-          </a>
-          <a href="/">
-            контакты
-          </a>
-        </nav>
+        @@include('./nav.html')
       </div>
 
     </div>

@@ -1,0 +1,301 @@
+/* ── Обёртка всей сцены ── */
+.dynamite-scene {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+}
+
+/* ── Сам динамит ── */
+.dynamite {
+  width: 60px;
+  height: 120px;
+  background: linear-gradient(135deg, #c0392b, #922b21);
+  border-radius: 6px 6px 4px 4px;
+  position: relative;
+  box-shadow:
+    inset -4px 0 8px rgba(0, 0, 0, 0.4),
+    0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Полоски на динамите */
+.dynamite::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(180deg,
+      transparent 0px,
+      transparent 18px,
+      rgba(0, 0, 0, 0.15) 18px,
+      rgba(0, 0, 0, 0.15) 20px);
+  border-radius: inherit;
+}
+
+/* Крышка сверху */
+.dynamite::after {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 10px;
+  background: #7b241c;
+  border-radius: 4px 4px 0 0;
+}
+
+/* ── Контейнер фитиля ──
+    SVG-путь даёт изгиб, как у настоящего фитиля.
+    Высота контейнера = длина видимой части фитиля.
+*/
+.fuse-container {
+  position: absolute;
+  top: -130px;
+  /* уходит вверх над динамитом */
+  left: 50%;
+  transform: translateX(-2px);
+  width: 60px;
+  height: 130px;
+}
+
+/* ── SVG фитиль ── */
+.fuse-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/*
+    Сам путь фитиля — волнистая линия.
+    stroke-dasharray = длина всей линии (считаем через JS).
+    stroke-dashoffset = сколько линии "скрыто".
+    Анимируем dashoffset от 0 до полной длины — линия "исчезает" снизу вверх,
+    создавая эффект сгорания.
+*/
+.fuse-path {
+  fill: none;
+  stroke: #8B7355;
+  stroke-width: 3;
+  stroke-linecap: round;
+  /* Джутовая текстура через пунктир */
+  stroke-dasharray: 6 3;
+}
+
+/*
+    Горящая часть фитиля — тонкий красный след сразу за огнём.
+    Имитирует уже обугленный фитиль.
+*/
+.fuse-burned {
+  fill: none;
+  stroke: #2c1a0e;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+}
+
+/* ── Огонь на кончике фитиля ──
+    Позиционируется через JS в точку текущего прогресса.
+*/
+.flame-wrapper {
+  position: absolute;
+  /* Начальная позиция — верхушка фитиля, JS её двигает */
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Основной язык пламени */
+.flame {
+  position: relative;
+  width: 14px;
+  height: 20px;
+}
+
+/* Каждый слой огня — отдельный div с border-radius-трюком */
+.flame-layer {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50% 50% 30% 30% / 60% 60% 40% 40%;
+  animation: flicker var(--speed) ease-in-out infinite alternate;
+  transform-origin: bottom center;
+}
+
+/* Внешний оранжевый огонь */
+.flame-layer:nth-child(1) {
+  --speed: 0.08s;
+  width: 14px;
+  height: 20px;
+  background: radial-gradient(ellipse at 50% 80%, #ff6600, #ff4400 60%, transparent 100%);
+  filter: blur(0.5px);
+}
+
+/* Внутренний жёлтый огонь */
+.flame-layer:nth-child(2) {
+  --speed: 0.06s;
+  width: 8px;
+  height: 14px;
+  background: radial-gradient(ellipse at 50% 80%, #ffee00, #ffaa00 70%, transparent 100%);
+  filter: blur(0.3px);
+}
+
+/* Белое ядро — самая горячая точка */
+.flame-layer:nth-child(3) {
+  --speed: 0.05s;
+  width: 4px;
+  height: 7px;
+  background: radial-gradient(ellipse at 50% 80%, #ffffff, #ffffaa 80%, transparent 100%);
+}
+
+/* Искры */
+.spark {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #ffdd00;
+  pointer-events: none;
+  animation: spark-fly var(--dur) ease-out forwards;
+}
+
+/* Свечение вокруг огня */
+.flame-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 150, 0, 0.5) 0%, transparent 70%);
+  animation: glow-pulse 0.1s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+/* ── Дым над огнём ── */
+.smoke-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(180, 180, 180, 0.6);
+  pointer-events: none;
+  animation: smoke-rise var(--dur) ease-out forwards;
+}
+
+/* ── Вспышка взрыва ── */
+.explosion {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, #ffee00 20%, #ff6600 50%, #ff2200 70%, transparent 100%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ── Кейфреймы ── */
+
+/* Мерцание языков пламени — быстрое и хаотичное */
+@keyframes flicker {
+  0% {
+    transform: translateX(-50%) scaleX(1) scaleY(1) rotate(-2deg);
+  }
+
+  33% {
+    transform: translateX(-50%) scaleX(0.85) scaleY(1.1) rotate(1deg);
+  }
+
+  66% {
+    transform: translateX(-50%) scaleX(1.1) scaleY(0.95) rotate(-1deg);
+  }
+
+  100% {
+    transform: translateX(-50%) scaleX(0.9) scaleY(1.05) rotate(2deg);
+  }
+}
+
+/* Пульсация свечения */
+@keyframes glow-pulse {
+  from {
+    transform: translate(-50%, -40%) scale(0.9);
+    opacity: 0.6;
+  }
+
+  to {
+    transform: translate(-50%, -40%) scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* Искры летят в случайные стороны — направление задаётся через CSS-переменные в JS */
+@keyframes spark-fly {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(var(--dx), var(--dy)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Дым поднимается и растворяется */
+@keyframes smoke-rise {
+  0% {
+    transform: translate(var(--sx), 0) scale(0.3);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translate(var(--sx), -40px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Взрыв разворачивается */
+@keyframes explode {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+
+  60% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Динамит трясётся перед взрывом */
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  20% {
+    transform: translateX(-4px) rotate(-1deg);
+  }
+
+  40% {
+    transform: translateX(4px) rotate(1deg);
+  }
+
+  60% {
+    transform: translateX(-3px) rotate(-0.5deg);
+  }
+
+  80% {
+    transform: translateX(3px) rotate(0.5deg);
+  }
+}

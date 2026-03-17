@@ -13,10 +13,39 @@
     background-color: var(--black);
     flex-shrink: 0;
 
+    position: relative;
+
+    &.burger--open {
+      gap: 0;
+    }
+
+    * {
+      transition: all 0.3s ease;
+    }
+
     &__line {
       width: 2rem;
       height: 0.3rem;
       background-color: var(--white);
+
+      position: absolute;
+      top: 50%;
+
+      &--first {
+        transform: translateY(calc(-50% - 0.5rem));
+
+        .burger--open & {
+          transform: rotate(45deg);
+        }
+      }
+
+      &--second {
+        transform: translateY(calc(-50% + 0.5rem));
+
+        .burger--open & {
+          transform: rotate(-45deg);
+        }
+      }
     }
   }
 }
