@@ -15,6 +15,12 @@
 
     position: relative;
 
+
+    @include md {
+      // width: 5rem;
+      // height: 5rem;
+    }
+
     &.burger--open {
       gap: 0;
     }

@@ -101,6 +101,29 @@
   }
 
   &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
     padding: 11rem 9rem 8rem 9rem;
+  }
+
+  .form {
+    max-width: 114.6rem;
+  }
+
+  .general {
+
+    &__head {
+      gap: 0;
+    }
+
+    &__suptitle {
+      color: var(--black);
+    }
+
+    &__title {
+      line-height: 100%;
+      color: var(--white);
+    }
   }
 }

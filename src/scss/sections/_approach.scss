@@ -1,0 +1,68 @@
+@use './../mixins' as *;
+
+.approach {
+  overflow-x: visible;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 12rem;
+  }
+
+  &__head {
+
+    .general__text {
+      margin-left: 54rem;
+    }
+  }
+
+  &__body {}
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 54rem;
+  }
+
+  &__block {
+    display: flex;
+    align-items: center;
+    // border-radius: 50%;
+    // background-color: var(--black);
+    padding: 0 15.5rem 0 7.5rem;
+    width: calc(112.5rem - 25.75rem);
+    height: 111.1rem;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODY5IiBoZWlnaHQ9IjExMTciIHZpZXdCb3g9IjAgMCA4NjkgMTExNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik0xMDcuMzA0IDIyNC4wN0MyODkuNDM3IC0yMi45MDcyIDY0MC4wNCAtNzMuNDUzMyA4OTAuMzk4IDExMS4xNzJDMTE0MC43NiAyOTUuNzk4IDExOTYuMDYgNjQ1LjY4MiAxMDEzLjkzIDg5Mi42NTlDODMxLjggMTEzOS42NCA0ODEuMTk3IDExOTAuMTggMjMwLjgzOCAxMDA1LjU2Qy0xOS41MjAzIDgyMC45MzIgLTc0LjgyODQgNDcxLjA0OCAxMDcuMzA0IDIyNC4wN1oiIGZpbGw9IiMxNzE3MUEiLz4NCjwvc3ZnPg0K);
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    color: var(--white);
+    text-align: right;
+
+    position: absolute;
+    top: -25rem;
+    // right: -26.5rem;
+    right: 0;
+    z-index: -1;
+
+    .general__suptitle {
+      font-weight: 400;
+      color: var(--white);
+    }
+  }
+
+  &__cover {
+    height: 90.6rem;
+
+    position: absolute;
+    top: 25.2rem;
+    left: 0;
+    z-index: 1;
+
+    img {
+      width: auto;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
