@@ -39,9 +39,15 @@
               СУТЬ ОБРАЩЕНИЯ
             </label>
           </div>
+          <!-- <div class="form-group">
+            <textarea class="form-textarea" rows="1" name="commentss"></textarea>
+            <label class="form-label">
+              СУТЬ ОБРАЩЕНИЯ
+            </label>
+          </div> -->
         </div>
         <div class="form-foot">
-          <button class="form-btn" data-btn-sound="poehali">
+          <button class="form-btn" type="button" data-btn-sound="poehali">
             поехали!
           </button>
           <div class="form-wrap">
@@ -49,19 +55,36 @@
               Нажимая на кнопку «Отправить» вы соглашаетесь с <a href="/">Политикой обработки персональных данных</a>
             </div>
             <div class="form-group">
-              <div class="form-text">
-                Я согласен на обработку персональных данных
-              </div>
+              <input id="form-checkbox-1" class="form-checkbox" type="checkbox">
+              <label for="form-checkbox-1" class="form-checkbox-label">
+                <div class="form-checkbox--item"></div>
+                <div class="form-text">
+                  Я согласен на обработку персональных данных
+                </div>
+              </label>
             </div>
             <div class="form-group">
-              <div class="form-text">
-                Я согласен на рекламные уведомления
-              </div>
+              <input id="form-checkbox-2" class="form-checkbox" type="checkbox">
+              <label for="form-checkbox-2" class="form-checkbox-label">
+                <div class="form-checkbox--item"></div>
+                <div class="form-text">
+                  Я согласен на рекламные уведомления
+                </div>
+              </label>
             </div>
           </div>
         </div>
       </div>
     </form>
+
+    <div class="callback__cover">
+      <div class="callback__cover-img callback__cover-img--first" data-anim="fadeDown">
+        <img src="./../../images/temp/callback-ruka.png" alt="">
+      </div>
+      <div class="callback__cover-img callback__cover-img--second" data-anim="fadeUp">
+        <img src="./../../images/temp/callback-syrok.png" alt="">
+      </div>
+    </div>
 
     <div class="callback__btn">
       <span class="callback__btn-line callback__btn-line--first"></span>

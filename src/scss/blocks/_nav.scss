@@ -15,10 +15,15 @@ nav {
     font-size: 3rem;
     line-height: 100%;
     text-transform: uppercase;
-    text-decoration: underline !important;
+    text-decoration: underline;
 
     .menu--open & {
       color: var(--white);
+    }
+
+    &:link,
+    &:visited {
+      text-decoration: underline;
     }
   }
 }

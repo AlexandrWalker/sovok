@@ -50,3 +50,16 @@
     }
   }
 }
+
+.invert-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  z-index: 502;
+  pointer-events: none;
+
+  backdrop-filter: invert(1);
+  -webkit-backdrop-filter: invert(1);
+}

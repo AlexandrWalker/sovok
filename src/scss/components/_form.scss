@@ -63,10 +63,17 @@
 
   &-textarea {
     width: 100%;
-    padding: 1.5rem 2rem;
-    border-radius: 0.8rem;
-    background-color: var(--white);
+    height: 7rem;
+    background-color: transparent;
+    border-bottom: 0.2rem solid var(--black-50);
     resize: none;
+
+    font-weight: 400;
+    font-size: 3rem;
+    line-height: 7rem;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    color: var(--white);
 
     &.filled,
     &:focus,
@@ -74,40 +81,62 @@
     &:checked {
 
       &+.form-label {
-        opacity: 0;
+        font-size: 2rem;
+
+        top: -2rem;
       }
     }
   }
 
-  &__row {
+  &-checkbox {
+    display: none;
 
-    &-1 {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: 2rem;
+    &:checked {
 
-      @include md {
-        grid-template-columns: repeat(1, 1fr);
+      &+.form-checkbox-label {
+
+        .form-checkbox--item {
+
+          &::before {
+            right: 0.5rem;
+            left: auto;
+          }
+        }
       }
     }
 
-    &-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-
-      @include md {
-        grid-template-columns: repeat(1, 1fr);
-      }
+    &-label {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1.5rem;
+      width: fit-content;
     }
 
-    &-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
+    &--item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 7.5rem;
+      height: 3rem;
+      padding: 0.5rem;
+      background-color: var(--black-10);
+      flex-shrink: 0;
 
-      @include md {
-        grid-template-columns: repeat(1, 1fr);
+      position: relative;
+
+      &::before {
+        content: "";
+        width: 3.3rem;
+        height: 2rem;
+        background-color: var(--white);
+        flex-shrink: 0;
+
+        position: absolute;
+        top: 50%;
+        right: auto;
+        left: 0.5rem;
+        transform: translateY(-50%);
       }
     }
   }
@@ -127,10 +156,6 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-
-    .check {
-      position: static;
-    }
 
     a {
       color: var(--blue);
