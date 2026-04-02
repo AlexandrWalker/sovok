@@ -1,0 +1,61 @@
+@use './../mixins' as *;
+
+.effect {
+
+  .general__head {
+    gap: 0;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 9rem;
+  }
+
+  &__body{
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  &__feat {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem 10rem;
+
+    &-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    &-count {
+      display: flex;
+      flex-direction: row;
+
+      font-family: var(--second-family);
+      font-weight: 1000;
+      font-size: 10rem;
+      // line-height: 85%;
+      line-height: 1em;
+      letter-spacing: -0.05em;
+      color: var(--red);
+    }
+
+    &-text {
+      font-weight: 400;
+      font-size: 3rem;
+      line-height: 120%;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+  }
+
+  &__ps {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 3rem;
+    line-height: 120%;
+    color: var(--red);
+  }
+}
