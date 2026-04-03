@@ -2,7 +2,7 @@
 
 .callback {
   display: grid;
-  grid-template-columns: 5.2rem 1fr;
+  grid-template-columns: var(--callback-width) 1fr;
   background-color: var(--red);
   width: 100dvw;
   width: 100vw;
@@ -12,7 +12,7 @@
 
   position: fixed;
   top: 0;
-  left: calc(100% - 5.2rem);
+  left: calc(100% - var(--callback-width));
   z-index: 600;
 
   @include md {
@@ -27,7 +27,7 @@
 
   .header-at-footer &,
   .menu--open & {
-    left: calc(100% + 5.2rem);
+    left: calc(100% + var(--callback-width));
   }
 
   * {

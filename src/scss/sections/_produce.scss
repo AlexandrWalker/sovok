@@ -1,7 +1,9 @@
 @use './../mixins' as *;
 
 .produce {
-  margin-right: 5.2rem;
+  --section-padding-bottom: 10rem;
+
+  margin-right: var(--callback-width);
 
   .general__head {
     gap: 0.2rem;

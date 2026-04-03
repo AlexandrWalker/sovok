@@ -1,7 +1,19 @@
 @use './../mixins' as *;
 
 .approach {
+  --section-padding-bottom: 10rem;
+  
   overflow-x: visible;
+
+  .general {
+
+    &__title {
+
+      .general__suptitle {
+        display: block;
+      }
+    }
+  }
 
   &__inner {
     display: flex;

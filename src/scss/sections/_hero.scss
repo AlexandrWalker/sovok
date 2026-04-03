@@ -3,11 +3,8 @@
 .hero {
   padding-top: 8.5rem;
   padding-bottom: 6.5rem;
+  padding-bottom: 9.5rem;
   overflow-x: visible;
-
-  min-height: calc(100vh - var(--header-height) - 30rem);
-  min-height: calc(100dvh - var(--header-height) - 30rem);
-  min-height: unset !important;
 
   &__content {
     position: relative;

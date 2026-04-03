@@ -1,35 +1,149 @@
 @use './../mixins' as *;
 
 .inform {
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  // &__cover {
+  //   width: auto;
+  //   height: 78rem;
+
+  //   position: absolute;
+  //   top: 5.3rem;
+  //   left: -21.3rem;
+  //   z-index: 1;
+
+  //   img {
+  //     width: auto;
+  //     height: 100%;
+  //     object-fit: contain;
+  //   }
+
+  //   &-active {
+  //     width: 30rem;
+  //     height: 52rem;
+  //     opacity: 0;
+
+  //     position: absolute;
+  //     top: 1.2rem;
+  //     left: 41rem;
+  //     z-index: 2;
+
+  //     @include md {
+  //       left: 24rem;
+  //     }
+  //   }
+  // }
+
+  .general {
+
+    &__head {}
+  }
+
+  &__body {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -2rem;
+  }
+
+  &__slider {
+    max-width: 112rem;
+    margin: 0 10.9rem 0 0;
+  }
+
+  &__slide {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.3rem;
+
+    &:last-child {
+
+      .inform__item-arrow {
+        display: none;
+      }
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    max-width: 43.6rem;
+
+    &-cover {
+      max-width: 40.9rem;
+      width: 100%;
+      height: 32.9rem;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    &-title {
+      font-weight: 800;
+      font-size: 3rem;
+      line-height: 120%;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+
+    &-text {
+      font-weight: 400;
+      font-size: 3rem;
+      line-height: 120%;
+      letter-spacing: -0.04em;
+    }
+
+    &-arrow {
+      width: 9rem;
+
+      img {
+        width: 100%;
+        object-fit: contain;
+      }
+    }
+  }
 
   &__cover {
     width: auto;
     height: 78rem;
 
     position: absolute;
-    top: 5.3rem;
+    top: 11rem;
     left: -21.3rem;
     z-index: 1;
-    
-    img {
+
+    &-shadow {
       width: auto;
       height: 100%;
       object-fit: contain;
-    }
-
-    &-active {
-      width: 30rem;
-      height: 52rem;
-      opacity: 0;
 
       position: absolute;
-      top: 1.2rem;
-      left: 41rem;
-      z-index: 2;
+      inset: 0;
+      z-index: 0;
 
-      @include md {
-        left: 24rem;
-      }
+      filter:
+        drop-shadow(0 0 0 var(--red)) brightness(0) saturate(100%) invert(18%) sepia(96%) saturate(7491%) hue-rotate(1deg);
+      transform: rotate(6deg);
+    }
+
+    &-img {
+      width: auto;
+      height: 100%;
+      object-fit: contain;
+
+      position: relative;
+      z-index: 1;
     }
   }
 }

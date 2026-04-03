@@ -1,6 +1,7 @@
 @use './../mixins' as *;
 
 .effect {
+  --section-padding-bottom: 10rem;
 
   .general__head {
     gap: 0;

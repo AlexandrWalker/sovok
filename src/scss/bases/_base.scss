@@ -62,9 +62,8 @@ section {
   padding: var(--section-padding-top) 0 var(--section-padding-bottom);
   overflow-x: hidden;
   overflow-y: visible;
-
-  min-height: 100vh;
-  min-height: 100dvh;
+  // min-height: 100vh;
+  // min-height: 100dvh;
   will-change: transform;
   background-color: var(--white);
 }

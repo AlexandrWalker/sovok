@@ -1058,6 +1058,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   initSectionAnimations();
 
+  gsap.fromTo(document.querySelector('.request__cover-img--1'),
+    { y: '5%' },
+    {
+      y: '-5%',
+      scrollTrigger: {
+        trigger: document.querySelector('.request__cover'),
+        start: 'top 90%',
+        end: 'bottom top',
+        scrub: true,
+      },
+    }
+  );
+  gsap.fromTo(document.querySelector('.request__cover-img--2'),
+    { y: '7%' },
+    {
+      y: '-7%',
+      scrollTrigger: {
+        trigger: document.querySelector('.request__cover'),
+        start: 'top 90%',
+        end: 'bottom top',
+        scrub: true,
+      },
+    }
+  );
+
   /**
    * callback
    */
@@ -1853,6 +1878,61 @@ document.addEventListener('DOMContentLoaded', () => {
               slidesPerGroup: 1,
               slidesPerView: 3,
               spaceBetween: 80,
+            },
+          },
+        },
+      },
+      {
+        sliderSelector: '.inform__slider',
+        highlight: false,
+        swiperOptions: {
+          slidesPerGroup: 1,
+          slidesPerView: 1,
+          spaceBetween: 10,
+          speed: 500,
+          grabCursor: true,
+          loop: false,
+          touchRatio: 1.6,
+          resistance: true,
+          resistanceRatio: 0.4,
+          centeredSlides: false,
+          centeredSlidesBounds: true,
+          simulateTouch: true,
+          direction: 'horizontal',
+          touchStartPreventDefault: true,
+          touchMoveStopPropagation: true,
+          threshold: 8,
+          touchAngle: 25,
+          watchOverflow: true,
+          freeMode: {
+            enabled: true,
+            momentum: true,
+            momentumRatio: 0.85,
+            momentumVelocityRatio: 1,
+            momentumBounce: false,
+            sticky: true,
+          },
+          mousewheel: {
+            forceToAxis: true,
+            sensitivity: 1,
+            releaseOnEdges: true,
+          },
+          navigation: false,
+          breakpoints: {
+            0: {
+              slidesPerGroup: 1,
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            601: {
+              slidesPerGroup: 1,
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            835: {
+              slidesPerGroup: 1,
+              slidesPerView: 2,
+              spaceBetween: 40,
             },
           },
         },
