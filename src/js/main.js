@@ -205,12 +205,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1.0 (полная)
     // выше (усиление)
     const SOUND_VOLUME = {
-      levitan: 0.4,   // меняем здесь громкость для каждого звука
+      levitan: 0.7,   // меняем здесь громкость для каждого звука
     };
 
     // Глобальная громкость поверх индивидуальной (множитель)
     // 1.0 = без изменений, 0.5 = вдвое тише, 0 = полная тишина
-    let globalVolume = 0.4;
+    let globalVolume = 0.7;
 
     // Web Audio API setup
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -1878,6 +1878,61 @@ document.addEventListener('DOMContentLoaded', () => {
               slidesPerGroup: 1,
               slidesPerView: 3,
               spaceBetween: 80,
+            },
+          },
+        },
+      },
+      {
+        sliderSelector: '.cases__slider',
+        highlight: false,
+        swiperOptions: {
+          slidesPerGroup: 1,
+          slidesPerView: 1,
+          spaceBetween: 10,
+          speed: 500,
+          grabCursor: true,
+          loop: false,
+          touchRatio: 1.6,
+          resistance: true,
+          resistanceRatio: 0.4,
+          centeredSlides: false,
+          centeredSlidesBounds: true,
+          simulateTouch: true,
+          direction: 'horizontal',
+          touchStartPreventDefault: true,
+          touchMoveStopPropagation: true,
+          threshold: 8,
+          touchAngle: 25,
+          watchOverflow: true,
+          freeMode: {
+            enabled: true,
+            momentum: true,
+            momentumRatio: 0.85,
+            momentumVelocityRatio: 1,
+            momentumBounce: false,
+            sticky: true,
+          },
+          mousewheel: {
+            forceToAxis: true,
+            sensitivity: 1,
+            releaseOnEdges: true,
+          },
+          navigation: false,
+          breakpoints: {
+            0: {
+              slidesPerGroup: 1,
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            601: {
+              slidesPerGroup: 1,
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            835: {
+              slidesPerGroup: 1,
+              slidesPerView: 1,
+              spaceBetween: 40,
             },
           },
         },
