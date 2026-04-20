@@ -145,24 +145,16 @@ img {
 @font-face {
   font-family: Redoctober;
   font-display: swap;
-  src: url("../fonts/Redoctober-ultra.woff2") format("woff2"), url("../fonts/Redoctober-ultra.woff") format("woff");
-  font-weight: 1000;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Redoctober;
-  font-display: swap;
   src: url("../fonts/Redoctober-regular.woff2") format("woff2"), url("../fonts/Redoctober-regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: Roboto;
+  font-family: Redoctober;
   font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
+  src: url("../fonts/Redoctober-ultra.woff2") format("woff2"), url("../fonts/Redoctober-ultra.woff") format("woff");
+  font-weight: 1000;
   font-style: normal;
 }
 
@@ -171,6 +163,14 @@ img {
   font-display: swap;
   src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
   font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -2130,6 +2130,185 @@ nav a:visited {
   object-fit: contain;
 }
 
+.awards {
+  overflow: visible;
+  min-height: 100dvh;
+}
+
+.awards .general__head {
+  gap: 0;
+  margin-bottom: 12rem;
+}
+
+.awards__cover {
+  width: auto;
+  height: 63.8rem;
+  position: absolute;
+  top: 20rem;
+  left: 0;
+  z-index: 2;
+}
+
+.awards__cover img {
+  width: auto;
+  height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+
+.awards__slider {
+  margin-left: 50rem;
+}
+
+.awards__slide-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 3rem;
+  max-width: 62rem;
+}
+
+.awards__slide-name {
+  font-family: var(--second-family);
+  font-weight: 1000;
+  font-size: 4rem;
+  line-height: 100%;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.awards__slide-title {
+  font-family: var(--second-family);
+  font-weight: 1000;
+  font-size: 4rem;
+  line-height: 120%;
+  text-transform: uppercase;
+}
+
+.awards__slide-text {
+  font-weight: 400;
+  font-size: 3rem;
+  line-height: 120%;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.awards__img {
+  height: 87.8rem;
+  position: absolute;
+  top: -5.3rem;
+  right: 0;
+  z-index: 1;
+}
+
+.awards__img img {
+  width: auto;
+  height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+
+.cases {
+  overflow: visible;
+}
+
+.cases .general__head {
+  gap: 0;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-bottom: 5rem;
+}
+
+.cases .general__suptitle {
+  margin-left: 40rem;
+}
+
+.cases__inner {
+  padding-left: 54rem;
+}
+
+.cases__cover {
+  height: 104.7rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.cases__cover img {
+  width: auto;
+  height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+
+.cases__slider {
+  max-width: 99rem;
+  overflow: hidden;
+}
+
+.cases__slide-wrap {
+  width: 100%;
+  height: 54rem;
+  position: relative;
+}
+
+.cases__slide-bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.cases__slide-bg img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.cases__slide-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 9rem 8.5rem 9rem 43.4rem;
+  height: 100%;
+  color: var(--white);
+  position: relative;
+  z-index: 2;
+}
+
+.cases__slide-title {
+  margin-bottom: 3rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.cases__slide-text {
+  margin-bottom: 4.4rem;
+  font-weight: 400;
+  font-size: 3rem;
+  line-height: 120%;
+  letter-spacing: -0.04em;
+}
+
+.cases__slide-btn {
+  max-width: 30.7rem;
+  width: 100%;
+}
+
 /* ── Обёртка всей сцены ── */
 
 .dynamite-scene {
@@ -2683,6 +2862,7 @@ nav a:visited {
 
 .growth {
   overflow: visible;
+  background-color: transparent;
 }
 
 .growth .general__head {
