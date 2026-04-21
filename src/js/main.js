@@ -17,60 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
+  // lenis.on('scroll', ScrollTrigger.update);
+
   gsap.ticker.add((time) => {
     lenis.raf(time * 1000);
-  });
-
-  /**
-   * Анимация текста
-   */
-  gsap.utils.toArray('[data-split="title"]').forEach(dataSplitLines => {
-    const textSplits = dataSplitLines.querySelectorAll('*');
-    textSplits.forEach(textSplit => {
-      if (textSplit) SplitText.create(textSplit, {
-        type: "words,lines",
-        mask: "lines",
-        linesClass: "line",
-        autoSplit: true,
-        onSplit: inst => gsap.from(inst.lines, {
-          y: 50,
-          rotation: 2.5,
-          opacity: 0,
-          stagger: 0.1,
-          duration: 0.6,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: dataSplitLines,
-            start: "top 90%",
-            end: "bottom top"
-          }
-        })
-      });
-    });
-  });
-
-  gsap.utils.toArray('[data-split="text"]').forEach(dataSplitLines => {
-    const textSplits = dataSplitLines.querySelectorAll('*');
-    textSplits.forEach(textSplit => {
-      if (textSplit) SplitText.create(textSplit, {
-        type: "words,lines",
-        mask: "lines",
-        linesClass: "line",
-        autoSplit: true,
-        onSplit: inst => gsap.from(inst.lines, {
-          y: 30,
-          rotation: 2.5,
-          opacity: 0,
-          stagger: 0.05,
-          duration: 0.8,
-          scrollTrigger: {
-            trigger: dataSplitLines,
-            start: "top 90%",
-            end: "bottom top"
-          }
-        })
-      });
-    });
   });
 
   /**
@@ -80,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Конфиг: название звука - путь до файла
     const SOUND_MAP = {
       poehali: './sound/poehali.mp3',
+      shutdown_sound: './sound/shutdown-sound.mp3',
     };
 
     // Кэш AudioBuffer'ов (Web Audio API)
@@ -689,7 +640,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Управляет поведением меню-бургера.
    */
-  function burgerNav() {
+  (function () {
     const burgerBtn = document.getElementById('burger-btn');
     const burgerMenu = document.getElementById('burger-menu');
     const menuNav = document.querySelector('#burger-menu .menu__nav');
@@ -737,305 +688,12 @@ document.addEventListener('DOMContentLoaded', () => {
         closeMenu();
       }
     });
-  }
-  burgerNav();
-
-  /**
-   * Анимация посимвольной печати
-   */
-  // (function () {
-
-  //   // ─── Конфиг ────────────────────────────────────────────────────────────────
-
-  //   /**
-  //    * Список фраз для посимвольной печати.
-  //    *
-  //    * Каждая фраза - массив строк (строк = линий).
-  //    * Каждая строка - массив слов.
-  //    *
-  //    * Структура:
-  //    * [
-  //    *   [                          ← фраза
-  //    *     ['слово1', 'слово2'],    ← первая линия
-  //    *     ['слово3'],              ← вторая линия
-  //    *     ['слово4', 'слово5'],    ← третья линия
-  //    *   ],
-  //    * ]
-  //    *
-  //    * Слова совпадают с data-word в HTML - через них применяются CSS-стили.
-  //    * Порядок слов в массиве = порядок печати слева направо, сверху вниз.
-  //    */
-  //   const PHRASES = [
-  //     [
-  //       ['за!'],
-  //       ['уровень'],
-  //       ['в', ' цифре'],
-  //     ],
-  //     [
-  //       ['след.'],
-  //       ['фраза'],
-  //       ['прямо', ' здесь'],
-  //     ],
-  //     [
-  //       ['и ещё'],
-  //       ['одна'],
-  //       ['строка'],
-  //     ],
-  //   ];
-
-  //   /**
-  //    * Скорость печати одного символа (секунды).
-  //    * TYPE_VARIANCE добавляет случайный разброс - имитация живого набора.
-  //    */
-  //   const TYPE_SPEED = 0.07;
-  //   const TYPE_VARIANCE = 0.04;
-
-  //   /** Скорость удаления одного символа (секунды). */
-  //   const DELETE_SPEED = 0.04;
-
-  //   /**
-  //    * Паузы (секунды):
-  //    * PAUSE_AFTER_TYPE   - после полного набора фразы
-  //    * PAUSE_AFTER_DELETE - после полного удаления (перед следующей фразой)
-  //    */
-  //   const PAUSE_AFTER_TYPE = 2.0;
-  //   const PAUSE_AFTER_DELETE = 0.5;
-
-  //   // ─── DOM ───────────────────────────────────────────────────────────────────
-
-  //   const cursorEl = document.querySelector('.typewriter__cursor');
-
-  //   /**
-  //    * Собираем все .typewriter__word в Map: data-word → элемент.
-  //    *
-  //    * Map выбран вместо объекта потому что:
-  //    * - гарантирует порядок вставки (важно при итерации)
-  //    * - ключи строго строковые без коллизий с прототипом
-  //    *
-  //    * Пример результата:
-  //    * wordMap = {
-  //    *   'за!'     → <span data-word="за!">,
-  //    *   'уровень' → <span data-word="уровень">,
-  //    *   'в'       → <span data-word="в">,
-  //    *   'цифре'   → <span data-word="цифре">,
-  //    * }
-  //    */
-  //   const wordMap = new Map();
-  //   document.querySelectorAll('.typewriter__word').forEach(el => {
-  //     wordMap.set(el.dataset.word, el);
-  //   });
-
-  //   // ─── Курсор: мигание ───────────────────────────────────────────────────────
-
-  //   /**
-  //    * Бесконечное мигание курсора.
-  //    * pause() / resume() синхронизируют мигание с циклом печати:
-  //    * курсор статичен во время набора/удаления, мигает в паузах.
-  //    */
-  //   const cursorTween = gsap.to(cursorEl, {
-  //     opacity: 0,
-  //     duration: 0.5,
-  //     repeat: -1,
-  //     yoyo: true,
-  //     ease: 'none',
-  //   });
-
-  //   // ─── Вспомогательные функции ───────────────────────────────────────────────
-
-  //   /**
-  //    * Случайная задержка вокруг TYPE_SPEED.
-  //    * @returns {number} секунды
-  //    */
-  //   function getTypeDelay() {
-  //     return TYPE_SPEED + (Math.random() * 2 - 1) * TYPE_VARIANCE;
-  //   }
-
-  //   /**
-  //    * Promise-обёртка над setTimeout для await-синтаксиса.
-  //    * @param {number} seconds
-  //    */
-  //   function sleep(seconds) {
-  //     return new Promise(resolve => setTimeout(resolve, seconds * 1000));
-  //   }
-
-  //   /**
-  //    * Перемещает курсор в конец указанного элемента-слова.
-  //    *
-  //    * Курсор физически один в DOM, но логически "принадлежит"
-  //    * последнему напечатанному слову. Для этого переносим его
-  //    * в нужный .typewriter__word через appendChild.
-  //    *
-  //    * appendChild перемещает существующий узел - клонирование не нужно.
-  //    * Курсор автоматически исчезает из предыдущего места.
-  //    *
-  //    * @param {HTMLElement} wordEl - элемент слова, куда переносим курсор
-  //    */
-  //   function moveCursorTo(wordEl) {
-  //     wordEl.appendChild(cursorEl);
-  //   }
-
-  //   /**
-  //    * Печатает одно слово посимвольно в указанный элемент.
-  //    *
-  //    * Каждый символ - отдельный <span> внутри .typewriter__word.
-  //    * Пробел → &nbsp; чтобы браузер не "съел" пробелы в конце.
-  //    *
-  //    * @param {HTMLElement} wordEl - элемент слова
-  //    * @param {string}      word   - строка для печати
-  //    */
-  //   async function typeWord(wordEl, word) {
-  //     for (const char of word) {
-  //       const span = document.createElement('span');
-  //       span.innerHTML = char === ' ' ? '&nbsp;' : char;
-  //       // Вставляем символ перед курсором чтобы курсор всегда был в конце
-  //       wordEl.insertBefore(span, cursorEl);
-  //       await sleep(getTypeDelay());
-  //     }
-  //   }
-
-  //   /**
-  //    * Удаляет все символы из указанного элемента-слова (справа налево).
-  //    *
-  //    * Выбираем только span-символы (не курсор) через селектор span:not(.typewriter__cursor).
-  //    * Реверсируем массив - удаление идёт с последнего символа.
-  //    *
-  //    * @param {HTMLElement} wordEl - элемент слова
-  //    */
-  //   async function deleteWord(wordEl) {
-  //     const spans = Array.from(
-  //       wordEl.querySelectorAll('span:not(.typewriter__cursor)')
-  //     ).reverse();
-
-  //     for (const span of spans) {
-  //       span.remove();
-  //       await sleep(DELETE_SPEED);
-  //     }
-  //   }
-
-  //   /**
-  //    * Печатает целую фразу: перебирает строки и слова по порядку.
-  //    *
-  //    * Перед каждым словом курсор переезжает в его контейнер -
-  //    * визуально курсор "следует" за набором.
-  //    *
-  //    * @param {string[][][]} phrase - трёхмерный массив [линии[слова]]
-  //    */
-  //   async function typePhrase(phrase) {
-  //     cursorTween.pause();
-  //     gsap.set(cursorEl, { opacity: 1 });
-
-  //     for (const line of phrase) {
-  //       for (const word of line) {
-  //         const wordEl = wordMap.get(word);
-  //         if (!wordEl) continue;
-
-  //         // Курсор переезжает в текущее слово перед его набором
-  //         moveCursorTo(wordEl);
-  //         await typeWord(wordEl, word);
-  //       }
-  //     }
-
-  //     cursorTween.resume();
-  //   }
-
-  //   /**
-  //    * Удаляет целую фразу: перебирает слова в обратном порядке.
-  //    *
-  //    * flat() разворачивает [линии[слова]] → плоский массив слов.
-  //    * reverse() - удаление идёт от последнего слова к первому.
-  //    *
-  //    * Перед удалением каждого слова курсор переезжает в него -
-  //    * курсор "отступает" вместе с удалением.
-  //    *
-  //    * @param {string[][][]} phrase
-  //    */
-  //   async function deletePhrase(phrase) {
-  //     cursorTween.pause();
-  //     gsap.set(cursorEl, { opacity: 1 });
-
-  //     // flat() разворачивает вложенные массивы строк и слов
-  //     const allWords = phrase.flat().reverse();
-
-  //     for (const word of allWords) {
-  //       const wordEl = wordMap.get(word);
-  //       if (!wordEl) continue;
-
-  //       moveCursorTo(wordEl);
-  //       await deleteWord(wordEl);
-  //     }
-
-  //     cursorTween.resume();
-  //   }
-
-  //   /**
-  //    * Обновляет data-word у всех .typewriter__word и пересобирает wordMap.
-  //    *
-  //    * Нужно при смене фразы: HTML-структура (строки/слова) остаётся той же,
-  //    * но слова меняются. Обновляем атрибуты и переключаем CSS-стили.
-  //    *
-  //    * Порядок обхода: сначала все слова первой линии, потом второй и т.д.
-  //    * - совпадает с порядком в PHRASES[phraseIndex].
-  //    *
-  //    * @param {string[][][]} phrase - новая фраза
-  //    */
-  //   function applyPhraseToDOM(phrase) {
-  //     // Плоский список новых слов в порядке обхода
-  //     const newWords = phrase.flat();
-
-  //     // Все существующие .typewriter__word в порядке DOM
-  //     const wordEls = Array.from(document.querySelectorAll('.typewriter__word'));
-
-  //     wordEls.forEach((el, i) => {
-  //       const newWord = newWords[i];
-  //       if (!newWord) return;
-
-  //       // Меняем data-word → CSS [data-word="..."] автоматически подхватит новые стили
-  //       el.dataset.word = newWord;
-  //     });
-
-  //     // Пересобираем Map с актуальными ключами
-  //     wordMap.clear();
-  //     document.querySelectorAll('.typewriter__word').forEach(el => {
-  //       wordMap.set(el.dataset.word, el);
-  //     });
-  //   }
-
-  //   // ─── Основной цикл ─────────────────────────────────────────────────────────
-
-  //   /**
-  //    * Бесконечный цикл смены фраз.
-  //    *
-  //    * Порядок для каждой фразы:
-  //    * 1. applyPhraseToDOM - обновляем data-word (CSS-стили переключаются)
-  //    * 2. typePhrase       - посимвольный набор всех слов
-  //    * 3. sleep            - пауза чтения
-  //    * 4. deletePhrase     - посимвольное удаление в обратном порядке
-  //    * 5. sleep            - пауза перед следующей фразой
-  //    */
-  //   async function runLoop() {
-  //     let index = 0;
-
-  //     while (true) {
-  //       const phrase = PHRASES[index % PHRASES.length];
-
-  //       applyPhraseToDOM(phrase);
-  //       await typePhrase(phrase);
-  //       await sleep(PAUSE_AFTER_TYPE);
-  //       await deletePhrase(phrase);
-  //       await sleep(PAUSE_AFTER_DELETE);
-
-  //       index++;
-  //     }
-  //   }
-
-  //   runLoop();
-
-  // })();
+  })();
 
   /**
    * Анимация наслоения блоков
    */
-  function initSectionAnimations() {
+  (function () {
     document.querySelectorAll("[data-animate]").forEach((section) => {
 
       gsap.timeline({
@@ -1055,8 +713,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
       });
     });
-  }
-  initSectionAnimations();
+  })();
 
   gsap.fromTo(document.querySelector('.request__cover-img--1'),
     { y: '5%' },
@@ -1070,6 +727,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
     }
   );
+
   gsap.fromTo(document.querySelector('.request__cover-img--2'),
     { y: '7%' },
     {
@@ -1090,13 +748,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const callbackBtn = document.querySelector('.callback__btn');
     const callbackBlock = document.querySelector('.callback');
 
-    const fadeUpItems = gsap.utils.toArray('[data-anim="fadeUp"]');
-    const fadeDownItems = gsap.utils.toArray('[data-anim="fadeDown"]');
+    const fadeUpItems = gsap.utils.toArray('[data-callback-anim="fadeUp"]');
+    const fadeDownItems = gsap.utils.toArray('[data-callback-anim="fadeDown"]');
 
-    const callbackTl = gsap.timeline({ paused: true });
+    let isClosing = false;
+    let closeTimeout = null;
+
+    // Timeline открытия
+    const openTl = gsap.timeline({ paused: true });
 
     fadeUpItems.forEach(el => {
-      callbackTl.from(el, {
+      openTl.from(el, {
         duration: 0.8,
         y: 350,
         ease: 'none',
@@ -1104,27 +766,58 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     fadeDownItems.forEach(el => {
-      callbackTl.from(el, {
+      openTl.from(el, {
         duration: 0.8,
         rotate: -20,
-        y: -100,
+        y: -500,
         ease: 'none',
       }, 0);
     });
 
     const openMenu = () => {
+      if (isClosing) return;
+
       callbackBtn.classList.add('callback--open');
       document.documentElement.classList.add('callback--open');
       lenis.stop();
-      callbackTl.restart();
+      openTl.restart();
     };
 
     const closeMenu = () => {
-      callbackBtn.classList.remove('callback--open');
-      document.documentElement.classList.remove('callback--open');
-      lenis.start();
-      // callbackTl.pause(0);
-      callbackTl.reverse();
+      if (isClosing) return;
+      isClosing = true;
+
+      openTl.pause();
+
+      // Анимация fadeUp и fadeDown запускается сразу без задержки
+      const closeTl = gsap.timeline({
+        onComplete: () => {
+          // После анимации ждём 1 секунду и только потом скрываем блок
+          closeTimeout = setTimeout(() => {
+            callbackBtn.classList.remove('callback--open');
+            document.documentElement.classList.remove('callback--open');
+            lenis.start();
+            isClosing = false;
+          }, 100);
+        },
+      });
+
+      fadeUpItems.forEach(el => {
+        closeTl.to(el, {
+          duration: 0.2,
+          y: 1000,
+          ease: 'none',
+        }, 0);
+      });
+
+      fadeDownItems.forEach(el => {
+        closeTl.to(el, {
+          duration: 0.2,
+          rotate: 10,
+          y: 50,
+          ease: 'none',
+        }, 0);
+      });
     };
 
     const toggleMenu = (e) => {
@@ -1136,7 +829,7 @@ document.addEventListener('DOMContentLoaded', () => {
     callbackBtn.addEventListener('click', toggleMenu);
 
     window.addEventListener('keydown', (e) => {
-      if (e.key === "Escape" && document.documentElement.classList.contains('callback--open')) {
+      if (e.key === 'Escape' && document.documentElement.classList.contains('callback--open')) {
         closeMenu();
       }
     });
@@ -1154,8 +847,8 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /**
- * Анимация текста
- */
+   * Анимация заголовков и подзаголовков
+   */
   gsap.utils.toArray('[data-split="title"]').forEach(dataSplitLines => {
     const textSplits = dataSplitLines.querySelectorAll('*');
 
@@ -1232,318 +925,655 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // gsap.utils.toArray('[data-anim="fadeUp"]').forEach(dataAnimItem => {
-  //   gsap.from(dataAnimItem, {
-  //     duration: 0.8,
-  //     delay: 0.5,
-  //     // rotate: -70.79,
-  //     y: 40,
-  //     ease: 'none',
-  //     scrollTrigger: {
-  //       trigger: dataAnimItem,
-  //       start: 'top center',
-  //       end: 'bottom top',
-  //       toggleActions: 'play none none none',
-  //     }
-  //   });
-  // });
-  // gsap.utils.toArray('[data-anim="fadeDown"]').forEach(dataAnimItem => {
-  //   gsap.from(dataAnimItem, {
-  //     duration: 0.8,
-  //     delay: 0.5,
-  //     // rotate: -16.41,
-  //     y: -100,
-  //     ease: 'none',
-  //     scrollTrigger: {
-  //       trigger: dataAnimItem,
-  //       start: 'top center',
-  //       end: 'bottom top',
-  //       toggleActions: 'play none none none',
-  //     }
-  //   });
-  // });
-
+  /**
+   * Анимации fadeLeft, fadeRight, fadeUp, fadeDown
+   */
   (function () {
 
-    // Конфиг
+    // Конфиг для каждого направления — откуда летит блок
+    // x/y в процентах чтобы работало для любого размера элемента
+    const directions = {
+      fadeLeft: { x: '-100%', y: '0%' },
+      fadeRight: { x: '100%', y: '0%' },
+      fadeUp: { x: '0%', y: '100%' },
+      fadeDown: { x: '0%', y: '-100%' },
+    };
 
-    /**
-     * Список фраз для посимвольной печати.
-     *
-     * Каждая фраза — массив строк (строк = линий).
-     * Каждая строка — массив слов.
-     *
-     * Слова совпадают с data-word в HTML — через них применяются CSS-стили.
-     * Порядок слов в массиве = порядок печати слева направо, сверху вниз.
-     */
-    const PHRASES = [
-      [
-        ['за!'],
-        ['уровень'],
-        ['в', 'цифре'],
-      ],
-      [
-        ['след.'],
-        ['фраза'],
-        ['прямо', 'здесь'],
-      ],
-      [
-        ['и ещё'],
-        ['одна'],
-        ['строка'],
-      ],
-    ];
+    Object.entries(directions).forEach(([name, from]) => {
+      const items = gsap.utils.toArray(`[data-anim="${name}"]`);
 
-    /**
-     * Скорость печати одного символа (секунды).
-     * TYPE_VARIANCE добавляет случайный разброс - имитация живого набора.
-     */
-    const TYPE_SPEED = 0.07;
-    const TYPE_VARIANCE = 0.04;
+      items.forEach(el => {
+        // Таймлайн паузим сразу — ScrollTrigger сам решит когда запускать
+        const tl = gsap.timeline({
+          paused: true,
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 90%',
+            // toggleActions: запустить вперёд, пауза, перемотать назад, пауза
+            // onEnter, onLeave, onEnterBack, onLeaveBack
+            toggleActions: 'play none none none',
+          },
+        });
 
-    /** Скорость удаления одного символа (секунды). */
-    const DELETE_SPEED = 0.04;
-
-    /**
-     * Паузы (секунды):
-     * PAUSE_AFTER_TYPE - после полного набора фразы
-     * PAUSE_AFTER_DELETE - после полного удаления (перед следующей фразой)
-     */
-    const PAUSE_AFTER_TYPE = 2.0;
-    const PAUSE_AFTER_DELETE = 0.5;
-
-    // DOM
-
-    const cursorEl = document.querySelector('.hero__title-cursor');
-
-    /**
-     * Собираем все .typewriter__word в Map: data-word → элемент.
-     *
-     * Map выбран вместо объекта потому что:
-     * - гарантирует порядок вставки (важно при итерации)
-     * - ключи строго строковые без коллизий с прототипом
-     *
-     * Пример результата:
-     * wordMap = {
-     *   'за - <span data-word="за!">,
-     *   'уровень - <span data-word="уровень">,
-     *   'в - <span data-word="в">,
-     *   'цифре - <span data-word="цифре">,
-     * }
-     */
-    const wordMap = new Map();
-    document.querySelectorAll('.hero__title-word').forEach(el => {
-      wordMap.set(el.dataset.word, el);
-    });
-
-    // Курсор: мигание
-
-    /**
-     * Бесконечное мигание курсора.
-     * pause() / resume() синхронизируют мигание с циклом печати:
-     * курсор статичен во время набора/удаления, мигает в паузах.
-     */
-    const cursorTween = gsap.to(cursorEl, {
-      opacity: 0,
-      duration: 0.5,
-      repeat: -1,
-      yoyo: true,
-      ease: 'none',
-    });
-
-    // Вспомогательные функции
-
-    /**
-     * Случайная задержка вокруг TYPE_SPEED.
-     * @returns {number} секунды
-     */
-    function getTypeDelay() {
-      return TYPE_SPEED + (Math.random() * 2 - 1) * TYPE_VARIANCE;
-    }
-
-    /**
-     * Promise-обёртка над setTimeout для await-синтаксиса.
-     * @param {number} seconds
-     */
-    function sleep(seconds) {
-      return new Promise(resolve => setTimeout(resolve, seconds * 1000));
-    }
-
-    /**
-     * Перемещает курсор в конец указанного элемента-слова.
-     *
-     * Курсор физически один в DOM, но логически "принадлежит"
-     * последнему напечатанному слову. Для этого переносим его
-     * в нужный .typewriter__word через appendChild.
-     *
-     * appendChild перемещает существующий узел — клонирование не нужно.
-     * Курсор автоматически исчезает из предыдущего места.
-     *
-     * @param {HTMLElement} wordEl — элемент слова, куда переносим курсор
-     */
-    function moveCursorTo(wordEl) {
-      wordEl.appendChild(cursorEl);
-    }
-
-    /**
-     * Печатает одно слово посимвольно в указанный элемент.
-     *
-     * Каждый символ — отдельный <span> внутри .typewriter__word.
-     * Пробел → &nbsp; чтобы браузер не "съел" пробелы в конце.
-     *
-     * @param {HTMLElement} wordEl — элемент слова
-     * @param {string}      word   — строка для печати
-     */
-    async function typeWord(wordEl, word) {
-      for (const char of word) {
-        const span = document.createElement('span');
-        span.innerHTML = char === ' ' ? '&nbsp;' : char;
-        // Вставляем символ перед курсором чтобы курсор всегда был в конце
-        wordEl.insertBefore(span, cursorEl);
-        await sleep(getTypeDelay());
-      }
-    }
-
-    /**
-     * Удаляет все символы из указанного элемента-слова (справа налево).
-     *
-     * Выбираем только span-символы (не курсор) через селектор span:not(.typewriter__cursor).
-     * Реверсируем массив — удаление идёт с последнего символа.
-     *
-     * @param {HTMLElement} wordEl — элемент слова
-     */
-    async function deleteWord(wordEl) {
-      const spans = Array.from(
-        wordEl.querySelectorAll('span:not(.hero__title-cursor)')
-      ).reverse();
-
-      for (const span of spans) {
-        span.remove();
-        await sleep(DELETE_SPEED);
-      }
-    }
-
-    /**
-     * Печатает целую фразу: перебирает строки и слова по порядку.
-     *
-     * Перед каждым словом курсор переезжает в его контейнер —
-     * визуально курсор "следует" за набором.
-     *
-     * @param {string[][][]} phrase — трёхмерный массив [линии[слова]]
-     */
-    async function typePhrase(phrase) {
-      cursorTween.pause();
-      gsap.set(cursorEl, { opacity: 1 });
-
-      for (const line of phrase) {
-        for (const word of line) {
-          const wordEl = wordMap.get(word);
-          if (!wordEl) continue;
-
-          // Курсор переезжает в текущее слово перед его набором
-          moveCursorTo(wordEl);
-          await typeWord(wordEl, word);
-        }
-      }
-
-      cursorTween.resume();
-    }
-
-    /**
-     * Удаляет целую фразу: перебирает слова в обратном порядке.
-     *
-     * flat() разворачивает [линии[слова]] → плоский массив слов.
-     * reverse() — удаление идёт от последнего слова к первому.
-     *
-     * Перед удалением каждого слова курсор переезжает в него —
-     * курсор "отступает" вместе с удалением.
-     *
-     * @param {string[][][]} phrase
-     */
-    async function deletePhrase(phrase) {
-      cursorTween.pause();
-      gsap.set(cursorEl, { opacity: 1 });
-
-      // flat() разворачивает вложенные массивы строк и слов
-      const allWords = phrase.flat().reverse();
-
-      for (const word of allWords) {
-        const wordEl = wordMap.get(word);
-        if (!wordEl) continue;
-
-        moveCursorTo(wordEl);
-        await deleteWord(wordEl);
-      }
-
-      cursorTween.resume();
-    }
-
-    /**
-     * Обновляет data-word у всех .typewriter__word и пересобирает wordMap.
-     *
-     * Нужно при смене фразы: HTML-структура (строки/слова) остаётся той же,
-     * но слова меняются. Обновляем атрибуты и переключаем CSS-стили.
-     *
-     * Порядок обхода: сначала все слова первой линии, потом второй и т.д.
-     * — совпадает с порядком в PHRASES[phraseIndex].
-     *
-     * @param {string[][][]} phrase — новая фраза
-     */
-    function applyPhraseToDOM(phrase) {
-      // Плоский список новых слов в порядке обхода
-      const newWords = phrase.flat();
-
-      // Все существующие .typewriter__word в порядке DOM
-      const wordEls = Array.from(document.querySelectorAll('.hero__title-word'));
-
-      wordEls.forEach((el, i) => {
-        const newWord = newWords[i];
-        if (!newWord) return;
-
-        // Меняем data-word → CSS [data-word="..."] автоматически подхватит новые стили
-        el.dataset.word = newWord;
+        // Начальное состояние — за кадром + невидим
+        tl.fromTo(el,
+          {
+            x: from.x,
+            y: from.y,
+            opacity: 0,
+          },
+          {
+            x: '0%',
+            y: '0%',
+            opacity: 1,
+            duration: 0.35,
+            // power2.out — резко вылетает и плавно тормозит у финальной точки
+            ease: 'power2.out',
+          }
+        );
       });
-
-      // Пересобираем Map с актуальными ключами
-      wordMap.clear();
-      document.querySelectorAll('.hero__title-word').forEach(el => {
-        wordMap.set(el.dataset.word, el);
-      });
-    }
-
-    // Основной цикл
-
-    /**
-     * Бесконечный цикл смены фраз.
-     *
-     * Порядок для каждой фразы:
-     * 1. applyPhraseToDOM — обновляем data-word (CSS-стили переключаются)
-     * 2. typePhrase       — посимвольный набор всех слов
-     * 3. sleep            — пауза чтения
-     * 4. deletePhrase     — посимвольное удаление в обратном порядке
-     * 5. sleep            — пауза перед следующей фразой
-     */
-    async function runLoop() {
-      let index = 0;
-
-      while (true) {
-        const phrase = PHRASES[index % PHRASES.length];
-
-        applyPhraseToDOM(phrase);
-        await typePhrase(phrase);
-        await sleep(PAUSE_AFTER_TYPE);
-        await deletePhrase(phrase);
-        await sleep(PAUSE_AFTER_DELETE);
-
-        index++;
-      }
-    }
-
-    runLoop();
+    });
 
   })();
 
-  // Одноразовая печать
+  /**
+   * Анимации
+   */
+  (function () {
+
+    // ═══════════════════════════════════════════════════
+    // Ищем все сцены на странице
+    // Каждая сцена — изолированный контекст анимации
+    // ═══════════════════════════════════════════════════
+
+    gsap.utils.toArray('[data-anim-scene]').forEach(scene => {
+
+      // ─────────────────────────────────────────────────
+      // СПУТНИК — параллакс по диагонали 45°
+      // ─────────────────────────────────────────────────
+
+      gsap.utils.toArray('[data-anim="satellite"]', scene).forEach(el => {
+
+        const strength = parseFloat(el.dataset.animStrength ?? 300);
+
+        gsap.fromTo(el,
+          {
+            x: -strength,
+            y: strength,
+          },
+          {
+            x: strength,
+            y: -strength,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: scene, // триггер — сама сцена
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1,
+            },
+          }
+        );
+      });
+
+      // ─────────────────────────────────────────────────
+      // FLY-THROUGH — влёт снизу, зависание, вылет вверх
+      // ─────────────────────────────────────────────────
+
+      gsap.utils.toArray('[data-anim="fly-through"]', scene).forEach(el => {
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: scene, // триггер — сама сцена
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1,
+          },
+        });
+
+        // Фаза 1 — влёт снизу
+        tl.fromTo(el,
+          {
+            y: '80%',
+            opacity: 1,
+            scale: 1,
+          },
+          {
+            y: '0%',
+            opacity: 1,
+            scale: 1,
+            ease: 'power2.out',
+            duration: 0.35,
+          }
+        );
+
+        // Фаза 2 — зависание на месте
+        tl.to(el,
+          {
+            y: '0%',
+            opacity: 1,
+            scale: 1,
+            ease: 'none',
+            duration: 0.05,
+          }
+        );
+
+        // Фаза 3 — унос вверх
+        tl.to(el,
+          {
+            y: '-80%',
+            opacity: 0,
+            scale: 0.85,
+            ease: 'power2.in',
+            duration: 0.25,
+          }
+        );
+      });
+    });
+
+  })();
+  /**
+   * Анимация набора текста
+   */
+  (function () {
+
+    // Пробегаемся по всем .typewriter и раскидываем по группам
+    // или запускаем самостоятельно - зависит от data-sync-group
+    const groupMap = new Map();
+
+    document.querySelectorAll('.typewriter').forEach(container => {
+      const group = container.dataset.syncGroup;
+
+      if (group) {
+        if (!groupMap.has(group)) groupMap.set(group, []);
+        groupMap.get(group).push(container);
+      } else {
+        initTypewriter(container);
+      }
+    });
+
+    groupMap.forEach(containers => {
+      initSyncGroup(containers);
+    });
+
+    // Координатор синхронной группы.
+    // Управляет несколькими экземплярами как одним целым -
+    // все тикают одновременно, ни один не отстаёт.
+    function initSyncGroup(containers) {
+
+      // Скорость берём из первого контейнера - предполагается одна на всю группу
+      const first = containers[0];
+      const TYPE_SPEED = parseFloat(first.dataset.typeSpeed ?? 0.07);
+      const TYPE_VARIANCE = parseFloat(first.dataset.typeVariance ?? 0.04);
+      const DELETE_SPEED = parseFloat(first.dataset.deleteSpeed ?? 0.04);
+      const PAUSE_AFTER_TYPE = parseFloat(first.dataset.pauseAfterType ?? 2.0);
+      const PAUSE_AFTER_DEL = parseFloat(first.dataset.pauseAfterDelete ?? 0.5);
+
+      // Объявляем флаги ДО создания экземпляров - колбэки onStop/onResume
+      // ссылаются на них сразу при первом вызове
+      let isStopped = false;
+      let abortSignal = false;
+      let stoppedCount = 0;
+
+      const instances = containers.map(container =>
+        initTypewriter(container, {
+          externalControl: true,
+
+          // Экземпляр говорит что его input активен - тормозим общий цикл
+          onStop: () => {
+            stoppedCount++;
+            if (!isStopped) abortSignal = true;
+            isStopped = true;
+          },
+
+          // Экземпляр говорит что его input освободился
+          // Возобновляем только когда все освободились
+          onResume: () => {
+            stoppedCount = Math.max(0, stoppedCount - 1);
+            isStopped = stoppedCount > 0;
+          },
+        })
+      );
+
+      const phraseCount = instances[0]?.phraseCount ?? 0;
+      if (phraseCount === 0) return;
+
+      function getTypeDelay() {
+        return TYPE_SPEED + (Math.random() * 2 - 1) * TYPE_VARIANCE;
+      }
+
+      function sleep(seconds) {
+        return new Promise(resolve => setTimeout(resolve, seconds * 1000));
+      }
+
+      // sleep который можно прервать через abortSignal -
+      // чтобы не ждать конца паузы когда пришёл focus
+      function sleepAbortable(seconds) {
+        return new Promise(resolve => {
+          const ms = seconds * 1000;
+          const start = performance.now();
+
+          const check = () => {
+            if (abortSignal || performance.now() - start >= ms) resolve();
+            else requestAnimationFrame(check);
+          };
+
+          requestAnimationFrame(check);
+        });
+      }
+
+      // Синхронный набор: количество шагов = самое длинное слово среди всех экземпляров
+      // На каждом шаге все экземпляры добавляют свой i-й символ
+      async function typeAll(phraseIndex) {
+        const steps = Math.max(...instances.map(inst => inst.getStepCount(phraseIndex)));
+
+        instances.forEach(inst => inst.prepareCursor(phraseIndex));
+
+        for (let i = 0; i < steps; i++) {
+          if (abortSignal) break;
+          instances.forEach(inst => inst.typeStep(phraseIndex, i));
+          await sleepAbortable(getTypeDelay());
+        }
+
+        // Набор завершён - все курсоры начинают мигать
+        instances.forEach(inst => inst.resumeCursor());
+      }
+
+      // Синхронное удаление: тот же принцип, только убираем с конца
+      async function deleteAll(phraseIndex) {
+        const steps = Math.max(...instances.map(inst => inst.getStepCount(phraseIndex)));
+
+        instances.forEach(inst => inst.prepareCursor(phraseIndex));
+
+        for (let i = 0; i < steps; i++) {
+          if (abortSignal) break;
+          instances.forEach(inst => inst.deleteStep());
+          await sleepAbortable(DELETE_SPEED);
+        }
+
+        // Удаление завершено - все курсоры начинают мигать
+        instances.forEach(inst => inst.resumeCursor());
+      }
+
+      function applyAll(phraseIndex) {
+        instances.forEach(inst => inst.applyPhrase(phraseIndex));
+      }
+
+      function clearAll() {
+        instances.forEach(inst => inst.clearSlots());
+      }
+
+      // Финальный stop-text набирается параллельно во всех экземплярах
+      async function typeStopAll() {
+        await Promise.all(instances.map(inst => inst.typeStopText()));
+      }
+
+      async function runLoop() {
+        let index = 0;
+
+        while (true) {
+          if (isStopped) { await sleep(0.1); continue; }
+
+          const phraseIndex = index % phraseCount;
+
+          applyAll(phraseIndex);
+
+          await typeAll(phraseIndex);
+          if (abortSignal) { abortSignal = false; clearAll(); await typeStopAll(); isStopped = true; continue; }
+
+          await sleepAbortable(PAUSE_AFTER_TYPE);
+          if (abortSignal) { abortSignal = false; clearAll(); await typeStopAll(); isStopped = true; continue; }
+
+          await deleteAll(phraseIndex);
+          if (abortSignal) { abortSignal = false; clearAll(); await typeStopAll(); isStopped = true; continue; }
+
+          await sleepAbortable(PAUSE_AFTER_DEL);
+          if (abortSignal) { abortSignal = false; clearAll(); await typeStopAll(); isStopped = true; continue; }
+
+          index++;
+        }
+      }
+
+      runLoop();
+    }
+
+    // Один экземпляр typewriter.
+    // Если externalControl: true - не запускает свой цикл,
+    // отдаёт API координатору и следит только за своим input-ом.
+    function initTypewriter(container, options = {}) {
+
+      const TYPE_SPEED = parseFloat(container.dataset.typeSpeed ?? 0.07);
+      const TYPE_VARIANCE = parseFloat(container.dataset.typeVariance ?? 0.04);
+      const DELETE_SPEED = parseFloat(container.dataset.deleteSpeed ?? 0.04);
+      const PAUSE_AFTER_TYPE = parseFloat(container.dataset.pauseAfterType ?? 2.0);
+      const PAUSE_AFTER_DEL = parseFloat(container.dataset.pauseAfterDelete ?? 0.5);
+
+      const STOP_TEXT = container.dataset.stopText ?? null;
+      const inputSelector = container.dataset.input ?? null;
+
+      const inputEl = inputSelector ? document.querySelector(inputSelector) : null;
+      const cursorEl = container.querySelector('.typewriter__cursor');
+
+      // Каждый .typewriter__word - слот с вариантами через |
+      const slots = Array.from(container.querySelectorAll('.typewriter__word')).map(el => ({
+        el,
+        words: el.dataset.words.split('|'),
+      }));
+
+      const phraseCount = slots[0]?.words.length ?? 0;
+      if (phraseCount === 0) return null;
+
+      let isStopped = false;
+      let abortSignal = false;
+
+      // Колбэки от координатора - у одиночного экземпляра их нет
+      const onStop = options.onStop ?? null;
+      const onResume = options.onResume ?? null;
+
+      // Курсор мигает в паузах, стоит смирно во время набора/удаления
+      let cursorTween = gsap.to(cursorEl, {
+        opacity: 0,
+        duration: 0.5,
+        repeat: -1,
+        yoyo: true,
+        ease: 'none',
+      });
+
+      function getTypeDelay() {
+        return TYPE_SPEED + (Math.random() * 2 - 1) * TYPE_VARIANCE;
+      }
+
+      function sleep(seconds) {
+        return new Promise(resolve => setTimeout(resolve, seconds * 1000));
+      }
+
+      function sleepAbortable(seconds) {
+        return new Promise(resolve => {
+          const ms = seconds * 1000;
+          const start = performance.now();
+
+          const check = () => {
+            if (abortSignal || performance.now() - start >= ms) resolve();
+            else requestAnimationFrame(check);
+          };
+
+          requestAnimationFrame(check);
+        });
+      }
+
+      function moveCursorTo(wordEl) {
+        wordEl.appendChild(cursorEl);
+      }
+
+      function clearSlots() {
+        slots.forEach(slot => {
+          slot.el.querySelectorAll('span:not(.typewriter__cursor)').forEach(s => s.remove());
+        });
+      }
+
+      function applyPhrase(phraseIndex) {
+        slots.forEach(slot => {
+          slot.el.dataset.word = slot.words[phraseIndex] ?? '';
+        });
+      }
+
+      // Максимальная длина слова среди всех слотов для данной фразы.
+      // Координатор использует это чтобы выровнять все экземпляры по шагам.
+      function getStepCount(phraseIndex) {
+        return Math.max(...slots.map(slot => (slot.words[phraseIndex] ?? '').length));
+      }
+
+      // Переносим курсор в последний непустой слот перед стартом
+      function prepareCursor(phraseIndex) {
+        const lastActive = [...slots].reverse().find(slot => slot.words[phraseIndex ?? 0]);
+        if (lastActive) moveCursorTo(lastActive.el);
+      }
+
+      // Добавляет i-й символ в каждый слот этого экземпляра.
+      // Используется координатором для синхронного набора.
+      // Курсор статичен - resume не вызываем, это делает координатор после всех шагов.
+      function typeStep(phraseIndex, i) {
+        cursorTween.pause();
+        gsap.set(cursorEl, { opacity: 1 });
+
+        slots.forEach(slot => {
+          const word = slot.words[phraseIndex] ?? '';
+          if (i >= word.length) return;
+
+          const char = word[i];
+          const span = document.createElement('span');
+          span.innerHTML = char === ' ' ? '&nbsp;' : char;
+
+          if (cursorEl.parentElement === slot.el) {
+            slot.el.insertBefore(span, cursorEl);
+          } else {
+            slot.el.appendChild(span);
+          }
+        });
+      }
+
+      // Удаляет последний символ из каждого слота этого экземпляра.
+      // Используется координатором для синхронного удаления.
+      function deleteStep() {
+        cursorTween.pause();
+        gsap.set(cursorEl, { opacity: 1 });
+
+        slots.forEach(slot => {
+          const spans = slot.el.querySelectorAll('span:not(.typewriter__cursor)');
+          if (spans.length === 0) return;
+          spans[spans.length - 1].remove();
+        });
+      }
+
+      // Возобновляет мигание - вызывается после завершения набора или удаления
+      function resumeCursor() {
+        cursorTween.resume();
+      }
+
+      // Пересоздаём tween после kill() - нужно когда экземпляр возвращается из stopped
+      function restoreCursor() {
+        gsap.killTweensOf(cursorEl);
+        cursorTween = gsap.to(cursorEl, {
+          opacity: 0,
+          duration: 0.5,
+          repeat: -1,
+          yoyo: true,
+          ease: 'none',
+        });
+      }
+
+      // Набирает финальный stop-text когда input активен.
+      // После завершения курсор гасим - анимация для этого экземпляра закончена.
+      async function typeStopText() {
+        if (!STOP_TEXT) return;
+
+        clearSlots();
+        moveCursorTo(slots[0].el);
+
+        for (const char of STOP_TEXT) {
+          cursorTween.pause();
+          gsap.set(cursorEl, { opacity: 1 });
+
+          const span = document.createElement('span');
+          span.innerHTML = char === ' ' ? '&nbsp;' : char;
+          slots[0].el.insertBefore(span, cursorEl);
+
+          await sleep(getTypeDelay());
+        }
+
+        cursorTween.kill();
+        gsap.to(cursorEl, { opacity: 0, duration: 0.3 });
+      }
+
+
+      // Собственный цикл - только для одиночных экземпляров.
+      // В отличие от режима синхронной группы, слоты здесь идут
+      // последовательно как части одного предложения, не одновременно.
+      if (!options.externalControl) {
+
+        // Набираем слоты один за другим - сначала первый слот, потом второй и т.д.
+        // Это и даёт эффект печати одного предложения по словам
+        async function typePhrase(phraseIndex) {
+          for (const slot of slots) {
+            const word = slot.words[phraseIndex] ?? '';
+            if (!word) continue;
+
+            moveCursorTo(slot.el);
+
+            for (let i = 0; i < word.length; i++) {
+              if (abortSignal) return;
+
+              cursorTween.pause();
+              gsap.set(cursorEl, { opacity: 1 });
+
+              const char = word[i];
+              const span = document.createElement('span');
+              span.innerHTML = char === ' ' ? '&nbsp;' : char;
+              slot.el.insertBefore(span, cursorEl);
+
+              await sleepAbortable(getTypeDelay());
+            }
+          }
+
+          // Все слоты набраны - курсор отпускаем
+          resumeCursor();
+        }
+
+        // Стираем слоты в обратном порядке - с последнего к первому
+        async function deletePhrase(phraseIndex) {
+          for (const slot of [...slots].reverse()) {
+            const word = slot.words[phraseIndex] ?? '';
+            if (!word) continue;
+
+            moveCursorTo(slot.el);
+
+            const spans = Array.from(
+              slot.el.querySelectorAll('span:not(.typewriter__cursor)')
+            ).reverse();
+
+            for (const span of spans) {
+              if (abortSignal) return;
+
+              cursorTween.pause();
+              gsap.set(cursorEl, { opacity: 1 });
+
+              span.remove();
+
+              await sleepAbortable(DELETE_SPEED);
+            }
+          }
+
+          // Все слоты стёрты - курсор отпускаем
+          resumeCursor();
+        }
+
+        async function runLoop() {
+          let index = 0;
+
+          while (true) {
+            if (isStopped) { await sleep(0.1); continue; }
+
+            const phraseIndex = index % phraseCount;
+
+            applyPhrase(phraseIndex);
+
+            await typePhrase(phraseIndex);
+            if (abortSignal) { abortSignal = false; await typeStopText(); isStopped = true; continue; }
+
+            await sleepAbortable(PAUSE_AFTER_TYPE);
+            if (abortSignal) { abortSignal = false; await typeStopText(); isStopped = true; continue; }
+
+            await deletePhrase(phraseIndex);
+            if (abortSignal) { abortSignal = false; await typeStopText(); isStopped = true; continue; }
+
+            await sleepAbortable(PAUSE_AFTER_DEL);
+            if (abortSignal) { abortSignal = false; await typeStopText(); isStopped = true; continue; }
+
+            index++;
+          }
+        }
+
+        if (inputEl) {
+          inputEl.addEventListener('focus', () => {
+            if (!isStopped) abortSignal = true;
+          });
+
+          inputEl.addEventListener('blur', () => {
+            if (!isStopped) return;
+            if (inputEl.classList.contains('filled') || inputEl.value?.trim()) return;
+            clearSlots();
+            isStopped = false;
+            restoreCursor();
+          });
+
+          const observer = new MutationObserver(() => {
+            if (inputEl.classList.contains('filled')) {
+              if (!isStopped) abortSignal = true;
+            } else {
+              if (!isStopped) return;
+              if (inputEl.value?.trim()) return;
+              clearSlots();
+              isStopped = false;
+              restoreCursor();
+            }
+          });
+
+          observer.observe(inputEl, { attributes: true, attributeFilter: ['class'] });
+        }
+
+        runLoop();
+      }
+
+
+      // Режим внешнего управления - свой цикл не запускаем,
+      // но за своим input-ом следим и уведомляем координатора
+      if (options.externalControl && inputEl) {
+        let selfStopped = false;
+
+        const activate = () => {
+          if (selfStopped) return;
+          selfStopped = true;
+          onStop?.();
+        };
+
+        const deactivate = () => {
+          if (!selfStopped) return;
+          if (inputEl.classList.contains('filled') || inputEl.value?.trim()) return;
+          selfStopped = false;
+          clearSlots();
+          restoreCursor();
+          onResume?.();
+        };
+
+        inputEl.addEventListener('focus', activate);
+        inputEl.addEventListener('blur', deactivate);
+
+        const observer = new MutationObserver(() => {
+          if (inputEl.classList.contains('filled')) activate();
+          else deactivate();
+        });
+
+        observer.observe(inputEl, { attributes: true, attributeFilter: ['class'] });
+      }
+
+      return {
+        phraseCount,
+        getStepCount,
+        prepareCursor,
+        typeStep,
+        deleteStep,
+        resumeCursor,
+        applyPhrase,
+        clearSlots,
+        typeStopText,
+        restoreCursor,
+      };
+    }
+
+  })();
+
+  /**
+   * Одноразовая печать
+   */
   (function () {
 
     const TYPE_SPEED = 0.07;
@@ -1559,7 +1589,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * Ждём пока триггер войдёт в viewport.
-     * triggerEl — элемент с data-type="once", он же и есть триггер.
+     * triggerEl - элемент с data-type="once", он же и есть триггер.
      */
     function waitForVisible(triggerEl) {
       return new Promise(resolve => {
@@ -1690,7 +1720,7 @@ document.addEventListener('DOMContentLoaded', () => {
         child.style.visibility = 'visible';
       });
 
-      // Promise.all — все дочерние теги печатаются одновременно
+      // Promise.all - все дочерние теги печатаются одновременно
       await Promise.all(children.map(child => typeChild(child, cursor.cloneNode(true))));
 
       localCursorTween.resume();
@@ -1708,7 +1738,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   })();
 
-  // 5. Анимация чисел
+  /**
+   * Анимация чисел
+   */
   function initNumberRolls(selector = ".number-roll") {
     document.querySelectorAll(selector).forEach(el => {
       const digits = el.dataset.number.split("");
@@ -1724,11 +1756,11 @@ document.addEventListener('DOMContentLoaded', () => {
         onEnter: () => el.querySelectorAll(".digit-container").forEach((container, i) => {
           const target = digits[i]; if (target === ".") return;
           const digitEl = container.querySelector(".digit");
-          const t = gsap.to(digitEl, { y: "-10em", duration: 0.6 + Math.random() * 0.4, ease: "linear", repeat: -1 });
+          const t = gsap.to(digitEl, { y: "-10em", duration: 0.2 + Math.random() * 0.4, ease: "linear", repeat: -1 });
           gsap.delayedCall(1.5 + i * 0.3, () => {
             t.kill();
             const loops = Math.floor(digitEl.querySelectorAll("span").length / 10) - 1;
-            gsap.to(digitEl, { y: -(loops * 10 + parseInt(target)) + "em", duration: 1 + i * 0.2, ease: "power3.out" });
+            gsap.to(digitEl, { y: -(loops * 10 + parseInt(target)) + "em", duration: 0.2 + i * 0.2, ease: "power3.out" });
           });
         })
       });
@@ -1736,7 +1768,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   initNumberRolls();
 
-  // iOS-safe ScrollTrigger refresh handler
+  /**
+   * iOS-safe ScrollTrigger refresh handler
+   */
   (function () {
     let resizeTimer;
     let lastWidth = window.innerWidth;
@@ -1774,32 +1808,34 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Инициализация формы набора символов
    */
-  const form = document.querySelector('form');
-  if (form) {
-    const inputElements = document.querySelectorAll('.form-input');
-    const textareaElements = document.querySelectorAll('.form-textarea');
-    const className = 'filled';
+  (function () {
+    const form = document.querySelector('form');
+    if (form) {
+      const inputElements = document.querySelectorAll('.form-input');
+      const textareaElements = document.querySelectorAll('.form-textarea');
+      const className = 'filled';
 
-    inputElements.forEach(element => {
-      element.addEventListener('input', function () {
-        if (this.value.trim() !== '') {
-          element.classList.add(className);
-        } else {
-          element.classList.remove(className);
-        }
+      inputElements.forEach(element => {
+        element.addEventListener('input', function () {
+          if (this.value.trim() !== '') {
+            element.classList.add(className);
+          } else {
+            element.classList.remove(className);
+          }
+        });
       });
-    });
 
-    textareaElements.forEach(element => {
-      element.addEventListener('input', function () {
-        if (this.value.trim() !== '') {
-          element.classList.add(className);
-        } else {
-          element.classList.remove(className);
-        }
+      textareaElements.forEach(element => {
+        element.addEventListener('input', function () {
+          if (this.value.trim() !== '') {
+            element.classList.add(className);
+          } else {
+            element.classList.remove(className);
+          }
+        });
       });
-    });
-  }
+    }
+  })();
 
   /**
    * Инициализация слайдера
@@ -2438,12 +2474,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
   })();
-
-  /**
-   * Анимация
-   */
-  // if (document.documentElement.classList.contains('callback--open')) {
-
-  // }
 
 });

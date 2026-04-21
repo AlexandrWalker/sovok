@@ -15,7 +15,7 @@
     font-family: var(--second-family);
     font-weight: 400;
     font-size: 4rem;
-    line-height: 150%;
+    line-height: 140%;
     letter-spacing: -0.05em;
     text-transform: uppercase;
 
@@ -44,24 +44,35 @@
     @include md {
       font-size: calc(100vw/(1920/270));
     }
+  }
 
-    &-word {
+  .typewriter {
+
+    &__word {
       line-height: 85%;
       letter-spacing: -0.05em;
       color: var(--black);
       display: inline-block;
     }
 
-    &-line {
+    &__line {
       display: flex;
       align-items: center;
       gap: 0.1em;
       line-height: 1.2;
 
+      &:nth-child(2) {
+
+        .typewriter__cursor,
+        .typewriter__word {
+          color: #DC143C;
+        }
+      }
+
       &:last-child {
 
-        .hero__title-cursor,
-        .hero__title-word {
+        .typewriter__cursor,
+        .typewriter__word {
           font-size: 10rem;
 
           @include md {
@@ -71,7 +82,7 @@
       }
     }
 
-    &-cursor {
+    &__cursor {
       line-height: 85%;
       will-change: opacity;
     }

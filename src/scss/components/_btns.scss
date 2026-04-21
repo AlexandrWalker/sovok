@@ -52,4 +52,36 @@
     --btn-color: var(--white);
     --btn-background: var(--red);
   }
+
+  &--accent {
+    --btn-height: var(--header-inner-height);
+    --btn-color: var(--white);
+
+    padding: 0;
+    background: none;
+
+    &:hover {
+
+      @include dosm {
+        --btn-color: var(--white);
+        --btn-background: var(--red);
+      }
+
+      .object-shadow {
+        transform: rotate(2.07deg);
+      }
+
+      .object-body {
+        transform: rotate(-2.07deg);
+      }
+    }
+
+    .object-body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--red);
+      padding: 0 var(--btn-padding-x);
+    }
+  }
 }

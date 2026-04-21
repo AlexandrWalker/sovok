@@ -24,7 +24,7 @@
                 на посредственность
               </div>
               <div class="hero__title">
-                <div class="hero__title-line">
+                <!-- <div class="hero__title-line">
                   <span class="hero__title-word" data-word="за!"></span>
                 </div>
                 <div class="hero__title-line">
@@ -34,7 +34,29 @@
                   <span class="hero__title-word" data-word="в"></span>
                   <span class="hero__title-word" data-word="цифре"></span>
                   <span class="hero__title-cursor">|</span>
+                </div> -->
+
+                <div class="typewriter" data-type-speed="0.07" data-type-variance="0.04" data-delete-speed="0.04"
+                  data-pause-after-type="2.0" data-pause-after-delete="0.5">
+                  <!-- Строки заголовка -->
+                  <div class="typewriter__line">
+                    <!-- data-words — список слов через | для данного слота -->
+                    <span class="typewriter__word" data-words="за!|след.|и ещё"></span>
+                  </div>
+
+                  <div class="typewriter__line">
+                    <span class="typewriter__word" data-words="уровень|фраза|одна"></span>
+                  </div>
+
+                  <div class="typewriter__line">
+                    <span class="typewriter__word" data-words="в|прямо|строка"></span>
+                    <span class="typewriter__word" data-words="цифре|здесь|"></span>
+                  </div>
+
+                  <!-- Курсор — один на экземпляр -->
+                  <span class="typewriter__cursor">|</span>
                 </div>
+
               </div>
             </div>
             <div class="hero__cover">
@@ -55,7 +77,7 @@
             <div class="approach__head">
 
               <div class="general__head">
-                <div class="general__suptitle" data-split="title">
+                <div class="general__suptitle" data-anim="fadeLeft">
                   Работаем с теми, <br> кто мыслит <br> масштабом
                 </div>
                 <div class="general__text" data-split="text">
@@ -74,7 +96,7 @@
               <div class="approach__content">
 
                 <div class="general__head">
-                  <div class="general__title">
+                  <div class="general__title" data-anim="fadeLeft">
                     Что<br><span>получает<span class="general__suptitle">бизнес</span></span>
                   </div>
                   <div class="general__text" data-split="text">
@@ -102,8 +124,14 @@
               </div>
             </div>
 
-            <div class="approach__cover">
+            <div class="approach__cover" data-anim="fadeLeft">
               <img src="./../images/temp/gagarin.png" alt="">
+            </div>
+
+            <div class="approach__satellite-wrap" data-anim-scene>
+              <div class="approach__satellite-item" data-anim="satellite" data-anim-strength="500">
+                <img src="./../images/temp/sputnik.png" alt="">
+              </div>
             </div>
 
           </div>
@@ -115,7 +143,7 @@
           <div class="produce__inner">
 
             <div class="general__head">
-              <div class="general__title" data-split="title">
+              <div class="general__title" data-anim="fadeLeft">
                 производим
               </div>
               <div class="general__text" data-split="text">
@@ -400,7 +428,7 @@
 
       <section class="growth">
         <div class="container">
-          <div class="growth__inner">
+          <div class="growth__inner" data-anim-scene>
 
             <div class="general__head">
               <div class="general__title" data-split="title">
@@ -460,7 +488,7 @@
               </div>
             </div>
 
-            <div class="growth__cover">
+            <div class="growth__cover" data-anim="fly-through">
               <img class="growth__cover-shadow" src="./../images/temp/mishka.svg" alt="">
               <img class="growth__cover-img" src="./../images/temp/mishka.svg" alt="">
             </div>
@@ -469,7 +497,8 @@
         </div>
       </section>
 
-      <section class="inform sound-section" data-scroll-sound="levitan">
+      <!-- <section class="inform sound-section" data-scroll-sound="levitan"> -->
+      <section class="inform">
         <div class="container">
           <div class="inform__inner">
 
@@ -614,21 +643,48 @@
               <div class="form-inner">
                 <div class="form-body">
                   <div class="form-group">
-                    <input class="form-input" type="text" name="names">
+                    <input id="request_name_input" class="form-input" type="text" name="names">
                     <label class="form-label">
-                      Имя субъекта
+                      <!-- Имя субъекта -->
+                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07"
+                        data-type-variance="0.04" data-delete-speed="0.04" data-pause-after-type="2.0"
+                        data-pause-after-delete="0.5" data-input="#request_name_input" data-stop-text="Имя субъекта">
+                        <div class="typewriter__line">
+                          <span class="typewriter__word" data-words="Давай знакомиться!|Сюда писать имя"></span>
+                        </div>
+                        <span class="typewriter__cursor">|</span>
+                      </div>
                     </label>
                   </div>
                   <div class="form-group">
-                    <input class="form-input" type="tel" name="tel">
+                    <input id="request_tel_input" class="form-input" type="tel" name="tel">
                     <label class="form-label">
-                      КАНАЛ СВЯЗИ
+                      <!-- КАНАЛ СВЯЗИ -->
+                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07"
+                        data-type-variance="0.04" data-delete-speed="0.04" data-pause-after-type="2.0"
+                        data-pause-after-delete="0.5" data-input="#request_tel_input" data-stop-text="КАНАЛ СВЯЗИ">
+                        <div class="typewriter__line">
+                          <span class="typewriter__word"
+                            data-words="Номер телефона|Можно указать почту|Ждем обращения)"></span>
+                        </div>
+                        <span class="typewriter__cursor">|</span>
+                      </div>
                     </label>
                   </div>
                   <div class="form-group">
-                    <input class="form-input" type="text" name="comments">
+                    <input id="request_comments_input" class="form-input" type="text" name="comments">
                     <label class="form-label">
-                      СУТЬ ОБРАЩЕНИЯ
+                      <!-- СУТЬ ОБРАЩЕНИЯ -->
+                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07"
+                        data-type-variance="0.04" data-delete-speed="0.04" data-pause-after-type="2.0"
+                        data-pause-after-delete="0.5" data-input="#request_comments_input"
+                        data-stop-text="СУТЬ ОБРАЩЕНИЯ">
+                        <div class="typewriter__line">
+                          <span class="typewriter__word"
+                            data-words="суть нашего разговора|главная идея моего сообщения|основная цель"></span>
+                        </div>
+                        <span class="typewriter__cursor">|</span>
+                      </div>
                     </label>
                   </div>
                 </div>
@@ -642,7 +698,7 @@
                         данных</a>
                     </div>
                     <div class="form-group">
-                      <input id="form-checkbox-3" class="form-checkbox" type="checkbox">
+                      <input id="form-checkbox-3" class="form-checkbox" type="checkbox" data-btn-sound="shutdown_sound">
                       <label for="form-checkbox-3" class="form-checkbox-label">
                         <div class="form-checkbox--item"></div>
                         <div class="form-text">
@@ -651,7 +707,7 @@
                       </label>
                     </div>
                     <div class="form-group">
-                      <input id="form-checkbox-4" class="form-checkbox" type="checkbox">
+                      <input id="form-checkbox-4" class="form-checkbox" type="checkbox" data-btn-sound="shutdown_sound">
                       <label for="form-checkbox-4" class="form-checkbox-label">
                         <div class="form-checkbox--item"></div>
                         <div class="form-text">

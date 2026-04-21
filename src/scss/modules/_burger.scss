@@ -8,8 +8,8 @@
     justify-content: center;
     align-items: center;
     gap: 0.7rem;
-    width: 7rem;
-    height: 7rem;
+    width: var(--header-inner-height);
+    height: var(--header-inner-height);
     background-color: var(--black);
     flex-shrink: 0;
 

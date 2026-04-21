@@ -4,15 +4,15 @@ nav {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 4rem;
+  gap: 3rem;
 
   @include md {
     display: none;
   }
 
   a {
-    font-weight: 700;
-    font-size: 3rem;
+    font-weight: 800;
+    font-size: 2rem;
     line-height: 100%;
     text-transform: uppercase;
     text-decoration: underline;
@@ -24,6 +24,10 @@ nav {
     &:link,
     &:visited {
       text-decoration: underline;
+    }
+
+    &:hover {
+      color: var(--red);
     }
   }
 }

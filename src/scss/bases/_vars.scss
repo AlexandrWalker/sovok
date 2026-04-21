@@ -15,10 +15,13 @@
   --white: #FAF4ED;
   --white-10: rgba(250, 244, 237, 0.1);
   --white-50: rgba(250, 244, 237, 0.5);
+
   --black: #17171A;
   --black-10: rgba(23, 23, 26, 0.1);
   --black-50: rgba(23, 23, 26, 0.5);
+
   --gray: #718595;
+  
   --red: #DC143C;
 
   @include md {

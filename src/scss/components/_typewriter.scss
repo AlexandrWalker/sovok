@@ -1,0 +1,8 @@
+@use './../mixins' as *;
+
+.typewriter {
+
+  &__cursor {
+    transition: 0s !important;
+  }
+}

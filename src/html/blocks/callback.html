@@ -22,21 +22,51 @@
       <div class="form-inner">
         <div class="form-body">
           <div class="form-group">
-            <input class="form-input" type="text" name="names">
+            <input id="callback_name_input" class="form-input" type="text" name="names">
             <label class="form-label">
-              Имя субъекта
+              <!-- Имя субъекта -->
+
+              <div class="typewriter" data-sync-group="callback" data-type-speed="0.07" data-type-variance="0.04" data-delete-speed="0.04"
+                data-pause-after-type="2.0" data-pause-after-delete="0.5" data-input="#callback_name_input"
+                data-stop-text="Имя субъекта">
+                <div class="typewriter__line">
+                  <span class="typewriter__word" data-words="Давай знакомиться!|Сюда писать имя"></span>
+                </div>
+                <span class="typewriter__cursor">|</span>
+              </div>
+
             </label>
           </div>
           <div class="form-group">
-            <input class="form-input" type="tel" name="tel">
+            <input id="callback_tel_input" class="form-input" type="tel" name="tel">
             <label class="form-label">
-              КАНАЛ СВЯЗИ
+              <!-- КАНАЛ СВЯЗИ -->
+
+              <div class="typewriter" data-sync-group="callback" data-type-speed="0.07" data-type-variance="0.04" data-delete-speed="0.04"
+                data-pause-after-type="2.0" data-pause-after-delete="0.5" data-input="#callback_tel_input"
+                data-stop-text="КАНАЛ СВЯЗИ">
+                <div class="typewriter__line">
+                  <span class="typewriter__word" data-words="Номер телефона|Можно указать почту|Ждем обращения)"></span>
+                </div>
+                <span class="typewriter__cursor">|</span>
+              </div>
+
             </label>
           </div>
           <div class="form-group">
-            <input class="form-input" type="text" name="comments">
+            <input id="callback_comments_input" class="form-input" type="text" name="comments">
             <label class="form-label">
-              СУТЬ ОБРАЩЕНИЯ
+              <!-- СУТЬ ОБРАЩЕНИЯ -->
+
+              <div class="typewriter" data-sync-group="callback" data-type-speed="0.07" data-type-variance="0.04" data-delete-speed="0.04"
+                data-pause-after-type="2.0" data-pause-after-delete="0.5" data-input="#callback_comments_input"
+                data-stop-text="СУТЬ ОБРАЩЕНИЯ">
+                <div class="typewriter__line">
+                  <span class="typewriter__word" data-words="суть нашего разговора|главная идея моего сообщения|основная цель"></span>
+                </div>
+                <span class="typewriter__cursor">|</span>
+              </div>
+
             </label>
           </div>
           <!-- <div class="form-group">
@@ -55,7 +85,7 @@
               Нажимая на кнопку «Отправить» вы соглашаетесь с <a href="/">Политикой обработки персональных данных</a>
             </div>
             <div class="form-group">
-              <input id="form-checkbox-1" class="form-checkbox" type="checkbox">
+              <input id="form-checkbox-1" class="form-checkbox" type="checkbox" data-btn-sound="shutdown_sound">
               <label for="form-checkbox-1" class="form-checkbox-label">
                 <div class="form-checkbox--item"></div>
                 <div class="form-text">
@@ -64,7 +94,7 @@
               </label>
             </div>
             <div class="form-group">
-              <input id="form-checkbox-2" class="form-checkbox" type="checkbox">
+              <input id="form-checkbox-2" class="form-checkbox" type="checkbox" data-btn-sound="shutdown_sound">
               <label for="form-checkbox-2" class="form-checkbox-label">
                 <div class="form-checkbox--item"></div>
                 <div class="form-text">
@@ -78,10 +108,10 @@
     </form>
 
     <div class="callback__cover">
-      <div class="callback__cover-img callback__cover-img--first" data-anim="fadeDown">
+      <div class="callback__cover-img callback__cover-img--first" data-callback-anim="fadeDown">
         <img src="./../../images/temp/callback-ruka.png" alt="">
       </div>
-      <div class="callback__cover-img callback__cover-img--second" data-anim="fadeUp">
+      <div class="callback__cover-img callback__cover-img--second" data-callback-anim="fadeUp">
         <img src="./../../images/temp/callback-syrok.png" alt="">
       </div>
     </div>

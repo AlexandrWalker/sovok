@@ -3,7 +3,7 @@
 .logo {
   display: flex;
   width: fit-content;
-  height: 7rem;
+  height: var(--header-inner-height);
   flex-shrink: 0;
 
   @include md {
