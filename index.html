@@ -14,7 +14,7 @@
   <!-- title -->
   <title>СОВОК</title>
   <!-- icons -->
-   
+   <link rel="stylesheet" href="./icons/style.css">
   <!-- styles -->
   <link rel="stylesheet" href="./libs/fancybox/fancybox.css">
   <link rel="stylesheet" href="./libs/lenis/lenis.min.css">
@@ -95,9 +95,27 @@
   <div class="callback__side">
     <div class="callback__side-text">
       Мир. дружба. жвачка.
+
+      <!-- <div class="typewriter" data-sync-group="callback_side" data-type-speed="0.07" data-type-variance="0.04"
+        data-delete-speed="0.04" data-pause-after-type="3.0" data-pause-after-delete="0.3">
+        <div class="typewriter__line">
+          <span class="typewriter__word" data-words="Мир. дружба. жвачка.|Мир. Труд. Май."></span>
+        </div>
+        <span class="typewriter__cursor">|</span>
+      </div> -->
+
     </div>
     <div class="callback__side-text">
       Мир. дружба. жвачка.
+
+      <!-- <div class="typewriter" data-sync-group="callback_side" data-type-speed="0.07" data-type-variance="0.04"
+        data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5">
+        <div class="typewriter__line">
+          <span class="typewriter__word" data-words="Мир. дружба. жвачка.|Мир. Труд. Май."></span>
+        </div>
+        <span class="typewriter__cursor">|</span>
+      </div> -->
+
     </div>
   </div>
   <div class="callback__inner">
@@ -119,9 +137,9 @@
             <label class="form-label">
               <!-- Имя субъекта -->
 
-              <div class="typewriter" data-sync-group="callback" data-type-speed="0.07" data-type-variance="0.04" data-delete-speed="0.04"
-                data-pause-after-type="2.0" data-pause-after-delete="0.5" data-input="#callback_name_input"
-                data-stop-text="Имя субъекта">
+              <div class="typewriter" data-sync-group="callback" data-type-speed="0.07" data-type-variance="0.04"
+                data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                data-input="#callback_name_input" data-stop-text="Имя субъекта">
                 <div class="typewriter__line">
                   <span class="typewriter__word" data-words="Давай знакомиться!|Сюда писать имя"></span>
                 </div>
@@ -135,9 +153,9 @@
             <label class="form-label">
               <!-- КАНАЛ СВЯЗИ -->
 
-              <div class="typewriter" data-sync-group="callback" data-type-speed="0.07" data-type-variance="0.04" data-delete-speed="0.04"
-                data-pause-after-type="2.0" data-pause-after-delete="0.5" data-input="#callback_tel_input"
-                data-stop-text="КАНАЛ СВЯЗИ">
+              <div class="typewriter" data-sync-group="callback" data-type-speed="0.07" data-type-variance="0.04"
+                data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                data-input="#callback_tel_input" data-stop-text="КАНАЛ СВЯЗИ">
                 <div class="typewriter__line">
                   <span class="typewriter__word" data-words="Номер телефона|Можно указать почту|Ждем обращения)"></span>
                 </div>
@@ -151,11 +169,12 @@
             <label class="form-label">
               <!-- СУТЬ ОБРАЩЕНИЯ -->
 
-              <div class="typewriter" data-sync-group="callback" data-type-speed="0.07" data-type-variance="0.04" data-delete-speed="0.04"
-                data-pause-after-type="2.0" data-pause-after-delete="0.5" data-input="#callback_comments_input"
-                data-stop-text="СУТЬ ОБРАЩЕНИЯ">
+              <div class="typewriter" data-sync-group="callback" data-type-speed="0.07" data-type-variance="0.04"
+                data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                data-input="#callback_comments_input" data-stop-text="СУТЬ ОБРАЩЕНИЯ">
                 <div class="typewriter__line">
-                  <span class="typewriter__word" data-words="суть нашего разговора|главная идея моего сообщения|основная цель"></span>
+                  <span class="typewriter__word"
+                    data-words="суть нашего разговора|главная идея моего сообщения|основная цель"></span>
                 </div>
                 <span class="typewriter__cursor">|</span>
               </div>
@@ -171,7 +190,9 @@
         </div>
         <div class="form-foot">
           <button class="form-btn" type="button" data-btn-sound="poehali">
-            поехали!
+            <div class="form-btn__text">
+              поехали!
+            </div>
           </button>
           <div class="form-wrap">
             <div class="form-text">
@@ -268,9 +289,11 @@
             <div class="hero__cover">
               <img src="./images/temp/hero-cover.png" alt="">
             </div>
-            <div class="hero__mask">
+            <picture class="hero__mask">
+              <source media="(min-width: 601px)" srcset="./images/mask/mask-hero.svg">
+              <source media="(max-width: 600px)" srcset="./images/mask/mask-hero-mob.svg">
               <img src="./images/mask/mask-hero.svg" alt="">
-            </div>
+            </picture>
 
           </div>
         </div>
@@ -832,7 +855,7 @@
         </div>
       </section>
 
-      <section class="request">
+      <section class="request" data-animate>
         <div class="container">
           <div class="request__inner">
 
@@ -852,9 +875,9 @@
                     <input id="request_name_input" class="form-input" type="text" name="names">
                     <label class="form-label">
                       <!-- Имя субъекта -->
-                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07"
-                        data-type-variance="0.04" data-delete-speed="0.04" data-pause-after-type="2.0"
-                        data-pause-after-delete="0.5" data-input="#request_name_input" data-stop-text="Имя субъекта">
+                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07" data-type-variance="0.04"
+                        data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                        data-input="#request_name_input" data-stop-text="Имя субъекта">
                         <div class="typewriter__line">
                           <span class="typewriter__word" data-words="Давай знакомиться!|Сюда писать имя"></span>
                         </div>
@@ -866,9 +889,9 @@
                     <input id="request_tel_input" class="form-input" type="tel" name="tel">
                     <label class="form-label">
                       <!-- КАНАЛ СВЯЗИ -->
-                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07"
-                        data-type-variance="0.04" data-delete-speed="0.04" data-pause-after-type="2.0"
-                        data-pause-after-delete="0.5" data-input="#request_tel_input" data-stop-text="КАНАЛ СВЯЗИ">
+                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07" data-type-variance="0.04"
+                        data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                        data-input="#request_tel_input" data-stop-text="КАНАЛ СВЯЗИ">
                         <div class="typewriter__line">
                           <span class="typewriter__word"
                             data-words="Номер телефона|Можно указать почту|Ждем обращения)"></span>
@@ -881,10 +904,9 @@
                     <input id="request_comments_input" class="form-input" type="text" name="comments">
                     <label class="form-label">
                       <!-- СУТЬ ОБРАЩЕНИЯ -->
-                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07"
-                        data-type-variance="0.04" data-delete-speed="0.04" data-pause-after-type="2.0"
-                        data-pause-after-delete="0.5" data-input="#request_comments_input"
-                        data-stop-text="СУТЬ ОБРАЩЕНИЯ">
+                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07" data-type-variance="0.04"
+                        data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                        data-input="#request_comments_input" data-stop-text="СУТЬ ОБРАЩЕНИЯ">
                         <div class="typewriter__line">
                           <span class="typewriter__word"
                             data-words="суть нашего разговора|главная идея моего сообщения|основная цель"></span>
@@ -896,7 +918,9 @@
                 </div>
                 <div class="form-foot">
                   <button class="form-btn" type="button" data-btn-sound="poehali">
-                    поехали!
+                    <div class="form-btn__text">
+                      поехали!
+                    </div>
                   </button>
                   <div class="form-wrap">
                     <div class="form-text">
@@ -941,21 +965,97 @@
   <div class="container">
     <div class="footer__inner">
 
-      <div class="footer__content">
-        <div class="footer__phone" data-type="once">
-          <a href="tel:+79133777977">8 913 377 79 77</a>
-          <a href="tel:+79133777977">8 913 377 79 77</a>
-        </div>
+      <div class="footer__phone" data-type="once">
+        <a href="tel:+79133777977">8 913 377 79 77</a>
+        <a href="tel:+79133777977">8 913 377 79 77</a>
       </div>
 
+      <div class="footer__content">
+
+        <div class="footer__body">
+          <div class="footer__menu">
+            <a class="footer__menu-link" href="/">
+              мы
+            </a>
+            <a class="footer__menu-link" href="/">
+              Производство
+            </a>
+            <a class="footer__menu-link" href="/">
+              информбюро
+            </a>
+          </div>
+
+          <div class="footer__links">
+            <a class="footer__link" href="/">
+              Карта сайта
+            </a>
+            <a class="footer__link" href="/">
+              Политика конфиденциальности
+            </a>
+          </div>
+
+          <div class="footer__contacts">
+            <a class="footer__menu-link" href="/">
+              Контакты
+            </a>
+            <div class="footer__contacts-wrap">
+              <p>г. Новосибирск</p>
+              <p>ул. Кирова, 32, этаж 1</p>
+              <p>Время работы: 9:00 - 19:00</p>
+              <p>Пишите: <a href="mailto:production@sovok.ru">production@sovok.ru</a></p>
+            </div>
+          </div>
+
+          <div class="footer__social">
+            <a class="footer__social-link" href="/">
+              <i class="icon-max"></i>
+            </a>
+            <a class="footer__social-link" href="/">
+              <i class="icon-vk"></i>
+            </a>
+            <a class="footer__social-link" href="/">
+              <i class="icon-tg"></i>
+            </a>
+            <a class="footer__social-link" href="/">
+              <i class="icon-wa"></i>
+            </a>
+            <a class="footer__social-link" href="/">
+              <i class="icon-inst"></i>
+            </a>
+            <a class="footer__social-link" href="/">
+              <i class="icon-vc"></i>
+            </a>
+            <a class="footer__social-link" href="/">
+              <i class="icon-pt"></i>
+            </a>
+            <a class="footer__social-link" href="/">
+              <i class="icon-be"></i>
+            </a>
+            <div class="footer__social-text">
+              Организация Meta (владелец Facebook и Instagram*) признана экстремистской, её деятельность запрещена на
+              территории России.*
+            </div>
+          </div>
+        </div>
+
+        <div class="footer__foot">
+          <div>
+            Партнеры 1С-Битрикс
+          </div>
+          <div>
+            © 2019 - 2026 СОВОК
+          </div>
+        </div>
+
+      </div>
 
       <div class="footer__cover">
         <img src="./images/temp/footer-cover.png" alt="">
       </div>
-      
-      <div class="footer__mask">
+
+      <!-- <div class="footer__mask">
         <img src="./images/mask/mask-footer.svg" alt="">
-      </div>
+      </div> -->
 
     </div>
   </div>
