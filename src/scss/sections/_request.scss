@@ -30,7 +30,14 @@
     z-index: 2;
 
     &-input {
-      border-color: var(--red);
+      // border-color: var(--red);
+    }
+
+    &-label {
+
+      &::before {
+        background-color: var(--red);
+      }
     }
 
     &-btn {

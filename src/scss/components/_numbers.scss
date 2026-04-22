@@ -1,0 +1,35 @@
+@use './../mixins' as *;
+
+.numbers {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  white-space: nowrap;
+}
+
+.digit-container {
+  display: inline-block;
+  overflow: hidden;
+  width: 0.62em;
+  height: 1em;
+  vertical-align: bottom;
+}
+
+.digit {
+  display: block;
+  transform: translateY(0);
+
+  text-align: right;
+}
+
+.digit span {
+  display: block;
+  // line-height: 1em;
+  line-height: 1;
+  height: 1em;
+
+  @include md {
+    line-height: 100%;
+  }
+}
