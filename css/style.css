@@ -388,41 +388,6 @@ img {
   flex-shrink: 0;
 }
 
-.numbers {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  white-space: nowrap;
-}
-
-.digit-container {
-  display: inline-block;
-  overflow: hidden;
-  width: 0.62em;
-  height: 1em;
-  vertical-align: bottom;
-}
-
-.digit {
-  display: block;
-  -webkit-transform: translateY(0);
-  -ms-transform: translateY(0);
-  transform: translateY(0);
-  text-align: right;
-}
-
-.digit span {
-  display: block;
-  line-height: 1em;
-}
-
 .swiper {
   max-width: 100%;
   overflow: visible;
@@ -815,7 +780,6 @@ body {
   width: 100%;
   height: 7rem;
   background-color: transparent;
-  border-bottom: 0.2rem solid var(--black-50);
   font-weight: 400;
   font-size: 3rem;
   line-height: 120%;
@@ -828,14 +792,24 @@ body {
 .form-input:focus + .form-label,
 .form-input:active + .form-label,
 .form-input:checked + .form-label {
+  height: calc(100% + 2rem);
   font-size: 2rem;
   top: -2rem;
+}
+
+.form-input.filled + .form-label::after,
+.form-input:focus + .form-label::after,
+.form-input:active + .form-label::after,
+.form-input:checked + .form-label::after {
+  width: 100%;
 }
 
 .form-label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 100%;
+  height: 100%;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   font-weight: 400;
@@ -848,6 +822,32 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.form-label::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 0.2rem;
+  background-color: var(--black-50);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.form-label::after {
+  content: "";
+  display: block;
+  width: 0%;
+  height: 0.2rem;
+  background-color: var(--white);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
 }
 
 .form-textarea {
@@ -1059,6 +1059,42 @@ body {
   background-color: #356BEF;
 }
 
+.numbers {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.digit-container {
+  display: inline-block;
+  overflow: hidden;
+  width: 0.62em;
+  height: 1em;
+  vertical-align: bottom;
+}
+
+.digit {
+  display: block;
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+  text-align: right;
+}
+
+.digit span {
+  display: block;
+  line-height: 1;
+  height: 1em;
+}
+
 .object-shadow {
   display: block;
   width: auto;
@@ -1148,6 +1184,12 @@ p {
   font-weight: 400;
   font-size: 1.4rem;
   line-height: 120%;
+}
+
+.typewriter {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .typewriter__cursor {
@@ -3112,7 +3154,7 @@ nav a:hover {
   line-height: 140%;
   letter-spacing: -0.05em;
   text-transform: uppercase;
-  margin-bottom: 5rem;
+  margin-bottom: 5.7rem;
 }
 
 .hero__title {
@@ -3555,8 +3597,8 @@ nav a:hover {
   z-index: 2;
 }
 
-.request .form-input {
-  border-color: var(--red);
+.request .form-label::before {
+  background-color: var(--red);
 }
 
 .request .form-btn {
@@ -3663,10 +3705,6 @@ nav a:hover {
     font-size: 62.5%;
   }
 
-  .digit span {
-    line-height: 100%;
-  }
-
   :root {
     --container-padding: 2rem;
     --header-height: 11rem;
@@ -3676,6 +3714,10 @@ nav a:hover {
 
   .btn {
     --btn-height: 7rem;
+  }
+
+  .digit span {
+    line-height: 100%;
   }
 
   .h1,
