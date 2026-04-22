@@ -24,14 +24,15 @@
   
   --red: #DC143C;
 
-  @include md {
-    --container-padding: 2rem;
-    --header-height: 11rem;
+  @include sm {
+    --container-padding: 1.5rem;
+    --header-height: 9.5rem;
     --section-padding-top: 1.5rem;
     --section-padding-bottom: 1.5rem;
   }
 
   @include sm {
-    --container-padding: 1rem;
+    --container-padding: 1.5rem;
+    --header-height: 9.5rem;
   }
 }

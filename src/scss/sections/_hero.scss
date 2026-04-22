@@ -6,6 +6,17 @@
   padding-bottom: 9.5rem;
   overflow-x: visible;
 
+  @include sm {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 8rem;
+  }
+
   &__content {
     position: relative;
     z-index: 3;
@@ -21,13 +32,9 @@
 
     margin-bottom: 5.7rem;
 
-    @include md {
-      font-size: 2.4rem;
-      margin-bottom: 2rem;
-    }
-
     @include sm {
-      font-size: 1.8rem;
+      font-size: 2rem;
+      margin-bottom: 3rem;
     }
   }
 
@@ -41,8 +48,10 @@
     font-size: 27rem;
     text-transform: uppercase;
 
-    @include md {
-      font-size: calc(100vw/(1920/270));
+    @include sm {
+      min-height: 14.8rem;
+
+      font-size: calc(100vw/(402/65));
     }
   }
 
@@ -59,7 +68,7 @@
       display: flex;
       align-items: center;
       gap: 0.1em;
-      line-height: 1.2;
+      line-height: 120%;
 
       &:nth-child(2) {
 
@@ -75,7 +84,7 @@
         .typewriter__word {
           font-size: 10rem;
 
-          @include md {
+          @include sm {
             font-size: calc(100vw/(1920/100));
           }
         }
@@ -97,14 +106,26 @@
     right: 12.3rem;
     z-index: 2;
 
-    @include md {
-      display: none;
+    @include sm {
+      height: 46.7rem;
+
+      position: relative;
+      top: unset;
+      right: unset;
     }
 
     img {
+      max-width: unset;
       width: auto;
       height: 100%;
       object-fit: contain;
+
+      @include sm {
+        position: absolute;
+        top: 0;
+        left: 46%;
+        transform: translateX(-50%);
+      }
     }
   }
 
@@ -117,8 +138,13 @@
     right: 21.9rem;
     z-index: 1;
 
-    @include md {
-      display: none;
+    @include sm {
+      // display: none;
+      width: 56rem;
+      height: 39.5rem;
+
+      top: calc(28.3rem - var(--header-height));
+      right: 2.9rem;
     }
 
     img {

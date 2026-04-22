@@ -12,7 +12,7 @@ html {
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
 
-  @include md {
+  @include sm {
     font-size: 62.5%;
   }
 
@@ -20,7 +20,7 @@ html {
     // font-size: calc(10px + ($ratio * 10) * ((100vw - var(--refRes) * 1px) / var(--refRes)));
   }
 
-  @include md {
+  @include sm {
     // --refRes: 768;
   }
 
@@ -66,11 +66,18 @@ section {
   // min-height: 100dvh;
   will-change: transform;
   // background-color: var(--white);
+
+  &:not(section.hero) {
+
+    @include sm {
+      display: none;
+    }
+  }
 }
 
 a {
   color: inherit;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
 }
 
 img {

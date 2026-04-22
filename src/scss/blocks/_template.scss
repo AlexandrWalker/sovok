@@ -35,7 +35,7 @@
       padding: 6rem 13rem;
       background-color: var(--white);
 
-      @include md {
+      @include sm {
         display: flex;
         flex-direction: column;
         gap: 0;
@@ -55,7 +55,7 @@
       grid-column: 1/2;
       grid-row: 1/2;
 
-      @include md {
+      @include sm {
         gap: 2rem;
         order: 1;
         margin-bottom: 3rem;
@@ -67,7 +67,7 @@
 
       &-title {
 
-        @include md {
+        @include sm {
           font-size: 3.5rem;
         }
 
@@ -86,7 +86,7 @@
       grid-column: 1/2;
       grid-row: 2/3;
 
-      @include md {
+      @include sm {
         order: 3;
         gap: 0;
         gap: 2rem;
@@ -97,14 +97,14 @@
         flex-direction: column;
         gap: 2rem;
 
-        @include md {
+        @include sm {
           margin-bottom: 1.5rem;
           gap: 1.5rem;
         }
 
         .h5 {
 
-          @include md {
+          @include sm {
             font-size: 2.5rem;
           }
         }
@@ -120,7 +120,7 @@
         border: 0.1rem solid var(--gray-30);
         margin-bottom: 2rem;
 
-        @include md {
+        @include sm {
           gap: 1.5rem;
           padding: 2rem;
         }
@@ -132,7 +132,7 @@
           letter-spacing: unset;
           color: var(--blue);
 
-          @include md {
+          @include sm {
             font-size: 3.5rem;
           }
 
@@ -154,7 +154,7 @@
         border-top: 0.1rem solid var(--gray-30);
         border-bottom: 0.1rem solid var(--gray-30);
 
-        @include md {
+        @include sm {
           padding: 0;
           border: 0;
         }
@@ -165,7 +165,7 @@
         flex-direction: column;
         gap: 2rem;
 
-        @include md {
+        @include sm {
           gap: 1rem;
         }
 
@@ -176,7 +176,7 @@
           line-height: 90%;
           color: var(--blue);
 
-          @include md {
+          @include sm {
             font-size: 3.5rem;
           }
 
@@ -191,27 +191,27 @@
         flex-direction: column;
         gap: 2rem;
 
-        @include md {
+        @include sm {
           gap: 1rem;
         }
 
         .btn {
 
-          @include md {
+          @include sm {
             gap: 0.5rem;
           }
 
           .menu__foot-icon {
             flex-shrink: 0;
 
-            @include md {
+            @include sm {
               --menu-icon-width: 2.4rem;
               --menu-icon-height: 2.4rem;
             }
 
             i {
 
-              @include md {
+              @include sm {
                 --font-size: 1.6rem;
               }
             }
@@ -232,7 +232,7 @@
               .menu__foot-icon {
                 border-color: var(--white);
 
-                @include md {
+                @include sm {
                   --menu-icon-width: 2.4rem;
                   --menu-icon-height: 2.4rem;
                 }
@@ -257,7 +257,7 @@
       ul {
         margin-bottom: 4rem;
 
-        @include md {
+        @include sm {
           margin-bottom: 6rem;
         }
 
@@ -267,7 +267,7 @@
 
         .sosnovyi-page & {
 
-          @include md {
+          @include sm {
             margin-bottom: 0;
           }
         }
@@ -317,7 +317,7 @@
       grid-column: 2/3;
       grid-row: 1/3;
 
-      @include md {
+      @include sm {
         order: 2;
       }
     }
@@ -353,7 +353,7 @@
           font-size: 3.5rem;
           line-height: 90%;
 
-          @include md {
+          @include sm {
             font-size: 2.5rem;
           }
         }
@@ -368,7 +368,7 @@
         bottom: 4.6rem;
         left: 4.4rem;
 
-        @include md {
+        @include sm {
           display: none;
         }
       }
@@ -379,7 +379,7 @@
         overflow: hidden;
         margin-bottom: 2rem;
 
-        @include md {
+        @include sm {
           margin-bottom: 2rem;
         }
 
@@ -430,7 +430,7 @@
         height: 13.7rem;
         overflow: hidden;
 
-        @include md {
+        @include sm {
           display: none;
         }
       }
@@ -441,7 +441,7 @@
         position: absolute;
         bottom: 5rem;
 
-        @include md {
+        @include sm {
           display: flex;
         }
 
@@ -460,7 +460,7 @@
         left: -2.5rem;
         transform: translateY(-50%);
 
-        @include md {
+        @include sm {
           left: calc(var(--swiper-button-size) / 2 * -1);
 
         }
@@ -472,7 +472,7 @@
         right: -2.5rem;
         transform: translateY(-50%);
 
-        @include md {
+        @include sm {
           right: calc(var(--swiper-button-size) / 2 * -1);
         }
       }

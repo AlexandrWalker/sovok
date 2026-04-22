@@ -43,6 +43,8 @@
     &-btn {
       --btn-color: var(--white);
       --btn-background: var(--red);
+      --btn-hover-color: var(--black);
+      --btn-hover-background: var(--white);
     }
 
     &-checkbox--item {

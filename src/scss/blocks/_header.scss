@@ -16,6 +16,10 @@
   left: 0;
   z-index: 500;
 
+  @include sm {
+    --header-inner-height: 5rem;
+  }
+
   &.header-out {
     pointer-events: none;
   }
@@ -35,9 +39,16 @@
     gap: 4rem;
     padding: 5rem 0;
 
-    @include md {
+    @include sm {
       gap: 3rem;
       padding: 2rem 0;
+    }
+  }
+
+  &__right {
+
+    @include sm {
+      display: none;
     }
   }
 
@@ -47,13 +58,26 @@
     align-items: center;
     gap: 2rem;
 
-    @include md {
+    @include sm {
       // gap: 2rem;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .line-col {
+
+      @include sm {
+        display: none;
+      }
     }
 
     .btn--accent {
       font-weight: 700;
       font-size: 2rem;
+
+      @include sm {
+        display: none;
+      }
     }
   }
 }

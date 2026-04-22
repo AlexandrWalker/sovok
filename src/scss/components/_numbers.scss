@@ -29,7 +29,7 @@
   line-height: 1;
   height: 1em;
 
-  @include md {
+  @include sm {
     line-height: 100%;
   }
 }

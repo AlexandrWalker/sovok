@@ -62,9 +62,11 @@
             <div class="hero__cover">
               <img src="./../images/temp/hero-cover.png" alt="">
             </div>
-            <div class="hero__mask">
+            <picture class="hero__mask">
+              <source media="(min-width: 601px)" srcset="./../images/mask/mask-hero.svg">
+              <source media="(max-width: 600px)" srcset="./../images/mask/mask-hero-mob.svg">
               <img src="./../images/mask/mask-hero.svg" alt="">
-            </div>
+            </picture>
 
           </div>
         </div>
@@ -626,7 +628,7 @@
         </div>
       </section>
 
-      <section class="request">
+      <section class="request" data-animate>
         <div class="container">
           <div class="request__inner">
 
@@ -646,9 +648,9 @@
                     <input id="request_name_input" class="form-input" type="text" name="names">
                     <label class="form-label">
                       <!-- Имя субъекта -->
-                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07"
-                        data-type-variance="0.04" data-delete-speed="0.04" data-pause-after-type="2.0"
-                        data-pause-after-delete="0.5" data-input="#request_name_input" data-stop-text="Имя субъекта">
+                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07" data-type-variance="0.04"
+                        data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                        data-input="#request_name_input" data-stop-text="Имя субъекта">
                         <div class="typewriter__line">
                           <span class="typewriter__word" data-words="Давай знакомиться!|Сюда писать имя"></span>
                         </div>
@@ -660,9 +662,9 @@
                     <input id="request_tel_input" class="form-input" type="tel" name="tel">
                     <label class="form-label">
                       <!-- КАНАЛ СВЯЗИ -->
-                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07"
-                        data-type-variance="0.04" data-delete-speed="0.04" data-pause-after-type="2.0"
-                        data-pause-after-delete="0.5" data-input="#request_tel_input" data-stop-text="КАНАЛ СВЯЗИ">
+                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07" data-type-variance="0.04"
+                        data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                        data-input="#request_tel_input" data-stop-text="КАНАЛ СВЯЗИ">
                         <div class="typewriter__line">
                           <span class="typewriter__word"
                             data-words="Номер телефона|Можно указать почту|Ждем обращения)"></span>
@@ -675,10 +677,9 @@
                     <input id="request_comments_input" class="form-input" type="text" name="comments">
                     <label class="form-label">
                       <!-- СУТЬ ОБРАЩЕНИЯ -->
-                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07"
-                        data-type-variance="0.04" data-delete-speed="0.04" data-pause-after-type="2.0"
-                        data-pause-after-delete="0.5" data-input="#request_comments_input"
-                        data-stop-text="СУТЬ ОБРАЩЕНИЯ">
+                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07" data-type-variance="0.04"
+                        data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                        data-input="#request_comments_input" data-stop-text="СУТЬ ОБРАЩЕНИЯ">
                         <div class="typewriter__line">
                           <span class="typewriter__word"
                             data-words="суть нашего разговора|главная идея моего сообщения|основная цель"></span>
@@ -690,7 +691,9 @@
                 </div>
                 <div class="form-foot">
                   <button class="form-btn" type="button" data-btn-sound="poehali">
-                    поехали!
+                    <div class="form-btn__text">
+                      поехали!
+                    </div>
                   </button>
                   <div class="form-wrap">
                     <div class="form-text">

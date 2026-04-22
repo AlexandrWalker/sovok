@@ -73,7 +73,7 @@
   background-color: var(--black);
   flex-shrink: 0;
 
-  @include md {
+  @include sm {
     // height: 5rem;
   }
 }
