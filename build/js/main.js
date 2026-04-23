@@ -1775,6 +1775,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   initNumberRolls();
 
+  gsap.to(".bounce", {
+    duration: 1.5,
+    y: 20,
+    ease: "power1.inOut",
+    repeat: -1,
+    yoyo: true
+  });
+
   /**
    * iOS-safe ScrollTrigger refresh handler
    */

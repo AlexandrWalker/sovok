@@ -25,11 +25,32 @@
         top: -14.5rem;
         left: -28.8rem;
         z-index: 0;
+
+        @include sm {
+          height: calc(100% + 2rem);
+
+          top: unset;
+          bottom: 0.8rem;
+          left: -7.5rem;
+        }
       }
     }
 
     &__suptitle {
       color: var(--white);
+
+      @include sm {
+        // font-size: 10rem;
+        font-size: calc(100vw/(402/100));
+      }
+    }
+
+    &__title {
+
+      @include sm {
+        // font-size: 6.5rem;
+        font-size: calc(100vw/(402/65));
+      }
     }
   }
 
@@ -37,6 +58,28 @@
     display: flex;
     flex-direction: column;
     gap: 7rem;
+
+    @include sm {
+      gap: 2.8rem;
+    }
+  }
+
+  &__body {
+
+    position: relative;
+
+    &::after {
+      content: "";
+      width: 100vw;
+      height: 100%;
+      background-color: var(--white);
+
+      position: absolute;
+      top: -3.6rem;
+      left: -1.5rem;
+      right: -1.5rem;
+      z-index: 1;
+    }
   }
 
   &__items {
@@ -45,12 +88,23 @@
     grid-auto-flow: column;
     gap: 6rem 8rem;
     max-width: 116.8rem;
+
+    position: relative;
+    z-index: 2;
+
+    @include sm {
+      gap: 2rem 4rem;
+    }
   }
 
   &__item {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+
+    @include sm {
+      gap: 1.5rem;
+    }
 
     &-count {
       font-family: var(--second-family);
@@ -60,6 +114,10 @@
       letter-spacing: -0.04em;
       text-transform: uppercase;
       color: var(--red);
+
+      @include sm {
+        font-size: 6rem;
+      }
     }
 
     &-title {
@@ -68,6 +126,10 @@
       font-size: 4rem;
       line-height: 120%;
       text-transform: uppercase;
+
+      @include sm {
+        font-size: 2rem;
+      }
     }
 
     &-text {
@@ -77,21 +139,40 @@
       line-height: 120%;
       letter-spacing: -0.04em;
       text-transform: uppercase;
+
+      @include sm {
+        font-size: 1.6rem;
+      }
     }
   }
 
   &__cover {
     width: auto;
     height: 101rem;
+    pointer-events: none;
 
     position: absolute;
     top: -6.1rem;
     right: 4.4rem;
 
+    @include sm {
+      width: 26rem;
+      height: auto;
+
+      top: -26.3rem;
+      right: 12rem;
+      z-index: -1;
+    }
+
     img {
       width: auto;
       height: 100%;
       object-fit: contain;
+
+      @include sm {
+        width: 100%;
+        height: auto;
+      }
     }
 
     &-shadow {

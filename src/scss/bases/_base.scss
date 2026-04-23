@@ -67,7 +67,7 @@ section {
   will-change: transform;
   // background-color: var(--white);
 
-  &:not(section.hero) {
+  &:not(section.hero, section.effect, section.growth) {
 
     @include sm {
       display: none;

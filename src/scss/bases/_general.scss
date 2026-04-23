@@ -17,6 +17,10 @@
     letter-spacing: -0.05em;
     text-transform: uppercase;
     color: var(--red);
+
+    @include sm {
+      font-size: 4rem;
+    }
   }
 
   &__title {
@@ -26,6 +30,10 @@
     line-height: 85%;
     letter-spacing: -0.05em;
     text-transform: uppercase;
+
+    @include sm {
+      font-size: 4rem;
+    }
 
     span {
       color: var(--red);

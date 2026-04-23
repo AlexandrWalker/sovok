@@ -3,6 +3,10 @@
 .effect {
   --section-padding-bottom: 10rem;
 
+  @include sm {
+    --section-padding-bottom: 4rem;
+  }
+
   .general__head {
     gap: 0;
   }
@@ -11,9 +15,13 @@
     display: flex;
     flex-direction: column;
     gap: 9rem;
+
+    @include sm {
+      gap: 3rem;
+    }
   }
 
-  &__body{
+  &__body {
     display: flex;
     flex-direction: column;
     gap: 4rem;
@@ -24,10 +32,19 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem 10rem;
 
+    @include sm {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
     &-item {
       display: flex;
       flex-direction: column;
       gap: 2rem;
+
+      @include sm {
+        gap: 1rem;
+      }
     }
 
     &-count {
@@ -41,6 +58,10 @@
       line-height: 1em;
       letter-spacing: -0.05em;
       color: var(--red);
+
+      @include sm {
+        font-size: 5rem;
+      }
     }
 
     &-text {
@@ -49,6 +70,10 @@
       line-height: 120%;
       letter-spacing: -0.04em;
       text-transform: uppercase;
+
+      @include sm {
+        font-size: 1.6rem;
+      }
     }
   }
 
@@ -58,5 +83,9 @@
     font-size: 3rem;
     line-height: 120%;
     color: var(--red);
+
+    @include sm {
+      display: none;
+    }
   }
 }
