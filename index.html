@@ -304,10 +304,9 @@
           <div class="approach__inner">
 
             <div class="approach__head">
-
               <div class="general__head">
                 <div class="general__suptitle" data-anim="fadeLeft">
-                  Работаем с теми, <br> кто мыслит <br> масштабом
+                  Работаем с&nbsp;теми, <br> кто мыслит <br> масштабом
                 </div>
                 <div class="general__text" data-split="text">
                   Вы строите бренд, <br>
@@ -317,11 +316,9 @@
                   Вы ищете партнёра.
                 </div>
               </div>
-
             </div>
 
             <div class="approach__body">
-
               <div class="approach__content">
 
                 <div class="general__head">
@@ -335,10 +332,9 @@
                 </div>
 
               </div>
-
             </div>
 
-            <div class="approach__block">
+            <div class="approach__block" data-anim="scale" data-anim-once>
               <div class="general__head">
                 <div class="general__suptitle" data-split="title">
                   Не <br> подходим, <br> если
@@ -351,6 +347,7 @@
                   результат.
                 </div>
               </div>
+              <!-- <div class="approach__block-round" data-anim="scale" data-anim-once></div> -->
             </div>
 
             <div class="approach__cover" data-anim="fadeLeft">
@@ -595,7 +592,7 @@
         <div class="container">
           <div class="cases__inner">
 
-            <div class="general__head">
+            <div class="general__head" data-anim="fadeLeft">
               <div class="general__title" data-split="title">
                 делом
               </div>
@@ -604,50 +601,75 @@
               </div>
             </div>
 
-            <div class="cases__cover">
+            <div class="cases__cover" data-anim="fadeUp">
               <img src="./images/temp/cases-cover-1.png" alt="">
             </div>
 
-            <div class="swiper cases__slider">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide cases__slide">
-                  <div class="cases__slide-wrap">
-                    <div class="cases__slide-bg">
-                      <img src="./images/temp/cases-slide-bg.png" alt="">
+            <div class="cases__body">
+              <div class="swiper cases__slider">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide cases__slide">
+                    <div class="cases__slide-wrap">
+                      <picture class="cases__slide-bg">
+                        <source media="(min-width: 601px)" srcset="./images/temp/cases-slide-bg.png">
+                        <source media="(max-width: 600px)" srcset="./images/temp/cases-slide-bg-mob.png">
+                        <img src="./images/temp/cases-slide-bg.png" alt="">
+                      </picture>
+                      <div class="cases__slide-content">
+                        <div class="cases__slide-title h1">
+                          отель
+                          grand autogroph
+                        </div>
+                        <div class="cases__slide-text">
+                          Единственный пятизвездочный отель в Новосибирске.
+                        </div>
+                        <a class="cases__slide-btn btn btn--red" href="/">
+                          детально
+                        </a>
+                      </div>
                     </div>
-                    <div class="cases__slide-content">
-                      <div class="cases__slide-title h1">
-                        отель
-                        grand autogroph
+                  </div>
+                  <div class="swiper-slide cases__slide">
+                    <div class="cases__slide-wrap">
+                      <!-- <div class="cases__slide-bg">
+                        <img src="./images/temp/cases-slide-bg.png" alt="">
+                      </div> -->
+                      <picture class="cases__slide-bg">
+                        <source media="(min-width: 601px)" srcset="./images/temp/cases-slide-bg.png">
+                        <source media="(max-width: 600px)" srcset="./images/temp/cases-slide-bg-mob.png">
+                        <img src="./images/temp/cases-slide-bg.png" alt="">
+                      </picture>
+                      <div class="cases__slide-content">
+                        <div class="cases__slide-title h1">
+                          отель
+                          grand autogroph
+                        </div>
+                        <div class="cases__slide-text">
+                          Единственный пятизвездочный отель в Новосибирске.
+                        </div>
+                        <a class="cases__slide-btn btn btn--red" href="/">
+                          детально
+                        </a>
                       </div>
-                      <div class="cases__slide-text">
-                        Единственный пятизвездочный отель в Новосибирске.
-                      </div>
-                      <a class="cases__slide-btn btn btn--red" href="/">
-                        детально
-                      </a>
                     </div>
                   </div>
                 </div>
-                <div class="swiper-slide cases__slide">
-                  <div class="cases__slide-wrap">
-                    <div class="cases__slide-bg">
-                      <img src="./images/temp/cases-slide-bg.png" alt="">
-                    </div>
-                    <div class="cases__slide-content">
-                      <div class="cases__slide-title h1">
-                        отель
-                        grand autogroph
-                      </div>
-                      <div class="cases__slide-text">
-                        Единственный пятизвездочный отель в Новосибирске.
-                      </div>
-                      <a class="cases__slide-btn btn btn--red" href="/">
-                        детально
-                      </a>
-                    </div>
-                  </div>
-                </div>
+              </div>
+              <div class="swiper-button-prev cases-button-prev">
+                <i class="icon-arrow-double-rb-right">
+                  <path class="path1"></path>
+                  <path class="path2"></path>
+                  <path class="path3"></path>
+                  <path class="path4"></path>
+                </i>
+              </div>
+              <div class="swiper-button-next cases-button-next">
+                <i class="icon-arrow-double-rb-right">
+                  <path class="path1"></path>
+                  <path class="path2"></path>
+                  <path class="path3"></path>
+                  <path class="path4"></path>
+                </i>
               </div>
             </div>
 
@@ -755,7 +777,7 @@
                       </div>
                     </div>
                     <div class="inform__item-arrow">
-                      <img src="./images/icon/slider-arrow.svg" alt="">
+                      <img src="./images/icon/arrow-double-rb-right.svg" alt="">
                     </div>
                   </div>
                   <div class="swiper-slide inform__slide">
@@ -773,7 +795,7 @@
                       </div>
                     </div>
                     <div class="inform__item-arrow">
-                      <img src="./images/icon/slider-arrow.svg" alt="">
+                      <img src="./images/icon/arrow-double-rb-right.svg" alt="">
                     </div>
                   </div>
                   <div class="swiper-slide inform__slide">
@@ -791,7 +813,61 @@
                       </div>
                     </div>
                     <div class="inform__item-arrow">
-                      <img src="./images/icon/slider-arrow.svg" alt="">
+                      <img src="./images/icon/arrow-double-rb-right.svg" alt="">
+                    </div>
+                  </div>
+                  <div class="swiper-slide inform__slide">
+                    <div class="inform__item">
+                      <div class="inform__item-cover">
+                        <img src="./images/temp/inform-cover-1.png" alt="">
+                      </div>
+                      <div class="inform__item-content">
+                        <div class="inform__item-title">
+                          Диагностика бизнеса
+                        </div>
+                        <div class="inform__item-text">
+                          Анализ маркетинга, продукта, воронки продаж и юнит-экономики
+                        </div>
+                      </div>
+                    </div>
+                    <div class="inform__item-arrow">
+                      <img src="./images/icon/arrow-double-rb-right.svg" alt="">
+                    </div>
+                  </div>
+                  <div class="swiper-slide inform__slide">
+                    <div class="inform__item">
+                      <div class="inform__item-cover">
+                        <img src="./images/temp/inform-cover-2.png" alt="">
+                      </div>
+                      <div class="inform__item-content">
+                        <div class="inform__item-title">
+                          Диагностика бизнеса
+                        </div>
+                        <div class="inform__item-text">
+                          Анализ маркетинга, продукта, воронки продаж и юнит-экономики
+                        </div>
+                      </div>
+                    </div>
+                    <div class="inform__item-arrow">
+                      <img src="./images/icon/arrow-double-rb-right.svg" alt="">
+                    </div>
+                  </div>
+                  <div class="swiper-slide inform__slide">
+                    <div class="inform__item">
+                      <div class="inform__item-cover">
+                        <img src="./images/temp/inform-cover-3.png" alt="">
+                      </div>
+                      <div class="inform__item-content">
+                        <div class="inform__item-title">
+                          Диагностика бизнеса
+                        </div>
+                        <div class="inform__item-text">
+                          Анализ маркетинга, продукта, воронки продаж и юнит-экономики
+                        </div>
+                      </div>
+                    </div>
+                    <div class="inform__item-arrow">
+                      <img src="./images/icon/arrow-double-rb-right.svg" alt="">
                     </div>
                   </div>
                 </div>
@@ -950,9 +1026,9 @@
               </div>
             </form>
 
-            <div class="request__cover">
-              <img class="request__cover-img request__cover-img--1" src="./images/temp/request-cover-1.svg" alt="">
+            <div class="request__cover" data-anim="parallax-shadow">
               <img class="request__cover-img request__cover-img--2" src="./images/temp/request-cover-2.svg" alt="">
+              <img class="request__cover-img request__cover-img--1" src="./images/temp/request-cover-1.svg" alt="">
             </div>
 
           </div>
