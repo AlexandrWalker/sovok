@@ -7,6 +7,10 @@
     flex-direction: column;
     gap: 6rem;
     width: 100%;
+
+    @include sm {
+      gap: 2rem;
+    }
   }
 
   &__suptitle {
@@ -20,6 +24,13 @@
 
     @include sm {
       font-size: 4rem;
+    }
+
+    br {
+
+      @include sm {
+        display: none;
+      }
     }
   }
 
@@ -45,6 +56,10 @@
     font-size: 4rem;
     line-height: 120%;
     text-transform: uppercase;
+
+    @include sm {
+      font-size: 2rem;
+    }
 
     span {
       color: var(--red);

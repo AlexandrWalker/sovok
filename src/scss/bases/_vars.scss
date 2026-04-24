@@ -21,18 +21,18 @@
   --black-50: rgba(23, 23, 26, 0.5);
 
   --gray: #718595;
-  
+
   --red: #DC143C;
 
-  @include sm {
-    --container-padding: 1.5rem;
-    --header-height: 9.5rem;
-    --section-padding-top: 1.5rem;
-    --section-padding-bottom: 1.5rem;
+  @include md {
+    // --container-padding: 1.5rem;
+    // --header-height: 9.5rem;
   }
 
   @include sm {
     --container-padding: 1.5rem;
     --header-height: 9.5rem;
+    --section-padding-top: 2rem;
+    --section-padding-bottom: 2rem;
   }
 }

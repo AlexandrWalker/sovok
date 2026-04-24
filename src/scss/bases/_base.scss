@@ -46,6 +46,7 @@ body {
   flex-direction: column;
   height: 100%;
   min-height: 100vh;
+  overflow: hidden;
 
   padding-top: var(--header-height);
 }
@@ -67,7 +68,7 @@ section {
   will-change: transform;
   // background-color: var(--white);
 
-  &:not(section.hero, section.effect, section.growth) {
+  &:not(section.hero, section.effect, section.growth, section.approach, section.cases, section.inform) {
 
     @include sm {
       display: none;

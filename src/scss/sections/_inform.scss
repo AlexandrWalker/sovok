@@ -1,8 +1,18 @@
 @use './../mixins' as *;
 
 .inform {
-  min-height: 100vh;
-  min-height: 100dvh;
+  // min-height: 100vh;
+  // min-height: 100dvh;
+
+  --section-padding-top: 10rem;
+  --section-padding-bottom: 30rem;
+
+  overflow: visible;
+
+  @include sm {
+    --section-padding-top: 2.5rem;
+    --section-padding-bottom: 2.5rem;
+  }
 
   // &__cover {
   //   width: auto;
@@ -37,18 +47,48 @@
 
   .general {
 
-    &__head {}
+    &__title {
+
+      @include sm {
+        max-width: 27.5rem;
+        word-break: break-word;
+
+        font-size: 6rem;
+      }
+    }
+  }
+
+  &__inner {
+
+    @include sm {
+      display: flex;
+      flex-direction: column;
+      gap: 2.6rem;
+    }
   }
 
   &__body {
     display: flex;
     justify-content: flex-end;
+    width: calc(100% + (var(--container-padding) * 2));
     margin-top: -2rem;
+    margin-left: calc(var(--container-padding) * -1);
+    padding: 0 var(--container-padding);
+    overflow: hidden;
+
+    @include sm {
+      margin-top: 0;
+    }
   }
 
   &__slider {
     max-width: 112rem;
+    width: 100%;
     margin: 0 10.9rem 0 0;
+
+    @include sm {
+      margin: 0;
+    }
   }
 
   &__slide {
@@ -56,6 +96,11 @@
     flex-direction: row;
     align-items: center;
     gap: 1.3rem;
+
+    @include sm {
+      max-width: 27.3rem;
+      width: 100%;
+    }
 
     &:last-child {
 
@@ -71,10 +116,19 @@
     gap: 4rem;
     max-width: 43.6rem;
 
+    @include sm {
+      gap: 2rem;
+      max-width: 27.3rem;
+    }
+
     &-cover {
       max-width: 40.9rem;
       width: 100%;
       height: 32.9rem;
+
+      @include sm {
+        height: 22rem;
+      }
 
       img {
         width: 100%;
@@ -87,6 +141,10 @@
       display: flex;
       flex-direction: column;
       gap: 2rem;
+
+      @include sm {
+        gap: 1.5rem;
+      }
     }
 
     &-title {
@@ -95,6 +153,10 @@
       line-height: 120%;
       letter-spacing: -0.04em;
       text-transform: uppercase;
+
+      @include sm {
+        font-size: 2rem;
+      }
     }
 
     &-text {
@@ -102,10 +164,21 @@
       font-size: 3rem;
       line-height: 120%;
       letter-spacing: -0.04em;
+
+      @include sm {
+        font-size: 1.6rem;
+      }
     }
 
     &-arrow {
       width: 9rem;
+
+      @include sm {
+        position: absolute;
+        top: 11rem;
+        right: 0;
+        transform: translate(50%, -50%);
+      }
 
       img {
         width: 100%;
@@ -119,9 +192,13 @@
     height: 78rem;
 
     position: absolute;
-    top: 11rem;
+    top: 18.5rem;
     left: -21.3rem;
     z-index: 1;
+
+    @include sm {
+      display: none;
+    }
 
     &-shadow {
       width: auto;

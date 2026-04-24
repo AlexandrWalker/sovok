@@ -4,6 +4,8 @@
   overflow: visible;
   background-color: transparent;
 
+  @include sm {}
+
   .general {
 
     &__head {
@@ -27,11 +29,15 @@
         z-index: 0;
 
         @include sm {
+          width: calc(100% + (var(--container-padding) * 2));
           height: calc(100% + 2rem);
+          background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAyIiBoZWlnaHQ9IjE3NiIgdmlld0JveD0iMCAwIDQwMiAxNzYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8cGF0aCBkPSJNMi4yODI2ZS0wNSAwTDc5NS41MTggMTcxLjIyOUw3OTAuNDY0IDE3NC4wN0wtNi43MjA4M2UtMDcgMTc1LjEzM0wyLjI4MjZlLTA1IDBaIiBmaWxsPSIjREMxNDNDIi8+DQo8L3N2Zz4=);
 
           top: unset;
           bottom: 0.8rem;
-          left: -7.5rem;
+          // left: -7.5rem;
+          right: calc(var(--container-padding) * -1);
+          left: calc(var(--container-padding) * -1);
         }
       }
     }
@@ -70,15 +76,20 @@
 
     &::after {
       content: "";
-      width: 100vw;
+      display: none;
+      width: calc(100% + (var(--container-padding) * 2));
       height: 100%;
       background-color: var(--white);
 
       position: absolute;
       top: -3.6rem;
-      left: -1.5rem;
-      right: -1.5rem;
+      left: calc(var(--container-padding) * -1);
+      right: calc(var(--container-padding) * -1);
       z-index: 1;
+
+      @include sm {
+        display: block;
+      }
     }
   }
 
@@ -126,6 +137,7 @@
       font-size: 4rem;
       line-height: 120%;
       text-transform: uppercase;
+      word-break: break-word;
 
       @include sm {
         font-size: 2rem;

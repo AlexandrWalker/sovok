@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const path = SOUND_MAP[name];
       if (!path) {
-        console.warn(`[Sound] Не найден путь для звука: "${name}"`);
+        console.warn(`[Sound] Не найден путь для звука: "\${name}"`);
         return;
       }
 
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const arrayBuffer = await response.arrayBuffer();
         bufferCache[name] = await audioCtx.decodeAudioData(arrayBuffer);
       } catch (err) {
-        console.error(`[Sound] Ошибка загрузки "${name}":`, err);
+        console.error(`[Sound] Ошибка загрузки "\${name}":`, err);
       } finally {
         loadingSet.delete(name);
       }
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const buffer = bufferCache[name];
       if (!buffer) {
-        console.warn(`[Sound] Буфер не готов для: "${name}"`);
+        console.warn(`[Sound] Буфер не готов для: "\${name}"`);
         return;
       }
 
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const arrBuf = await res.arrayBuffer();
         bufferCache[name] = await audioCtx.decodeAudioData(arrBuf);
       } catch (err) {
-        console.error(`[ScrollSound] Ошибка загрузки "${name}":`, err);
+        console.error(`[ScrollSound] Ошибка загрузки "\${name}":`, err);
       }
     }
 
@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const finalVolume = Math.min(2.0, Math.max(0, individualVolume * globalVolume));
 
       // GainNode - узел громкости
-      // Граф: source -> gainNode -> destination
+      // Граф: source → gainNode → destination
       const gainNode = audioCtx.createGain();
       gainNode.gain.value = finalVolume;
       gainNode.connect(audioCtx.destination);
@@ -319,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /**
-   * Функция для поведения шапки
+   * Функция для шапки
    */
   (function () {
 
@@ -493,7 +493,7 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollTrigger: {
           trigger: document.documentElement,
           start: 'top top',
-          end: `+=${scrollZone}`,
+          end: `+=\${scrollZone}`,
           scrub: true,
           onEnter: () => htmlEl.classList.add(CONFIG.classFixed),
           onLeaveBack: () => {
@@ -511,7 +511,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ================================================================
     ScrollTrigger.create({
       trigger: document.documentElement,
-      start: `top+=${scrollZone} top`,
+      start: `top+=\${scrollZone} top`,
       onEnter: () => htmlEl.classList.add(CONFIG.classOffTop),
       onLeaveBack: () => htmlEl.classList.remove(CONFIG.classOffTop),
     });
@@ -689,7 +689,7 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /**
-   * Функция для блока callback
+   * callback
    */
   (function () {
     const callbackBtn = document.querySelector('.callback__btn');
@@ -793,476 +793,808 @@ document.addEventListener('DOMContentLoaded', () => {
 
   })();
 
+/**
+ * Анимация наслоения блоков
+ */
+(function () {
+  document.querySelectorAll("[data-animate]").forEach((section) => {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /**
-   * GSAP Animation System
-   *
-   * data-animate                     - секция с пином (pin без spacing)
-   * data-anim-scene                  - контекст для satellite и fly-through
-   *
-   * data-anim="parallax"             - параллакс одного блока
-   *   data-anim-y="10%"              - амплитуда (default: 10%)
-   *   data-anim-start="top 90%"      - start ScrollTrigger (default: top 90%)
-   *   data-anim-end="bottom top"     - end ScrollTrigger (default: bottom top)
-   *
-   * data-anim="parallax-shadow"      - параллакс дочерних слоёв
-   *   data-anim-start="top 90%"      - start ScrollTrigger (default: top 90%)
-   *   data-anim-end="bottom top"     - end ScrollTrigger (default: bottom top)
-   *   [children] data-anim-y="5%"    - y каждого слоя, дефолт по индексу [5%,7%,10%,12%,15%]
-   *
-   * data-anim="fadeLeft"             - влёт слева
-   * data-anim="fadeRight"            - влёт справа
-   * data-anim="fadeUp"               - влёт снизу
-   * data-anim="fadeDown"             - влёт сверху
-   *
-   * data-anim="satellite"            - параллакс по диагонали 45 градусов (внутри data-anim-scene)
-   *   data-anim-strength="300"       - амплитуда смещения (default: 300)
-   *
-   * data-anim="fly-through"          - влёт снизу -> зависание -> вылет вверх (внутри data-anim-scene)
-   *
-   * data-anim="bounce"               - бесконечное покачивание вверх-вниз
-   *   data-anim-y="20"               - амплитуда в px (default: 20)
-   *   data-anim-duration="1.5"       - длительность (default: 1.5)
-   *   data-anim-ease="power1.inOut"  - easing (default: power1.inOut)
-   *
-   * data-anim="scale"                - пульсация масштаба или одноразовое появление
-   *   data-anim-scale="1.1"          - целевой scale при пульсации (default: 1.1)
-   *   data-anim-duration="1.5"       - длительность (default: 1.5)
-   *   data-anim-ease="power1.inOut"  - easing (default: power1.inOut)
-   *   data-anim-once                 - одноразовое появление от 0 до 1, триггер по центру экрана
-   *
-   * data-split="title"               - split-анимация заголовка (stagger 0.1, duration 0.6)
-   *   data-anim-delay="0.5"          - ручная задержка в секундах
-   *
-   * data-split="text"                - split-анимация текста (stagger 0.05, duration 0.8)
-   *   data-anim-delay="0.5"          - ручная задержка в секундах
-   *
-   * Авто-задержка split: если data-split находится внутри data-anim="scale" или "bounce",
-   * задержка берётся автоматически из duration родителя
-   */
-
-  (function () {
-
-    // Реестр анимаций: element -> duration
-    // Нужен чтобы дочерние split знали длительность родительской анимации
-    const animRegistry = new Map();
-
-    // Ищет ближайшего зарегистрированного родителя, возвращает его duration
-    function getParentDelay(el) {
-      let node = el.parentElement;
-      while (node) {
-        if (animRegistry.has(node)) return animRegistry.get(node);
-        node = node.parentElement;
-      }
-      return 0;
-    }
-
-    //
-    // PIN - секции с пином без отступа
-    //
-
-    gsap.utils.toArray('[data-animate]').forEach(section => {
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top bottom-=30%',
-        },
-      });
-
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'bottom bottom',
-          end: 'bottom top',
-          pin: true,
-          pinSpacing: false,
-        },
-      });
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top bottom-=30%",
+      },
     });
 
-    //
-    // PARALLAX - одиночный блок
-    //
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "bottom bottom",
+        end: "bottom top",
+        pin: true,
+        pinSpacing: false,
+      },
+    });
+  });
+})();
 
-    gsap.utils.toArray('[data-anim="parallax"]').forEach(el => {
-      const y = el.dataset.animY ?? '10%';
-      const start = el.dataset.animStart ?? 'top 90%';
-      const end = el.dataset.animEnd ?? 'bottom top';
+(function () {
 
-      gsap.fromTo(el,
+  // Parallax — одиночный блок
+  gsap.utils.toArray('[data-anim="parallax"]').forEach(el => {
+    const y = el.dataset.animY ?? '10%';
+    const start = el.dataset.animStart ?? 'top 90%';
+    const end = el.dataset.animEnd ?? 'bottom top';
+
+    gsap.fromTo(el,
+      { y: y },
+      {
+        y: `-\${y}`,
+        scrollTrigger: {
+          trigger: el,
+          start,
+          end,
+          scrub: true,
+        },
+      }
+    );
+  });
+
+  // Parallax Shadow — параллакс для дочерних слоёв внутри родителя
+  // Каждый дочерний элемент берёт свой y из data-anim-y,
+  // если не задан — берёт дефолтный по индексу [5%, 7%, 10%, ...]
+  const defaultYValues = ['5%', '7%', '10%', '12%', '15%'];
+
+  gsap.utils.toArray('[data-anim="parallax-shadow"]').forEach(wrapper => {
+    const start = wrapper.dataset.animStart ?? 'top 90%';
+    const end = wrapper.dataset.animEnd ?? 'bottom top';
+
+    const layers = Array.from(wrapper.children);
+
+    layers.forEach((layer, i) => {
+      const y = layer.dataset.animY ?? defaultYValues[i] ?? '10%';
+
+      gsap.fromTo(layer,
         { y: y },
         {
-          y: `-${y}`,
-          scrollTrigger: { trigger: el, start, end, scrub: true },
+          y: `-\${y}`,
+          scrollTrigger: {
+            trigger: wrapper,
+            start,
+            end,
+            scrub: true,
+          },
         }
       );
     });
+  });
 
-    //
-    // PARALLAX SHADOW - параллакс дочерних слоёв
-    //
+})();
 
-    const defaultYValues = ['5%', '7%', '10%', '12%', '15%'];
+  /**
+   * Анимация заголовков и подзаголовков
+   */
+  // gsap.utils.toArray('[data-split="title"]').forEach(dataSplitLines => {
+  //   const textSplits = dataSplitLines.querySelectorAll('*');
 
-    gsap.utils.toArray('[data-anim="parallax-shadow"]').forEach(wrapper => {
-      const start = wrapper.dataset.animStart ?? 'top 90%';
-      const end = wrapper.dataset.animEnd ?? 'bottom top';
+  //   const validTargets = Array.from(textSplits).filter(el =>
+  //     el.tagName !== 'BR' &&
+  //     el.tagName !== 'IMG' &&
+  //     el.tagName !== 'SVG'
+  //   );
 
-      Array.from(wrapper.children).forEach((layer, i) => {
-        const y = layer.dataset.animY ?? defaultYValues[i] ?? '10%';
+  //   const targets = validTargets.length > 0
+  //     ? validTargets
+  //     : [dataSplitLines];
 
-        gsap.fromTo(layer,
-          { y: y },
-          {
-            y: `-${y}`,
-            scrollTrigger: { trigger: wrapper, start, end, scrub: true },
-          }
-        );
+  //   targets.forEach(textSplit => {
+  //     SplitText.create(textSplit, {
+  //       type: "words,lines",
+  //       mask: "lines",
+  //       linesClass: "line",
+  //       autoSplit: true,
+  //       onSplit: inst => {
+  //         const lineHeight = inst.lines[0]?.offsetHeight ?? 50;
+  //         gsap.from(inst.lines, {
+  //           y: lineHeight / 10 + 'rem',
+  //           // rotation: 2.5,
+  //           // opacity: 0,
+  //           stagger: 0.1,
+  //           duration: 0.6,
+  //           ease: 'power3.out',
+  //           scrollTrigger: {
+  //             trigger: dataSplitLines,
+  //             start: "top 90%",
+  //             end: "bottom top"
+  //           }
+  //         })
+  //       }
+  //     });
+  //   });
+  // });
+
+  // gsap.utils.toArray('[data-split="text"]').forEach(dataSplitLines => {
+  //   const textSplits = dataSplitLines.querySelectorAll('*');
+
+  //   const validTargets = Array.from(textSplits).filter(el =>
+  //     el.tagName !== 'BR' &&
+  //     el.tagName !== 'IMG' &&
+  //     el.tagName !== 'SVG'
+  //   );
+
+  //   const targets = validTargets.length > 0
+  //     ? validTargets
+  //     : [dataSplitLines];
+
+  //   targets.forEach(textSplit => {
+  //     if (textSplit) SplitText.create(textSplit, {
+  //       type: "words,lines",
+  //       mask: "lines",
+  //       linesClass: "line",
+  //       autoSplit: true,
+  //       onSplit: inst => {
+  //         const lineHeight = inst.lines[0]?.offsetHeight ?? 50;
+  //         gsap.from(inst.lines, {
+  //           y: lineHeight / 10 + 'rem',
+  //           rotation: 2.5,
+  //           stagger: 0.05,
+  //           duration: 0.8,
+  //           scrollTrigger: {
+  //             trigger: dataSplitLines,
+  //             start: "top 90%",
+  //             end: "bottom top"
+  //           }
+  //         })
+  //       }
+  //     });
+  //   });
+  // });
+
+/**
+ * Анимации fadeLeft, fadeRight, fadeUp, fadeDown
+ */
+(function () {
+
+  // Конфиг для каждого направления — откуда летит блок
+  // x/y в процентах чтобы работало для любого размера элемента
+  const directions = {
+    fadeLeft: { x: '-100%', y: '0%' },
+    fadeRight: { x: '100%', y: '0%' },
+    fadeUp: { x: '0%', y: '100%' },
+    fadeDown: { x: '0%', y: '-100%' },
+  };
+
+  Object.entries(directions).forEach(([name, from]) => {
+    const items = gsap.utils.toArray(`[data-anim="${name}"]`);
+
+    items.forEach(el => {
+      // Таймлайн паузим сразу — ScrollTrigger сам решит когда запускать
+      const tl = gsap.timeline({
+        paused: true,
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 90%',
+          // toggleActions: запустить вперёд, пауза, перемотать назад, пауза
+          // onEnter, onLeave, onEnterBack, onLeaveBack
+          toggleActions: 'play none none none',
+        },
       });
+
+      // Начальное состояние — за кадром + невидим
+      tl.fromTo(el,
+        {
+          x: from.x,
+          y: from.y,
+          opacity: 0,
+        },
+        {
+          x: '0%',
+          y: '0%',
+          opacity: 1,
+          duration: 0.35,
+          // power2.out — резко вылетает и плавно тормозит у финальной точки
+          ease: 'power2.out',
+        }
+      );
     });
+  });
 
-    //
-    // FADE - влёт с четырёх сторон
-    //
+})();
 
-    const fadeDirections = {
-      fadeLeft: { x: '-100%', y: '0%' },
-      fadeRight: { x: '100%', y: '0%' },
-      fadeUp: { x: '0%', y: '100%' },
-      fadeDown: { x: '0%', y: '-100%' },
-    };
+/**
+ * Анимации
+ */
+(function () {
 
-    Object.entries(fadeDirections).forEach(([name, from]) => {
-      gsap.utils.toArray(`[data-anim="${name}"]`).forEach(el => {
-        gsap.timeline({
-          paused: true,
+  // ═══════════════════════════════════════════════════
+  // Ищем все сцены на странице
+  // Каждая сцена — изолированный контекст анимации
+  // ═══════════════════════════════════════════════════
+
+  gsap.utils.toArray('[data-anim-scene]').forEach(scene => {
+
+    // ─────────────────────────────────────────────────
+    // СПУТНИК — параллакс по диагонали 45°
+    // ─────────────────────────────────────────────────
+
+    gsap.utils.toArray('[data-anim="satellite"]', scene).forEach(el => {
+
+      const strength = parseFloat(el.dataset.animStrength ?? 300);
+
+      gsap.fromTo(el,
+        {
+          x: -strength,
+          y: strength,
+        },
+        {
+          x: strength,
+          y: -strength,
+          ease: 'none',
           scrollTrigger: {
-            trigger: el,
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-          },
-        }).fromTo(el,
-          { x: from.x, y: from.y, opacity: 0 },
-          { x: '0%', y: '0%', opacity: 1, duration: 0.15, ease: 'power2.out' }
-        );
-      });
-    });
-
-    //
-    // СЦЕНЫ - satellite и fly-through
-    //
-
-    gsap.utils.toArray('[data-anim-scene]').forEach(scene => {
-
-      // SATELLITE - параллакс по диагонали 45 градусов
-      gsap.utils.toArray('[data-anim="satellite"]', scene).forEach(el => {
-        const strength = parseFloat(el.dataset.animStrength ?? 300);
-
-        gsap.fromTo(el,
-          { x: -strength, y: strength },
-          {
-            x: strength,
-            y: -strength,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: scene,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 1,
-            },
-          }
-        );
-      });
-
-      // FLY-THROUGH - влёт -> зависание -> вылет
-      gsap.utils.toArray('[data-anim="fly-through"]', scene).forEach(el => {
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: scene,
+            trigger: scene, // триггер — сама сцена
             start: 'top bottom',
             end: 'bottom top',
             scrub: 1,
           },
-        })
-          // Фаза 1 - влёт снизу
-          .fromTo(el,
-            { y: '80%', opacity: 1, scale: 1 },
-            { y: '0%', opacity: 1, scale: 1, ease: 'power2.out', duration: 0.35 }
-          )
-          // Фаза 2 - зависание
-          .to(el,
-            { y: '0%', opacity: 1, scale: 1, ease: 'none', duration: 0.05 }
-          )
-          // Фаза 3 - вылет вверх
-          .to(el,
-            { y: '-80%', opacity: 0, scale: 0.85, ease: 'power2.in', duration: 0.25 }
-          );
+        }
+      );
+    });
+
+    // ─────────────────────────────────────────────────
+    // FLY-THROUGH — влёт снизу, зависание, вылет вверх
+    // ─────────────────────────────────────────────────
+
+    gsap.utils.toArray('[data-anim="fly-through"]', scene).forEach(el => {
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: scene, // триггер — сама сцена
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1,
+        },
       });
-    });
 
-    //
-    // BOUNCE - бесконечное покачивание
-    //
-
-    gsap.utils.toArray('[data-anim="bounce"]').forEach(el => {
-      const y = parseFloat(el.dataset.animY ?? 20);
-      const duration = parseFloat(el.dataset.animDuration ?? 1.5);
-      const ease = el.dataset.animEase ?? 'power1.inOut';
-
-      animRegistry.set(el, duration);
-
-      gsap.to(el, { y, duration, ease, repeat: -1, yoyo: true });
-    });
-
-    //
-    // SCALE - пульсация или одноразовое появление
-    //
-
-    gsap.utils.toArray('[data-anim="scale"]').forEach(el => {
-      const scale = parseFloat(el.dataset.animScale ?? 1.1);
-      const duration = parseFloat(el.dataset.animDuration ?? 1);
-      const ease = el.dataset.animEase ?? 'power1.inOut';
-      const once = el.dataset.animOnce !== undefined;
-
-      animRegistry.set(el, duration);
-
-      if (once) {
-        gsap.fromTo(el,
-          { scale: 0 },
-          {
-            scale: 1,
-            duration,
-            ease,
-            scrollTrigger: {
-              trigger: el,
-              start: 'bottom 80%',
-            },
-          }
-        );
-      } else {
-        gsap.to(el, { scale, duration, ease, repeat: -1, yoyo: true });
-      }
-    });
-
-    //
-    // SPLIT - общая функция для title и text
-    //
-
-    function initSplitAnim(container, { rotation, stagger, duration, start }) {
-      const textSplits = container.querySelectorAll('*');
-
-      const validTargets = Array.from(textSplits).filter(el =>
-        el.tagName !== 'BR' &&
-        el.tagName !== 'IMG' &&
-        el.tagName !== 'SVG'
+      // Фаза 1 — влёт снизу
+      tl.fromTo(el,
+        {
+          y: '80%',
+          opacity: 1,
+          scale: 1,
+        },
+        {
+          y: '0%',
+          opacity: 1,
+          scale: 1,
+          ease: 'power2.out',
+          duration: 0.35,
+        }
       );
 
-      const targets = validTargets.length > 0 ? validTargets : [container];
+      // Фаза 2 — зависание на месте
+      tl.to(el,
+        {
+          y: '0%',
+          opacity: 1,
+          scale: 1,
+          ease: 'none',
+          duration: 0.05,
+        }
+      );
 
-      // Задержка: ручная из атрибута или автоматически от родительской анимации
-      const manualDelay = parseFloat(container.dataset.animDelay ?? 0);
-      const parentDelay = getParentDelay(container);
-      const delay = manualDelay || parentDelay;
+      // Фаза 3 — унос вверх
+      tl.to(el,
+        {
+          y: '-80%',
+          opacity: 0,
+          scale: 0.85,
+          ease: 'power2.in',
+          duration: 0.25,
+        }
+      );
+    });
+  });
 
-      targets.forEach(textSplit => {
-        SplitText.create(textSplit, {
-          type: 'words,lines',
-          mask: 'lines',
-          linesClass: 'line',
-          autoSplit: true,
-          onSplit: inst => {
-            const lineHeight = inst.lines[0]?.offsetHeight ?? 50;
-            gsap.from(inst.lines, {
-              y: lineHeight / 10 + 'rem',
-              rotation,
-              stagger,
-              duration,
-              delay,
-              ease: 'power3.out',
-              scrollTrigger: {
-                trigger: container,
-                start,
-                end: 'bottom top',
-              },
-            });
+})();
+
+(function () {
+
+  // Реестр анимаций: element → duration
+  // Нужен чтобы дочерние элементы знали длительность родительской анимации
+  const animRegistry = new Map();
+
+  // Ищет ближайшего зарегистрированного родителя и возвращает его duration
+  function getParentDelay(el) {
+    let node = el.parentElement;
+    while (node) {
+      if (animRegistry.has(node)) return animRegistry.get(node);
+      node = node.parentElement;
+    }
+    return 0;
+  }
+
+  // Общая функция для split-анимаций, чтобы не дублировать код
+  function initSplitAnim(container, { y, rotation, stagger, duration, start }) {
+    const textSplits = container.querySelectorAll('*');
+
+    const validTargets = Array.from(textSplits).filter(el =>
+      el.tagName !== 'BR' &&
+      el.tagName !== 'IMG' &&
+      el.tagName !== 'SVG'
+    );
+
+    const targets = validTargets.length > 0 ? validTargets : [container];
+
+    // Задержка из атрибута или от родительской анимации
+    const manualDelay = parseFloat(container.dataset.animDelay ?? 0);
+    const parentDelay = getParentDelay(container);
+    const delay = manualDelay || parentDelay;
+
+    targets.forEach(textSplit => {
+      SplitText.create(textSplit, {
+        type: 'words,lines',
+        mask: 'lines',
+        linesClass: 'line',
+        autoSplit: true,
+        onSplit: inst => {
+          const lineHeight = inst.lines[0]?.offsetHeight ?? 50;
+          gsap.from(inst.lines, {
+            y: lineHeight / 10 + 'rem',
+            rotation,
+            stagger,
+            duration,
+            delay,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: container,
+              start,
+              end: 'bottom top',
+            },
+          });
+        },
+      });
+    });
+  }
+
+  // Bounce
+  gsap.utils.toArray('[data-anim="bounce"]').forEach(el => {
+    const y = parseFloat(el.dataset.animY ?? 20);
+    const duration = parseFloat(el.dataset.animDuration ?? 1.5);
+    const ease = el.dataset.animEase ?? 'power1.inOut';
+
+    animRegistry.set(el, duration);
+
+    gsap.to(el, { y, duration, ease, repeat: -1, yoyo: true });
+  });
+
+  // Scale
+  gsap.utils.toArray('[data-anim="scale"]').forEach(el => {
+    const scale = parseFloat(el.dataset.animScale ?? 1.1);
+    const duration = parseFloat(el.dataset.animDuration ?? 1.5);
+    const ease = el.dataset.animEase ?? 'power1.inOut';
+    const once = el.dataset.animOnce !== undefined;
+
+    // Регистрируем чтобы дочерние split-анимации знали задержку
+    animRegistry.set(el, duration);
+
+    if (once) {
+      gsap.fromTo(el,
+        { scale: 0 },
+        {
+          scale: 1,
+          duration,
+          ease,
+          scrollTrigger: {
+            trigger: el,
+            start: 'center center',
           },
-        });
+        }
+      );
+    } else {
+      gsap.to(el, { scale, duration, ease, repeat: -1, yoyo: true });
+    }
+  });
+
+  // Split — заголовок
+  gsap.utils.toArray('[data-split="title"]').forEach(container => {
+    initSplitAnim(container, {
+      rotation: 0,
+      stagger: 0.1,
+      duration: 0.6,
+      start: 'top 90%',
+    });
+  });
+
+  // Split — текст
+  gsap.utils.toArray('[data-split="text"]').forEach(container => {
+    initSplitAnim(container, {
+      rotation: 2.5,
+      stagger: 0.05,
+      duration: 0.8,
+      start: 'top 90%',
+    });
+  });
+
+})();
+
+/**
+ * Анимация набора текста
+ */
+(function () {
+
+  const groupMap = new Map();
+
+  document.querySelectorAll('.typewriter').forEach(container => {
+    const group = container.dataset.syncGroup;
+
+    if (group) {
+      if (!groupMap.has(group)) groupMap.set(group, []);
+      groupMap.get(group).push(container);
+    } else {
+      initTypewriter(container);
+    }
+  });
+
+  groupMap.forEach(containers => {
+    initSyncGroup(containers);
+  });
+
+  // Координатор синхронной группы.
+  // Управляет несколькими экземплярами как одним целым,
+  // все тикают одновременно, ни один не отстаёт.
+  function initSyncGroup(containers) {
+
+    const first = containers[0];
+    const TYPE_SPEED = parseFloat(first.dataset.typeSpeed ?? 0.07);
+    const TYPE_VARIANCE = parseFloat(first.dataset.typeVariance ?? 0.04);
+    const DELETE_SPEED = parseFloat(first.dataset.deleteSpeed ?? 0.04);
+    const PAUSE_AFTER_TYPE = parseFloat(first.dataset.pauseAfterType ?? 2.0);
+    const PAUSE_AFTER_DEL = parseFloat(first.dataset.pauseAfterDelete ?? 0.5);
+
+    let isStopped = false;
+    let abortSignal = false;
+    let stoppedCount = 0;
+
+    const instances = containers.map(container =>
+      initTypewriter(container, {
+        externalControl: true,
+
+        onStop: () => {
+          stoppedCount++;
+          if (!isStopped) abortSignal = true;
+          isStopped = true;
+        },
+
+        onResume: () => {
+          stoppedCount = Math.max(0, stoppedCount - 1);
+          isStopped = stoppedCount > 0;
+        },
+      })
+    );
+
+    const phraseCount = instances[0]?.phraseCount ?? 0;
+    if (phraseCount === 0) return;
+
+    function getTypeDelay() {
+      return TYPE_SPEED + (Math.random() * 2 - 1) * TYPE_VARIANCE;
+    }
+
+    function sleep(seconds) {
+      return new Promise(resolve => setTimeout(resolve, seconds * 1000));
+    }
+
+    // sleep который можно прервать через abortSignal,
+    // чтобы не ждать конца паузы когда пришёл focus
+    function sleepAbortable(seconds) {
+      return new Promise(resolve => {
+        const ms = seconds * 1000;
+        const start = performance.now();
+
+        const check = () => {
+          if (abortSignal || performance.now() - start >= ms) resolve();
+          else requestAnimationFrame(check);
+        };
+
+        requestAnimationFrame(check);
       });
     }
 
-    // Split - заголовок
-    gsap.utils.toArray('[data-split="title"]').forEach(container => {
-      initSplitAnim(container, {
-        rotation: 0,
-        stagger: 0.1,
-        duration: 0.6,
-        start: 'top 90%',
+    // Синхронный набор: количество шагов = самое длинное слово среди всех экземпляров
+    async function typeAll(phraseIndex) {
+      const steps = Math.max(...instances.map(inst => inst.getStepCount(phraseIndex)));
+
+      instances.forEach(inst => inst.prepareCursor(phraseIndex));
+
+      for (let i = 0; i < steps; i++) {
+        if (abortSignal) break;
+        instances.forEach(inst => inst.typeStep(phraseIndex, i));
+        await sleepAbortable(getTypeDelay());
+      }
+
+      instances.forEach(inst => inst.resumeCursor());
+    }
+
+    // Синхронное удаление
+    async function deleteAll(phraseIndex) {
+      const steps = Math.max(...instances.map(inst => inst.getStepCount(phraseIndex)));
+
+      instances.forEach(inst => inst.prepareCursor(phraseIndex));
+
+      for (let i = 0; i < steps; i++) {
+        if (abortSignal) break;
+        instances.forEach(inst => inst.deleteStep());
+        await sleepAbortable(DELETE_SPEED);
+      }
+
+      instances.forEach(inst => inst.resumeCursor());
+    }
+
+    function applyAll(phraseIndex) {
+      instances.forEach(inst => inst.applyPhrase(phraseIndex));
+    }
+
+    function clearAll() {
+      instances.forEach(inst => inst.clearSlots());
+    }
+
+    // Финальный stop-text набирается параллельно во всех экземплярах
+    async function typeStopAll() {
+      await Promise.all(instances.map(inst => inst.typeStopText()));
+    }
+
+    async function runLoop() {
+      let index = 0;
+
+      while (true) {
+        if (isStopped) { await sleep(0.1); continue; }
+
+        const phraseIndex = index % phraseCount;
+
+        // Чистим перед каждой итерацией, в том числе после resume
+        clearAll();
+        applyAll(phraseIndex);
+
+        await typeAll(phraseIndex);
+        if (abortSignal) { abortSignal = false; clearAll(); await typeStopAll(); isStopped = true; continue; }
+
+        await sleepAbortable(PAUSE_AFTER_TYPE);
+        if (abortSignal) { abortSignal = false; clearAll(); await typeStopAll(); isStopped = true; continue; }
+
+        await deleteAll(phraseIndex);
+        if (abortSignal) { abortSignal = false; clearAll(); await typeStopAll(); isStopped = true; continue; }
+
+        await sleepAbortable(PAUSE_AFTER_DEL);
+        if (abortSignal) { abortSignal = false; clearAll(); await typeStopAll(); isStopped = true; continue; }
+
+        index++;
+      }
+    }
+
+    runLoop();
+  }
+
+  // Один экземпляр typewriter.
+  // Если externalControl: true — не запускает свой цикл,
+  // отдаёт API координатору и следит только за своим input-ом.
+  function initTypewriter(container, options = {}) {
+
+    const TYPE_SPEED = parseFloat(container.dataset.typeSpeed ?? 0.07);
+    const TYPE_VARIANCE = parseFloat(container.dataset.typeVariance ?? 0.04);
+    const DELETE_SPEED = parseFloat(container.dataset.deleteSpeed ?? 0.04);
+    const PAUSE_AFTER_TYPE = parseFloat(container.dataset.pauseAfterType ?? 2.0);
+    const PAUSE_AFTER_DEL = parseFloat(container.dataset.pauseAfterDelete ?? 0.5);
+
+    const STOP_TEXT = container.dataset.stopText ?? null;
+    const inputSelector = container.dataset.input ?? null;
+
+    const inputEl = inputSelector ? document.querySelector(inputSelector) : null;
+    const cursorEl = container.querySelector('.typewriter__cursor');
+
+    const slots = Array.from(container.querySelectorAll('.typewriter__word')).map(el => ({
+      el,
+      words: el.dataset.words.split('|'),
+    }));
+
+    const phraseCount = slots[0]?.words.length ?? 0;
+    if (phraseCount === 0) return null;
+
+    let isStopped = false;
+    let abortSignal = false;
+
+    const onStop = options.onStop ?? null;
+    const onResume = options.onResume ?? null;
+
+    let cursorTween = gsap.to(cursorEl, {
+      opacity: 0,
+      duration: 0.5,
+      repeat: -1,
+      yoyo: true,
+      ease: 'none',
+    });
+
+    function getTypeDelay() {
+      return TYPE_SPEED + (Math.random() * 2 - 1) * TYPE_VARIANCE;
+    }
+
+    function sleep(seconds) {
+      return new Promise(resolve => setTimeout(resolve, seconds * 1000));
+    }
+
+    function sleepAbortable(seconds) {
+      return new Promise(resolve => {
+        const ms = seconds * 1000;
+        const start = performance.now();
+
+        const check = () => {
+          if (abortSignal || performance.now() - start >= ms) resolve();
+          else requestAnimationFrame(check);
+        };
+
+        requestAnimationFrame(check);
       });
-    });
+    }
 
-    // Split - текст
-    gsap.utils.toArray('[data-split="text"]').forEach(container => {
-      initSplitAnim(container, {
-        rotation: 2.5,
-        stagger: 0.05,
-        duration: 0.8,
-        start: 'top 90%',
+    function moveCursorTo(wordEl) {
+      wordEl.appendChild(cursorEl);
+    }
+
+    function clearSlots() {
+      slots.forEach(slot => {
+        slot.el.querySelectorAll('span:not(.typewriter__cursor)').forEach(s => s.remove());
       });
-    });
+    }
 
-  })();
+    function applyPhrase(phraseIndex) {
+      slots.forEach(slot => {
+        slot.el.dataset.word = slot.words[phraseIndex] ?? '';
+      });
+    }
 
+    // Максимальная длина слова среди всех слотов для данной фразы.
+    // Координатор использует это чтобы выровнять все экземпляры по шагам.
+    function getStepCount(phraseIndex) {
+      return Math.max(...slots.map(slot => (slot.words[phraseIndex] ?? '').length));
+    }
 
+    // Переносим курсор в последний непустой слот перед стартом
+    function prepareCursor(phraseIndex) {
+      const lastActive = [...slots].reverse().find(slot => slot.words[phraseIndex ?? 0]);
+      if (lastActive) moveCursorTo(lastActive.el);
+    }
 
+    // Добавляет i-й символ в каждый слот этого экземпляра.
+    // Курсор статичен — resume вызывает координатор после всех шагов.
+    function typeStep(phraseIndex, i) {
+      cursorTween.pause();
+      gsap.set(cursorEl, { opacity: 1 });
 
+      slots.forEach(slot => {
+        const word = slot.words[phraseIndex] ?? '';
+        if (i >= word.length) return;
 
+        const char = word[i];
+        const span = document.createElement('span');
+        span.innerHTML = char === ' ' ? '&nbsp;' : char;
 
+        if (cursorEl.parentElement === slot.el) {
+          slot.el.insertBefore(span, cursorEl);
+        } else {
+          slot.el.appendChild(span);
+        }
+      });
+    }
 
+    // Удаляет последний символ из каждого слота этого экземпляра.
+    function deleteStep() {
+      cursorTween.pause();
+      gsap.set(cursorEl, { opacity: 1 });
 
+      slots.forEach(slot => {
+        const spans = slot.el.querySelectorAll('span:not(.typewriter__cursor)');
+        if (spans.length === 0) return;
+        spans[spans.length - 1].remove();
+      });
 
+      // container.style.webkitTransform = 'translateZ(0)';
+      // requestAnimationFrame(() => {
+      //   container.style.webkitTransform = '';
+      // });
+    }
 
+    // Возобновляет мигание — вызывается после завершения набора или удаления
+    function resumeCursor() {
+      cursorTween.resume();
+    }
 
+    // Пересоздаём tween после kill() — нужно когда экземпляр возвращается из stopped
+    function restoreCursor() {
+      gsap.killTweensOf(cursorEl);
+      cursorTween = gsap.to(cursorEl, {
+        opacity: 0,
+        duration: 0.5,
+        repeat: -1,
+        yoyo: true,
+        ease: 'none',
+      });
+    }
 
+    // Набирает финальный stop-text когда input активен или заполнен.
+    // После завершения курсор гасим — анимация для этого экземпляра закончена.
+    async function typeStopText() {
+      if (!STOP_TEXT) return;
 
+      clearSlots();
+      moveCursorTo(slots[0].el);
 
+      for (const char of STOP_TEXT) {
+        cursorTween.pause();
+        gsap.set(cursorEl, { opacity: 1 });
 
+        const span = document.createElement('span');
+        span.innerHTML = char === ' ' ? '&nbsp;' : char;
+        slots[0].el.insertBefore(span, cursorEl);
 
-  /**
-   * Анимация набора текста
-   */
-  (function () {
-
-    const groupMap = new Map();
-
-    document.querySelectorAll('.typewriter').forEach(container => {
-      const group = container.dataset.syncGroup;
-
-      if (group) {
-        if (!groupMap.has(group)) groupMap.set(group, []);
-        groupMap.get(group).push(container);
-      } else {
-        initTypewriter(container);
-      }
-    });
-
-    groupMap.forEach(containers => {
-      initSyncGroup(containers);
-    });
-
-    // Координатор синхронной группы.
-    // Управляет несколькими экземплярами как одним целым,
-    // все тикают одновременно, ни один не отстаёт.
-    function initSyncGroup(containers) {
-
-      const first = containers[0];
-      const TYPE_SPEED = parseFloat(first.dataset.typeSpeed ?? 0.07);
-      const TYPE_VARIANCE = parseFloat(first.dataset.typeVariance ?? 0.04);
-      const DELETE_SPEED = parseFloat(first.dataset.deleteSpeed ?? 0.04);
-      const PAUSE_AFTER_TYPE = parseFloat(first.dataset.pauseAfterType ?? 2.0);
-      const PAUSE_AFTER_DEL = parseFloat(first.dataset.pauseAfterDelete ?? 0.5);
-
-      let isStopped = false;
-      let abortSignal = false;
-      let stoppedCount = 0;
-
-      const instances = containers.map(container =>
-        initTypewriter(container, {
-          externalControl: true,
-
-          onStop: () => {
-            stoppedCount++;
-            if (!isStopped) abortSignal = true;
-            isStopped = true;
-          },
-
-          onResume: () => {
-            stoppedCount = Math.max(0, stoppedCount - 1);
-            isStopped = stoppedCount > 0;
-          },
-        })
-      );
-
-      const phraseCount = instances[0]?.phraseCount ?? 0;
-      if (phraseCount === 0) return;
-
-      function getTypeDelay() {
-        return TYPE_SPEED + (Math.random() * 2 - 1) * TYPE_VARIANCE;
-      }
-
-      function sleep(seconds) {
-        return new Promise(resolve => setTimeout(resolve, seconds * 1000));
-      }
-
-      // sleep который можно прервать через abortSignal,
-      // чтобы не ждать конца паузы когда пришёл focus
-      function sleepAbortable(seconds) {
-        return new Promise(resolve => {
-          const ms = seconds * 1000;
-          const start = performance.now();
-
-          const check = () => {
-            if (abortSignal || performance.now() - start >= ms) resolve();
-            else requestAnimationFrame(check);
-          };
-
-          requestAnimationFrame(check);
-        });
+        await sleep(getTypeDelay());
       }
 
-      // Синхронный набор: количество шагов = самое длинное слово среди всех экземпляров
-      async function typeAll(phraseIndex) {
-        const steps = Math.max(...instances.map(inst => inst.getStepCount(phraseIndex)));
+      cursorTween.kill();
+      gsap.to(cursorEl, { opacity: 0, duration: 0.3 });
+    }
 
-        instances.forEach(inst => inst.prepareCursor(phraseIndex));
 
-        for (let i = 0; i < steps; i++) {
-          if (abortSignal) break;
-          instances.forEach(inst => inst.typeStep(phraseIndex, i));
-          await sleepAbortable(getTypeDelay());
+    // Собственный цикл — только для одиночных экземпляров.
+    // Слоты идут последовательно как части одного предложения.
+    if (!options.externalControl) {
+
+      async function typePhrase(phraseIndex) {
+        for (const slot of slots) {
+          const word = slot.words[phraseIndex] ?? '';
+          if (!word) continue;
+
+          moveCursorTo(slot.el);
+
+          for (let i = 0; i < word.length; i++) {
+            if (abortSignal) return;
+
+            cursorTween.pause();
+            gsap.set(cursorEl, { opacity: 1 });
+
+            const char = word[i];
+            const span = document.createElement('span');
+            span.innerHTML = char === ' ' ? '&nbsp;' : char;
+            slot.el.insertBefore(span, cursorEl);
+
+            await sleepAbortable(getTypeDelay());
+          }
         }
 
-        instances.forEach(inst => inst.resumeCursor());
+        resumeCursor();
       }
 
-      // Синхронное удаление
-      async function deleteAll(phraseIndex) {
-        const steps = Math.max(...instances.map(inst => inst.getStepCount(phraseIndex)));
+      async function deletePhrase(phraseIndex) {
+        for (const slot of [...slots].reverse()) {
+          const word = slot.words[phraseIndex] ?? '';
+          if (!word) continue;
 
-        instances.forEach(inst => inst.prepareCursor(phraseIndex));
+          moveCursorTo(slot.el);
 
-        for (let i = 0; i < steps; i++) {
-          if (abortSignal) break;
-          instances.forEach(inst => inst.deleteStep());
-          await sleepAbortable(DELETE_SPEED);
+          const spans = Array.from(
+            slot.el.querySelectorAll('span:not(.typewriter__cursor)')
+          ).reverse();
+
+          for (const span of spans) {
+            if (abortSignal) return;
+
+            cursorTween.pause();
+            gsap.set(cursorEl, { opacity: 1 });
+
+            span.remove();
+
+            await sleepAbortable(DELETE_SPEED);
+          }
         }
 
-        instances.forEach(inst => inst.resumeCursor());
-      }
-
-      function applyAll(phraseIndex) {
-        instances.forEach(inst => inst.applyPhrase(phraseIndex));
-      }
-
-      function clearAll() {
-        instances.forEach(inst => inst.clearSlots());
-      }
-
-      // Финальный stop-text набирается параллельно во всех экземплярах
-      async function typeStopAll() {
-        await Promise.all(instances.map(inst => inst.typeStopText()));
+        resumeCursor();
       }
 
       async function runLoop() {
@@ -1274,344 +1606,42 @@ document.addEventListener('DOMContentLoaded', () => {
           const phraseIndex = index % phraseCount;
 
           // Чистим перед каждой итерацией, в том числе после resume
-          clearAll();
-          applyAll(phraseIndex);
+          clearSlots();
+          applyPhrase(phraseIndex);
 
-          await typeAll(phraseIndex);
-          if (abortSignal) { abortSignal = false; clearAll(); await typeStopAll(); isStopped = true; continue; }
+          await typePhrase(phraseIndex);
+          if (abortSignal) { abortSignal = false; await typeStopText(); isStopped = true; continue; }
 
           await sleepAbortable(PAUSE_AFTER_TYPE);
-          if (abortSignal) { abortSignal = false; clearAll(); await typeStopAll(); isStopped = true; continue; }
+          if (abortSignal) { abortSignal = false; await typeStopText(); isStopped = true; continue; }
 
-          await deleteAll(phraseIndex);
-          if (abortSignal) { abortSignal = false; clearAll(); await typeStopAll(); isStopped = true; continue; }
+          await deletePhrase(phraseIndex);
+          if (abortSignal) { abortSignal = false; await typeStopText(); isStopped = true; continue; }
 
           await sleepAbortable(PAUSE_AFTER_DEL);
-          if (abortSignal) { abortSignal = false; clearAll(); await typeStopAll(); isStopped = true; continue; }
+          if (abortSignal) { abortSignal = false; await typeStopText(); isStopped = true; continue; }
 
           index++;
         }
       }
 
-      runLoop();
-    }
-
-    // Один экземпляр typewriter.
-    // Если externalControl: true - не запускает свой цикл,
-    // отдаёт API координатору и следит только за своим input-ом.
-    function initTypewriter(container, options = {}) {
-
-      const TYPE_SPEED = parseFloat(container.dataset.typeSpeed ?? 0.07);
-      const TYPE_VARIANCE = parseFloat(container.dataset.typeVariance ?? 0.04);
-      const DELETE_SPEED = parseFloat(container.dataset.deleteSpeed ?? 0.04);
-      const PAUSE_AFTER_TYPE = parseFloat(container.dataset.pauseAfterType ?? 2.0);
-      const PAUSE_AFTER_DEL = parseFloat(container.dataset.pauseAfterDelete ?? 0.5);
-
-      const STOP_TEXT = container.dataset.stopText ?? null;
-      const inputSelector = container.dataset.input ?? null;
-
-      const inputEl = inputSelector ? document.querySelector(inputSelector) : null;
-      const cursorEl = container.querySelector('.typewriter__cursor');
-
-      const slots = Array.from(container.querySelectorAll('.typewriter__word')).map(el => ({
-        el,
-        words: el.dataset.words.split('|'),
-      }));
-
-      const phraseCount = slots[0]?.words.length ?? 0;
-      if (phraseCount === 0) return null;
-
-      let isStopped = false;
-      let abortSignal = false;
-
-      const onStop = options.onStop ?? null;
-      const onResume = options.onResume ?? null;
-
-      let cursorTween = gsap.to(cursorEl, {
-        opacity: 0,
-        duration: 0.5,
-        repeat: -1,
-        yoyo: true,
-        ease: 'none',
-      });
-
-      function getTypeDelay() {
-        return TYPE_SPEED + (Math.random() * 2 - 1) * TYPE_VARIANCE;
-      }
-
-      function sleep(seconds) {
-        return new Promise(resolve => setTimeout(resolve, seconds * 1000));
-      }
-
-      function sleepAbortable(seconds) {
-        return new Promise(resolve => {
-          const ms = seconds * 1000;
-          const start = performance.now();
-
-          const check = () => {
-            if (abortSignal || performance.now() - start >= ms) resolve();
-            else requestAnimationFrame(check);
-          };
-
-          requestAnimationFrame(check);
-        });
-      }
-
-      function moveCursorTo(wordEl) {
-        wordEl.appendChild(cursorEl);
-      }
-
-      function clearSlots() {
-        slots.forEach(slot => {
-          slot.el.querySelectorAll('span:not(.typewriter__cursor)').forEach(s => s.remove());
-        });
-      }
-
-      function applyPhrase(phraseIndex) {
-        slots.forEach(slot => {
-          slot.el.dataset.word = slot.words[phraseIndex] ?? '';
-        });
-      }
-
-      // Максимальная длина слова среди всех слотов для данной фразы.
-      // Координатор использует это чтобы выровнять все экземпляры по шагам.
-      function getStepCount(phraseIndex) {
-        return Math.max(...slots.map(slot => (slot.words[phraseIndex] ?? '').length));
-      }
-
-      // Переносим курсор в последний непустой слот перед стартом
-      function prepareCursor(phraseIndex) {
-        const lastActive = [...slots].reverse().find(slot => slot.words[phraseIndex ?? 0]);
-        if (lastActive) moveCursorTo(lastActive.el);
-      }
-
-      // Добавляет i-й символ в каждый слот этого экземпляра.
-      // Курсор статичен - resume вызывает координатор после всех шагов.
-      function typeStep(phraseIndex, i) {
-        cursorTween.pause();
-        gsap.set(cursorEl, { opacity: 1 });
-
-        slots.forEach(slot => {
-          const word = slot.words[phraseIndex] ?? '';
-          if (i >= word.length) return;
-
-          const char = word[i];
-          const span = document.createElement('span');
-          span.innerHTML = char === ' ' ? '&nbsp;' : char;
-
-          if (cursorEl.parentElement === slot.el) {
-            slot.el.insertBefore(span, cursorEl);
-          } else {
-            slot.el.appendChild(span);
-          }
-        });
-      }
-
-      // Удаляет последний символ из каждого слота этого экземпляра.
-      function deleteStep() {
-        cursorTween.pause();
-        gsap.set(cursorEl, { opacity: 1 });
-
-        slots.forEach(slot => {
-          const spans = slot.el.querySelectorAll('span:not(.typewriter__cursor)');
-          if (spans.length === 0) return;
-          spans[spans.length - 1].remove();
-        });
-
-        // container.style.webkitTransform = 'translateZ(0)';
-        // requestAnimationFrame(() => {
-        //   container.style.webkitTransform = '';
-        // });
-      }
-
-      // Возобновляет мигание - вызывается после завершения набора или удаления
-      function resumeCursor() {
-        cursorTween.resume();
-      }
-
-      // Пересоздаём tween после kill() - нужно когда экземпляр возвращается из stopped
-      function restoreCursor() {
-        gsap.killTweensOf(cursorEl);
-        cursorTween = gsap.to(cursorEl, {
-          opacity: 0,
-          duration: 0.5,
-          repeat: -1,
-          yoyo: true,
-          ease: 'none',
-        });
-      }
-
-      // Набирает финальный stop-text когда input активен или заполнен.
-      // После завершения курсор гасим - анимация для этого экземпляра закончена.
-      async function typeStopText() {
-        if (!STOP_TEXT) return;
-
-        clearSlots();
-        moveCursorTo(slots[0].el);
-
-        for (const char of STOP_TEXT) {
-          cursorTween.pause();
-          gsap.set(cursorEl, { opacity: 1 });
-
-          const span = document.createElement('span');
-          span.innerHTML = char === ' ' ? '&nbsp;' : char;
-          slots[0].el.insertBefore(span, cursorEl);
-
-          await sleep(getTypeDelay());
-        }
-
-        cursorTween.kill();
-        gsap.to(cursorEl, { opacity: 0, duration: 0.3 });
-      }
-
-
-      // Собственный цикл - только для одиночных экземпляров.
-      // Слоты идут последовательно как части одного предложения.
-      if (!options.externalControl) {
-
-        async function typePhrase(phraseIndex) {
-          for (const slot of slots) {
-            const word = slot.words[phraseIndex] ?? '';
-            if (!word) continue;
-
-            moveCursorTo(slot.el);
-
-            for (let i = 0; i < word.length; i++) {
-              if (abortSignal) return;
-
-              cursorTween.pause();
-              gsap.set(cursorEl, { opacity: 1 });
-
-              const char = word[i];
-              const span = document.createElement('span');
-              span.innerHTML = char === ' ' ? '&nbsp;' : char;
-              slot.el.insertBefore(span, cursorEl);
-
-              await sleepAbortable(getTypeDelay());
-            }
-          }
-
-          resumeCursor();
-        }
-
-        async function deletePhrase(phraseIndex) {
-          for (const slot of [...slots].reverse()) {
-            const word = slot.words[phraseIndex] ?? '';
-            if (!word) continue;
-
-            moveCursorTo(slot.el);
-
-            const spans = Array.from(
-              slot.el.querySelectorAll('span:not(.typewriter__cursor)')
-            ).reverse();
-
-            for (const span of spans) {
-              if (abortSignal) return;
-
-              cursorTween.pause();
-              gsap.set(cursorEl, { opacity: 1 });
-
-              span.remove();
-
-              await sleepAbortable(DELETE_SPEED);
-            }
-          }
-
-          resumeCursor();
-        }
-
-        async function runLoop() {
-          let index = 0;
-
-          while (true) {
-            if (isStopped) { await sleep(0.1); continue; }
-
-            const phraseIndex = index % phraseCount;
-
-            // Чистим перед каждой итерацией, в том числе после resume
-            clearSlots();
-            applyPhrase(phraseIndex);
-
-            await typePhrase(phraseIndex);
-            if (abortSignal) { abortSignal = false; await typeStopText(); isStopped = true; continue; }
-
-            await sleepAbortable(PAUSE_AFTER_TYPE);
-            if (abortSignal) { abortSignal = false; await typeStopText(); isStopped = true; continue; }
-
-            await deletePhrase(phraseIndex);
-            if (abortSignal) { abortSignal = false; await typeStopText(); isStopped = true; continue; }
-
-            await sleepAbortable(PAUSE_AFTER_DEL);
-            if (abortSignal) { abortSignal = false; await typeStopText(); isStopped = true; continue; }
-
-            index++;
-          }
-        }
-
-        if (inputEl) {
-          let deactivateTimer = null;
-
-          const activate = () => {
-            clearTimeout(deactivateTimer);
-            if (!isStopped) abortSignal = true;
-          };
-
-          const deactivate = () => {
-            clearTimeout(deactivateTimer);
-            deactivateTimer = setTimeout(() => {
-              if (!isStopped) return;
-              // Поле заполнено - оставляем stop-text, не трогаем
-              if (inputEl.classList.contains('filled') || inputEl.value?.trim()) return;
-              // Только снимаем флаг - цикл сам почистит слоты и начнёт заново
-              isStopped = false;
-              restoreCursor();
-            }, 50);
-          };
-
-          inputEl.addEventListener('focus', activate);
-          inputEl.addEventListener('blur', deactivate);
-
-          const observer = new MutationObserver(() => {
-            if (inputEl.classList.contains('filled')) {
-              // Поле заполнено - это постоянное состояние, не зависит от фокуса
-              clearTimeout(deactivateTimer);
-              if (!isStopped) abortSignal = true;
-            } else {
-              // Класс убрали - деактивируем только если не в фокусе
-              if (!inputEl.matches(':focus')) deactivate();
-            }
-          });
-
-          observer.observe(inputEl, { attributes: true, attributeFilter: ['class'] });
-        }
-
-        runLoop();
-      }
-
-
-      // Режим внешнего управления - свой цикл не запускаем,
-      // но за своим input-ом следим и уведомляем координатора.
-      if (options.externalControl && inputEl) {
-        let selfStopped = false;
+      if (inputEl) {
         let deactivateTimer = null;
 
         const activate = () => {
           clearTimeout(deactivateTimer);
-          if (selfStopped) return;
-          selfStopped = true;
-          onStop?.();
+          if (!isStopped) abortSignal = true;
         };
 
         const deactivate = () => {
           clearTimeout(deactivateTimer);
           deactivateTimer = setTimeout(() => {
-            if (!selfStopped) return;
-            // Поле заполнено - оставляем stop-text, не трогаем
+            if (!isStopped) return;
+            // Поле заполнено — оставляем stop-text, не трогаем
             if (inputEl.classList.contains('filled') || inputEl.value?.trim()) return;
-            // Только снимаем флаг и уведомляем координатора
-            selfStopped = false;
+            // Только снимаем флаг — цикл сам почистит слоты и начнёт заново
+            isStopped = false;
             restoreCursor();
-            onResume?.();
           }, 50);
         };
 
@@ -1620,9 +1650,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const observer = new MutationObserver(() => {
           if (inputEl.classList.contains('filled')) {
+            // Поле заполнено — это постоянное состояние, не зависит от фокуса
             clearTimeout(deactivateTimer);
-            activate();
+            if (!isStopped) abortSignal = true;
           } else {
+            // Класс убрали — деактивируем только если не в фокусе
             if (!inputEl.matches(':focus')) deactivate();
           }
         });
@@ -1630,194 +1662,238 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(inputEl, { attributes: true, attributeFilter: ['class'] });
       }
 
-      return {
-        phraseCount,
-        getStepCount,
-        prepareCursor,
-        typeStep,
-        deleteStep,
-        resumeCursor,
-        applyPhrase,
-        clearSlots,
-        typeStopText,
-        restoreCursor,
-      };
+      runLoop();
     }
 
-  })();
+
+    // Режим внешнего управления — свой цикл не запускаем,
+    // но за своим input-ом следим и уведомляем координатора.
+    if (options.externalControl && inputEl) {
+      let selfStopped = false;
+      let deactivateTimer = null;
+
+      const activate = () => {
+        clearTimeout(deactivateTimer);
+        if (selfStopped) return;
+        selfStopped = true;
+        onStop?.();
+      };
+
+      const deactivate = () => {
+        clearTimeout(deactivateTimer);
+        deactivateTimer = setTimeout(() => {
+          if (!selfStopped) return;
+          // Поле заполнено — оставляем stop-text, не трогаем
+          if (inputEl.classList.contains('filled') || inputEl.value?.trim()) return;
+          // Только снимаем флаг и уведомляем координатора
+          selfStopped = false;
+          restoreCursor();
+          onResume?.();
+        }, 50);
+      };
+
+      inputEl.addEventListener('focus', activate);
+      inputEl.addEventListener('blur', deactivate);
+
+      const observer = new MutationObserver(() => {
+        if (inputEl.classList.contains('filled')) {
+          clearTimeout(deactivateTimer);
+          activate();
+        } else {
+          if (!inputEl.matches(':focus')) deactivate();
+        }
+      });
+
+      observer.observe(inputEl, { attributes: true, attributeFilter: ['class'] });
+    }
+
+    return {
+      phraseCount,
+      getStepCount,
+      prepareCursor,
+      typeStep,
+      deleteStep,
+      resumeCursor,
+      applyPhrase,
+      clearSlots,
+      typeStopText,
+      restoreCursor,
+    };
+  }
+
+})();
+
+/**
+ * Одноразовая печать
+ */
+(function () {
+
+  const TYPE_SPEED = 0.07;
+  const TYPE_VARIANCE = 0.04;
+
+  function getTypeDelay() {
+    return TYPE_SPEED + (Math.random() * 2 - 1) * TYPE_VARIANCE;
+  }
+
+  function sleep(seconds) {
+    return new Promise(resolve => setTimeout(resolve, seconds * 1000));
+  }
 
   /**
-   * Анимация одноразового набора текста
+   * Ждём пока триггер войдёт в viewport.
+   * triggerEl - элемент с data-type="once", он же и есть триггер.
    */
-  (function () {
-
-    const TYPE_SPEED = 0.07;
-    const TYPE_VARIANCE = 0.04;
-
-    function getTypeDelay() {
-      return TYPE_SPEED + (Math.random() * 2 - 1) * TYPE_VARIANCE;
-    }
-
-    function sleep(seconds) {
-      return new Promise(resolve => setTimeout(resolve, seconds * 1000));
-    }
-
-    /**
-     * Ждём пока триггер войдёт в viewport.
-     * triggerEl - элемент с data-type="once", он же и есть триггер.
-     */
-    function waitForVisible(triggerEl) {
-      return new Promise(resolve => {
-        ScrollTrigger.create({
-          trigger: triggerEl,
-          start: 'top 90%',
-          onEnter: () => resolve(),
-        });
+  function waitForVisible(triggerEl) {
+    return new Promise(resolve => {
+      ScrollTrigger.create({
+        trigger: triggerEl,
+        start: 'top 90%',
+        onEnter: () => resolve(),
       });
-    }
+    });
+  }
 
-    function parseChildNodes(el) {
-      const segments = [];
+  function parseChildNodes(el) {
+    const segments = [];
 
-      el.childNodes.forEach(node => {
-        if (node.nodeType === Node.TEXT_NODE) {
-          const value = node.textContent.replace(/\s+/g, ' ');
-          if (value.trim() === '') return;
-          segments.push({ type: 'text', value });
-        }
-
-        if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'BR') {
-          segments.push({ type: 'br' });
-        }
-
-        if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'BR') {
-          segments.push({ type: 'element', el: node, text: node.textContent });
-        }
-      });
-
-      return segments;
-    }
-
-    async function typeChild(childEl, cursor) {
-      const segments = parseChildNodes(childEl);
-
-      childEl.innerHTML = '';
-
-      // Каждый дочерний тег получает свой курсор
-      childEl.appendChild(cursor);
-
-      const localCursorTween = gsap.to(cursor, {
-        opacity: 0,
-        duration: 0.5,
-        repeat: -1,
-        yoyo: true,
-        ease: 'none',
-        paused: true,
-      });
-
-      for (const segment of segments) {
-        if (segment.type === 'br') {
-          childEl.insertBefore(document.createElement('br'), cursor);
-          continue;
-        }
-
-        if (segment.type === 'element') {
-          const wrapEl = segment.el;
-          wrapEl.textContent = '';
-          childEl.insertBefore(wrapEl, cursor);
-
-          for (const char of segment.text) {
-            const span = document.createElement('span');
-            span.innerHTML = char === ' ' ? '&nbsp;' : char;
-            wrapEl.appendChild(span);
-            await sleep(getTypeDelay());
-          }
-          continue;
-        }
-
-        for (const char of segment.value) {
-          const span = document.createElement('span');
-          span.innerHTML = char === ' ' ? '&nbsp;' : char;
-          childEl.insertBefore(span, cursor);
-          await sleep(getTypeDelay());
-        }
+    el.childNodes.forEach(node => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        const value = node.textContent.replace(/\s+/g, ' ');
+        if (value.trim() === '') return;
+        segments.push({ type: 'text', value });
       }
 
-      // Каждый курсор убирает себя сам после печати
-      localCursorTween.resume();
-      await sleep(1.5);
-      await new Promise(resolve => {
-        gsap.to(cursor, {
-          opacity: 0,
-          duration: 0.3,
-          onComplete: () => {
-            cursor.remove();
-            resolve();
-          },
-        });
-      });
+      if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'BR') {
+        segments.push({ type: 'br' });
+      }
+
+      if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'BR') {
+        segments.push({ type: 'element', el: node, text: node.textContent });
+      }
+    });
+
+    return segments;
+  }
+
+  async function typeChild(childEl, cursor) {
+    const segments = parseChildNodes(childEl);
+
+    childEl.innerHTML = '';
+
+    // Каждый дочерний тег получает свой курсор
+    childEl.appendChild(cursor);
+
+    const localCursorTween = gsap.to(cursor, {
+      opacity: 0,
+      duration: 0.5,
+      repeat: -1,
+      yoyo: true,
+      ease: 'none',
+      paused: true,
+    });
+
+    for (const segment of segments) {
+      if (segment.type === 'br') {
+        childEl.insertBefore(document.createElement('br'), cursor);
+        continue;
+      }
+
+      if (segment.type === 'element') {
+        const wrapEl = segment.el;
+        wrapEl.textContent = '';
+        childEl.insertBefore(wrapEl, cursor);
+
+        for (const char of segment.text) {
+          const span = document.createElement('span');
+          span.innerHTML = char === ' ' ? '&nbsp;' : char;
+          wrapEl.appendChild(span);
+          await sleep(getTypeDelay());
+        }
+        continue;
+      }
+
+      for (const char of segment.value) {
+        const span = document.createElement('span');
+        span.innerHTML = char === ' ' ? '&nbsp;' : char;
+        childEl.insertBefore(span, cursor);
+        await sleep(getTypeDelay());
+      }
     }
 
-    async function typeOnce(el) {
-      const children = Array.from(el.children);
-      if (children.length === 0) return;
-
-      // Скрываем все дочерние теги до старта
-      children.forEach(child => {
-        child.style.visibility = 'hidden';
-      });
-
-      const cursor = document.createElement('span');
-      Object.assign(cursor.style, {
-        display: 'inline-block',
-        fontWeight: '300',
-        marginLeft: '0.2rem',
-        opacity: '1',
-      });
-      cursor.textContent = '|';
-
-      const localCursorTween = gsap.to(cursor, {
-        opacity: 0,
-        duration: 0.5,
-        repeat: -1,
-        yoyo: true,
-        ease: 'none',
-        paused: true,
-      });
-
-      await waitForVisible(el);
-
-      localCursorTween.pause();
-      gsap.set(cursor, { opacity: 1 });
-
-      // Показываем все дочерние теги сразу и запускаем анимацию параллельно
-      children.forEach(child => {
-        child.style.visibility = 'visible';
-      });
-
-      // Promise.all - все дочерние теги печатаются одновременно
-      await Promise.all(children.map(child => typeChild(child, cursor.cloneNode(true))));
-
-      localCursorTween.resume();
-      await sleep(1.5);
+    // Каждый курсор убирает себя сам после печати
+    localCursorTween.resume();
+    await sleep(1.5);
+    await new Promise(resolve => {
       gsap.to(cursor, {
         opacity: 0,
         duration: 0.3,
-        onComplete: () => cursor.remove(),
+        onComplete: () => {
+          cursor.remove();
+          resolve();
+        },
       });
-    }
+    });
+  }
 
-    document.querySelectorAll('[data-type="once"]').forEach(el => {
-      typeOnce(el);
+  async function typeOnce(el) {
+    const children = Array.from(el.children);
+    if (children.length === 0) return;
+
+    // Скрываем все дочерние теги до старта
+    children.forEach(child => {
+      child.style.visibility = 'hidden';
     });
 
-  })();
+    const cursor = document.createElement('span');
+    Object.assign(cursor.style, {
+      display: 'inline-block',
+      fontWeight: '300',
+      marginLeft: '0.2rem',
+      opacity: '1',
+    });
+    cursor.textContent = '|';
+
+    const localCursorTween = gsap.to(cursor, {
+      opacity: 0,
+      duration: 0.5,
+      repeat: -1,
+      yoyo: true,
+      ease: 'none',
+      paused: true,
+    });
+
+    await waitForVisible(el);
+
+    localCursorTween.pause();
+    gsap.set(cursor, { opacity: 1 });
+
+    // Показываем все дочерние теги сразу и запускаем анимацию параллельно
+    children.forEach(child => {
+      child.style.visibility = 'visible';
+    });
+
+    // Promise.all - все дочерние теги печатаются одновременно
+    await Promise.all(children.map(child => typeChild(child, cursor.cloneNode(true))));
+
+    localCursorTween.resume();
+    await sleep(1.5);
+    gsap.to(cursor, {
+      opacity: 0,
+      duration: 0.3,
+      onComplete: () => cursor.remove(),
+    });
+  }
+
+  document.querySelectorAll('[data-type="once"]').forEach(el => {
+    typeOnce(el);
+  });
+
+})();
 
   /**
    * Анимация чисел
    */
-  (function initNumberRolls(selector = ".number-roll") {
-
+  function initNumberRolls(selector = ".number-roll") {
     document.querySelectorAll(selector).forEach(el => {
       const digits = el.dataset.number.split("");
       el.innerHTML = digits.map(ch => {
@@ -1841,8 +1917,8 @@ document.addEventListener('DOMContentLoaded', () => {
         })
       });
     });
-
-  })();
+  }
+  initNumberRolls();
 
   /**
    * iOS-safe ScrollTrigger refresh handler
@@ -1882,12 +1958,10 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /**
-   * Функция для присвоения класса filled для заполненных форм
+   * Инициализация формы набора символов
    */
   (function () {
-
     const form = document.querySelector('form');
-
     if (form) {
       const inputElements = document.querySelectorAll('.form-input');
       const textareaElements = document.querySelectorAll('.form-textarea');
@@ -1913,7 +1987,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
     }
-
   })();
 
   /**
@@ -1999,8 +2072,6 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       {
         sliderSelector: '.cases__slider',
-        prevSelector: '.cases-button-prev',
-        nextSelector: '.cases-button-next',
         highlight: false,
         swiperOptions: {
           slidesPerGroup: 1,
@@ -2059,8 +2130,8 @@ document.addEventListener('DOMContentLoaded', () => {
         highlight: false,
         swiperOptions: {
           slidesPerGroup: 1,
-          slidesPerView: 'auto',
-          spaceBetween: 20,
+          slidesPerView: 1,
+          spaceBetween: 10,
           speed: 500,
           grabCursor: true,
           loop: false,
@@ -2093,7 +2164,7 @@ document.addEventListener('DOMContentLoaded', () => {
           breakpoints: {
             0: {
               slidesPerGroup: 1,
-              slidesPerView: 'auto',
+              slidesPerView: 1,
               spaceBetween: 20,
             },
             601: {
@@ -2124,8 +2195,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // ищем highlight-элементы только если в конфиге явно указано highlight: true
       // если false или не указано - передаём null и createHighlight вернёт заглушку
-      const fromEl = highlight ? document.querySelector(`${sliderSelector} .slider-highlight--from`) : null;
-      const toEl = highlight ? document.querySelector(`${sliderSelector} .slider-highlight--to`) : null;
+      const fromEl = highlight ? document.querySelector(`\${sliderSelector} .slider-highlight--from`) : null;
+      const toEl = highlight ? document.querySelector(`\${sliderSelector} .slider-highlight--to`) : null;
 
       const swiper = new Swiper(sliderSelector, swiperOptions);
 
@@ -2239,19 +2310,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
       function setInstant(el, x, width, visible) {
         el.style.transition = 'none';
-        el.style.transform = `translateX(${x}px)`;
-        el.style.width = `${width}px`;
+        el.style.transform = `translateX(\${x}px)`;
+        el.style.width = `\${width}px`;
         el.classList.toggle('is-visible', visible);
       }
 
       function setAnimated(el, x, width, duration, easing, visible) {
         el.style.transition = [
-          `transform ${duration}ms ${easing}`,
-          `width ${duration}ms ${easing}`,
-          `opacity ${duration * 0.6}ms ease`,
+          `transform \${duration}ms \${easing}`,
+          `width \${duration}ms \${easing}`,
+          `opacity \${duration * 0.6}ms ease`,
         ].join(', ');
-        el.style.transform = `translateX(${x}px)`;
-        el.style.width = `${width}px`;
+        el.style.transform = `translateX(\${x}px)`;
+        el.style.width = `\${width}px`;
         el.classList.toggle('is-visible', visible);
       }
 

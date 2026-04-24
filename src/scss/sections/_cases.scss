@@ -9,15 +9,37 @@
       gap: 0;
       width: fit-content;
       margin-bottom: 5rem;
+
+      @include sm {
+        gap: 1rem;
+        margin-bottom: 3rem;
+      }
+    }
+
+    &__title {
+
+      @include sm {
+        font-size: 10rem;
+      }
     }
 
     &__suptitle {
       margin-left: 40rem;
+
+      @include sm {
+        margin-left: 0;
+
+        text-align: right;
+      }
     }
   }
 
   &__inner {
     padding-left: 54rem;
+
+    @include sm {
+      padding-left: 0;
+    }
   }
 
   &__cover {
@@ -28,6 +50,10 @@
     left: 0;
     z-index: 2;
 
+    @include sm {
+      display: none;
+    }
+
     img {
       width: auto;
       height: 100%;
@@ -35,9 +61,23 @@
     }
   }
 
-  &__slider {
+  &__body {
     max-width: 99rem;
+    margin: 0 0 0 8rem;
+
+    position: relative;
+
+    @include sm {
+      margin: 0;
+    }
+  }
+
+  &__slider {
     overflow: hidden;
+
+    @include sm {
+      overflow: visible;
+    }
   }
 
   &__slide {
@@ -75,6 +115,10 @@
 
       position: relative;
       z-index: 2;
+
+      @include sm {
+        padding: 2rem;
+      }
     }
 
     &-title {
@@ -82,6 +126,10 @@
 
       font-weight: 800;
       text-transform: uppercase;
+
+      @include sm {
+        margin-bottom: 2rem;
+      }
     }
 
     &-text {
@@ -91,11 +139,47 @@
       font-size: 3rem;
       line-height: 120%;
       letter-spacing: -0.04em;
+
+      @include sm {
+        margin-bottom: 2rem;
+
+        font-size: 1.6rem;
+      }
     }
 
     &-btn {
       max-width: 30.7rem;
       width: 100%;
+
+      font-family: var(--second-family);
+
+      @include sm {
+        --btn-height: 5rem;
+        
+        width: fit-content;
+
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  .swiper-button-prev {
+    left: -15.7rem;
+
+    i {
+      transform: scale(-1, 1);
+    }
+
+    @include sm {
+      display: none;
+    }
+  }
+
+  .swiper-button-next {
+    right: -15.7rem;
+
+    @include sm {
+      right: 3rem;
     }
   }
 }

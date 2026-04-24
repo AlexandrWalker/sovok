@@ -17,8 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  // lenis.on('scroll', ScrollTrigger.update);
-
   gsap.ticker.add((time) => {
     lenis.raf(time * 1000);
   });
@@ -45,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const path = SOUND_MAP[name];
       if (!path) {
-        console.warn(`[Sound] Не найден путь для звука: "\${name}"`);
+        console.warn(`[Sound] Не найден путь для звука: "${name}"`);
         return;
       }
 
@@ -55,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const arrayBuffer = await response.arrayBuffer();
         bufferCache[name] = await audioCtx.decodeAudioData(arrayBuffer);
       } catch (err) {
-        console.error(`[Sound] Ошибка загрузки "\${name}":`, err);
+        console.error(`[Sound] Ошибка загрузки "${name}":`, err);
       } finally {
         loadingSet.delete(name);
       }
@@ -85,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const buffer = bufferCache[name];
       if (!buffer) {
-        console.warn(`[Sound] Буфер не готов для: "\${name}"`);
+        console.warn(`[Sound] Буфер не готов для: "${name}"`);
         return;
       }
 
@@ -143,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /**
-   * sound-section
+   * Функция воспроизведения звука при скролле до блока - sound-section
    */
   (function () {
     // Конфиг звуков
@@ -181,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const arrBuf = await res.arrayBuffer();
         bufferCache[name] = await audioCtx.decodeAudioData(arrBuf);
       } catch (err) {
-        console.error(`[ScrollSound] Ошибка загрузки "\${name}":`, err);
+        console.error(`[ScrollSound] Ошибка загрузки "${name}":`, err);
       }
     }
 
@@ -222,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const finalVolume = Math.min(2.0, Math.max(0, individualVolume * globalVolume));
 
       // GainNode - узел громкости
-      // Граф: source → gainNode → destination
+      // Граф: source -> gainNode -> destination
       const gainNode = audioCtx.createGain();
       gainNode.gain.value = finalVolume;
       gainNode.connect(audioCtx.destination);
@@ -321,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /**
-   * Функция для шапки
+   * Функция для поведения шапки
    */
   (function () {
 
@@ -495,7 +493,7 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollTrigger: {
           trigger: document.documentElement,
           start: 'top top',
-          end: `+=\${scrollZone}`,
+          end: `+=${scrollZone}`,
           scrub: true,
           onEnter: () => htmlEl.classList.add(CONFIG.classFixed),
           onLeaveBack: () => {
@@ -513,7 +511,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ================================================================
     ScrollTrigger.create({
       trigger: document.documentElement,
-      start: `top+=\${scrollZone} top`,
+      start: `top+=${scrollZone} top`,
       onEnter: () => htmlEl.classList.add(CONFIG.classOffTop),
       onLeaveBack: () => htmlEl.classList.remove(CONFIG.classOffTop),
     });
@@ -638,7 +636,7 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /**
-   * Управляет поведением меню-бургера.
+   * Функция управления поведением меню-бургера.
    */
   (function () {
     const burgerBtn = document.getElementById('burger-btn');
@@ -691,58 +689,7 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /**
-   * Анимация наслоения блоков
-   */
-  (function () {
-    document.querySelectorAll("[data-animate]").forEach((section) => {
-
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top bottom-=30%",
-        },
-      });
-
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "bottom bottom",
-          end: "bottom top",
-          pin: true,
-          pinSpacing: false,
-        },
-      });
-    });
-  })();
-
-  gsap.fromTo(document.querySelector('.request__cover-img--1'),
-    { y: '5%' },
-    {
-      y: '-5%',
-      scrollTrigger: {
-        trigger: document.querySelector('.request__cover'),
-        start: 'top 90%',
-        end: 'bottom top',
-        scrub: true,
-      },
-    }
-  );
-
-  gsap.fromTo(document.querySelector('.request__cover-img--2'),
-    { y: '7%' },
-    {
-      y: '-7%',
-      scrollTrigger: {
-        trigger: document.querySelector('.request__cover'),
-        start: 'top 90%',
-        end: 'bottom top',
-        scrub: true,
-      },
-    }
-  );
-
-  /**
-   * callback
+   * Функция для блока callback
    */
   (function () {
     const callbackBtn = document.querySelector('.callback__btn');
@@ -846,167 +793,192 @@ document.addEventListener('DOMContentLoaded', () => {
 
   })();
 
-  /**
-   * Анимация заголовков и подзаголовков
-   */
-  gsap.utils.toArray('[data-split="title"]').forEach(dataSplitLines => {
-    const textSplits = dataSplitLines.querySelectorAll('*');
 
-    const validTargets = Array.from(textSplits).filter(el =>
-      el.tagName !== 'BR' &&
-      el.tagName !== 'IMG' &&
-      el.tagName !== 'SVG'
-    );
 
-    const targets = validTargets.length > 0
-      ? validTargets
-      : [dataSplitLines];
 
-    targets.forEach(textSplit => {
-      SplitText.create(textSplit, {
-        type: "words,lines",
-        mask: "lines",
-        linesClass: "line",
-        autoSplit: true,
-        onSplit: inst => {
-          const lineHeight = inst.lines[0]?.offsetHeight ?? 50;
-          gsap.from(inst.lines, {
-            y: lineHeight / 10 + 'rem',
-            // rotation: 2.5,
-            // opacity: 0,
-            stagger: 0.1,
-            duration: 0.6,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: dataSplitLines,
-              start: "top 90%",
-              end: "bottom top"
-            }
-          })
-        }
-      });
-    });
-  });
 
-  gsap.utils.toArray('[data-split="text"]').forEach(dataSplitLines => {
-    const textSplits = dataSplitLines.querySelectorAll('*');
 
-    const validTargets = Array.from(textSplits).filter(el =>
-      el.tagName !== 'BR' &&
-      el.tagName !== 'IMG' &&
-      el.tagName !== 'SVG'
-    );
 
-    const targets = validTargets.length > 0
-      ? validTargets
-      : [dataSplitLines];
 
-    targets.forEach(textSplit => {
-      if (textSplit) SplitText.create(textSplit, {
-        type: "words,lines",
-        mask: "lines",
-        linesClass: "line",
-        autoSplit: true,
-        onSplit: inst => {
-          const lineHeight = inst.lines[0]?.offsetHeight ?? 50;
-          gsap.from(inst.lines, {
-            y: lineHeight / 10 + 'rem',
-            rotation: 2.5,
-            stagger: 0.05,
-            duration: 0.8,
-            scrollTrigger: {
-              trigger: dataSplitLines,
-              start: "top 90%",
-              end: "bottom top"
-            }
-          })
-        }
-      });
-    });
-  });
+
+
+
+
+
+
 
   /**
-   * Анимации fadeLeft, fadeRight, fadeUp, fadeDown
+   * GSAP Animation System
+   *
+   * data-animate                     - секция с пином (pin без spacing)
+   * data-anim-scene                  - контекст для satellite и fly-through
+   *
+   * data-anim="parallax"             - параллакс одного блока
+   *   data-anim-y="10%"              - амплитуда (default: 10%)
+   *   data-anim-start="top 90%"      - start ScrollTrigger (default: top 90%)
+   *   data-anim-end="bottom top"     - end ScrollTrigger (default: bottom top)
+   *
+   * data-anim="parallax-shadow"      - параллакс дочерних слоёв
+   *   data-anim-start="top 90%"      - start ScrollTrigger (default: top 90%)
+   *   data-anim-end="bottom top"     - end ScrollTrigger (default: bottom top)
+   *   [children] data-anim-y="5%"    - y каждого слоя, дефолт по индексу [5%,7%,10%,12%,15%]
+   *
+   * data-anim="fadeLeft"             - влёт слева
+   * data-anim="fadeRight"            - влёт справа
+   * data-anim="fadeUp"               - влёт снизу
+   * data-anim="fadeDown"             - влёт сверху
+   *
+   * data-anim="satellite"            - параллакс по диагонали 45 градусов (внутри data-anim-scene)
+   *   data-anim-strength="300"       - амплитуда смещения (default: 300)
+   *
+   * data-anim="fly-through"          - влёт снизу -> зависание -> вылет вверх (внутри data-anim-scene)
+   *
+   * data-anim="bounce"               - бесконечное покачивание вверх-вниз
+   *   data-anim-y="20"               - амплитуда в px (default: 20)
+   *   data-anim-duration="1.5"       - длительность (default: 1.5)
+   *   data-anim-ease="power1.inOut"  - easing (default: power1.inOut)
+   *
+   * data-anim="scale"                - пульсация масштаба или одноразовое появление
+   *   data-anim-scale="1.1"          - целевой scale при пульсации (default: 1.1)
+   *   data-anim-duration="1.5"       - длительность (default: 1.5)
+   *   data-anim-ease="power1.inOut"  - easing (default: power1.inOut)
+   *   data-anim-once                 - одноразовое появление от 0 до 1, триггер по центру экрана
+   *
+   * data-split="title"               - split-анимация заголовка (stagger 0.1, duration 0.6)
+   *   data-anim-delay="0.5"          - ручная задержка в секундах
+   *
+   * data-split="text"                - split-анимация текста (stagger 0.05, duration 0.8)
+   *   data-anim-delay="0.5"          - ручная задержка в секундах
+   *
+   * Авто-задержка split: если data-split находится внутри data-anim="scale" или "bounce",
+   * задержка берётся автоматически из duration родителя
    */
+
   (function () {
 
-    // Конфиг для каждого направления — откуда летит блок
-    // x/y в процентах чтобы работало для любого размера элемента
-    const directions = {
+    // Реестр анимаций: element -> duration
+    // Нужен чтобы дочерние split знали длительность родительской анимации
+    const animRegistry = new Map();
+
+    // Ищет ближайшего зарегистрированного родителя, возвращает его duration
+    function getParentDelay(el) {
+      let node = el.parentElement;
+      while (node) {
+        if (animRegistry.has(node)) return animRegistry.get(node);
+        node = node.parentElement;
+      }
+      return 0;
+    }
+
+    //
+    // PIN - секции с пином без отступа
+    //
+
+    gsap.utils.toArray('[data-animate]').forEach(section => {
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top bottom-=30%',
+        },
+      });
+
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'bottom bottom',
+          end: 'bottom top',
+          pin: true,
+          pinSpacing: false,
+        },
+      });
+    });
+
+    //
+    // PARALLAX - одиночный блок
+    //
+
+    gsap.utils.toArray('[data-anim="parallax"]').forEach(el => {
+      const y = el.dataset.animY ?? '10%';
+      const start = el.dataset.animStart ?? 'top 90%';
+      const end = el.dataset.animEnd ?? 'bottom top';
+
+      gsap.fromTo(el,
+        { y: y },
+        {
+          y: `-${y}`,
+          scrollTrigger: { trigger: el, start, end, scrub: true },
+        }
+      );
+    });
+
+    //
+    // PARALLAX SHADOW - параллакс дочерних слоёв
+    //
+
+    const defaultYValues = ['5%', '7%', '10%', '12%', '15%'];
+
+    gsap.utils.toArray('[data-anim="parallax-shadow"]').forEach(wrapper => {
+      const start = wrapper.dataset.animStart ?? 'top 90%';
+      const end = wrapper.dataset.animEnd ?? 'bottom top';
+
+      Array.from(wrapper.children).forEach((layer, i) => {
+        const y = layer.dataset.animY ?? defaultYValues[i] ?? '10%';
+
+        gsap.fromTo(layer,
+          { y: y },
+          {
+            y: `-${y}`,
+            scrollTrigger: { trigger: wrapper, start, end, scrub: true },
+          }
+        );
+      });
+    });
+
+    //
+    // FADE - влёт с четырёх сторон
+    //
+
+    const fadeDirections = {
       fadeLeft: { x: '-100%', y: '0%' },
       fadeRight: { x: '100%', y: '0%' },
       fadeUp: { x: '0%', y: '100%' },
       fadeDown: { x: '0%', y: '-100%' },
     };
 
-    Object.entries(directions).forEach(([name, from]) => {
-      const items = gsap.utils.toArray(`[data-anim="${name}"]`);
-
-      items.forEach(el => {
-        // Таймлайн паузим сразу — ScrollTrigger сам решит когда запускать
-        const tl = gsap.timeline({
+    Object.entries(fadeDirections).forEach(([name, from]) => {
+      gsap.utils.toArray(`[data-anim="${name}"]`).forEach(el => {
+        gsap.timeline({
           paused: true,
           scrollTrigger: {
             trigger: el,
             start: 'top 90%',
-            // toggleActions: запустить вперёд, пауза, перемотать назад, пауза
-            // onEnter, onLeave, onEnterBack, onLeaveBack
             toggleActions: 'play none none none',
           },
-        });
-
-        // Начальное состояние — за кадром + невидим
-        tl.fromTo(el,
-          {
-            x: from.x,
-            y: from.y,
-            opacity: 0,
-          },
-          {
-            x: '0%',
-            y: '0%',
-            opacity: 1,
-            duration: 0.35,
-            // power2.out — резко вылетает и плавно тормозит у финальной точки
-            ease: 'power2.out',
-          }
+        }).fromTo(el,
+          { x: from.x, y: from.y, opacity: 0 },
+          { x: '0%', y: '0%', opacity: 1, duration: 0.15, ease: 'power2.out' }
         );
       });
     });
 
-  })();
-
-  /**
-   * Анимации
-   */
-  (function () {
-
-    // ═══════════════════════════════════════════════════
-    // Ищем все сцены на странице
-    // Каждая сцена — изолированный контекст анимации
-    // ═══════════════════════════════════════════════════
+    //
+    // СЦЕНЫ - satellite и fly-through
+    //
 
     gsap.utils.toArray('[data-anim-scene]').forEach(scene => {
 
-      // ─────────────────────────────────────────────────
-      // СПУТНИК — параллакс по диагонали 45°
-      // ─────────────────────────────────────────────────
-
+      // SATELLITE - параллакс по диагонали 45 градусов
       gsap.utils.toArray('[data-anim="satellite"]', scene).forEach(el => {
-
         const strength = parseFloat(el.dataset.animStrength ?? 300);
 
         gsap.fromTo(el,
-          {
-            x: -strength,
-            y: strength,
-          },
+          { x: -strength, y: strength },
           {
             x: strength,
             y: -strength,
             ease: 'none',
             scrollTrigger: {
-              trigger: scene, // триггер — сама сцена
+              trigger: scene,
               start: 'top bottom',
               end: 'bottom top',
               scrub: 1,
@@ -1015,62 +987,158 @@ document.addEventListener('DOMContentLoaded', () => {
         );
       });
 
-      // ─────────────────────────────────────────────────
-      // FLY-THROUGH — влёт снизу, зависание, вылет вверх
-      // ─────────────────────────────────────────────────
-
+      // FLY-THROUGH - влёт -> зависание -> вылет
       gsap.utils.toArray('[data-anim="fly-through"]', scene).forEach(el => {
-
-        const tl = gsap.timeline({
+        gsap.timeline({
           scrollTrigger: {
-            trigger: scene, // триггер — сама сцена
+            trigger: scene,
             start: 'top bottom',
             end: 'bottom top',
             scrub: 1,
           },
-        });
+        })
+          // Фаза 1 - влёт снизу
+          .fromTo(el,
+            { y: '80%', opacity: 1, scale: 1 },
+            { y: '0%', opacity: 1, scale: 1, ease: 'power2.out', duration: 0.35 }
+          )
+          // Фаза 2 - зависание
+          .to(el,
+            { y: '0%', opacity: 1, scale: 1, ease: 'none', duration: 0.05 }
+          )
+          // Фаза 3 - вылет вверх
+          .to(el,
+            { y: '-80%', opacity: 0, scale: 0.85, ease: 'power2.in', duration: 0.25 }
+          );
+      });
+    });
 
-        // Фаза 1 — влёт снизу
-        tl.fromTo(el,
+    //
+    // BOUNCE - бесконечное покачивание
+    //
+
+    gsap.utils.toArray('[data-anim="bounce"]').forEach(el => {
+      const y = parseFloat(el.dataset.animY ?? 20);
+      const duration = parseFloat(el.dataset.animDuration ?? 1.5);
+      const ease = el.dataset.animEase ?? 'power1.inOut';
+
+      animRegistry.set(el, duration);
+
+      gsap.to(el, { y, duration, ease, repeat: -1, yoyo: true });
+    });
+
+    //
+    // SCALE - пульсация или одноразовое появление
+    //
+
+    gsap.utils.toArray('[data-anim="scale"]').forEach(el => {
+      const scale = parseFloat(el.dataset.animScale ?? 1.1);
+      const duration = parseFloat(el.dataset.animDuration ?? 1);
+      const ease = el.dataset.animEase ?? 'power1.inOut';
+      const once = el.dataset.animOnce !== undefined;
+
+      animRegistry.set(el, duration);
+
+      if (once) {
+        gsap.fromTo(el,
+          { scale: 0 },
           {
-            y: '80%',
-            opacity: 1,
             scale: 1,
+            duration,
+            ease,
+            scrollTrigger: {
+              trigger: el,
+              start: 'bottom 80%',
+            },
+          }
+        );
+      } else {
+        gsap.to(el, { scale, duration, ease, repeat: -1, yoyo: true });
+      }
+    });
+
+    //
+    // SPLIT - общая функция для title и text
+    //
+
+    function initSplitAnim(container, { rotation, stagger, duration, start }) {
+      const textSplits = container.querySelectorAll('*');
+
+      const validTargets = Array.from(textSplits).filter(el =>
+        el.tagName !== 'BR' &&
+        el.tagName !== 'IMG' &&
+        el.tagName !== 'SVG'
+      );
+
+      const targets = validTargets.length > 0 ? validTargets : [container];
+
+      // Задержка: ручная из атрибута или автоматически от родительской анимации
+      const manualDelay = parseFloat(container.dataset.animDelay ?? 0);
+      const parentDelay = getParentDelay(container);
+      const delay = manualDelay || parentDelay;
+
+      targets.forEach(textSplit => {
+        SplitText.create(textSplit, {
+          type: 'words,lines',
+          mask: 'lines',
+          linesClass: 'line',
+          autoSplit: true,
+          onSplit: inst => {
+            const lineHeight = inst.lines[0]?.offsetHeight ?? 50;
+            gsap.from(inst.lines, {
+              y: lineHeight / 10 + 'rem',
+              rotation,
+              stagger,
+              duration,
+              delay,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: container,
+                start,
+                end: 'bottom top',
+              },
+            });
           },
-          {
-            y: '0%',
-            opacity: 1,
-            scale: 1,
-            ease: 'power2.out',
-            duration: 0.35,
-          }
-        );
+        });
+      });
+    }
 
-        // Фаза 2 — зависание на месте
-        tl.to(el,
-          {
-            y: '0%',
-            opacity: 1,
-            scale: 1,
-            ease: 'none',
-            duration: 0.05,
-          }
-        );
+    // Split - заголовок
+    gsap.utils.toArray('[data-split="title"]').forEach(container => {
+      initSplitAnim(container, {
+        rotation: 0,
+        stagger: 0.1,
+        duration: 0.6,
+        start: 'top 90%',
+      });
+    });
 
-        // Фаза 3 — унос вверх
-        tl.to(el,
-          {
-            y: '-80%',
-            opacity: 0,
-            scale: 0.85,
-            ease: 'power2.in',
-            duration: 0.25,
-          }
-        );
+    // Split - текст
+    gsap.utils.toArray('[data-split="text"]').forEach(container => {
+      initSplitAnim(container, {
+        rotation: 2.5,
+        stagger: 0.05,
+        duration: 0.8,
+        start: 'top 90%',
       });
     });
 
   })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   /**
    * Анимация набора текста
@@ -1229,7 +1297,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Один экземпляр typewriter.
-    // Если externalControl: true — не запускает свой цикл,
+    // Если externalControl: true - не запускает свой цикл,
     // отдаёт API координатору и следит только за своим input-ом.
     function initTypewriter(container, options = {}) {
 
@@ -1318,7 +1386,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Добавляет i-й символ в каждый слот этого экземпляра.
-      // Курсор статичен — resume вызывает координатор после всех шагов.
+      // Курсор статичен - resume вызывает координатор после всех шагов.
       function typeStep(phraseIndex, i) {
         cursorTween.pause();
         gsap.set(cursorEl, { opacity: 1 });
@@ -1356,12 +1424,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // });
       }
 
-      // Возобновляет мигание — вызывается после завершения набора или удаления
+      // Возобновляет мигание - вызывается после завершения набора или удаления
       function resumeCursor() {
         cursorTween.resume();
       }
 
-      // Пересоздаём tween после kill() — нужно когда экземпляр возвращается из stopped
+      // Пересоздаём tween после kill() - нужно когда экземпляр возвращается из stopped
       function restoreCursor() {
         gsap.killTweensOf(cursorEl);
         cursorTween = gsap.to(cursorEl, {
@@ -1374,7 +1442,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Набирает финальный stop-text когда input активен или заполнен.
-      // После завершения курсор гасим — анимация для этого экземпляра закончена.
+      // После завершения курсор гасим - анимация для этого экземпляра закончена.
       async function typeStopText() {
         if (!STOP_TEXT) return;
 
@@ -1397,7 +1465,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
 
-      // Собственный цикл — только для одиночных экземпляров.
+      // Собственный цикл - только для одиночных экземпляров.
       // Слоты идут последовательно как части одного предложения.
       if (!options.externalControl) {
 
@@ -1492,9 +1560,9 @@ document.addEventListener('DOMContentLoaded', () => {
             clearTimeout(deactivateTimer);
             deactivateTimer = setTimeout(() => {
               if (!isStopped) return;
-              // Поле заполнено — оставляем stop-text, не трогаем
+              // Поле заполнено - оставляем stop-text, не трогаем
               if (inputEl.classList.contains('filled') || inputEl.value?.trim()) return;
-              // Только снимаем флаг — цикл сам почистит слоты и начнёт заново
+              // Только снимаем флаг - цикл сам почистит слоты и начнёт заново
               isStopped = false;
               restoreCursor();
             }, 50);
@@ -1505,11 +1573,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
           const observer = new MutationObserver(() => {
             if (inputEl.classList.contains('filled')) {
-              // Поле заполнено — это постоянное состояние, не зависит от фокуса
+              // Поле заполнено - это постоянное состояние, не зависит от фокуса
               clearTimeout(deactivateTimer);
               if (!isStopped) abortSignal = true;
             } else {
-              // Класс убрали — деактивируем только если не в фокусе
+              // Класс убрали - деактивируем только если не в фокусе
               if (!inputEl.matches(':focus')) deactivate();
             }
           });
@@ -1521,7 +1589,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
 
-      // Режим внешнего управления — свой цикл не запускаем,
+      // Режим внешнего управления - свой цикл не запускаем,
       // но за своим input-ом следим и уведомляем координатора.
       if (options.externalControl && inputEl) {
         let selfStopped = false;
@@ -1538,7 +1606,7 @@ document.addEventListener('DOMContentLoaded', () => {
           clearTimeout(deactivateTimer);
           deactivateTimer = setTimeout(() => {
             if (!selfStopped) return;
-            // Поле заполнено — оставляем stop-text, не трогаем
+            // Поле заполнено - оставляем stop-text, не трогаем
             if (inputEl.classList.contains('filled') || inputEl.value?.trim()) return;
             // Только снимаем флаг и уведомляем координатора
             selfStopped = false;
@@ -1579,7 +1647,7 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /**
-   * Одноразовая печать
+   * Анимация одноразового набора текста
    */
   (function () {
 
@@ -1748,7 +1816,8 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Анимация чисел
    */
-  function initNumberRolls(selector = ".number-roll") {
+  (function initNumberRolls(selector = ".number-roll") {
+
     document.querySelectorAll(selector).forEach(el => {
       const digits = el.dataset.number.split("");
       el.innerHTML = digits.map(ch => {
@@ -1772,16 +1841,8 @@ document.addEventListener('DOMContentLoaded', () => {
         })
       });
     });
-  }
-  initNumberRolls();
 
-  gsap.to(".bounce", {
-    duration: 1.5,
-    y: 20,
-    ease: "power1.inOut",
-    repeat: -1,
-    yoyo: true
-  });
+  })();
 
   /**
    * iOS-safe ScrollTrigger refresh handler
@@ -1821,10 +1882,12 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /**
-   * Инициализация формы набора символов
+   * Функция для присвоения класса filled для заполненных форм
    */
   (function () {
+
     const form = document.querySelector('form');
+
     if (form) {
       const inputElements = document.querySelectorAll('.form-input');
       const textareaElements = document.querySelectorAll('.form-textarea');
@@ -1850,6 +1913,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
     }
+
   })();
 
   /**
@@ -1935,6 +1999,8 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       {
         sliderSelector: '.cases__slider',
+        prevSelector: '.cases-button-prev',
+        nextSelector: '.cases-button-next',
         highlight: false,
         swiperOptions: {
           slidesPerGroup: 1,
@@ -1993,8 +2059,8 @@ document.addEventListener('DOMContentLoaded', () => {
         highlight: false,
         swiperOptions: {
           slidesPerGroup: 1,
-          slidesPerView: 1,
-          spaceBetween: 10,
+          slidesPerView: 'auto',
+          spaceBetween: 20,
           speed: 500,
           grabCursor: true,
           loop: false,
@@ -2027,7 +2093,7 @@ document.addEventListener('DOMContentLoaded', () => {
           breakpoints: {
             0: {
               slidesPerGroup: 1,
-              slidesPerView: 1,
+              slidesPerView: 'auto',
               spaceBetween: 20,
             },
             601: {
@@ -2058,8 +2124,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // ищем highlight-элементы только если в конфиге явно указано highlight: true
       // если false или не указано - передаём null и createHighlight вернёт заглушку
-      const fromEl = highlight ? document.querySelector(`\${sliderSelector} .slider-highlight--from`) : null;
-      const toEl = highlight ? document.querySelector(`\${sliderSelector} .slider-highlight--to`) : null;
+      const fromEl = highlight ? document.querySelector(`${sliderSelector} .slider-highlight--from`) : null;
+      const toEl = highlight ? document.querySelector(`${sliderSelector} .slider-highlight--to`) : null;
 
       const swiper = new Swiper(sliderSelector, swiperOptions);
 
@@ -2173,19 +2239,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
       function setInstant(el, x, width, visible) {
         el.style.transition = 'none';
-        el.style.transform = `translateX(\${x}px)`;
-        el.style.width = `\${width}px`;
+        el.style.transform = `translateX(${x}px)`;
+        el.style.width = `${width}px`;
         el.classList.toggle('is-visible', visible);
       }
 
       function setAnimated(el, x, width, duration, easing, visible) {
         el.style.transition = [
-          `transform \${duration}ms \${easing}`,
-          `width \${duration}ms \${easing}`,
-          `opacity \${duration * 0.6}ms ease`,
+          `transform ${duration}ms ${easing}`,
+          `width ${duration}ms ${easing}`,
+          `opacity ${duration * 0.6}ms ease`,
         ].join(', ');
-        el.style.transform = `translateX(\${x}px)`;
-        el.style.width = `\${width}px`;
+        el.style.transform = `translateX(${x}px)`;
+        el.style.width = `${width}px`;
         el.classList.toggle('is-visible', visible);
       }
 

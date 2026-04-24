@@ -35,7 +35,7 @@
   &-button {
 
     &-prev {
-      left: -7rem;
+      left: -15.7rem;
 
       i {
         transform: scale(-1, -1);
@@ -43,7 +43,7 @@
     }
 
     &-next {
-      right: -7rem;
+      right: -15.7rem;
     }
 
     &-disabled {
@@ -79,35 +79,68 @@
 
 [class^="swiper-button-"],
 [class*=" swiper-button-"] {
-  width: 5rem;
-  height: 5rem;
-  background-color: var(--white);
+  width: 13.2rem;
+  height: 13.2rem;
   border-radius: 50%;
   margin: 0;
   transition: all 0.3s ease;
-
-  color: var(--black);
 
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
 
   @include sm {
-    display: none;
+    width: 9rem;
+    height: 9rem;
   }
 
-  &:hover {
-    background-color: var(--blue);
-
-    color: var(--white);
-  }
+  &:hover {}
 
   &::after {
     display: none;
   }
 
   i {
-    --font-size: 4rem;
+    --font-size: 13.2rem;
+
+    @include sm {
+      --font-size: 9rem;
+    }
+
+    .path1:before {
+
+      @include sm {
+        content: "\e906";
+        color: rgb(250, 244, 237);
+      }
+    }
+
+    .path2:before {
+
+      @include sm {
+        content: "\e907";
+        margin-left: -1em;
+        color: rgb(250, 244, 237);
+      }
+    }
+
+    .path3:before {
+
+      @include sm {
+        content: "\e908";
+        margin-left: -1em;
+        color: rgb(220, 20, 60);
+      }
+    }
+
+    .path4:before {
+
+      @include sm {
+        content: "\e909";
+        margin-left: -1em;
+        color: rgb(220, 20, 60);
+      }
+    }
   }
 
   .general__foot & {
