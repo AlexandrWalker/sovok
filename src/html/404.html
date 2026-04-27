@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru" class="notfound-page inner-page">
+@@include('blocks/head.html', {"title": "СОВОК"})
+
+<body>
+  <div class="wrapper">
+    <!-- Шапка -->
+    @@include('./blocks/header.html')
+    <!-- Меню -->
+    @@include('./blocks/menu.html')
+    <main class="main">
+
+      <section class="notfound">
+        <div class="container">
+          <div class="notfound__inner">
+
+            <div class="notfound__head">
+              <div class="notfound__head-suptitle">
+                связь прервана
+              </div>
+              <div class="notfound__head-title">
+                404
+              </div>
+              <div class="notfound__head-text">
+                посетите <a href="/sovok">главную</a> страницу пока бригада работает
+              </div>
+            </div>
+
+            <div class="notfound__cover" data-anim="parallax">
+              <img src="./../images/temp/notfound-cover.png" alt="">
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Форма обратной связи -->
+      @@include('./blocks/callback-mini.html')
+
+    </main>
+    <!-- Подвал -->
+    @@include('blocks/footer.html')

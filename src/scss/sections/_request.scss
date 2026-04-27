@@ -9,6 +9,11 @@
 
   position: relative;
 
+  @include sm {
+    --section-padding-top: 5rem;
+    --section-padding-bottom: 31rem;
+  }
+
   .general {
 
     &__head {
@@ -37,6 +42,10 @@
 
       &::before {
         background-color: var(--red);
+
+        @include sm {
+          background-color: var(--red-50);
+        }
       }
     }
 
@@ -60,16 +69,29 @@
     display: flex;
     flex-direction: column;
     gap: 7rem;
+
+    @include sm {
+      gap: 3rem;
+    }
   }
 
   &__cover {
     width: auto;
     height: 137.5rem;
+    pointer-events: none;
 
     position: absolute;
     top: -15.6rem;
     right: 0;
     z-index: 1;
+
+    @include sm {
+      height: 42.2rem;
+
+      top: unset;
+      bottom: -3.25rem;
+      right: -1.2rem;
+    }
 
     &-img {
       width: auto;
@@ -88,6 +110,10 @@
         top: 0;
         right: 0;
         z-index: 1;
+
+        @include sm {
+          transform: translate(-0.5rem, -1.135rem);
+        }
       }
     }
   }

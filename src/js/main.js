@@ -773,7 +773,9 @@ document.addEventListener('DOMContentLoaded', () => {
       isOpen ? closeMenu() : openMenu();
     };
 
-    callbackBtn.addEventListener('click', toggleMenu);
+    if (callbackBtn) {
+      callbackBtn.addEventListener('click', toggleMenu);
+    }
 
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && document.documentElement.classList.contains('callback--open')) {
@@ -1106,6 +1108,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Split - заголовок
     gsap.utils.toArray('[data-split="title"]').forEach(container => {
       initSplitAnim(container, {
+        opacity: 0,
         rotation: 0,
         stagger: 0.1,
         duration: 0.6,
@@ -1116,6 +1119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Split - текст
     gsap.utils.toArray('[data-split="text"]').forEach(container => {
       initSplitAnim(container, {
+        opacity: 0,
         rotation: 2.5,
         stagger: 0.05,
         duration: 0.8,
@@ -1881,6 +1885,82 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', safeRefresh);
   })();
 
+  (function () {
+
+    const MOBILE_BREAKPOINT = 600;
+
+    // Проверка мобильной версии
+    function isMobile() {
+      return window.innerWidth <= MOBILE_BREAKPOINT;
+    }
+
+    // ИНДИКАТОР — только для десктопа
+
+    document.querySelectorAll('.produce__item-list').forEach(nav => {
+      const indicator = document.createElement('div');
+      indicator.className = 'produce__indicator';
+      nav.appendChild(indicator);
+
+      const links = nav.querySelectorAll('a');
+
+      links.forEach(link => {
+        link.addEventListener('mouseenter', () => {
+          if (isMobile()) return;
+
+          const li = link.closest('li');
+          const navRect = nav.getBoundingClientRect();
+          const liRect = li.getBoundingClientRect();
+
+          const top = liRect.top - navRect.top + nav.scrollTop;
+          const height = (53 - liRect.height) / -2;
+
+          indicator.style.top = `\${top}px`;
+          indicator.style.marginTop = `\${height}px`;
+          indicator.classList.add('is-visible');
+        });
+      });
+
+      nav.addEventListener('mouseleave', () => {
+        if (isMobile()) return;
+        indicator.classList.remove('is-visible');
+      });
+    });
+
+    // АКТИВНЫЙ КЛАСС — только для мобильных
+
+    document.querySelectorAll('.produce__item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        if (!isMobile()) return;
+
+        const isActive = item.classList.contains('produce__item--active');
+
+        // Снимаем активный класс со всех
+        document.querySelectorAll('.produce__item').forEach(el => {
+          el.classList.remove('produce__item--active');
+        });
+
+        // Если клик по ссылке — не переключаем активный класс
+        if (e.target.closest('a')) return;
+
+        // Если айтем не был активен — делаем активным, иначе оставляем снятым
+        if (!isActive) {
+          item.classList.add('produce__item--active');
+        }
+      });
+    });
+
+    // Клик вне айтема — снимаем со всех
+    document.addEventListener('click', (e) => {
+      if (!isMobile()) return;
+      if (e.target.closest('.produce__item')) return;
+
+      document.querySelectorAll('.produce__item').forEach(el => {
+        el.classList.remove('produce__item--active');
+      });
+    });
+
+  })();
+
   /**
    * Функция для присвоения класса filled для заполненных форм
    */
@@ -1942,61 +2022,61 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const slidersConfig = [
-      {
-        sliderSelector: '.produce__slider',
-        highlight: false,
-        swiperOptions: {
-          slidesPerGroup: 1,
-          slidesPerView: 1,
-          spaceBetween: 10,
-          speed: 500,
-          grabCursor: true,
-          loop: false,
-          touchRatio: 1.6,
-          resistance: true,
-          resistanceRatio: 0.4,
-          centeredSlides: false,
-          centeredSlidesBounds: true,
-          simulateTouch: true,
-          direction: 'horizontal',
-          touchStartPreventDefault: true,
-          touchMoveStopPropagation: true,
-          threshold: 8,
-          touchAngle: 25,
-          watchOverflow: true,
-          freeMode: {
-            enabled: true,
-            momentum: true,
-            momentumRatio: 0.85,
-            momentumVelocityRatio: 1,
-            momentumBounce: false,
-            sticky: true,
-          },
-          mousewheel: {
-            forceToAxis: true,
-            sensitivity: 1,
-            releaseOnEdges: true,
-          },
-          navigation: false,
-          breakpoints: {
-            0: {
-              slidesPerGroup: 1,
-              slidesPerView: 1,
-              spaceBetween: 20,
-            },
-            601: {
-              slidesPerGroup: 1,
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            835: {
-              slidesPerGroup: 1,
-              slidesPerView: 3,
-              spaceBetween: 80,
-            },
-          },
-        },
-      },
+      // {
+      //   sliderSelector: '.produce__slider',
+      //   highlight: false,
+      //   swiperOptions: {
+      //     slidesPerGroup: 1,
+      //     slidesPerView: 1,
+      //     spaceBetween: 10,
+      //     speed: 500,
+      //     grabCursor: true,
+      //     loop: false,
+      //     touchRatio: 1.6,
+      //     resistance: true,
+      //     resistanceRatio: 0.4,
+      //     centeredSlides: false,
+      //     centeredSlidesBounds: true,
+      //     simulateTouch: true,
+      //     direction: 'horizontal',
+      //     touchStartPreventDefault: true,
+      //     touchMoveStopPropagation: true,
+      //     threshold: 8,
+      //     touchAngle: 25,
+      //     watchOverflow: true,
+      //     freeMode: {
+      //       enabled: true,
+      //       momentum: true,
+      //       momentumRatio: 0.85,
+      //       momentumVelocityRatio: 1,
+      //       momentumBounce: false,
+      //       sticky: true,
+      //     },
+      //     mousewheel: {
+      //       forceToAxis: true,
+      //       sensitivity: 1,
+      //       releaseOnEdges: true,
+      //     },
+      //     navigation: false,
+      //     breakpoints: {
+      //       0: {
+      //         slidesPerGroup: 1,
+      //         slidesPerView: 1,
+      //         spaceBetween: 20,
+      //       },
+      //       601: {
+      //         slidesPerGroup: 1,
+      //         slidesPerView: 2,
+      //         spaceBetween: 20,
+      //       },
+      //       835: {
+      //         slidesPerGroup: 1,
+      //         slidesPerView: 3,
+      //         spaceBetween: 80,
+      //       },
+      //     },
+      //   },
+      // },
       {
         sliderSelector: '.cases__slider',
         prevSelector: '.cases-button-prev',
@@ -2109,6 +2189,45 @@ document.addEventListener('DOMContentLoaded', () => {
           },
         },
       },
+      {
+        sliderSelector: '.awards__slider',
+        nextSelector: '.awards-button-next',
+        highlight: false,
+        swiperOptions: {
+          slidesPerGroup: 1,
+          slidesPerView: 1,
+          spaceBetween: 40,
+          speed: 500,
+          grabCursor: true,
+          loop: false,
+          touchRatio: 1.6,
+          resistance: true,
+          resistanceRatio: 0.4,
+          centeredSlides: false,
+          centeredSlidesBounds: true,
+          simulateTouch: true,
+          direction: 'horizontal',
+          touchStartPreventDefault: true,
+          touchMoveStopPropagation: true,
+          threshold: 8,
+          touchAngle: 25,
+          watchOverflow: true,
+          freeMode: {
+            enabled: true,
+            momentum: true,
+            momentumRatio: 0.85,
+            momentumVelocityRatio: 1,
+            momentumBounce: false,
+            sticky: true,
+          },
+          mousewheel: {
+            forceToAxis: true,
+            sensitivity: 1,
+            releaseOnEdges: true,
+          },
+          navigation: false,
+        },
+      },
     ];
 
 
@@ -2144,7 +2263,7 @@ document.addEventListener('DOMContentLoaded', () => {
         : createEdgeTrackerStub();
 
       // Навигацию подключаем только если обе кнопки реально найдены в DOM
-      if (prevEl && nextEl) {
+      if (prevEl || nextEl) {
         createNavigation(swiper, prevEl, nextEl, highlightInstance, edgeTracker);
       }
     });
@@ -2499,13 +2618,10 @@ document.addEventListener('DOMContentLoaded', () => {
           nextBlocked = currentVirt >= lastVisible;
         }
 
-        prevEl.classList.toggle('swiper-button-disabled', isStart);
-        nextEl.classList.toggle('swiper-button-disabled', nextBlocked);
-
         // disabled как свойство а не атрибут - клик всё равно доходит
         // до нашего обработчика даже когда кнопка визуально заблокирована
-        prevEl.disabled = isStart;
-        nextEl.disabled = nextBlocked;
+        if (prevEl) { prevEl.classList.toggle('swiper-button-disabled', isStart); prevEl.disabled = isStart; }
+        if (nextEl) { nextEl.classList.toggle('swiper-button-disabled', nextBlocked); nextEl.disabled = nextBlocked; }
       }
 
       function handle(direction) {
@@ -2539,8 +2655,8 @@ document.addEventListener('DOMContentLoaded', () => {
         updateDisabled();
       }
 
-      nextEl.addEventListener('click', (e) => { e.preventDefault(); handle('next'); });
-      prevEl.addEventListener('click', (e) => { e.preventDefault(); handle('prev'); });
+      if (nextEl) nextEl.addEventListener('click', (e) => { e.preventDefault(); handle('next'); });
+      if (prevEl) prevEl.addEventListener('click', (e) => { e.preventDefault(); handle('prev'); });
 
       swiper.on('touchStart', resetImpulse);
       swiper.on('slideChange', updateDisabled);

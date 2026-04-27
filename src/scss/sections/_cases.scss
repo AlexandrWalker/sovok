@@ -3,6 +3,11 @@
 .cases {
   overflow: visible;
 
+
+  @include sm {
+    --section-padding-bottom: 10rem;
+  }
+
   .general {
 
     &__head {
@@ -155,7 +160,7 @@
 
       @include sm {
         --btn-height: 5rem;
-        
+
         width: fit-content;
 
         font-size: 1.6rem;

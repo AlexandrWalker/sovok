@@ -78,6 +78,9 @@
 
     @include sm {
       margin-top: 0;
+
+      position: relative;
+      z-index: 2;
     }
   }
 
@@ -100,12 +103,21 @@
     @include sm {
       max-width: 27.3rem;
       width: 100%;
+
+      z-index: 1;
     }
 
     &:last-child {
 
       .inform__item-arrow {
         display: none;
+      }
+    }
+
+    &.swiper-slide-active {
+
+      @include sm {
+        z-index: 2;
       }
     }
   }
@@ -197,7 +209,11 @@
     z-index: 1;
 
     @include sm {
-      display: none;
+      height: 18.5rem;
+
+      top: 2.7rem;
+      right: 0.4rem;
+      left: unset;
     }
 
     &-shadow {

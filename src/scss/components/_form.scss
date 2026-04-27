@@ -12,6 +12,10 @@
     display: flex;
     flex-direction: column;
     gap: 4rem;
+
+    @include sm {
+      gap: 3rem;
+    }
   }
 
   &-group {
@@ -31,6 +35,12 @@
     text-transform: uppercase;
     color: var(--white);
 
+    @include sm {
+      height: 3.7rem;
+
+      font-size: 1.6rem;
+    }
+
     &.filled,
     &:focus,
     &:active,
@@ -42,6 +52,14 @@
         font-size: 2rem;
 
         top: -2rem;
+
+        @include sm {
+          height: calc(100% + 1.6rem);
+
+          font-size: 1.4rem;
+
+          top: -1.6rem;
+        }
 
         &::after {
           width: 100%;
@@ -78,6 +96,10 @@
     top: 0;
     left: 0;
 
+    @include sm {
+      font-size: 1.6rem;
+    }
+
     &::before {
       content: "";
       display: block;
@@ -89,6 +111,10 @@
       left: 0;
       bottom: 0;
       z-index: 1;
+
+      @include sm {
+        height: 0.3rem;
+      }
     }
 
     &::after {
@@ -103,6 +129,10 @@
       left: 0;
       bottom: 0;
       z-index: 1;
+
+      @include sm {
+        height: 0.3rem;
+      }
     }
   }
 
@@ -119,6 +149,10 @@
     letter-spacing: -0.04em;
     text-transform: uppercase;
     color: var(--white);
+
+    @include sm {
+      height: 3.7rem;
+    }
 
     &.filled,
     &:focus,
@@ -156,6 +190,10 @@
       align-items: center;
       gap: 1.5rem;
       width: fit-content;
+
+      @include sm {
+        gap: 1rem;
+      }
     }
 
     &--item {
@@ -170,6 +208,12 @@
 
       position: relative;
 
+      @include sm {
+        width: 5.2rem;
+        height: 2.4rem;
+        padding: 0.3rem;
+      }
+
       &::before {
         content: "";
         width: 3.3rem;
@@ -182,6 +226,11 @@
         right: auto;
         left: 0.5rem;
         transform: translateY(-50%);
+
+        @include sm {
+          width: 2.2rem;
+          height: 1.8rem;
+        }
       }
     }
   }
@@ -201,6 +250,10 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+
+    @include sm {
+      gap: 1rem;
+    }
 
     a {
       color: var(--blue);
@@ -235,6 +288,10 @@
     color: var(--btn-color);
 
     position: relative;
+
+    @include sm {
+      --btn-height: 5rem;
+    }
 
     &::before {
       content: "";
@@ -280,6 +337,10 @@
 
       position: relative;
       z-index: 3;
+
+      @include sm {
+        font-size: 1.6rem;
+      }
     }
   }
 
@@ -289,6 +350,10 @@
     line-height: 120%;
     letter-spacing: -0.04em;
     color: var(--white-50);
+
+    @include sm {
+      font-size: 1.2rem;
+    }
 
     a {
       text-decoration: underline;

@@ -19,19 +19,133 @@
     display: none;
   }
 
-  .callback--open & {
-    grid-template-columns: 0fr 1fr;
+  &.callback-mini {
+    display: block;
+    background-color: var(--black);
+    width: var(--callback-mini-width);
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
 
-    left: 4.2rem;
+    right: 0;
+    left: unset;
+    z-index: 1;
+
+    @include sm {
+      width: 100%;
+
+      position: static;
+    }
+
+    .general {
+
+      &__head {}
+
+      &__suptitle {
+        font-size: 6.5rem;
+        color: var(--red);
+      }
+
+      &__title {
+        font-size: 4rem;
+        color: var(--white);
+      }
+    }
+
+    .form {
+
+      &-input {
+        color: var(--white);
+      }
+
+      &-label {
+        color: var(--white);
+
+        &::before {
+          height: 0.1rem;
+          background-color: var(--red);
+        }
+      }
+
+      &-btn {
+        --btn-color: var(--white);
+        --btn-background: var(--red);
+        --btn-hover-color: var(--black);
+        --btn-hover-background: var(--white);
+      }
+
+      &-checkbox--item {
+        background-color: var(--white-10);
+
+        &::before {
+          background-color: var(--red);
+        }
+      }
+    }
+
+    .callback {
+
+      &__inner {
+        gap: 4rem;
+
+        @include sm {
+          height: 100%;
+          padding: 5rem 1.5rem 31rem;
+          overflow: hidden;
+
+          position: relative;
+        }
+      }
+    }
+
+    .request__cover {
+      display: none;
+
+      @include sm {
+        display: block;
+        height: 41rem;
+      }
+    }
   }
 
-  .header-at-footer &,
-  .menu--open & {
-    left: calc(100% + var(--callback-width));
+  &:not(.callback.callback-mini) {
+
+    .callback--open & {
+      grid-template-columns: 0fr 1fr;
+
+      left: 4.2rem;
+    }
+
+    .header-at-footer &,
+    .menu--open & {
+      left: calc(100% + var(--callback-width));
+    }
   }
 
   * {
     transition: all 0.5s ease;
+  }
+
+  .form {
+    max-width: 114.6rem;
+    z-index: 2;
+  }
+
+  .general {
+
+    &__head {
+      gap: 0;
+      z-index: 2;
+    }
+
+    &__suptitle {
+      color: var(--black);
+    }
+
+    &__title {
+      line-height: 100%;
+      color: var(--white);
+    }
   }
 
   &__side {
@@ -167,28 +281,6 @@
         height: 100%;
         object-fit: contain;
       }
-    }
-  }
-
-  .form {
-    max-width: 114.6rem;
-    z-index: 2;
-  }
-
-  .general {
-
-    &__head {
-      gap: 0;
-      z-index: 2;
-    }
-
-    &__suptitle {
-      color: var(--black);
-    }
-
-    &__title {
-      line-height: 100%;
-      color: var(--white);
     }
   }
 }

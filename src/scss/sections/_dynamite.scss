@@ -1,3 +1,5 @@
+@use './../mixins' as *;
+
 /* ── Обёртка всей сцены ── */
 .dynamite-scene {
   position: relative;

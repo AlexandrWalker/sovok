@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru" class="contacts-page inner-page">
+@@include('blocks/head.html', {"title": "СОВОК"})
+
+<body>
+  <div class="wrapper">
+    <!-- Шапка -->
+    @@include('./blocks/header.html')
+    <!-- Меню -->
+    @@include('./blocks/menu.html')
+    <main class="main">
+
+      <section class="template">
+        <div class="container">
+          <div class="template__inner">
+
+            <div class="breadcrumbs">
+              <ul>
+                <li>
+                  <a href="/sovok">
+                    Главная
+                  </a>
+                </li>
+                <li>
+                  телеграф
+                </li>
+              </ul>
+            </div>
+
+            <div class="general__head">
+              <div class="general__title">
+                <h1>
+                  телеграф
+                </h1>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="contacts">
+        <div class="container">
+          <div class="contacts__inner">
+
+            <div class="contacts__head">
+              <div class="contacts__head-suptitle">
+                частота для связи
+              </div>
+              <div class="contacts__head-title">
+                <a href="tel:+79133777977">
+                  8 913 3 777 9 77
+                </a>
+              </div>
+            </div>
+            <div class="contacts__body">
+              <div class="footer__contacts">
+                <a class="footer__menu-link" href="/">
+                  координаты
+                </a>
+                <div class="footer__contacts-wrap">
+                  <p>г. Новосибирск</p>
+                  <p>ул. Кирова, 32, этаж 1</p>
+                  <p>Время работы: 9:00 - 19:00</p>
+                  <p>Пишите: <a href="mailto:production@sovok.ru">production@sovok.ru</a></p>
+                </div>
+              </div>
+              <div class="footer__social">
+                <div class="footer__social-links">
+                  <a class="footer__social-link" href="/">
+                    <i class="icon-max"></i>
+                  </a>
+                  <a class="footer__social-link" href="/">
+                    <i class="icon-vk"></i>
+                  </a>
+                  <a class="footer__social-link" href="/">
+                    <i class="icon-tg"></i>
+                  </a>
+                  <a class="footer__social-link" href="/">
+                    <i class="icon-wa"></i>
+                  </a>
+                  <a class="footer__social-link" href="/">
+                    <i class="icon-inst"></i>
+                  </a>
+                  <a class="footer__social-link" href="/">
+                    <i class="icon-vc"></i>
+                  </a>
+                  <a class="footer__social-link" href="/">
+                    <i class="icon-pt"></i>
+                  </a>
+                  <a class="footer__social-link" href="/">
+                    <i class="icon-be"></i>
+                  </a>
+                </div>
+                <div class="footer__social-text">
+                  Организация Meta (владелец Facebook и Instagram*) признана экстремистской, её деятельность запрещена
+                  на
+                  территории России.*
+                </div>
+              </div>
+            </div>
+            <div class="contacts__cover">
+              <img src="./../images/temp/contacts-cover.png" alt="">
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Форма обратной связи -->
+      @@include('./blocks/callback-mini.html')
+
+      <section class="map">
+        <div class="container">
+          <div class="map__inner">
+
+            <div class="map__cover">
+              <img src="./../images/temp/contacts-map.png" alt="">
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+    <!-- Подвал -->
+    @@include('blocks/footer-null.html')

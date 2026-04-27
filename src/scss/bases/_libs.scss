@@ -106,39 +106,45 @@
     @include sm {
       --font-size: 9rem;
     }
+  }
 
-    .path1:before {
+  &.icon-mob-change {
 
-      @include sm {
-        content: "\e906";
-        color: rgb(250, 244, 237);
+    i {
+
+      .path1:before {
+
+        @include sm {
+          content: "\e906";
+          color: rgb(250, 244, 237);
+        }
       }
-    }
 
-    .path2:before {
+      .path2:before {
 
-      @include sm {
-        content: "\e907";
-        margin-left: -1em;
-        color: rgb(250, 244, 237);
+        @include sm {
+          content: "\e907";
+          margin-left: -1em;
+          color: rgb(250, 244, 237);
+        }
       }
-    }
 
-    .path3:before {
+      .path3:before {
 
-      @include sm {
-        content: "\e908";
-        margin-left: -1em;
-        color: rgb(220, 20, 60);
+        @include sm {
+          content: "\e908";
+          margin-left: -1em;
+          color: rgb(220, 20, 60);
+        }
       }
-    }
 
-    .path4:before {
+      .path4:before {
 
-      @include sm {
-        content: "\e909";
-        margin-left: -1em;
-        color: rgb(220, 20, 60);
+        @include sm {
+          content: "\e909";
+          margin-left: -1em;
+          color: rgb(220, 20, 60);
+        }
       }
     }
   }

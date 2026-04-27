@@ -67,13 +67,6 @@ section {
   // min-height: 100dvh;
   will-change: transform;
   // background-color: var(--white);
-
-  &:not(section.hero, section.effect, section.growth, section.approach, section.cases, section.inform) {
-
-    @include sm {
-      display: none;
-    }
-  }
 }
 
 a {

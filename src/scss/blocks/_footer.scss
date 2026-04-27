@@ -277,6 +277,7 @@
       }
 
       a {
+        text-decoration: underline;
 
         &:hover {
           color: var(--black);
@@ -286,8 +287,8 @@
   }
 
   &__social {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
     width: fit-content;
 
@@ -295,12 +296,22 @@
     grid-row: 3/4;
 
     @include sm {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
       gap: 1rem;
 
       max-width: 33rem;
+    }
+
+    &-links {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+
+      @include sm {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
     }
 
     &-link {
