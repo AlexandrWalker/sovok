@@ -3,7 +3,6 @@
 .cases {
   overflow: visible;
 
-
   @include sm {
     --section-padding-bottom: 10rem;
   }
@@ -86,10 +85,12 @@
   }
 
   &__slide {
+    height: 100%;
 
     &-wrap {
       width: 100%;
-      height: 54rem;
+      height: auto;
+      min-height: 54rem;
 
       position: relative;
     }
@@ -113,7 +114,7 @@
     &-content {
       display: flex;
       flex-direction: column;
-      padding: 9rem 8.5rem 9rem 43.4rem;
+      padding: 9rem 4rem 9rem 43rem;
       height: 100%;
 
       color: var(--white);
@@ -146,6 +147,7 @@
       letter-spacing: -0.04em;
 
       @include sm {
+        max-width: 23.6rem;
         margin-bottom: 2rem;
 
         font-size: 1.6rem;
@@ -184,7 +186,14 @@
     right: -15.7rem;
 
     @include sm {
-      right: 3rem;
+      margin: 0;
+      transform: unset;
+
+      position: absolute;
+      top: 14.5rem;
+      right: 2rem;
+      left: unset;
+      bottom: unset;
     }
   }
 }

@@ -52,6 +52,8 @@
     a {
       transform: rotate(-1.42deg);
 
+      white-space: nowrap;
+
       position: absolute;
       top: 0;
       left: 0;
@@ -114,8 +116,14 @@
       max-height: 61.5rem;
       height: calc(100vw/(402/575));
 
-      bottom: calc(-100vw/(402/114));
-      left: calc(-100vw/(402/132));
+      // bottom: calc(-100vw/(402/114));
+      // left: calc(-100vw/(402/132));
+
+      margin-top: calc(-100vw/(402/70));
+      margin-bottom: calc(-100vw/(402/154));
+      margin-left: calc(-100vw/(402/132));
+
+      position: static;
     }
 
     img {

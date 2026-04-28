@@ -862,6 +862,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // Нужен чтобы дочерние split знали длительность родительской анимации
     const animRegistry = new Map();
 
+    // Длительности fade-анимаций для расчёта задержки в группах
+    const FADE_DURATION = 0.3;
+
+    // data-anim-order — порядок внутри общего родителя
+    // Группируем элементы по родителю, считаем накопленную задержку
+    const orderMap = new Map();
+
+    gsap.utils.toArray('[data-anim-order]').forEach(el => {
+      const parent = el.parentElement;
+      if (!orderMap.has(parent)) orderMap.set(parent, []);
+      orderMap.get(parent).push(el);
+    });
+
+    orderMap.forEach((els, parent) => {
+      els.sort((a, b) => parseInt(a.dataset.animOrder) - parseInt(b.dataset.animOrder));
+
+      let accumulated = 0;
+
+      els.forEach(el => {
+        el.dataset.animDelay = accumulated.toFixed(3);
+        const duration = parseFloat(el.dataset.animDuration ?? FADE_DURATION);
+        accumulated += duration;
+      });
+    });
+
     // Ищет ближайшего зарегистрированного родителя, возвращает его duration
     function getParentDelay(el) {
       let node = el.parentElement;
@@ -941,25 +966,47 @@ document.addEventListener('DOMContentLoaded', () => {
     //
 
     const fadeDirections = {
-      fadeLeft: { x: '-100%', y: '0%' },
-      fadeRight: { x: '100%', y: '0%' },
-      fadeUp: { x: '0%', y: '100%' },
-      fadeDown: { x: '0%', y: '-100%' },
+      fadeLeft: { xPercent: -100, yPercent: 0 },
+      fadeRight: { xPercent: 100, yPercent: 0 },
+      fadeUp: { xPercent: 0, yPercent: 100 },
+      fadeDown: { xPercent: 0, yPercent: -100 },
     };
 
     Object.entries(fadeDirections).forEach(([name, from]) => {
       gsap.utils.toArray(`[data-anim="${name}"]`).forEach(el => {
-        gsap.timeline({
-          paused: true,
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 90%',
-            toggleActions: 'play none none none',
+
+        const hasOrder = el.dataset.animOrder !== undefined;
+        const trigger = hasOrder ? el.parentElement : el;
+
+        // Ручная задержка из атрибута
+        const manualDelay = parseFloat(el.dataset.animDelay ?? 0);
+        // Автоматическая задержка из data-anim-duration родителя с data-anim
+        const parentDelay = (() => {
+          const parent = el.closest('[data-anim]:not([data-anim="' + name + '"])');
+          if (!parent) return 0;
+          return parseFloat(parent.dataset.animDuration ?? FADE_DURATION);
+        })();
+
+        const delay = manualDelay || parentDelay;
+
+        gsap.set(el, { xPercent: from.xPercent, yPercent: from.yPercent, opacity: 0 });
+
+        ScrollTrigger.create({
+          trigger,
+          start: 'top 70%',
+          once: true,
+          onEnter: () => {
+            gsap.to(el, {
+              xPercent: 0,
+              yPercent: 0,
+              opacity: 1,
+              duration: FADE_DURATION,
+              delay,
+              ease: 'power2.out',
+              overwrite: true,
+            });
           },
-        }).fromTo(el,
-          { x: from.x, y: from.y, opacity: 0 },
-          { x: '0%', y: '0%', opacity: 1, duration: 0.15, ease: 'power2.out' }
-        );
+        });
       });
     });
 
@@ -1010,7 +1057,7 @@ document.addEventListener('DOMContentLoaded', () => {
           )
           // Фаза 3 - вылет вверх
           .to(el,
-            { y: '-80%', opacity: 0, scale: 0.85, ease: 'power2.in', duration: 0.25 }
+            { y: '-60%', opacity: 0, scale: 0.85, ease: 'power2.in', duration: 0.25 }
           );
       });
     });
@@ -1063,7 +1110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // SPLIT - общая функция для title и text
     //
 
-    function initSplitAnim(container, { rotation, stagger, duration, start }) {
+    function initSplitAnim(container, { opacity, rotation, stagger, duration, start }) {
       const textSplits = container.querySelectorAll('*');
 
       const validTargets = Array.from(textSplits).filter(el =>
@@ -1089,6 +1136,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const lineHeight = inst.lines[0]?.offsetHeight ?? 50;
             gsap.from(inst.lines, {
               y: lineHeight / 10 + 'rem',
+              opacity,
               rotation,
               stagger,
               duration,
@@ -1837,7 +1885,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const target = digits[i]; if (target === ".") return;
           const digitEl = container.querySelector(".digit");
           const t = gsap.to(digitEl, { y: "-10em", duration: 0.2 + Math.random() * 0.4, ease: "linear", repeat: -1 });
-          gsap.delayedCall(1.5 + i * 0.3, () => {
+          gsap.delayedCall(1 + i * 0.3, () => {
             t.kill();
             const loops = Math.floor(digitEl.querySelectorAll("span").length / 10) - 1;
             gsap.to(digitEl, { y: -(loops * 10 + parseInt(target)) + "em", duration: 0.2 + i * 0.2, ease: "power3.out" });
@@ -1885,8 +1933,14 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', safeRefresh);
   })();
 
+  /**
+   * Функция для блока produce
+   * Индикатор для наведения на ссылки внутри produce__item-list
+   * Метод обработки клика produce__item для присвоения активного класса в моб версии
+   */
   (function () {
 
+    // брейкпоинт для моб. версии
     const MOBILE_BREAKPOINT = 600;
 
     // Проверка мобильной версии
@@ -1914,8 +1968,8 @@ document.addEventListener('DOMContentLoaded', () => {
           const top = liRect.top - navRect.top + nav.scrollTop;
           const height = (53 - liRect.height) / -2;
 
-          indicator.style.top = `\${top}px`;
-          indicator.style.marginTop = `\${height}px`;
+          indicator.style.top = `${top}px`;
+          indicator.style.marginTop = `${height}px`;
           indicator.classList.add('is-visible');
         });
       });
@@ -2085,7 +2139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         swiperOptions: {
           slidesPerGroup: 1,
           slidesPerView: 1,
-          spaceBetween: 10,
+          spaceBetween: 40,
           speed: 500,
           grabCursor: true,
           loop: false,
@@ -2115,23 +2169,6 @@ document.addEventListener('DOMContentLoaded', () => {
             releaseOnEdges: true,
           },
           navigation: false,
-          breakpoints: {
-            0: {
-              slidesPerGroup: 1,
-              slidesPerView: 1,
-              spaceBetween: 20,
-            },
-            601: {
-              slidesPerGroup: 1,
-              slidesPerView: 1,
-              spaceBetween: 20,
-            },
-            835: {
-              slidesPerGroup: 1,
-              slidesPerView: 1,
-              spaceBetween: 40,
-            },
-          },
         },
       },
       {
@@ -2193,18 +2230,19 @@ document.addEventListener('DOMContentLoaded', () => {
         sliderSelector: '.awards__slider',
         nextSelector: '.awards-button-next',
         highlight: false,
+        edgeTracker: false,
         swiperOptions: {
           slidesPerGroup: 1,
           slidesPerView: 1,
           spaceBetween: 40,
           speed: 500,
           grabCursor: true,
-          loop: false,
+          loop: true,
           touchRatio: 1.6,
           resistance: true,
           resistanceRatio: 0.4,
           centeredSlides: false,
-          centeredSlidesBounds: true,
+          centeredSlidesBounds: false,
           simulateTouch: true,
           direction: 'horizontal',
           touchStartPreventDefault: true,
@@ -2212,14 +2250,7 @@ document.addEventListener('DOMContentLoaded', () => {
           threshold: 8,
           touchAngle: 25,
           watchOverflow: true,
-          freeMode: {
-            enabled: true,
-            momentum: true,
-            momentumRatio: 0.85,
-            momentumVelocityRatio: 1,
-            momentumBounce: false,
-            sticky: true,
-          },
+          freeMode: false,
           mousewheel: {
             forceToAxis: true,
             sensitivity: 1,
@@ -2637,13 +2668,21 @@ document.addEventListener('DOMContentLoaded', () => {
         accumulateImpulse(direction);
         const steps = 1 + Math.round(extraImpulse);
 
+        // if (swiper.params.loop) {
+        //   const total = swiper.slides.length - (swiper.loopedSlides ?? 0) * 2;
+        //   const curr = swiper.realIndex;
+        //   const target = direction === 'next'
+        //     ? (curr + steps) % total
+        //     : (curr - steps + total) % total;
+        //   swiper.slideToLoop(target);
+        // }
         if (swiper.params.loop) {
-          const total = swiper.slides.length - (swiper.loopedSlides ?? 0) * 2;
-          const curr = swiper.realIndex;
-          const target = direction === 'next'
-            ? (curr + steps) % total
-            : (curr - steps + total) % total;
-          swiper.slideToLoop(target);
+          if (direction === 'next') {
+            swiper.slideNext();
+          } else {
+            swiper.slidePrev();
+          }
+          return;
         } else {
           const base = swiper.activeIndex;
           const target = direction === 'next'
@@ -2651,6 +2690,15 @@ document.addEventListener('DOMContentLoaded', () => {
             : Math.max(base - steps, 0);
           swiper.slideTo(target);
         }
+
+        if (nextEl) nextEl.addEventListener('click', (e) => {
+          e.preventDefault();
+          console.log('next clicked', swiper.realIndex);
+          handle('next');
+        });
+
+        console.log('loopedSlides:', swiper.loopedSlides);
+        console.log('slides.length:', swiper.slides.length);
 
         updateDisabled();
       }

@@ -35,8 +35,6 @@
 
     .general {
 
-      &__head {}
-
       &__text {
         margin-left: 54rem;
 
@@ -52,7 +50,16 @@
     .general {
 
       &__title {
-        font-size: 6.5rem;
+        font-size: 18rem;
+        color: var(--black);
+
+        @include sm {
+          font-size: 6.5rem;
+          color: var(--red);
+        }
+      }
+
+      &__suptitle {
         color: var(--red);
       }
     }

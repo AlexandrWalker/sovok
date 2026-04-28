@@ -1,13 +1,23 @@
 @use './../mixins' as *;
 
 nav {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 3rem;
 
   @include sm {
     display: none;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
   }
 
   a {
@@ -29,5 +39,11 @@ nav {
     &:hover {
       color: var(--red);
     }
+  }
+
+  i {
+    --font-size: 1.3rem !important;
+
+    transform: rotate(-90deg) scale(-1, 1);
   }
 }
