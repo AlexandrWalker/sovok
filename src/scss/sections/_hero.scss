@@ -46,29 +46,45 @@
     font-family: var(--second-family);
     font-weight: 1000;
     font-size: 27rem;
+    line-height: 27rem;
     text-transform: uppercase;
 
     @include sm {
       min-height: 14.8rem;
 
       font-size: calc(100vw/(402/65));
+      line-height: 100%;
     }
   }
 
   .typewriter {
 
     &__word {
-      line-height: 85%;
+      display: inline-block;
+
+      font-size: inherit;
+      // line-height: 85%;
+      line-height: 23rem;
       letter-spacing: -0.05em;
       color: var(--black);
-      display: inline-block;
+
+      @include sm {
+        line-height: 85%;
+      }
     }
 
     &__line {
       display: flex;
       align-items: center;
       gap: 0.1em;
-      line-height: 120%;
+
+      font-size: inherit;
+      // line-height: 120%;
+      line-height: 32.4rem;
+
+      @include sm {
+        line-height: 120%;
+      }
 
       &:nth-child(2) {
 
@@ -83,9 +99,11 @@
         .typewriter__cursor,
         .typewriter__word {
           font-size: 10rem;
+          line-height: 8.5rem;
 
           @include sm {
             font-size: calc(100vw/(1920/100));
+            line-height: 85%;
           }
         }
       }

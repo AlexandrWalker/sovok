@@ -38,6 +38,10 @@ nav {
 
     &:hover {
       color: var(--red);
+
+      &+i {
+        transform: rotate(90deg) scale(-1, 1);
+      }
     }
   }
 

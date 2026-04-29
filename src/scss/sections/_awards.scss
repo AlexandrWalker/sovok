@@ -16,7 +16,7 @@
 
     &__head {
       gap: 0;
-      margin-bottom: 12rem;
+      margin-bottom: 7rem;
 
       @include sm {
         margin-bottom: -3rem;
@@ -71,6 +71,7 @@
 
   &__img {
     height: 87.8rem;
+    height: calc(100vw/(1920/878));
 
     position: absolute;
     top: -5.3rem;
@@ -91,10 +92,11 @@
   &__cover {
     width: auto;
     height: 63.8rem;
+    height: calc(100vw/(1920/638));
 
     position: absolute;
-    top: 20rem;
-    left: 0;
+    top: 22rem;
+    left: 0.4rem;
     z-index: 2;
 
     @include sm {
@@ -124,11 +126,17 @@
   }
 
   &__slide {
+    opacity: 0;
+    transition: opacity 0.1s ease;
+
+    &.swiper-slide-active {
+      opacity: 1;
+    }
 
     &-content {
       display: flex;
       flex-direction: column;
-      gap: 3rem;
+      gap: 2rem;
       max-width: 62rem;
 
       @include sm {
@@ -137,6 +145,8 @@
     }
 
     &-name {
+      margin-bottom: 1rem;
+
       font-family: var(--second-family);
       font-weight: 1000;
       font-size: 4rem;
@@ -172,6 +182,14 @@
       @include sm {
         font-size: 1.6rem;
       }
+    }
+
+    &-link {
+      font-weight: 400;
+      font-size: 2rem;
+      line-height: 120%;
+      letter-spacing: -0.04em;
+      color: var(--red);
     }
   }
 }

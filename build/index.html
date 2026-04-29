@@ -165,7 +165,7 @@
       <div class="form-inner">
         <div class="form-body">
           <div class="form-group">
-            <input id="callback_name_input" class="form-input" type="text" name="names">
+            <input id="callback_name_input" class="form-input" type="text" name="names" required>
             <label class="form-label">
               <!-- Имя субъекта -->
 
@@ -181,7 +181,7 @@
             </label>
           </div>
           <div class="form-group">
-            <input id="callback_tel_input" class="form-input" type="tel" name="tel">
+            <input id="callback_tel_input" class="form-input" type="tel" name="tel" required>
             <label class="form-label">
               <!-- КАНАЛ СВЯЗИ -->
 
@@ -197,7 +197,7 @@
             </label>
           </div>
           <div class="form-group">
-            <input id="callback_comments_input" class="form-input" type="text" name="comments">
+            <input id="callback_comments_input" class="form-input" type="text" name="comments" required>
             <label class="form-label">
               <!-- СУТЬ ОБРАЩЕНИЯ -->
 
@@ -337,7 +337,7 @@
 
             <div class="approach__head">
               <div class="general__head">
-                <div class="general__suptitle" data-anim="fadeLeft">
+                <div class="general__suptitle" data-anim="fadeLeft" data-anim-order="1">
                   Работаем с&nbsp;теми, <br> кто мыслит <br> масштабом
                 </div>
                 <div class="general__text" data-split="text">
@@ -354,7 +354,7 @@
               <div class="approach__content">
 
                 <div class="general__head">
-                  <div class="general__title" data-anim="fadeLeft">
+                  <div class="general__title" data-anim="fadeLeft" data-anim-order="3">
                     Что<br><span>получает<span class="general__suptitle">бизнес</span></span>
                   </div>
                   <div class="general__text" data-split="text">
@@ -366,8 +366,8 @@
               </div>
             </div>
 
-            <div class="approach__block" data-anim="scale" data-anim-once data-anim-duration="0.6">
-              <div class="general__head" data-anim="fadeRight">
+            <div class="approach__block" data-anim="scale" data-anim-once data-anim-duration="0.6" data-anim-order="1">
+              <div class="general__head" data-anim="fadeRight" data-anim-order="2">
                 <div class="general__suptitle">
                   Не <br> подходим, <br> если
                 </div>
@@ -382,7 +382,7 @@
               <!-- <div class="approach__block-round" data-anim="scale" data-anim-once></div> -->
             </div>
 
-            <div class="approach__cover" data-anim="fadeLeft">
+            <div class="approach__cover" data-anim="fadeLeft" data-anim-order="2">
               <img src="./images/temp/gagarin.png" alt="">
             </div>
 
@@ -401,10 +401,10 @@
           <div class="produce__inner">
 
             <div class="general__head">
-              <div class="general__title" data-anim="fadeLeft">
+              <div class="general__title" data-anim="fadeLeft" data-anim-order="1">
                 производим
               </div>
-              <div class="general__text" data-split="text">
+              <div class="general__text" data-anim="fadeLeft" data-anim-order="2">
                 <span>
                   ЦЕХ ВИЗУАЛЬНОЙ ИДЕОЛОГИИ
                 </span>
@@ -916,10 +916,10 @@
           <div class="effect__inner">
 
             <div class="general__head">
-              <div class="general__suptitle" data-split="title">
+              <div class="general__suptitle" data-anim="fadeLeft" data-anim-order="1">
                 обеспечиваем
               </div>
-              <div class="general__title" data-split="title">
+              <div class="general__title" data-anim="fadeLeft" data-anim-order="2">
                 эффективность
               </div>
             </div>
@@ -1305,11 +1305,27 @@
               </div>
 
               <div class="awards__cover" data-anim="bounce">
-                <img src="./images/temp/awards-cover.png" alt="">
+                <img src="./images/temp/awards-cover-1.png" alt="">
               </div>
 
               <div class="swiper awards__slider">
                 <div class="swiper-wrapper">
+                  <div class="swiper-slide awards__slide">
+                    <div class="awards__slide-content">
+                      <div class="awards__slide-name">
+                        благодарственное письмо
+                      </div>
+                      <div class="awards__slide-title">
+                        За&nbsp;многолетнее сотрудничество
+                      </div>
+                      <div class="awards__slide-text">
+                        Анализ маркетинга, продукта, воронки продаж и юнит-экономики
+                      </div>
+                      <a class="awards__slide-link" href="/sovok">
+                        Ознакомиться
+                      </a>
+                    </div>
+                  </div>
                   <div class="swiper-slide awards__slide">
                     <div class="awards__slide-content">
                       <div class="awards__slide-name">
@@ -1322,20 +1338,9 @@
                       <div class="awards__slide-text">
                         Анализ маркетинга, продукта, воронки продаж и юнит-экономики
                       </div>
-                    </div>
-                  </div>
-                  <div class="swiper-slide awards__slide">
-                    <div class="awards__slide-content">
-                      <div class="awards__slide-name">
-                        рейтинг яндекса
-                      </div>
-                      <div class="awards__slide-title">
-                        1 место за участие
-                        в&nbsp;пятилетке
-                      </div>
-                      <div class="awards__slide-text">
-                        Анализ маркетинга, продукта, воронки продаж и юнит-экономики
-                      </div>
+                      <a class="awards__slide-link" href="/sovok">
+                        Ознакомиться
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -1365,7 +1370,7 @@
         </div>
       </section>
 
-      <section class="request" data-animate>
+      <section class="request">
         <div class="container">
           <div class="request__inner">
 
@@ -1382,7 +1387,7 @@
               <div class="form-inner">
                 <div class="form-body">
                   <div class="form-group">
-                    <input id="request_name_input" class="form-input" type="text" name="names">
+                    <input id="request_name_input" class="form-input" type="text" name="names" required>
                     <label class="form-label">
                       <!-- Имя субъекта -->
                       <div class="typewriter" data-sync-group="request" data-type-speed="0.07" data-type-variance="0.04"
@@ -1396,7 +1401,7 @@
                     </label>
                   </div>
                   <div class="form-group">
-                    <input id="request_tel_input" class="form-input" type="tel" name="tel">
+                    <input id="request_tel_input" class="form-input" type="tel" name="tel" required>
                     <label class="form-label">
                       <!-- КАНАЛ СВЯЗИ -->
                       <div class="typewriter" data-sync-group="request" data-type-speed="0.07" data-type-variance="0.04"
@@ -1411,7 +1416,7 @@
                     </label>
                   </div>
                   <div class="form-group">
-                    <input id="request_comments_input" class="form-input" type="text" name="comments">
+                    <input id="request_comments_input" class="form-input" type="text" name="comments" required>
                     <label class="form-label">
                       <!-- СУТЬ ОБРАЩЕНИЯ -->
                       <div class="typewriter" data-sync-group="request" data-type-speed="0.07" data-type-variance="0.04"

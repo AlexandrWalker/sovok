@@ -225,8 +225,7 @@
       inset: 0;
       z-index: 0;
 
-      filter:
-        drop-shadow(0 0 0 var(--red)) brightness(0) saturate(100%) invert(18%) sepia(96%) saturate(7491%) hue-rotate(1deg);
+      filter: drop-shadow(0 0 0 #DC143C) brightness(0) saturate(100%) invert(14%) sepia(90%) saturate(6000%) hue-rotate(338deg) brightness(95%);
       transform: rotate(6deg);
     }
 

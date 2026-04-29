@@ -870,9 +870,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const orderMap = new Map();
 
     gsap.utils.toArray('[data-anim-order]').forEach(el => {
-      const parent = el.parentElement;
-      if (!orderMap.has(parent)) orderMap.set(parent, []);
-      orderMap.get(parent).push(el);
+      // Ищем ближайшего предка у которого тоже есть data-anim-order
+      const orderParent = el.parentElement?.closest('[data-anim-order]') ?? el.parentElement;
+      if (!orderMap.has(orderParent)) orderMap.set(orderParent, []);
+      orderMap.get(orderParent).push(el);
     });
 
     orderMap.forEach((els, parent) => {
@@ -881,7 +882,9 @@ document.addEventListener('DOMContentLoaded', () => {
       let accumulated = 0;
 
       els.forEach(el => {
-        el.dataset.animDelay = accumulated.toFixed(3);
+        // parentDelay — задержка унаследованная от родителя с data-anim-order
+        const parentOrderDelay = parseFloat(parent.dataset.animDelay ?? 0);
+        el.dataset.animDelay = (accumulated + parentOrderDelay).toFixed(3);
         const duration = parseFloat(el.dataset.animDuration ?? FADE_DURATION);
         accumulated += duration;
       });
@@ -1042,7 +1045,7 @@ document.addEventListener('DOMContentLoaded', () => {
           scrollTrigger: {
             trigger: scene,
             start: 'top bottom',
-            end: 'bottom top',
+            end: '50% top',
             scrub: 1,
           },
         })
@@ -1057,7 +1060,7 @@ document.addEventListener('DOMContentLoaded', () => {
           )
           // Фаза 3 - вылет вверх
           .to(el,
-            { y: '-60%', opacity: 0, scale: 0.85, ease: 'power2.in', duration: 0.25 }
+            { y: '-100%', opacity: 0, scale: 0.85, ease: 'power2.in', duration: 0.25 }
           );
       });
     });
@@ -1097,7 +1100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ease,
             scrollTrigger: {
               trigger: el,
-              start: 'bottom 80%',
+              start: 'bottom 60%',
             },
           }
         );
