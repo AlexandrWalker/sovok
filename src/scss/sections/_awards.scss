@@ -75,6 +75,7 @@
 
     position: absolute;
     top: -5.3rem;
+    top: calc(-100vw/(1920/53));
     right: 0;
     z-index: 3;
 
@@ -96,7 +97,9 @@
 
     position: absolute;
     top: 22rem;
+    top: calc(100vw/(1920/220));
     left: 0.4rem;
+    left: calc(100vw/(1920/4));
     z-index: 2;
 
     @include sm {
