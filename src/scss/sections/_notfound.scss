@@ -66,11 +66,14 @@
 
   &__cover {
     width: auto;
-    height: 112.4rem;
+    // height: 112.4rem;
+    height: calc(100vw/(1920/1124));
 
     position: absolute;
     top: -2.5rem;
-    right: var(--callback-mini-width);
+    top: calc(-100vw/(1920/25));
+    // right: var(--callback-mini-width);
+    right: calc(100vw/(1920/540));
     z-index: 1;
 
     @include sm {

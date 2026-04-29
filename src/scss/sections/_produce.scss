@@ -308,7 +308,6 @@
         flex-direction: column;
         gap: 3rem;
         padding-left: 3rem;
-        overflow: hidden;
 
         position: relative;
 
@@ -352,6 +351,10 @@
           font-size: 2rem;
         }
       }
+    }
+
+    &-list {
+      overflow: hidden;
     }
   }
 

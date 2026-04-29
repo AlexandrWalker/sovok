@@ -153,8 +153,8 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
+  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
+  font-weight: 900;
   font-style: normal;
 }
 
@@ -169,16 +169,8 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
-  font-weight: 200;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
-  font-weight: 900;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -187,6 +179,14 @@ img {
   font-display: swap;
   src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
   font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
+  font-weight: 200;
   font-style: normal;
 }
 
@@ -209,14 +209,6 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Thin.woff2") format("woff2"), url("../fonts/Roboto-Thin.woff") format("woff");
-  font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
   src: url("../fonts/Roboto-Regular.woff2") format("woff2"), url("../fonts/Roboto-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
@@ -227,6 +219,14 @@ img {
   font-display: swap;
   src: url("../fonts/Roboto-SemiBold.woff2") format("woff2"), url("../fonts/Roboto-SemiBold.woff") format("woff");
   font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-Thin.woff2") format("woff2"), url("../fonts/Roboto-Thin.woff") format("woff");
+  font-weight: 100;
   font-style: normal;
 }
 
@@ -265,16 +265,16 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Medium.woff2") format("woff2"), url("../fonts/RobotoCondensed-Medium.woff") format("woff");
-  font-weight: 500;
+  src: url("../fonts/RobotoCondensed-Light.woff2") format("woff2"), url("../fonts/RobotoCondensed-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Light.woff2") format("woff2"), url("../fonts/RobotoCondensed-Light.woff") format("woff");
-  font-weight: 300;
+  src: url("../fonts/RobotoCondensed-Medium.woff2") format("woff2"), url("../fonts/RobotoCondensed-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -289,16 +289,16 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Thin.woff2") format("woff2"), url("../fonts/RobotoCondensed-Thin.woff") format("woff");
-  font-weight: 100;
+  src: url("../fonts/RobotoCondensed-SemiBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-SemiBold.woff") format("woff");
+  font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-SemiBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-SemiBold.woff") format("woff");
-  font-weight: 600;
+  src: url("../fonts/RobotoCondensed-Thin.woff2") format("woff2"), url("../fonts/RobotoCondensed-Thin.woff") format("woff");
+  font-weight: 100;
   font-style: normal;
 }
 
@@ -2385,11 +2385,39 @@ canvas {
   z-index: 1;
 }
 
+.approach__cover::before {
+  content: "";
+  width: 16rem;
+  height: 1.2rem;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTA2IiBoZWlnaHQ9IjEyIiB2aWV3Qm94PSIwIDAgMTA2IDEyIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KPHJlY3QgeD0iLTU0IiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjEyIiBmaWxsPSIjREMxNDNDIi8+DQo8L3N2Zz4NCg==);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: absolute;
+  bottom: 14rem;
+  left: -5.4rem;
+  z-index: 3;
+}
+
+.approach__cover::after {
+  content: "";
+  width: 60.1rem;
+  height: 40.4rem;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTg4IiBoZWlnaHQ9IjM5OCIgdmlld0JveD0iMCAwIDU4OCAzOTgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8cGF0aCBkPSJNNTg3LjExNiAzOTMuOTcyTDEyLjMwMTQgLTAuMDAwMTEzOEwwLjAwMDE1ODQwNCAyOC4yNDdMNTg0LjgxNCAzOTcuNTI3TDU4Ny4xMTYgMzkzLjk3MloiIGZpbGw9IiNEQzE0M0MiLz4NCjwvc3ZnPg0K);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: absolute;
+  left: -8.7rem;
+  bottom: -25.1rem;
+  z-index: 1;
+}
+
 .approach__cover img {
   width: auto;
   height: 100%;
   -o-object-fit: contain;
   object-fit: contain;
+  position: relative;
+  z-index: 2;
 }
 
 .approach__satellite-wrap {
@@ -2594,6 +2622,19 @@ canvas {
   position: relative;
 }
 
+.cases__body::after {
+  content: "";
+  width: 15rem;
+  height: 12.3rem;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjEyNCIgdmlld0JveD0iMCAwIDE1MCAxMjQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8cmVjdCB4PSIxMzUuMzIzIiB3aWR0aD0iMjMuNDAyOCIgaGVpZ2h0PSIxNzAuMTA2IiB0cmFuc2Zvcm09InJvdGF0ZSg1Mi43MDQ2IDEzNS4zMjMgMCkiIGZpbGw9IiNEQzE0M0MiLz4NCjxjaXJjbGUgY3g9IjkwLjM2MTUiIGN5PSI5Mi4wODg4IiByPSIyNi4wMDg1IiB0cmFuc2Zvcm09InJvdGF0ZSgxMi4zMDAxIDkwLjM2MTUgOTIuMDg4OCkiIGZpbGw9IiNEQzE0M0MiLz4NCjwvc3ZnPg0K);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: absolute;
+  right: -11.8rem;
+  bottom: 8.2rem;
+  z-index: 2;
+}
+
 .cases__body .btn {
   --btn-height: 7rem;
   --btn-padding-x: 6rem;
@@ -2711,19 +2752,20 @@ canvas {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .contacts__head-suptitle {
   font-weight: 900;
-  font-size: 3rem;
+  font-size: 2rem;
   line-height: 100%;
   text-transform: uppercase;
+  color: var(--red);
 }
 
 .contacts__head-title {
   font-weight: 900;
-  font-size: 10rem;
+  font-size: 6rem;
   line-height: 100%;
   text-decoration: underline;
   text-transform: uppercase;
@@ -2740,10 +2782,15 @@ canvas {
   gap: 4rem;
 }
 
+.contacts__body .footer__contacts {
+  gap: 2rem;
+}
+
 .contacts__body .footer__menu-link {
   font-weight: 900;
-  font-size: 3rem;
+  font-size: 2rem;
   text-decoration: none;
+  color: var(--red);
 }
 
 .contacts__body .footer__social {
@@ -2757,6 +2804,7 @@ canvas {
 .contacts__cover {
   width: auto;
   height: 56.3rem;
+  height: 29.3229166667vw;
   pointer-events: none;
   position: absolute;
   right: 0;
@@ -3509,7 +3557,7 @@ canvas {
   font-family: var(--second-family);
   font-weight: 1000;
   font-size: 27rem;
-  line-height: 27rem;
+  line-height: 1;
   text-transform: uppercase;
 }
 
@@ -3517,7 +3565,7 @@ canvas {
   display: inline-block;
   vertical-align: text-bottom;
   font-size: inherit;
-  line-height: 32.4rem;
+  line-height: 0.85;
   letter-spacing: -0.05em;
   color: var(--black);
 }
@@ -3531,7 +3579,7 @@ canvas {
   align-items: center;
   gap: 0.1em;
   font-size: inherit;
-  line-height: 32.4rem;
+  line-height: 1.2;
 }
 
 .hero .typewriter__line:nth-child(2) .typewriter__cursor,
@@ -3542,11 +3590,11 @@ canvas {
 .hero .typewriter__line:last-child .typewriter__cursor,
 .hero .typewriter__line:last-child .typewriter__word {
   font-size: 10rem;
-  line-height: 8.5rem;
+  line-height: 0.85;
 }
 
 .hero .typewriter__cursor {
-  line-height: 85%;
+  line-height: 0.85;
   will-change: opacity;
 }
 
@@ -3846,10 +3894,11 @@ canvas {
 
 .notfound__cover {
   width: auto;
-  height: 112.4rem;
+  height: 58.5416666667vw;
   position: absolute;
   top: -2.5rem;
-  right: var(--callback-mini-width);
+  top: -1.3020833333vw;
+  right: 28.125vw;
   z-index: 1;
 }
 
@@ -4097,7 +4146,6 @@ canvas {
   flex-direction: column;
   gap: 3rem;
   padding-left: 3rem;
-  overflow: hidden;
   position: relative;
 }
 
@@ -4133,6 +4181,10 @@ canvas {
   text-decoration-line: underline;
   text-transform: uppercase;
   color: var(--white);
+}
+
+.produce__item-list {
+  overflow: hidden;
 }
 
 .produce__indicator {
@@ -4272,18 +4324,6 @@ canvas {
 
   .hero .typewriter {
     padding: 0 0 0 0.5rem;
-  }
-
-  .hero .typewriter__line:nth-child(1) {
-    margin-top: -4.7rem;
-  }
-
-  .hero .typewriter__line:nth-child(2) {
-    margin-top: -9.4rem;
-  }
-
-  .hero .typewriter__line:last-child {
-    margin-top: -4.7rem;
   }
 
   .produce__item:hover {
@@ -4764,6 +4804,14 @@ canvas {
     left: unset;
   }
 
+  .approach__cover::before {
+    display: none;
+  }
+
+  .approach__cover::after {
+    display: none;
+  }
+
   .approach__satellite-wrap {
     display: none;
   }
@@ -4858,6 +4906,14 @@ canvas {
   .cases__body {
     gap: 2rem;
     margin: 0;
+  }
+
+  .cases__body::after {
+    width: 11.2rem;
+    height: 6.4rem;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTEzIiBoZWlnaHQ9IjY1IiB2aWV3Qm94PSIwIDAgMTEzIDY1IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KPHJlY3QgeD0iNzEuNzg0MiIgd2lkdGg9IjEyLjQxNDUiIGhlaWdodD0iOTAuMjM1NiIgdHJhbnNmb3JtPSJyb3RhdGUoNTIuNzA0NiA3MS43ODQyIDApIiBmaWxsPSIjREMxNDNDIi8+DQo8Y2lyY2xlIGN4PSI5NS42Njg4IiBjeT0iMzIuOTM2NyIgcj0iMTMuNzk2NyIgdHJhbnNmb3JtPSJyb3RhdGUoMTIuMzAwMSA5NS42Njg4IDMyLjkzNjcpIiBmaWxsPSIjREMxNDNDIi8+DQo8L3N2Zz4NCg==);
+    right: 0;
+    bottom: 2.5rem;
   }
 
   .cases__body .btn {
@@ -5039,7 +5095,7 @@ canvas {
   .hero__title {
     min-height: 14.8rem;
     font-size: 6.5rem;
-    line-height: 100%;
+    line-height: 1;
   }
 
   .hero .typewriter__word {

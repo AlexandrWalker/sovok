@@ -83,6 +83,29 @@
       margin: 0;
     }
 
+    &::after {
+      content: "";
+      width: 15rem;
+      height: 12.3rem;
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjEyNCIgdmlld0JveD0iMCAwIDE1MCAxMjQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8cmVjdCB4PSIxMzUuMzIzIiB3aWR0aD0iMjMuNDAyOCIgaGVpZ2h0PSIxNzAuMTA2IiB0cmFuc2Zvcm09InJvdGF0ZSg1Mi43MDQ2IDEzNS4zMjMgMCkiIGZpbGw9IiNEQzE0M0MiLz4NCjxjaXJjbGUgY3g9IjkwLjM2MTUiIGN5PSI5Mi4wODg4IiByPSIyNi4wMDg1IiB0cmFuc2Zvcm09InJvdGF0ZSgxMi4zMDAxIDkwLjM2MTUgOTIuMDg4OCkiIGZpbGw9IiNEQzE0M0MiLz4NCjwvc3ZnPg0K);
+      background-repeat: no-repeat;
+      background-size: 100%;
+
+      position: absolute;
+      right: -11.8rem;
+      bottom: 8.2rem;
+      z-index: 2;
+
+      @include sm {
+        width: 11.2rem;
+        height: 6.4rem;
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTEzIiBoZWlnaHQ9IjY1IiB2aWV3Qm94PSIwIDAgMTEzIDY1IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KPHJlY3QgeD0iNzEuNzg0MiIgd2lkdGg9IjEyLjQxNDUiIGhlaWdodD0iOTAuMjM1NiIgdHJhbnNmb3JtPSJyb3RhdGUoNTIuNzA0NiA3MS43ODQyIDApIiBmaWxsPSIjREMxNDNDIi8+DQo8Y2lyY2xlIGN4PSI5NS42Njg4IiBjeT0iMzIuOTM2NyIgcj0iMTMuNzk2NyIgdHJhbnNmb3JtPSJyb3RhdGUoMTIuMzAwMSA5NS42Njg4IDMyLjkzNjcpIiBmaWxsPSIjREMxNDNDIi8+DQo8L3N2Zz4NCg==);
+      
+        right: 0;
+        bottom: 2.5rem;
+      }
+    }
+
     .btn {
       --btn-height: 7rem;
       --btn-padding-x: 6rem;
