@@ -151,30 +151,6 @@ img {
 }
 
 @font-face {
-  font-family: Redoctober;
-  font-display: swap;
-  src: url("../fonts/Redoctober-ultra.woff2") format("woff2"), url("../fonts/Redoctober-ultra.woff") format("woff");
-  font-weight: 1000;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
   font-family: Roboto;
   font-display: swap;
   src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
@@ -209,14 +185,6 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Regular.woff2") format("woff2"), url("../fonts/Roboto-Regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
   src: url("../fonts/Roboto-SemiBold.woff2") format("woff2"), url("../fonts/Roboto-SemiBold.woff") format("woff");
   font-weight: 600;
   font-style: normal;
@@ -225,16 +193,8 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Thin.woff2") format("woff2"), url("../fonts/Roboto-Thin.woff") format("woff");
-  font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: RobotoCondensed;
-  font-display: swap;
-  src: url("../fonts/RobotoCondensed-Black.woff2") format("woff2"), url("../fonts/RobotoCondensed-Black.woff") format("woff");
-  font-weight: 900;
+  src: url("../fonts/Roboto-Regular.woff2") format("woff2"), url("../fonts/Roboto-Regular.woff") format("woff");
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -249,16 +209,16 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-ExtraBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraBold.woff") format("woff");
-  font-weight: 800;
+  src: url("../fonts/RobotoCondensed-Black.woff2") format("woff2"), url("../fonts/RobotoCondensed-Black.woff") format("woff");
+  font-weight: 900;
   font-style: normal;
 }
 
 @font-face {
-  font-family: RobotoCondensed;
+  font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-ExtraLight.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraLight.woff") format("woff");
-  font-weight: 200;
+  src: url("../fonts/Roboto-Thin.woff2") format("woff2"), url("../fonts/Roboto-Thin.woff") format("woff");
+  font-weight: 100;
   font-style: normal;
 }
 
@@ -273,8 +233,48 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Medium.woff2") format("woff2"), url("../fonts/RobotoCondensed-Medium.woff") format("woff");
-  font-weight: 500;
+  src: url("../fonts/RobotoCondensed-ExtraLight.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraLight.woff") format("woff");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoCondensed;
+  font-display: swap;
+  src: url("../fonts/RobotoCondensed-ExtraBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraBold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoCondensed;
+  font-display: swap;
+  src: url("../fonts/RobotoCondensed-SemiBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Redoctober;
+  font-display: swap;
+  src: url("../fonts/Redoctober-ultra.woff2") format("woff2"), url("../fonts/Redoctober-ultra.woff") format("woff");
+  font-weight: 1000;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -289,8 +289,8 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-SemiBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-SemiBold.woff") format("woff");
-  font-weight: 600;
+  src: url("../fonts/RobotoCondensed-Medium.woff2") format("woff2"), url("../fonts/RobotoCondensed-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -387,6 +387,10 @@ img {
   background-color: var(--black);
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+[data-animate] {
+  z-index: 3;
 }
 
 .swiper {
@@ -673,6 +677,7 @@ body {
 }
 
 .breadcrumbs::-webkit-scrollbar {
+  display: none;
   width: 0;
   height: 0;
   padding: 0;
@@ -1584,6 +1589,14 @@ p {
   overflow-y: auto;
 }
 
+.callback__inner::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+}
+
 .callback__cover {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1665,10 +1678,20 @@ p {
 }
 
 .footer__inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10rem;
   height: 100%;
 }
 
 .footer__phone {
+  width: 100%;
+  min-height: 20rem;
   font-family: var(--second-family);
   font-weight: 1000;
   font-size: 19.5rem;
@@ -1714,11 +1737,13 @@ p {
 
 .footer__cover {
   width: auto;
-  height: 113.446969697vh;
+  height: 62.3958333333vw;
   pointer-events: none;
   position: absolute;
   bottom: -25.1rem;
+  bottom: -13.0729166667vw;
   left: -19.7rem;
+  left: -10.2604166667vw;
   z-index: 2;
 }
 
@@ -1760,6 +1785,7 @@ p {
   height: 100%;
   padding: 32.8rem 0 0 83rem;
   padding: 17.0833333333vw 0 0 43.2291666667vw;
+  padding: 0 0 0 43.2291666667vw;
 }
 
 .footer__body {
@@ -2413,6 +2439,8 @@ nav i {
 }
 
 .cases {
+  --section-padding-top: 5rem;
+  --section-padding-bottom: 6.5rem;
   overflow: visible;
 }
 
@@ -2421,7 +2449,7 @@ nav i {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
 }
 
 .cases .general__suptitle {
@@ -2433,9 +2461,9 @@ nav i {
 }
 
 .cases__cover {
-  height: 104.7rem;
+  height: 114rem;
   position: absolute;
-  top: 0;
+  top: -2rem;
   left: 0;
   z-index: 2;
 }
@@ -2448,9 +2476,24 @@ nav i {
 }
 
 .cases__body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 5rem;
   max-width: 99rem;
   margin: 0 0 0 8rem;
   position: relative;
+}
+
+.cases__body .btn {
+  --btn-height: 7rem;
+  --btn-padding-x: 6rem;
+  font-family: var(--second-family);
+  font-size: 2rem;
 }
 
 .cases__slider {
@@ -2493,6 +2536,7 @@ nav i {
   -ms-flex-direction: column;
   flex-direction: column;
   padding: 9rem 4rem 9rem 43rem;
+  width: 100%;
   height: 100%;
   color: var(--white);
   position: relative;
@@ -2506,17 +2550,20 @@ nav i {
 }
 
 .cases__slide-text {
-  margin-bottom: 4.4rem;
+  margin-bottom: 3rem;
   font-weight: 400;
   font-size: 3rem;
   line-height: 120%;
   letter-spacing: -0.04em;
 }
 
-.cases__slide-btn {
-  max-width: 30.7rem;
-  width: 100%;
-  font-family: var(--second-family);
+.cases__slide-link {
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 120%;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: var(--red);
 }
 
 .cases .swiper-button-prev {
@@ -3454,20 +3501,23 @@ nav i {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: calc(100% + var(--container-padding) * 2);
   margin-top: -2rem;
   margin-left: calc(var(--container-padding) * -1);
-  padding: 0 var(--container-padding);
+  margin-bottom: 7.5rem;
+  padding: 0 var(--container-padding) 0 calc(var(--container-padding) + 61rem);
   overflow: hidden;
 }
 
 .inform__slider {
   max-width: 112rem;
   width: 100%;
-  margin: 0 10.9rem 0 0;
+  margin: 0 10.9rem 0;
+  margin: 0;
 }
 
 .inform__slide {
@@ -3549,6 +3599,13 @@ nav i {
   object-fit: contain;
 }
 
+.inform__btn {
+  --btn-height: 7rem;
+  --btn-padding-x: 6rem;
+  font-family: var(--second-family);
+  font-size: 2rem;
+}
+
 .inform__cover {
   width: auto;
   height: 78rem;
@@ -3580,6 +3637,32 @@ nav i {
   object-fit: contain;
   position: relative;
   z-index: 1;
+}
+
+.inform__foot {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  gap: 5.5rem;
+  padding: 0 0 0 61rem;
+  position: relative;
+}
+
+.inform__svg {
+  width: 236.75rem;
+  height: 21.9rem;
+  position: absolute;
+  top: 0;
+  right: -154.85rem;
+}
+
+.inform__svg svg {
+  width: auto;
+  height: 100%;
 }
 
 .map {
@@ -4023,7 +4106,6 @@ nav i {
 .request__cover {
   width: auto;
   height: 137.5rem;
-  height: 71.6145833333vw;
   pointer-events: none;
   position: absolute;
   top: -15.6rem;
@@ -4117,7 +4199,7 @@ nav i {
 
 @media (max-width: 600px) {
   html {
-    font-size: 62.5%;
+    --refRes: 402;
   }
 
   .general__head {
@@ -4350,7 +4432,8 @@ nav i {
   }
 
   .footer__phone {
-    font-size: 10.6965174129vw;
+    min-height: auto;
+    font-size: 4.3rem;
   }
 
   .footer__phone a {
@@ -4521,21 +4604,25 @@ nav i {
   }
 
   .approach__block {
-    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAzIiBoZWlnaHQ9IjQ3MyIgdmlld0JveD0iMCAwIDUwMyA0NzMiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8cGF0aCBkPSJNMTIxLjU3MyA3NS4yMTc0QzI0MC4zODQgLTIwLjMwMTcgMzk0LjczNSAtMjUuNTQ3MiA0NjYuMzI3IDYzLjUwMTNDNTM3LjkxOCAxNTIuNTUgNDk5LjYzOSAzMDIuMTcyIDM4MC44MjggMzk3LjY5MUMyNjIuMDE3IDQ5My4yMSAxMDcuNjY1IDQ5OC40NTUgMzYuMDczNyA0MDkuNDA3Qy0zNS41MTc2IDMyMC4zNTggMi43NjE2IDE3MC43MzcgMTIxLjU3MyA3NS4yMTc0WiIgZmlsbD0iIzE3MTcxQSIvPg0KPC9zdmc+DQo=);
-    width: 50.4rem;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTM1IiBoZWlnaHQ9IjQ3NCIgdmlld0JveD0iMCAwIDUzNSA0NzQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcDBfMjA0Nl81OCkiPg0KPHBhdGggZD0iTTE1NC4xMTggNzUuOTUyOEMyNzIuOTI5IC0xOS41NjY0IDQyNy4yOCAtMjQuODExOSA0OTguODcyIDY0LjIzNjdDNTcwLjQ2MyAxNTMuMjg1IDUzMi4xODQgMzAyLjkwNyA0MTMuMzczIDM5OC40MjZDMjk0LjU2MiA0OTMuOTQ1IDE0MC4yMSA0OTkuMTkxIDY4LjYxODUgNDEwLjE0MkMtMi45NzI4IDMyMS4wOTQgMzUuMzA2NCAxNzEuNDcyIDE1NC4xMTggNzUuOTUyOFoiIGZpbGw9IiMxNzE3MUEiLz4NCjxyZWN0IHg9IjIyMS45OTIiIHk9IjM0NS45OTgiIHdpZHRoPSIyNjciIGhlaWdodD0iMTEiIGZpbGw9IiNEQzE0M0MiLz4NCjxyZWN0IHg9IjYuMjI2NTYiIHk9IjE1MC45OTkiIHdpZHRoPSI4My4yMDcyIiBoZWlnaHQ9IjQ3LjA3ODYiIHRyYW5zZm9ybT0icm90YXRlKDcuNjEwNjYgNi4yMjY1NiAxNTAuOTk5KSIgZmlsbD0iI0RDMTQzQyIvPg0KPC9nPg0KPGRlZnM+DQo8Y2xpcFBhdGggaWQ9ImNsaXAwXzIwNDZfNTgiPg0KPHJlY3Qgd2lkdGg9IjUzNSIgaGVpZ2h0PSI0NzQiIGZpbGw9IndoaXRlIi8+DQo8L2NsaXBQYXRoPg0KPC9kZWZzPg0KPC9zdmc+DQo=);
+    width: 53.5rem;
     height: 47.4rem;
-    padding: 8.4rem 15.6rem 15.4rem 5rem;
+    padding: 8.4rem 17rem 8.4rem 6rem;
     top: 28rem;
-    right: calc((12.6rem + (var(--container-padding))) * -1);
+    right: -15.5rem;
+  }
+
+  .approach__block .general__text br:last-child {
+    display: none;
   }
 
   .approach__cover {
-    height: 32rem;
-    -webkit-transform: scale(-1, 1) !important;
-    -ms-transform: scale(-1, 1) !important;
-    transform: scale(-1, 1) !important;
+    height: 34.3rem;
     top: 0.5rem;
-    right: -3.6rem;
+    right: 0;
     left: unset;
   }
 
@@ -4604,6 +4691,7 @@ nav i {
   }
 
   .cases {
+    --section-padding-top: 2rem;
     --section-padding-bottom: 10rem;
   }
 
@@ -4630,7 +4718,14 @@ nav i {
   }
 
   .cases__body {
+    gap: 2rem;
     margin: 0;
+  }
+
+  .cases__body .btn {
+    --btn-height: 5rem;
+    --btn-padding-x: 2.5rem;
+    font-size: 1.6rem;
   }
 
   .cases__slider {
@@ -4648,14 +4743,6 @@ nav i {
   .cases__slide-text {
     max-width: 23.6rem;
     margin-bottom: 2rem;
-    font-size: 1.6rem;
-  }
-
-  .cases__slide-btn {
-    --btn-height: 5rem;
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
-    width: fit-content;
     font-size: 1.6rem;
   }
 
@@ -4714,7 +4801,7 @@ nav i {
   }
 
   .effect {
-    --section-padding-bottom: 4rem;
+    --section-padding-bottom: 2rem;
   }
 
   .effect__inner {
@@ -4753,11 +4840,11 @@ nav i {
   }
 
   .growth .general__suptitle {
-    font-size: 24.8756218905vw;
+    font-size: 10rem;
   }
 
   .growth .general__title {
-    font-size: 16.1691542289vw;
+    font-size: 6.5rem;
   }
 
   .growth__inner {
@@ -4813,7 +4900,7 @@ nav i {
 
   .hero__title {
     min-height: 14.8rem;
-    font-size: 16.1691542289vw;
+    font-size: 6.5rem;
     line-height: 100%;
   }
 
@@ -4827,7 +4914,7 @@ nav i {
 
   .hero .typewriter__line:last-child .typewriter__cursor,
   .hero .typewriter__line:last-child .typewriter__word {
-    font-size: 5.2083333333vw;
+    font-size: 4rem;
     line-height: 85%;
   }
 
@@ -4878,6 +4965,8 @@ nav i {
 
   .inform__body {
     margin-top: 0;
+    padding: 0 var(--container-padding);
+    margin-bottom: 2rem;
     position: relative;
     z-index: 2;
   }
@@ -4933,16 +5022,22 @@ nav i {
     left: unset;
   }
 
+  .inform__svg {
+    height: 6.2rem;
+    right: unset;
+    left: 0;
+  }
+
   .notfound {
     overflow: hidden;
   }
 
   .notfound__head-suptitle {
-    font-size: 10.1990049751vw;
+    font-size: 4.1rem;
   }
 
   .notfound__head-title {
-    font-size: 46.0199004975vw;
+    font-size: 18.5rem;
   }
 
   .notfound__head-text {
@@ -4965,8 +5060,12 @@ nav i {
   }
 
   .produce {
-    --section-padding-bottom: 4.4rem;
+    --section-padding-bottom: rem;
     margin-right: 0;
+  }
+
+  .produce__inner {
+    gap: 2rem;
   }
 
   .produce__body {
