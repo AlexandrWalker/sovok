@@ -151,6 +151,14 @@ img {
 }
 
 @font-face {
+  font-family: Redoctober;
+  font-display: swap;
+  src: url("../fonts/Redoctober-ultra.woff2") format("woff2"), url("../fonts/Redoctober-ultra.woff") format("woff");
+  font-weight: 1000;
+  font-style: normal;
+}
+
+@font-face {
   font-family: Roboto;
   font-display: swap;
   src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
@@ -163,6 +171,22 @@ img {
   font-display: swap;
   src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
   font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -185,32 +209,16 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-SemiBold.woff2") format("woff2"), url("../fonts/Roboto-SemiBold.woff") format("woff");
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
   src: url("../fonts/Roboto-Regular.woff2") format("woff2"), url("../fonts/Roboto-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: RobotoCondensed;
+  font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Bold.woff2") format("woff2"), url("../fonts/RobotoCondensed-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: RobotoCondensed;
-  font-display: swap;
-  src: url("../fonts/RobotoCondensed-Black.woff2") format("woff2"), url("../fonts/RobotoCondensed-Black.woff") format("woff");
-  font-weight: 900;
+  src: url("../fonts/Roboto-SemiBold.woff2") format("woff2"), url("../fonts/Roboto-SemiBold.woff") format("woff");
+  font-weight: 600;
   font-style: normal;
 }
 
@@ -225,16 +233,16 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Light.woff2") format("woff2"), url("../fonts/RobotoCondensed-Light.woff") format("woff");
-  font-weight: 300;
+  src: url("../fonts/RobotoCondensed-Black.woff2") format("woff2"), url("../fonts/RobotoCondensed-Black.woff") format("woff");
+  font-weight: 900;
   font-style: normal;
 }
 
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-ExtraLight.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraLight.woff") format("woff");
-  font-weight: 200;
+  src: url("../fonts/RobotoCondensed-Bold.woff2") format("woff2"), url("../fonts/RobotoCondensed-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -249,32 +257,24 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-SemiBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-SemiBold.woff") format("woff");
-  font-weight: 600;
+  src: url("../fonts/RobotoCondensed-ExtraLight.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraLight.woff") format("woff");
+  font-weight: 200;
   font-style: normal;
 }
 
 @font-face {
-  font-family: Redoctober;
+  font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/Redoctober-ultra.woff2") format("woff2"), url("../fonts/Redoctober-ultra.woff") format("woff");
-  font-weight: 1000;
+  src: url("../fonts/RobotoCondensed-Light.woff2") format("woff2"), url("../fonts/RobotoCondensed-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
-  font-family: Roboto;
+  font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
+  src: url("../fonts/RobotoCondensed-Medium.woff2") format("woff2"), url("../fonts/RobotoCondensed-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -289,8 +289,8 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Medium.woff2") format("woff2"), url("../fonts/RobotoCondensed-Medium.woff") format("woff");
-  font-weight: 500;
+  src: url("../fonts/RobotoCondensed-SemiBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-SemiBold.woff") format("woff");
+  font-weight: 600;
   font-style: normal;
 }
 
@@ -1740,8 +1740,7 @@ p {
   height: 62.3958333333vw;
   pointer-events: none;
   position: absolute;
-  bottom: -25.1rem;
-  bottom: -13.0729166667vw;
+  bottom: -18.75vw;
   left: -19.7rem;
   left: -10.2604166667vw;
   z-index: 2;
@@ -2001,6 +2000,29 @@ p {
   padding: 5rem 0;
 }
 
+.header__right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+}
+
+.menu--open .header__right {
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
 .header__left {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2013,11 +2035,44 @@ p {
   -ms-flex-align: center;
   align-items: center;
   gap: 2rem;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
 }
 
 .header__left .btn--accent {
   font-weight: 700;
   font-size: 2rem;
+}
+
+.header__left .btn--accent .object-body {
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.menu--open .header__left .btn--accent .object-body {
+  background-color: var(--white);
+  color: var(--black);
+}
+
+.header__phone {
+  font-family: var(--second-family);
+  font-weight: 1000;
+  font-size: 6rem;
+  line-height: 100%;
+  color: var(--white);
+  -webkit-transform: translateX(150%);
+  -ms-transform: translateX(150%);
+  transform: translateX(150%);
+  -webkit-transition: -webkit-transform 0.2s linear;
+  transition: -webkit-transform 0.2s linear;
+  transition: transform 0.2s linear;
+  transition: transform 0.2s linear, -webkit-transform 0.2s linear;
+}
+
+.menu--open .header__phone {
+  -webkit-transform: translateX(0%);
+  -ms-transform: translateX(0%);
+  transform: translateX(0%);
 }
 
 .invert-overlay {
@@ -2044,6 +2099,7 @@ p {
   flex-shrink: 0;
 }
 
+.logo svg,
 .logo img {
   width: auto;
   height: 100%;
@@ -2051,6 +2107,19 @@ p {
   object-fit: contain;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+.logo path {
+  -webkit-transition: fill 0.3s ease;
+  transition: fill 0.3s ease;
+}
+
+.menu--open .logo svg path {
+  fill: var(--white);
+}
+
+.menu--open .logo svg #point {
+  fill: var(--black);
 }
 
 .menu {
@@ -2098,6 +2167,10 @@ p {
   -webkit-box-align: start;
   -ms-flex-align: start;
   align-items: flex-start;
+}
+
+.menu--open nav {
+  display: none;
 }
 
 nav ul {
@@ -3410,6 +3483,7 @@ nav i {
 
 .hero .typewriter__word {
   display: inline-block;
+  vertical-align: text-bottom;
   font-size: inherit;
   line-height: 23rem;
   letter-spacing: -0.05em;
@@ -3447,9 +3521,12 @@ nav i {
 .hero__cover {
   width: auto;
   height: 77rem;
+  height: 40.1041666667vw;
   position: absolute;
   top: -5.9rem;
+  top: -3.0729166667vw;
   right: 12.3rem;
+  right: 6.40625vw;
   z-index: 2;
 }
 
@@ -3464,9 +3541,12 @@ nav i {
 .hero__mask {
   width: auto;
   height: 73.1rem;
+  height: 38.0729166667vw;
   position: absolute;
   top: calc(((var(--header-height)) + 20.2rem) * -1);
+  top: -19.375vw;
   right: 21.9rem;
+  right: 11.40625vw;
   z-index: 1;
 }
 
@@ -4310,6 +4390,12 @@ nav i {
     top: -1.6rem;
   }
 
+  .form-input:required + .form-label .typewriter__word::after {
+    width: 1rem;
+    height: 1rem;
+    right: -1.2rem;
+  }
+
   .form-label {
     font-size: 1.6rem;
   }
@@ -4565,6 +4651,10 @@ nav i {
   }
 
   .header__left .btn--accent {
+    display: none;
+  }
+
+  .header__phone {
     display: none;
   }
 
