@@ -155,7 +155,6 @@
   &__side {
     display: flex;
     flex-direction: column;
-    // justify-content: space-between;
     justify-content: space-around;
     align-items: center;
     width: 100%;
@@ -229,7 +228,13 @@
     padding: 11rem 9rem 8rem 9rem;
     overflow-y: auto;
 
-    // position: relative;
+    &::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
+      padding: 0;
+      margin: 0;
+    }
   }
 
   &__cover {

@@ -323,9 +323,9 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   (function () {
 
-    // ================================================================
+    // 
     // НАСТРОЙКИ
-    // ================================================================
+    // 
     const CONFIG = {
 
       // --------------------------------------------------------------
@@ -387,9 +387,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     };
 
-    // ================================================================
+    // 
     // ЭЛЕМЕНТЫ
-    // ================================================================
+    // 
     const header = document.querySelector(CONFIG.headerSelector);
     if (!header) return;
 
@@ -406,11 +406,11 @@ document.addEventListener('DOMContentLoaded', () => {
       ? firstSection.offsetHeight
       : headerHeight;
 
-    // ================================================================
+    // 
     // ОПРЕДЕЛЕНИЕ ТЕМЫ ПОД ХЕДЕРОМ
     // Проходим по секциям, находим ту что пересекается с хедером,
     // берём её data-header-theme и ставим класс на <html>
-    // ================================================================
+    // 
     const updateTheme = () => {
       const sections = document.querySelectorAll(CONFIG.sectionsSelector);
       const headerBottom = header.getBoundingClientRect().bottom;
@@ -442,10 +442,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    // ================================================================
+    // 
     // НАЧАЛЬНЫЕ СТИЛИ ХЕДЕРА
     // Устанавливаем только те свойства которые включены в CONFIG
-    // ================================================================
+    // 
     const initialStyles = {
       yPercent: 0,
       // Высоту всегда устанавливаем чтобы GSAP знал начальное значение
@@ -462,10 +462,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     gsap.set(header, initialStyles);
 
-    // ================================================================
+    // 
     // GSAP SCRUB - анимация хедера при скролле
     // Собираем объект анимации только из включённых свойств
-    // ================================================================
+    // 
 
     // Объект с целевыми значениями для scrub-анимации
     const animateTo = {
@@ -506,9 +506,9 @@ document.addEventListener('DOMContentLoaded', () => {
       tlScrub.to(header, animateTo);
     }
 
-    // ================================================================
+    // 
     // КЛАСС header-off-top - прошли зону анимации
-    // ================================================================
+    // 
     ScrollTrigger.create({
       trigger: document.documentElement,
       start: `top+=${scrollZone} top`,
@@ -516,9 +516,9 @@ document.addEventListener('DOMContentLoaded', () => {
       onLeaveBack: () => htmlEl.classList.remove(CONFIG.classOffTop),
     });
 
-    // ================================================================
+    // 
     // КЛАСС header-at-footer - хедер достиг футера
-    // ================================================================
+    // 
     if (footer) {
       ScrollTrigger.create({
         trigger: footer,
@@ -528,10 +528,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // ================================================================
+    // 
     // HIDE / SHOW ХЕДЕРА
     // Работает только если CONFIG.hideOnScroll: true
-    // ================================================================
+    // 
     let lastScrollY = window.scrollY || window.pageYOffset;
     let isHidden = false;
     let ticking = false;
@@ -566,9 +566,9 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     };
 
-    // ================================================================
+    // 
     // ОСНОВНОЙ ОБРАБОТЧИК СКРОЛЛА
-    // ================================================================
+    // 
     const handleScroll = () => {
       const currentScrollY = window.scrollY || window.pageYOffset;
       const delta = currentScrollY - lastScrollY;
@@ -628,9 +628,9 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // ================================================================
+    // 
     // ИНИЦИАЛИЗАЦИЯ - определяем тему сразу при загрузке страницы
-    // ================================================================
+    // 
     updateTheme();
 
   })();
@@ -904,23 +904,62 @@ document.addEventListener('DOMContentLoaded', () => {
     // PIN - секции с пином без отступа
     //
 
+    // gsap.utils.toArray('[data-animate]').forEach(section => {
+    //   gsap.timeline({
+    //     scrollTrigger: {
+    //       trigger: section,
+    //       start: 'top bottom-=30%',
+    //     },
+    //   });
+
+    //   gsap.timeline({
+    //     scrollTrigger: {
+    //       trigger: section,
+    //       start: 'bottom bottom',
+    //       end: 'bottom top',
+    //       pin: true,
+    //       pinSpacing: false,
+    //     },
+    //   });
+    // });
     gsap.utils.toArray('[data-animate]').forEach(section => {
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top bottom-=30%',
-        },
+
+      const prev = section.previousElementSibling;
+
+      if (!prev) return;
+
+      // Пиним предыдущий блок чтобы он стоял на месте
+      // пока data-animate поднимается поверх него
+      ScrollTrigger.create({
+        trigger: prev,
+        start: 'bottom bottom',
+        // Держим пин ровно на высоту data-animate блока
+        end: () => `+=${section.offsetHeight}`,
+        pin: true,
+        pinSpacing: false,
+        invalidateOnRefresh: true,
+        anticipatePin: 1,
       });
 
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'bottom bottom',
-          end: 'bottom top',
-          pin: true,
-          pinSpacing: false,
+      // data-animate едет снизу вверх поверх предыдущего блока
+      gsap.fromTo(section,
+        {
+          y: () => section.offsetHeight,
         },
-      });
+        {
+          y: 0,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: prev,
+            // Начинаем когда верх предыдущего блока прибит к верху экрана
+            start: 'top top',
+            // Заканчиваем когда data-animate полностью перекрыл предыдущий
+            end: () => `+=${section.offsetHeight}`,
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+        }
+      );
     });
 
     //
@@ -975,15 +1014,19 @@ document.addEventListener('DOMContentLoaded', () => {
       fadeDown: { xPercent: 0, yPercent: -100 },
     };
 
+    // Брейкпоинт мобильной версии
+    const MOBILE_BREAKPOINT = 600;
+
+    // Проверяем мобильное ли устройство прямо сейчас
+    const isMobile = () => window.innerWidth < MOBILE_BREAKPOINT;
+
     Object.entries(fadeDirections).forEach(([name, from]) => {
       gsap.utils.toArray(`[data-anim="${name}"]`).forEach(el => {
 
         const hasOrder = el.dataset.animOrder !== undefined;
         const trigger = hasOrder ? el.parentElement : el;
 
-        // Ручная задержка из атрибута
         const manualDelay = parseFloat(el.dataset.animDelay ?? 0);
-        // Автоматическая задержка из data-anim-duration родителя с data-anim
         const parentDelay = (() => {
           const parent = el.closest('[data-anim]:not([data-anim="' + name + '"])');
           if (!parent) return 0;
@@ -992,13 +1035,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const delay = manualDelay || parentDelay;
 
-        gsap.set(el, { xPercent: from.xPercent, yPercent: from.yPercent, opacity: 0 });
+        // Читаем атрибут data-anim-mobile="fadeRight"
+        // Если атрибута нет -- используем исходное направление
+        const mobileName = el.dataset.animMobile ?? name;
+        const mobileDirection = fadeDirections[mobileName] ?? from;
+
+        // Функция возвращает нужный from в зависимости от ширины экрана
+        const getFrom = () => isMobile() ? mobileDirection : from;
+
+        // Устанавливаем начальное состояние с учётом текущего устройства
+        gsap.set(el, { xPercent: getFrom().xPercent, yPercent: getFrom().yPercent, opacity: 0 });
 
         ScrollTrigger.create({
           trigger,
-          start: 'top 70%',
+          start: 'top 85%',
           once: true,
           onEnter: () => {
+            // В момент срабатывания триггера пересчитываем направление
+            // Это важно если пользователь изменил размер окна до скролла
+            gsap.set(el, { xPercent: getFrom().xPercent, yPercent: getFrom().yPercent, opacity: 0 });
+
             gsap.to(el, {
               xPercent: 0,
               yPercent: 0,
@@ -1193,7 +1249,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+  /**
+   * Анимация svg
+   */
+  (function () {
 
+    // Получаем элемент который будем двигать
+    const rect = document.getElementById("inform__rect");
+
+    // Получаем SVG чтобы знать его ширину для ограничения движения
+    const svg = document.getElementById("inform__svg");
+
+    // Начальная позиция rect по оси X из атрибута
+    const startX = parseFloat(rect.getAttribute("x"));
+
+    // Максимальное смещение вправо в пикселях
+    const maxShift = 700;
+
+    // Создаем ScrollTrigger который следит за .wrapper
+    ScrollTrigger.create({
+      trigger: ".wrapper",
+      start: "top top",
+      end: "bottom bottom",
+      scrub: 1,
+      onUpdate: (self) => {
+        // self.progress от 0 до 1 в зависимости от позиции скролла
+        const progress = self.progress;
+
+        // Вычисляем новую позицию X
+        const newX = startX + maxShift * progress;
+
+        // Устанавливаем атрибут x напрямую на SVG элемент
+        rect.setAttribute("x", newX);
+      },
+    });
+
+  })();
 
   /**
    * Анимация набора текста
@@ -1723,11 +1814,17 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function waitForVisible(triggerEl) {
       return new Promise(resolve => {
-        ScrollTrigger.create({
-          trigger: triggerEl,
-          start: 'top 90%',
-          onEnter: () => resolve(),
-        });
+        const observer = new IntersectionObserver(
+          (entries) => {
+            if (entries[0].isIntersecting) {
+              observer.disconnect();
+              resolve();
+            }
+          },
+          { threshold: 0 }
+        );
+
+        observer.observe(triggerEl);
       });
     }
 

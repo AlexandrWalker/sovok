@@ -25,6 +25,9 @@
   }
 
   &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 10rem;
     height: 100%;
 
     @include sm {
@@ -35,6 +38,9 @@
   }
 
   &__phone {
+    width: 100%;
+    min-height: 20rem;
+
     font-family: var(--second-family);
     font-weight: 1000;
     font-size: 19.5rem;
@@ -46,7 +52,10 @@
     z-index: 1;
 
     @include sm {
-      font-size: calc(100vw/(402/43));
+      min-height: auto;
+
+      font-size: 4.3rem;
+      // font-size: calc(100vw/(402/43));
     }
 
     a {
@@ -100,14 +109,14 @@
   &__cover {
     width: auto;
     // height: 119.8rem;
-    height: calc(100vh/(1056/1198));
+    height: calc(100vw/(1920/1198));
     pointer-events: none;
 
     position: absolute;
     bottom: -25.1rem;
-    // bottom: calc(-100vh/(1056/241));
+    bottom: calc(-100vw/(1920/251));
     left: -19.7rem;
-    // left: calc(-100vw/(1920/197));
+    left: calc(-100vw/(1920/197));
     z-index: 2;
 
     @include sm {
@@ -165,6 +174,7 @@
 
     padding: 32.8rem 0 0 83rem;
     padding: calc(100vw/(1920/328)) 0 0 calc(100vw/(1920/830));
+    padding: 0 0 0 calc(100vw/(1920/830));
 
     @include sm {
       padding: 0;

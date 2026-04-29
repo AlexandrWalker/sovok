@@ -69,15 +69,18 @@
 
   &__body {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
     width: calc(100% + (var(--container-padding) * 2));
     margin-top: -2rem;
     margin-left: calc(var(--container-padding) * -1);
-    padding: 0 var(--container-padding);
+    margin-bottom: 7.5rem;
+    padding: 0 var(--container-padding) 0 calc(var(--container-padding) + 61rem);
     overflow: hidden;
 
     @include sm {
       margin-top: 0;
+      padding: 0 var(--container-padding);
+      margin-bottom: 2rem;
 
       position: relative;
       z-index: 2;
@@ -87,7 +90,8 @@
   &__slider {
     max-width: 112rem;
     width: 100%;
-    margin: 0 10.9rem 0 0;
+    margin: 0 10.9rem 0;
+    margin: 0;
 
     @include sm {
       margin: 0;
@@ -199,6 +203,14 @@
     }
   }
 
+  &__btn {
+    --btn-height: 7rem;
+    --btn-padding-x: 6rem;
+
+    font-family: var(--second-family);
+    font-size: 2rem;
+  }
+
   &__cover {
     width: auto;
     height: 78rem;
@@ -236,6 +248,37 @@
 
       position: relative;
       z-index: 1;
+    }
+  }
+
+  &__foot {
+    display: flex;
+    flex-direction: row;
+    gap: 5.5rem;
+    padding: 0 0 0 61rem;
+
+    position: relative;
+  }
+
+  &__svg {
+    // width: calc(110.4rem - 24.1rem);
+    width: 236.75rem;
+    height: 21.9rem;
+
+    position: absolute;
+    top: 0;
+    right: -154.85rem;
+
+    @include sm {
+      height: 6.2rem;
+
+      right: unset;
+      left: 0;
+    }
+
+    svg {
+      width: auto;
+      height: 100%;
     }
   }
 }

@@ -52,7 +52,7 @@
     @include sm {
       min-height: 14.8rem;
 
-      font-size: calc(100vw/(402/65));
+      font-size: 6.5rem;
       line-height: 100%;
     }
   }
@@ -102,7 +102,7 @@
           line-height: 8.5rem;
 
           @include sm {
-            font-size: calc(100vw/(1920/100));
+            font-size: 4rem;
             line-height: 85%;
           }
         }

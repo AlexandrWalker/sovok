@@ -47,16 +47,16 @@
       color: var(--white);
 
       @include sm {
-        // font-size: 10rem;
-        font-size: calc(100vw/(402/100));
+        font-size: 10rem;
+        // font-size: calc(100vw/(402/100));
       }
     }
 
     &__title {
 
       @include sm {
-        // font-size: 6.5rem;
-        font-size: calc(100vw/(402/65));
+        font-size: 6.5rem;
+        // font-size: calc(100vw/(402/65));
       }
     }
   }

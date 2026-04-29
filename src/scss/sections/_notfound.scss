@@ -25,7 +25,8 @@
       text-transform: uppercase;
 
       @include sm {
-        font-size: calc(100vw/(402/41));
+        // font-size: calc(100vw/(402/41));
+        font-size: 4.1rem;
       }
     }
 
@@ -39,7 +40,8 @@
       white-space: nowrap;
 
       @include sm {
-        font-size: calc(100vw/(402/185));
+        font-size: 18.5rem;
+        // font-size: calc(100vw/(402/185));
       }
     }
 

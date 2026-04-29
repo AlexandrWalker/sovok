@@ -10,7 +10,7 @@
   z-index: 2;
 
   @include sm {
-    --section-padding-bottom: 4.4rem;
+    --section-padding-bottom: rem;
 
     margin-right: 0;
   }
@@ -23,6 +23,10 @@
     display: flex;
     flex-direction: column;
     gap: 5rem;
+
+    @include sm {
+      gap: 2rem;
+    }
   }
 
   &__body {

@@ -101,13 +101,18 @@
     z-index: -1;
 
     @include sm {
-      background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAzIiBoZWlnaHQ9IjQ3MyIgdmlld0JveD0iMCAwIDUwMyA0NzMiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8cGF0aCBkPSJNMTIxLjU3MyA3NS4yMTc0QzI0MC4zODQgLTIwLjMwMTcgMzk0LjczNSAtMjUuNTQ3MiA0NjYuMzI3IDYzLjUwMTNDNTM3LjkxOCAxNTIuNTUgNDk5LjYzOSAzMDIuMTcyIDM4MC44MjggMzk3LjY5MUMyNjIuMDE3IDQ5My4yMSAxMDcuNjY1IDQ5OC40NTUgMzYuMDczNyA0MDkuNDA3Qy0zNS41MTc2IDMyMC4zNTggMi43NjE2IDE3MC43MzcgMTIxLjU3MyA3NS4yMTc0WiIgZmlsbD0iIzE3MTcxQSIvPg0KPC9zdmc+DQo=);
-      width: 50.4rem;
+      align-items: flex-start;
+      // background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAzIiBoZWlnaHQ9IjQ3MyIgdmlld0JveD0iMCAwIDUwMyA0NzMiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8cGF0aCBkPSJNMTIxLjU3MyA3NS4yMTc0QzI0MC4zODQgLTIwLjMwMTcgMzk0LjczNSAtMjUuNTQ3MiA0NjYuMzI3IDYzLjUwMTNDNTM3LjkxOCAxNTIuNTUgNDk5LjYzOSAzMDIuMTcyIDM4MC44MjggMzk3LjY5MUMyNjIuMDE3IDQ5My4yMSAxMDcuNjY1IDQ5OC40NTUgMzYuMDczNyA0MDkuNDA3Qy0zNS41MTc2IDMyMC4zNTggMi43NjE2IDE3MC43MzcgMTIxLjU3MyA3NS4yMTc0WiIgZmlsbD0iIzE3MTcxQSIvPg0KPC9zdmc+DQo=);
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTM1IiBoZWlnaHQ9IjQ3NCIgdmlld0JveD0iMCAwIDUzNSA0NzQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcDBfMjA0Nl81OCkiPg0KPHBhdGggZD0iTTE1NC4xMTggNzUuOTUyOEMyNzIuOTI5IC0xOS41NjY0IDQyNy4yOCAtMjQuODExOSA0OTguODcyIDY0LjIzNjdDNTcwLjQ2MyAxNTMuMjg1IDUzMi4xODQgMzAyLjkwNyA0MTMuMzczIDM5OC40MjZDMjk0LjU2MiA0OTMuOTQ1IDE0MC4yMSA0OTkuMTkxIDY4LjYxODUgNDEwLjE0MkMtMi45NzI4IDMyMS4wOTQgMzUuMzA2NCAxNzEuNDcyIDE1NC4xMTggNzUuOTUyOFoiIGZpbGw9IiMxNzE3MUEiLz4NCjxyZWN0IHg9IjIyMS45OTIiIHk9IjM0NS45OTgiIHdpZHRoPSIyNjciIGhlaWdodD0iMTEiIGZpbGw9IiNEQzE0M0MiLz4NCjxyZWN0IHg9IjYuMjI2NTYiIHk9IjE1MC45OTkiIHdpZHRoPSI4My4yMDcyIiBoZWlnaHQ9IjQ3LjA3ODYiIHRyYW5zZm9ybT0icm90YXRlKDcuNjEwNjYgNi4yMjY1NiAxNTAuOTk5KSIgZmlsbD0iI0RDMTQzQyIvPg0KPC9nPg0KPGRlZnM+DQo8Y2xpcFBhdGggaWQ9ImNsaXAwXzIwNDZfNTgiPg0KPHJlY3Qgd2lkdGg9IjUzNSIgaGVpZ2h0PSI0NzQiIGZpbGw9IndoaXRlIi8+DQo8L2NsaXBQYXRoPg0KPC9kZWZzPg0KPC9zdmc+DQo=);
+      // width: 50.4rem;
+      width: 53.5rem;
+      // height: 47.4rem;
       height: 47.4rem;
-      padding: 8.4rem 15.6rem 15.4rem 5rem;
+      padding: 8.4rem 17rem 8.4rem 6rem;
 
       top: 28rem;
-      right: calc((12.6rem + (var(--container-padding))) * -1);
+      // right: calc((12.6rem + (var(--container-padding))) * -1);
+      right: -15.5rem;
     }
 
     .general__head {
@@ -118,6 +123,16 @@
     .general__suptitle {
       font-weight: 400;
       color: var(--white);
+    }
+
+    .general__text {
+
+      br:last-child {
+
+        @include sm {
+          display: none;
+        }
+      }
     }
 
     // &-round {
@@ -143,12 +158,10 @@
     z-index: 1;
 
     @include sm {
-      height: 32rem;
-
-      transform: scale(-1, 1) !important;
+      height: 34.3rem;
 
       top: 0.5rem;
-      right: -3.6rem;
+      right: 0;
       left: unset;
     }
 

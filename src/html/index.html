@@ -123,8 +123,12 @@
               <!-- <div class="approach__block-round" data-anim="scale" data-anim-once></div> -->
             </div>
 
-            <div class="approach__cover" data-anim="fadeLeft" data-anim-order="2">
-              <img src="./../images/temp/gagarin.png" alt="">
+            <div class="approach__cover" data-anim="fadeLeft" data-anim-mobile="fadeRight" data-anim-order="2">
+              <picture>
+                <source media="(min-width:601px)" srcset="./../images/temp/gagarin.png">
+                <source media="(max-width:600px)" srcset="./../images/temp/gagarin-mob.png">
+                <img src="./../images/temp/gagarin.png" alt="">
+              </picture>
             </div>
 
             <div class="approach__satellite-wrap" data-anim-scene>
@@ -738,7 +742,7 @@
             </div>
 
             <div class="cases__cover" data-anim="fadeUp" data-anim-order="1">
-              <img src="./../images/temp/cases-cover-1.png" alt="">
+              <img src="./../images/temp/cases-cover.png" alt="">
             </div>
 
             <div class="cases__body">
@@ -758,8 +762,8 @@
                         <div class="cases__slide-text">
                           Единственный пятизвездочный отель в Новосибирске.
                         </div>
-                        <a class="cases__slide-btn btn btn--red" href="/">
-                          детально
+                        <a class="cases__slide-link" href="/">
+                          Ознакомиться
                         </a>
                       </div>
                     </div>
@@ -782,8 +786,8 @@
                         <div class="cases__slide-text">
                           Единственный пятизвездочный отель в Новосибирске.
                         </div>
-                        <a class="cases__slide-btn btn btn--red" href="/">
-                          детально
+                        <a class="cases__slide-link" href="/">
+                          Ознакомиться
                         </a>
                       </div>
                     </div>
@@ -806,6 +810,9 @@
                   <path class="path4"></path>
                 </i>
               </div>
+              <a class="btn btn--red" href="/">
+                все кейсы
+              </a>
             </div>
 
           </div>
@@ -1006,6 +1013,22 @@
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <div class="inform__foot">
+              <a class="inform__btn btn btn--red" href="/">
+                перейти в раздел
+              </a>
+              <div class="inform__svg">
+                <svg id="inform__svg" width="675" height="63" viewBox="0 0 675 63" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <rect x="29.2891" y="28.3594" width="644.814" height="5.11388" fill="#DC143C" />
+                  <rect id="inform__rect" x="17.5293" y="11.6758" width="53.6474" height="30.4487" fill="#17171A" />
+                  <rect x="55.3232" y="16.2715" width="342.63" height="5.11388" fill="#DC143C" />
+                  <rect x="2.56543" y="1.38265e-05" width="29.9265" height="5.24466" fill="#DC143C" />
+                  <rect y="45.582" width="55.4223" height="16.7738" fill="#DC143C" />
+                </svg>
               </div>
             </div>
 
