@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
       headerSelector: '.header',
       sectionsSelector: 'section',
       firstSectionSelector: null,      // null = используем высоту хедера
-      footerSelector: '.footer',
+      footerSelector: '.request',
 
       // --------------------------------------------------------------
       // ТЕМА (светлая / тёмная секция под хедером)

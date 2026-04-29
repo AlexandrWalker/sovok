@@ -61,6 +61,7 @@
 
     &__word {
       display: inline-block;
+      vertical-align: text-bottom;
 
       font-size: inherit;
       // line-height: 85%;
@@ -118,10 +119,13 @@
   &__cover {
     width: auto;
     height: 77rem;
+    height: calc(100vw/(1920/770));
 
     position: absolute;
     top: -5.9rem;
+    top: calc(-100vw/(1920/59));
     right: 12.3rem;
+    right: calc(100vw/(1920/123));
     z-index: 2;
 
     @include sm {
@@ -150,10 +154,13 @@
   &__mask {
     width: auto;
     height: 73.1rem;
+    height: calc(100vw/(1920/731));
 
     position: absolute;
     top: calc(((var(--header-height)) + 20.2rem) * -1);
+    top: calc(-100vw/(1920/372));
     right: 21.9rem;
+    right: calc(100vw/(1920/219));
     z-index: 1;
 
     @include sm {

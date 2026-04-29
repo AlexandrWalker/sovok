@@ -10,11 +10,30 @@
     // height: 5rem;
   }
 
+  svg,
   img {
     width: auto;
     height: 100%;
     object-fit: contain;
     flex-shrink: 0;
+  }
+
+  path {
+    transition: fill 0.3s ease;
+  }
+
+  .menu--open & {
+
+    svg {
+
+      path {
+        fill: var(--white);
+      }
+
+      #point {
+        fill: var(--black);
+      }
+    }
   }
 
   .header-theme-dark & {}

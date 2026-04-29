@@ -6,6 +6,10 @@ nav {
     display: none;
   }
 
+  .menu--open & {
+    display: none;
+  }
+
   ul {
     display: flex;
     flex-direction: row;

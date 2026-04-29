@@ -113,8 +113,9 @@
     pointer-events: none;
 
     position: absolute;
-    bottom: -25.1rem;
-    bottom: calc(-100vw/(1920/251));
+    // bottom: -25.1rem;
+    bottom: clamp(calc(-100vw/(1920/360)), calc(-100vw/(1920/500)), calc(-100vw/(1920/500)));
+    // top: calc(100vw/(1920/90));
     left: -19.7rem;
     left: calc(-100vw/(1920/197));
     z-index: 2;
