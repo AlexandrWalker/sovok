@@ -328,34 +328,34 @@ document.addEventListener('DOMContentLoaded', () => {
     // 
     const CONFIG = {
 
-      // --------------------------------------------------------------
+      // 
       // СЕЛЕКТОРЫ
-      // --------------------------------------------------------------
+      // 
       headerSelector: '.header',
       sectionsSelector: 'section',
       firstSectionSelector: null,      // null = используем высоту хедера
       footerSelector: '.request',
 
-      // --------------------------------------------------------------
+      // 
       // ТЕМА (светлая / тёмная секция под хедером)
       // Атрибут на секции: data-header-theme="dark" или "light"
       // Добавляет класс на <html>: header-theme-dark / header-theme-light
-      // --------------------------------------------------------------
+      // 
       themeAttribute: 'data-header-theme',
       classThemeDark: 'header-theme-dark',
       classThemeLight: 'header-theme-light',
 
-      // --------------------------------------------------------------
+      // 
       // КЛАССЫ НА <html> ДЛЯ СОСТОЯНИЙ СКРОЛЛА
-      // --------------------------------------------------------------
+      // 
       classFixed: 'header-fixed',         // прошли 1px скролла
       classOffTop: 'header-off-top',      // прошли первую секцию
       classAtFooter: 'header-at-footer',  // хедер у футера
       classHidden: 'header-hidden',       // хедер скрыт
 
-      // --------------------------------------------------------------
+      // 
       // СКРЫТИЕ ХЕДЕРА ПРИ СКРОЛЛЕ ВНИЗ
-      // --------------------------------------------------------------
+      // 
       hideOnScroll: true,                // true = скрывать, false = всегда видим
 
       // Настройки скрытия (работают только если hideOnScroll: true)
@@ -365,23 +365,23 @@ document.addEventListener('DOMContentLoaded', () => {
       showEase: 'power2.out',
       scrollThreshold: 5,                 // минимальный скролл для реакции (px)
 
-      // --------------------------------------------------------------
+      // 
       // АНИМАЦИЯ ФОНА ХЕДЕРА ПРИ СКРОЛЛЕ
-      // --------------------------------------------------------------
+      // 
       animateBg: false,                    // true = менять фон, false = не менять
       bgInitial: 'rgba(255, 255, 255, 0)',
       bgScrolled: 'rgba(255, 255, 255, 1)',
 
-      // --------------------------------------------------------------
+      // 
       // АНИМАЦИЯ ТЕНИ ХЕДЕРА ПРИ СКРОЛЛЕ
-      // --------------------------------------------------------------
+      // 
       animateShadow: false,                // true = менять тень, false = не менять
       shadowInitial: '0px 0px 0px rgba(0, 0, 0, 0)',
       shadowScrolled: '0px 0px 20px rgba(0, 0, 0, 0.3)',
 
-      // --------------------------------------------------------------
+      // 
       // АНИМАЦИЯ ВЫСОТЫ ХЕДЕРА ПРИ СКРОЛЛЕ
-      // --------------------------------------------------------------
+      // 
       animateHeight: true,                // true = менять высоту, false = не менять
       heightMultiplier: 0.7,              // во сколько раз уменьшить (0.7 = 70%)
 
@@ -795,6 +795,240 @@ document.addEventListener('DOMContentLoaded', () => {
 
   })();
 
+  /**
+   * Прелоадер
+   */
+  (function () {
+    // =========================
+    // ГЛОБАЛЬНАЯ НАСТРОЙКА
+    // =========================
+    window.PRELOADER_MODE = window.PRELOADER_MODE || {
+      // 'overlay'     -> как сейчас (белое лого + красная заливка)
+      // 'singleLogo' -> без наслоения (просто одно лого)
+      mode: 'overlay',
+
+      // Пути к изображениям
+      assets: {
+        // можно поменять на разные файлы, если у вас реально разные варианты
+        logoWhiteSrc: './images/logo/logo-bez-podpisi.svg',
+        // для совместимости с вашим overlay-режимом
+        logoCyanSrc: './images/logo/logo-bez-podpisi-2.svg'
+      },
+
+      // Размеры (можно под вашу верстку)
+      logoWidth: 71,
+      logoHeight: 70,
+
+      // safety timeout
+      safetyTimeoutMs: 8000,
+
+      // delay перед скрытием после 100% (только overlay)
+      overlayHideDelayMs: 600
+    };
+
+    const config = window.PRELOADER_MODE;
+    const mode = config.mode;
+
+    const preloaderEl = document.querySelector('.preloader');
+    if (!preloaderEl) return;
+
+    document.body.classList.add('no-scroll');
+
+    var safetyTimer = setTimeout(function () {
+      var preloader = document.querySelector('.preloader');
+      if (preloader && preloader.style.display !== 'none') {
+        preloader.style.display = 'none';
+        restoreScroll();
+      }
+    }, config.safetyTimeoutMs);
+
+    function restoreScroll() {
+      document.body.classList.remove('no-scroll');
+    }
+
+    function clearSafety() {
+      try { clearTimeout(safetyTimer); } catch (e) { }
+    }
+
+    const canvas = document.getElementById('logo-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    // =========================
+    // Hide (общая функция)
+    // =========================
+    function hidePreloader() {
+      gsap.set(canvas, { opacity: 0 });
+
+      gsap.to(preloaderEl, {
+        scaleY: 0,
+        duration: 0.7,
+        ease: 'power2.inOut',
+        transformOrigin: 'top center',
+        onComplete: function () {
+          preloaderEl.style.display = 'none';
+          restoreScroll();
+          clearSafety();
+        }
+      });
+
+      gsap.to(canvas, {
+        scaleY: 2,
+        duration: 0.7,
+        ease: 'power2.inOut',
+        transformOrigin: 'bottom center'
+      });
+    }
+
+    // =========================
+    // canvas init
+    // =========================
+    function initCanvas() {
+      const logoWidth = config.logoWidth;
+      const logoHeight = config.logoHeight;
+
+      const dpr = window.devicePixelRatio || 1;
+
+      canvas.width = logoWidth * dpr;
+      canvas.height = logoHeight * dpr;
+
+      // не накапливаем scale
+      if (ctx.setTransform) ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+
+      return { logoWidth, logoHeight };
+    }
+
+    // =========================
+    // РЕЖИМ 1: overlay (как было)
+    // =========================
+    function startOverlayPreloader() {
+      const { logoWidth, logoHeight } = initCanvas();
+      let fillHeight = 0;
+
+      const logoWhite = new Image();
+      const logoCyan = new Image();
+      let loadedImages = 0;
+
+      function draw() {
+        ctx.clearRect(0, 0, logoWidth, logoHeight);
+
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.drawImage(logoWhite, 0, 0, logoWidth, logoHeight);
+
+        ctx.globalCompositeOperation = 'source-atop';
+        ctx.fillStyle = '#FAF4ED';
+
+        var rectY = logoHeight - fillHeight;
+        ctx.fillRect(0, rectY, logoWidth, fillHeight);
+
+        ctx.globalCompositeOperation = 'source-over';
+      }
+
+      function onImageLoaded() {
+        loadedImages++;
+        if (loadedImages === 2) start();
+      }
+
+      logoWhite.onload = onImageLoaded;
+      logoCyan.onload = onImageLoaded;
+      logoWhite.onerror = onImageLoaded;
+      logoCyan.onerror = onImageLoaded;
+
+      logoWhite.src = config.assets.logoWhiteSrc;
+      logoCyan.src = config.assets.logoCyanSrc;
+
+      function start() {
+        draw();
+
+        var progress = { val: 0 };
+
+        gsap.to(progress, {
+          val: 30,
+          duration: 0.4,
+          ease: 'power2.out',
+          onUpdate: function () {
+            fillHeight = (progress.val / 100) * logoHeight;
+            draw();
+          }
+        });
+
+        gsap.to(progress, {
+          val: 85,
+          duration: 2.5,
+          ease: 'power1.out',
+          delay: 0.4,
+          onUpdate: function () {
+            fillHeight = (progress.val / 100) * logoHeight;
+            draw();
+          }
+        });
+
+        window.addEventListener('load', function onWindowLoad() {
+          window.removeEventListener('load', onWindowLoad);
+
+          gsap.killTweensOf(progress);
+
+          gsap.to(progress, {
+            val: 100,
+            duration: 0.4,
+            ease: 'power2.out',
+            onUpdate: function () {
+              fillHeight = (progress.val / 100) * logoHeight;
+              draw();
+            },
+            onComplete: function () {
+              setTimeout(hidePreloader, config.overlayHideDelayMs);
+            }
+          });
+        });
+      }
+    }
+
+    // =========================
+    // РЕЖИМ 2: singleLogo (без наслоения)
+    // =========================
+    function startSingleLogoPreloader() {
+      const { logoWidth, logoHeight } = initCanvas();
+
+      const logo = new Image();
+      logo.onload = function () {
+        // Просто рисуем одно лого без заливки
+        ctx.clearRect(0, 0, logoWidth, logoHeight);
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.drawImage(logo, 0, 0, logoWidth, logoHeight);
+        ctx.globalCompositeOperation = 'source-over';
+
+        // лёгкая анимация (опционально)
+        gsap.fromTo(canvas, { opacity: 0.2, scaleY: 0.98 }, { opacity: 1, scaleY: 1, duration: 0.4, ease: 'power2.out' });
+
+        window.addEventListener('load', function onWindowLoad() {
+          window.removeEventListener('load', onWindowLoad);
+          hidePreloader();
+        });
+      };
+
+      logo.onerror = function () {
+        // fallback: если не загрузилось — просто скрываем по load
+        window.addEventListener('load', function onWindowLoad() {
+          window.removeEventListener('load', onWindowLoad);
+          hidePreloader();
+        });
+      };
+
+      // берём путь из js-конфига
+      logo.src = config.assets.logoWhiteSrc;
+    }
+
+    // =========================
+    // START
+    // =========================
+    if (mode === 'singleLogo') {
+      startSingleLogoPreloader();
+    } else {
+      startOverlayPreloader();
+    }
+  })();
 
 
 

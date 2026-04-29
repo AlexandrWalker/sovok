@@ -59,13 +59,18 @@
 
   .typewriter {
 
+    @include dosm {
+      padding: 0 0 0 0.5rem;
+    }
+
     &__word {
       display: inline-block;
       vertical-align: text-bottom;
 
       font-size: inherit;
       // line-height: 85%;
-      line-height: 23rem;
+      // line-height: 23rem;
+      line-height: 32.4rem;
       letter-spacing: -0.05em;
       color: var(--black);
 
@@ -87,7 +92,18 @@
         line-height: 120%;
       }
 
+      &:nth-child(1) {
+
+        @include dosm {
+          margin-top: -4.7rem;
+        }
+      }
+
       &:nth-child(2) {
+
+        @include dosm {
+          margin-top: -9.4rem;
+        }
 
         .typewriter__cursor,
         .typewriter__word {
@@ -96,6 +112,10 @@
       }
 
       &:last-child {
+
+        @include dosm {
+          margin-top: -4.7rem;
+        }
 
         .typewriter__cursor,
         .typewriter__word {
