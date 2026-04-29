@@ -834,8 +834,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.body.classList.add('no-scroll');
 
-    var safetyTimer = setTimeout(function () {
-      var preloader = document.querySelector('.preloader');
+    const safetyTimer = setTimeout(function () {
+      const preloader = document.querySelector('.preloader');
       if (preloader && preloader.style.display !== 'none') {
         preloader.style.display = 'none';
         restoreScroll();
@@ -1159,6 +1159,7 @@ document.addEventListener('DOMContentLoaded', () => {
     gsap.utils.toArray('[data-animate]').forEach(section => {
 
       const prev = section.previousElementSibling;
+      // const prev = document.querySelector('.main');
 
       if (!prev) return;
 
@@ -1488,11 +1489,13 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   (function () {
 
-    // Получаем элемент который будем двигать
-    const rect = document.getElementById("inform__rect");
-
     // Получаем SVG чтобы знать его ширину для ограничения движения
     const svg = document.getElementById("inform__svg");
+
+    if (!svg) return;
+
+    // Получаем элемент который будем двигать
+    const rect = document.getElementById("inform__rect");
 
     // Начальная позиция rect по оси X из атрибута
     const startX = parseFloat(rect.getAttribute("x"));
@@ -2231,43 +2234,6 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /**
-   * iOS-safe ScrollTrigger refresh handler
-   */
-  (function () {
-    let resizeTimer;
-    let lastWidth = window.innerWidth;
-    let lastHeight = window.innerHeight;
-
-    // Функция для стабильного пересчёта
-    const safeRefresh = () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        const currentWidth = window.innerWidth;
-        const currentHeight = window.innerHeight;
-
-        // Проверяем - реально ли изменился размер экрана
-        const widthChanged = Math.abs(currentWidth - lastWidth) > 50;
-        const heightChanged = Math.abs(currentHeight - lastHeight) > 150;
-
-        if (widthChanged || heightChanged) {
-          lastWidth = currentWidth;
-          lastHeight = currentHeight;
-          console.log('refresh');
-          ScrollTrigger.refresh();
-        }
-      }, 250); // debounce 250ms - достаточно для всех платформ
-    };
-
-    // Реакция на изменение ориентации (особенно важно для iOS)
-    window.addEventListener('orientationchange', () => {
-      setTimeout(() => ScrollTrigger.refresh(), 300);
-    });
-
-    // Реакция на реальный resize, но фильтруем “мусорные” вызовы
-    window.addEventListener('resize', safeRefresh);
-  })();
-
-  /**
    * Функция для блока produce
    * Индикатор для наведения на ссылки внутри produce__item-list
    * Метод обработки клика produce__item для присвоения активного класса в моб версии
@@ -2284,7 +2250,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ИНДИКАТОР — только для десктопа
 
-    document.querySelectorAll('.produce__item-list').forEach(nav => {
+    document.querySelectorAll('.produce__item-list>ul').forEach(nav => {
       const indicator = document.createElement('div');
       indicator.className = 'produce__indicator';
       nav.appendChild(indicator);
@@ -3025,14 +2991,14 @@ document.addEventListener('DOMContentLoaded', () => {
           swiper.slideTo(target);
         }
 
-        if (nextEl) nextEl.addEventListener('click', (e) => {
-          e.preventDefault();
-          console.log('next clicked', swiper.realIndex);
-          handle('next');
-        });
+        // if (nextEl) nextEl.addEventListener('click', (e) => {
+        //   e.preventDefault();
+        //   console.log('next clicked', swiper.realIndex);
+        //   handle('next');
+        // });
 
-        console.log('loopedSlides:', swiper.loopedSlides);
-        console.log('slides.length:', swiper.slides.length);
+        // console.log('loopedSlides:', swiper.loopedSlides);
+        // console.log('slides.length:', swiper.slides.length);
 
         updateDisabled();
       }
@@ -3054,4 +3020,87 @@ document.addEventListener('DOMContentLoaded', () => {
 
   })();
 
+  /**
+   * iOS-safe ScrollTrigger refresh handler
+   */
+  // (function () {
+  //   let resizeTimer;
+  //   let lastWidth = window.innerWidth;
+  //   let lastHeight = window.innerHeight;
+
+  //   // Функция для стабильного пересчёта
+  //   const safeRefresh = () => {
+  //     clearTimeout(resizeTimer);
+  //     resizeTimer = setTimeout(() => {
+  //       const currentWidth = window.innerWidth;
+  //       const currentHeight = window.innerHeight;
+
+  //       // Проверяем - реально ли изменился размер экрана
+  //       const widthChanged = Math.abs(currentWidth - lastWidth) > 50;
+  //       const heightChanged = Math.abs(currentHeight - lastHeight) > 150;
+
+  //       if (widthChanged || heightChanged) {
+  //         lastWidth = currentWidth;
+  //         lastHeight = currentHeight;
+  //         console.log('refresh');
+  //         ScrollTrigger.refresh();
+  //       }
+  //     }, 250); // debounce 250ms - достаточно для всех платформ
+  //   };
+
+  //   // Реакция на изменение ориентации (особенно важно для iOS)
+  //   window.addEventListener('orientationchange', () => {
+  //     setTimeout(() => ScrollTrigger.refresh(), 300);
+  //   });
+
+  //   // Реакция на реальный resize, но фильтруем “мусорные” вызовы
+  //   window.addEventListener('resize', safeRefresh);
+  // })();
+
+  (function () {
+    let resizeTimer = null;
+    let lastWidth = window.innerWidth;
+
+    // Единственный надёжный триггер для refresh — смена ширины.
+    // Высоту игнорируем полностью: на iOS она "прыгает" при скролле
+    // из-за адресной строки и вызывает ложные refresh.
+    function safeRefresh() {
+      // Читаем ширину через visualViewport если доступен — точнее на iOS
+      const currentWidth = window.visualViewport
+        ? Math.round(window.visualViewport.width)
+        : window.innerWidth;
+
+      if (Math.abs(currentWidth - lastWidth) < 50) return;
+
+      lastWidth = currentWidth;
+
+      clearTimeout(resizeTimer);
+      // 400ms — даём iOS время завершить layout после поворота
+      resizeTimer = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 400);
+    }
+
+    // orientationchange — основной триггер поворота на мобильных
+    window.addEventListener('orientationchange', () => {
+      // Дополнительная задержка: браузер применяет новые размеры
+      // не сразу после события а через ~300-500ms
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        lastWidth = window.visualViewport
+          ? Math.round(window.visualViewport.width)
+          : window.innerWidth;
+        ScrollTrigger.refresh();
+      }, 500);
+    });
+
+    // window.resize — для десктопа и Android
+    window.addEventListener('resize', safeRefresh);
+
+    // visualViewport.resize — для iOS Safari (надёжнее чем window.resize)
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', safeRefresh);
+    }
+  })();
+  
 });
