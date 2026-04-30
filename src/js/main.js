@@ -1044,7 +1044,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Настройки магнетизма
     const MAGNET_CONFIG = {
       // Расстояние от края элемента в px при котором начинается притяжение
-      triggerDistance: 120,
+      triggerDistance: 110,
       // Сила притяжения: 0.1 = слабое, 1.0 = 1 к 1 с курсором
       strength: 0.1,
       // Скорость следования за курсором

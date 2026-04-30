@@ -119,7 +119,7 @@
     color: var(--white);
 
     transform: translateX(150%);
-    transition: transform 0.2s linear;
+    transition: transform 0.3s linear;
 
     @include sm {
       display: none;

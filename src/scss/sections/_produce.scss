@@ -272,7 +272,7 @@
       .produce__item:hover & {
 
         @include dosm {
-          grid-template-rows: 1fr auto;
+          grid-template-rows: auto 1fr;
           gap: 4rem;
           padding: 5rem 3rem 6rem 3rem;
         }
@@ -308,6 +308,7 @@
         flex-direction: column;
         gap: 3rem;
         padding-left: 3rem;
+        width: 100%;
 
         position: relative;
 
@@ -354,6 +355,7 @@
     }
 
     &-list {
+      display: flex;
       overflow: hidden;
 
       .produce__item:hover & {
