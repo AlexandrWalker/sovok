@@ -19,6 +19,14 @@
         display: block;
       }
     }
+
+    &__suptitle {
+      font-size: calc(100vw/(1920/100));
+
+      @include sm {
+        font-size: 4rem;
+      }
+    }
   }
 
   &__inner {
@@ -38,8 +46,12 @@
       &__text {
         margin-left: 54rem;
 
+        font-size: calc(100vw/(1920/40));
+
         @include sm {
           margin-left: 0;
+
+          font-size: 2rem;
         }
       }
     }
@@ -131,6 +143,7 @@
     }
 
     .general__text {
+      font-size: calc(100vw/(1920/40));
 
       br:last-child {
 
@@ -156,9 +169,11 @@
 
   &__cover {
     height: 90.6rem;
+    height: calc(100vw/(1920/906));
 
     position: absolute;
     top: 25.2rem;
+    top: calc(100vw/(1920/252));
     left: 0;
     z-index: 1;
 

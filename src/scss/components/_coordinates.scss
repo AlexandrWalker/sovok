@@ -1,0 +1,36 @@
+@use './../mixins' as *;
+
+.coordinates {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  &__title {
+    font-family: var(--second-family);
+    font-weight: 1000;
+    font-size: 3rem;
+    line-height: 100%;
+    text-transform: uppercase;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    p {
+      font-weight: 400;
+      font-size: 2rem;
+      line-height: 100%;
+      color: var(--white);
+    }
+
+    a {
+      text-decoration: underline;
+
+      &:hover {
+        color: var(--black);
+      }
+    }
+  }
+}

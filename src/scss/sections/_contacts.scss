@@ -7,7 +7,7 @@
   &__inner {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 3rem;
     width: calc(100% - var(--callback-mini-width) + var(--container-padding));
 
     position: relative;
@@ -25,7 +25,7 @@
 
     &-suptitle {
       font-weight: 900;
-      font-size: 2rem;
+      font-size: 3rem;
       line-height: 100%;
       text-transform: uppercase;
       color: var(--red);
@@ -57,41 +57,86 @@
       margin-bottom: calc(35rem - var(--section-padding-bottom));
     }
 
-    .footer__contacts {
-      gap: 2rem;
+    .footer {
 
-      @include sm {
-        gap: 1rem;
+      &__contacts {
+        gap: 2rem;
+
+        @include sm {
+          gap: 1rem;
+        }
+
+        &-wrap {
+
+          span {
+            color: var(--red);
+          }
+
+          a {
+            color: var(--red);
+
+            &:hover {
+              color: var(--black);
+            }
+          }
+        }
+      }
+
+      &__menu {
+
+        &-link {
+          font-weight: 900;
+          font-size: 3rem;
+          text-decoration: none;
+          color: var(--red);
+
+          @include sm {
+            font-size: 1.6rem;
+          }
+        }
       }
     }
 
-    .footer__menu-link {
-      font-weight: 900;
-      font-size: 2rem;
-      text-decoration: none;
-      color: var(--red);
-
-      @include sm {
-        font-size: 1.6rem;
-      }
-    }
-
-    .footer__social {
+    .social {
       gap: 1.5rem;
 
       @include sm {
         max-width: 24.2rem;
       }
-    }
 
-    .footer__social-link i {
-      border-color: var(--black);
-    }
+      &__title {
+        font-weight: 900;
+        font-size: 3rem;
+        text-decoration: none;
+        color: var(--red);
 
-    .footer__social-text {
+        @include sm {
+          font-size: 1.6rem;
+        }
+      }
 
-      @include sm {
-        display: none;
+      &__links {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+        max-width: 24.5rem;
+      }
+
+      &__link {
+
+        i {
+          --font-size: 4rem;
+
+          border-color: var(--black);
+        }
+      }
+
+      &__text {
+
+        @include sm {
+          display: none;
+        }
       }
     }
   }
@@ -105,11 +150,13 @@
     position: absolute;
     right: 0;
     bottom: calc(var(--section-padding-bottom) * -1);
+    bottom: calc(-100vw/(1920/20));
 
     @include sm {
       height: 51.5rem;
 
       right: -40.3rem;
+      bottom: calc(var(--section-padding-bottom) * -1);
     }
 
     img {

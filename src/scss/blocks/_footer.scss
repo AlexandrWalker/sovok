@@ -237,7 +237,7 @@
   &__links {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem;
 
     grid-column: 1/2;
     grid-row: 3/5;
@@ -252,7 +252,6 @@
     font-size: 2rem;
     line-height: 100%;
     text-decoration: underline;
-    text-transform: uppercase;
 
     @include sm {
       font-size: 1.2rem;
@@ -309,79 +308,6 @@
     }
   }
 
-  &__social {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    width: fit-content;
-
-    grid-column: 2/3;
-    grid-row: 2/4;
-
-    @include sm {
-      gap: 1rem;
-
-      max-width: 33rem;
-    }
-
-    &-links {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-
-      @include sm {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 1rem;
-      }
-    }
-
-    &-link {
-
-      &:hover {
-
-        i {
-          border-color: var(--black);
-
-          color: var(--black);
-        }
-      }
-
-      i {
-        --font-size: 6rem;
-
-        border: 0.1rem solid var(--white);
-        border-radius: 50%;
-
-        @include sm {
-          --font-size: 4rem;
-        }
-      }
-    }
-
-    &-text {
-      max-width: 30rem;
-      grid-column: 1/5;
-
-      font-weight: 400;
-      font-size: 1.4rem;
-      line-height: 120%;
-      letter-spacing: -0.04em;
-      opacity: 0.5;
-
-      @include sm {
-        width: 100%;
-
-        font-size: 1.2rem;
-      }
-    }
-
-    .footer__menu-link {
-      margin-bottom: 1rem;
-    }
-  }
-
   &__foot {
     display: flex;
     flex-direction: row;
@@ -398,8 +324,6 @@
   }
 
   &__download {
-    grid-column: 2/3;
-    grid-row: 4/5;
 
     i {
       --font-size: 2.4rem;
