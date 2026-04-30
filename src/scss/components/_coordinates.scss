@@ -5,12 +5,20 @@
   flex-direction: column;
   gap: 2rem;
 
+  @include sm {
+    gap: 1rem;
+  }
+
   &__title {
     font-family: var(--second-family);
     font-weight: 1000;
     font-size: 3rem;
     line-height: 100%;
     text-transform: uppercase;
+
+    @include sm {
+      font-size: 2rem;
+    }
   }
 
   &__content {
@@ -18,11 +26,19 @@
     flex-direction: column;
     gap: 1.5rem;
 
+    @include sm {
+      gap: 1rem;
+    }
+
     p {
       font-weight: 400;
       font-size: 2rem;
       line-height: 100%;
       color: var(--white);
+
+      @include sm {
+        font-size: 1.6rem;
+      }
     }
 
     a {

@@ -125,6 +125,17 @@
 
       &__link {
 
+        &:hover {
+
+          @include dosm {
+
+            i {
+              color: var(--red);
+              border-color: var(--red);
+            }
+          }
+        }
+
         i {
           --font-size: 4rem;
 
@@ -144,7 +155,7 @@
   &__cover {
     width: auto;
     height: 56.3rem;
-    height: calc(100vw/(1920/563));
+    height: calc(100vw/(1920/520));
     pointer-events: none;
 
     position: absolute;

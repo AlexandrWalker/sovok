@@ -57,6 +57,14 @@
       gap: 3rem;
       padding: 2rem 0;
     }
+
+    .menu--open & {
+
+      @include sm {
+        flex-direction: column;
+        gap: 3rem;
+      }
+    }
   }
 
   &__right {
@@ -124,12 +132,12 @@
     transform: translateX(150%);
     transition: transform 0.3s linear;
 
-    @include sm {
-      display: none;
-    }
-
     .menu--open & {
       transform: translateX(0%);
+
+      @include sm {
+        font-size: calc(100vw/(402/40));
+      }
     }
   }
 }
