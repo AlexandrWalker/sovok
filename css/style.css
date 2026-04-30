@@ -145,14 +145,6 @@ img {
 @font-face {
   font-family: Redoctober;
   font-display: swap;
-  src: url("../fonts/Redoctober-ultra.woff2") format("woff2"), url("../fonts/Redoctober-ultra.woff") format("woff");
-  font-weight: 1000;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Redoctober;
-  font-display: swap;
   src: url("../fonts/Redoctober-regular.woff2") format("woff2"), url("../fonts/Redoctober-regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
@@ -163,6 +155,14 @@ img {
   font-display: swap;
   src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
   font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Redoctober;
+  font-display: swap;
+  src: url("../fonts/Redoctober-ultra.woff2") format("woff2"), url("../fonts/Redoctober-ultra.woff") format("woff");
+  font-weight: 1000;
   font-style: normal;
 }
 
@@ -3644,12 +3644,39 @@ canvas {
   z-index: 2;
 }
 
-.hero__cover img {
+.hero__cover-img {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 3;
+}
+
+.hero__cover-img img {
   max-width: unset;
   width: auto;
   height: 100%;
   -o-object-fit: contain;
   object-fit: contain;
+}
+
+.hero__cover-el {
+  width: 11.1rem;
+  width: 5.78125vw;
+  height: 5.78125vw;
+  position: absolute;
+  top: 14.7rem;
+  top: 7.65625vw;
+  left: 29.7rem;
+  left: 15.46875vw;
+}
+
+.hero__cover-blind {
+  z-index: 1;
+}
+
+.hero__cover-eye {
+  will-change: transform;
+  z-index: 2;
 }
 
 .hero__mask {
@@ -5155,13 +5182,20 @@ canvas {
     right: unset;
   }
 
-  .hero__cover img {
+  .hero__cover-img img {
     position: absolute;
     top: 0;
     left: 46%;
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
+  }
+
+  .hero__cover-el {
+    width: 7rem;
+    height: 7rem;
+    top: 8.6rem;
+    left: 10.5rem;
   }
 
   .hero__mask {
