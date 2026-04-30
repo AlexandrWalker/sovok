@@ -2677,7 +2677,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ИНДИКАТОР — только для десктопа
 
-    document.querySelectorAll('.produce__item-list>ul').forEach(nav => {
+    // document.querySelectorAll('.produce__item-list>ul').forEach(nav => {
+    document.querySelectorAll('.produce__item-block').forEach(nav => {
       const indicator = document.createElement('div');
       indicator.className = 'produce__indicator';
       nav.appendChild(indicator);
@@ -2692,7 +2693,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const navRect = nav.getBoundingClientRect();
           const liRect = li.getBoundingClientRect();
 
-          const top = liRect.top - navRect.top + nav.scrollTop;
+          const top = liRect.top - navRect.top + nav.scrollTop + 5;
           const height = (53 - liRect.height) / -2;
 
           indicator.style.top = `${top}px`;

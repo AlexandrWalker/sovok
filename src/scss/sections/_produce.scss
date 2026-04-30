@@ -316,12 +316,12 @@
           padding-left: 0;
         }
 
-        .produce__item:hover & {
+        // .produce__item:hover & {
 
-          @include dosm {
-            overflow: visible;
-          }
-        }
+        //   @include dosm {
+        //     overflow: visible;
+        //   }
+        // }
       }
 
       li {
@@ -355,12 +355,19 @@
 
     &-list {
       overflow: hidden;
+
+      .produce__item:hover & {
+
+        @include dosm {
+          // overflow: visible;
+        }
+      }
     }
   }
 
   &__indicator {
     position: absolute;
-    left: -4.3rem;
+    left: -1.3rem;
     width: 3.9rem;
     height: 5.3rem;
     background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzkiIGhlaWdodD0iNTMiIHZpZXdCb3g9IjAgMCAzOSA1MyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik0zOSAyNi41TDAgNTNMNC4zOTEyZS0wNiAwTDM5IDI2LjVaIiBmaWxsPSIjMTcxNzFBIi8+DQo8L3N2Zz4NCg==);
