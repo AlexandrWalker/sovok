@@ -32,6 +32,17 @@
   /* прошли первую секцию */
   &.html.header-at-footer {}
 
+  .nav {
+
+    @include sm {
+      display: none;
+    }
+
+    .menu--open & {
+      display: none;
+    }
+  }
+
   &__inner {
     display: flex;
     flex-direction: row;

@@ -1,27 +1,38 @@
 @use './../mixins' as *;
 
-nav {
+.nav {
 
-  @include sm {
-    display: none;
-  }
-
-  .menu--open & {
-    display: none;
-  }
-
-  ul {
+  &>ul {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 3rem;
-  }
 
-  li {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
+    li {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+
+      position: relative;
+
+      &>i {
+        --font-size: 1.3rem !important;
+
+        transform: rotate(-90deg) scale(-1, 1);
+      }
+
+      &:hover {
+
+        .nav__wrap {
+          grid-template-rows: 1fr;
+        }
+
+        .nav__items {
+          padding: 2.5rem 0 3.5rem 0;
+        }
+      }
+    }
   }
 
   a {
@@ -50,9 +61,106 @@ nav {
     }
   }
 
-  i {
-    --font-size: 1.3rem !important;
+  &__wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    width: max-content;
+    transition: all 0.3s ease;
 
-    transform: rotate(-90deg) scale(-1, 1);
+    position: absolute;
+    top: calc(100% + 2rem);
+    left: 0;
+    z-index: 1;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    background-color: var(--black);
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+
+  &__item {
+    padding: 1.5rem 2rem;
+
+    &-head {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 3rem;
+      transition: all 0.3s ease;
+
+      color: var(--white);
+      cursor: pointer;
+
+      .nav__item:hover & {
+        color: var(--red);
+      }
+
+      span {
+        font-weight: 400;
+        font-size: 2rem;
+        line-height: 100%;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      i {
+        --font-size: 1.3rem;
+      }
+    }
+
+    &-body {
+      display: grid;
+      grid-template-columns: 0fr;
+      background-color: var(--red);
+      transition: all 0.5s ease;
+      overflow: hidden;
+
+      position: absolute;
+      top: 0;
+      left: 100%;
+      z-index: 1;
+
+      .nav__item:hover & {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    &-list {
+      width: 0;
+      padding: 4rem 0 5rem 0;
+      transition: all 0.3s ease;
+      overflow: hidden;
+
+      .nav__item:hover & {
+        width: max-content;
+        padding: 4rem 5rem 5rem 3rem;
+      }
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        overflow: hidden;
+      }
+
+      a {
+        font-weight: 400;
+        font-size: 2rem;
+        line-height: 100%;
+        text-decoration: underline;
+        text-transform: uppercase;
+        color: var(--white);
+
+        &:hover {
+          color: var(--black);
+        }
+      }
+    }
   }
 }
