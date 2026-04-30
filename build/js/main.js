@@ -1030,6 +1030,433 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })();
 
+  /**
+   * Функция магнетизма для главного блока
+   */
+  // Атрибуты для ручной настройки через html
+  // data-magnet-distance="100"
+  // data-magnet-strength="0.1"
+  // data-magnet-lerp="0.12"
+  // data-magnet-return-lerp="0.08">
+
+  (function () {
+
+    // Настройки магнетизма
+    const MAGNET_CONFIG = {
+      // Расстояние от края элемента в px при котором начинается притяжение
+      triggerDistance: 120,
+      // Сила притяжения: 0.1 = слабое, 1.0 = 1 к 1 с курсором
+      strength: 0.1,
+      // Скорость следования за курсором
+      lerpFactor: 0.12,
+      // Скорость возврата когда курсор ушёл
+      returnLerpFactor: 0.08,
+    };
+
+    // Настройки автоанимации
+    const AUTO_ANIM_CONFIG = {
+      // Пауза между сценариями в секундах
+      pauseMin: 1.5,
+      pauseMax: 4.0,
+      // Радиус смещения для drift в px
+      driftRadius: 10,
+      // Амплитуда покачивания float в px
+      floatAmplitudeX: 14,
+      floatAmplitudeY: 8,
+      // Длительность одного цикла float в секундах
+      floatDuration: 3.5,
+      // Амплитуда выброса pulse в px
+      pulseDist: 12,
+      pulseDuration: 0.6,
+      // Параметры shake
+      shakeAmplitude: 6,
+      shakeDuration: 0.04,
+      shakeCount: 6,
+    };
+
+    function lerp(a, b, t) {
+      return a + (b - a) * t;
+    }
+
+    function distanceToRect(px, py, rect) {
+      const dx = Math.max(rect.left - px, 0, px - rect.right);
+      const dy = Math.max(rect.top - py, 0, py - rect.bottom);
+      return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    function randomBetween(min, max) {
+      return min + Math.random() * (max - min);
+    }
+
+    function initMagnet(el) {
+
+      const triggerDistance = parseFloat(
+        el.dataset.magnetDistance ?? MAGNET_CONFIG.triggerDistance
+      );
+      const strength = parseFloat(
+        el.dataset.magnetStrength ?? MAGNET_CONFIG.strength
+      );
+      const lerpFactor = parseFloat(
+        el.dataset.magnetLerp ?? MAGNET_CONFIG.lerpFactor
+      );
+      const returnLerpFactor = parseFloat(
+        el.dataset.magnetReturnLerp ?? MAGNET_CONFIG.returnLerpFactor
+      );
+
+      // Текущее отрисованное смещение
+      let currentX = 0;
+      let currentY = 0;
+
+      // Целевое смещение
+      let targetX = 0;
+      let targetY = 0;
+
+      // Смещение от автоанимации - курсор подхватывает отсюда
+      let autoX = 0;
+      let autoY = 0;
+
+      let mouseX = 0;
+      let mouseY = 0;
+
+      // Курсор в зоне притяжения
+      let isActive = false;
+
+      // rAF петля запущена
+      let rafId = null;
+
+      // Автоанимация сейчас играет
+      let autoPlaying = false;
+
+      // Таймер паузы между сценариями
+      let pauseTimer = null;
+
+      // Текущий активный tween
+      let autoTween = null;
+
+      // Список сценариев - drift дублируем чтобы выпадал чаще
+      // const scenarios = ['float', 'drift', 'drift', 'pulse', 'shake'];
+      const scenarios = ['drift', 'drift', 'pulse'];
+
+      // Сценарий float: плавная восьмёрка через последовательные tweens
+      function playFloat() {
+        const cfg = AUTO_ANIM_CONFIG;
+        autoPlaying = true;
+
+        const steps = 8;
+        let step = 0;
+
+        const points = [];
+        for (let i = 1; i <= steps; i++) {
+          const angle = (i / steps) * Math.PI * 2;
+          points.push({
+            x: Math.sin(angle) * cfg.floatAmplitudeX,
+            y: Math.sin(angle * 2) * cfg.floatAmplitudeY,
+          });
+        }
+
+        const proxy = { x: autoX, y: autoY };
+
+        function nextStep() {
+          if (step >= points.length) {
+            autoPlaying = false;
+            schedulNext();
+            return;
+          }
+
+          const point = points[step];
+          const stepDuration = cfg.floatDuration / steps;
+
+          autoTween = gsap.to(proxy, {
+            x: point.x,
+            y: point.y,
+            duration: stepDuration,
+            ease: 'sine.inOut',
+            onUpdate: () => {
+              autoX = proxy.x;
+              autoY = proxy.y;
+              // Убеждаемся что петля работает пока идёт автоанимация
+              startLoop();
+            },
+            onComplete: () => {
+              step++;
+              nextStep();
+            },
+          });
+        }
+
+        nextStep();
+      }
+
+      // Сценарий drift: уход в случайную точку и возврат
+      function playDrift() {
+        const cfg = AUTO_ANIM_CONFIG;
+        const angle = Math.random() * Math.PI * 2;
+        const dist = randomBetween(cfg.driftRadius * 0.4, cfg.driftRadius);
+        const toX = Math.cos(angle) * dist;
+        const toY = Math.sin(angle) * dist;
+
+        autoPlaying = true;
+        const proxy = { x: autoX, y: autoY };
+
+        autoTween = gsap.to(proxy, {
+          x: toX,
+          y: toY,
+          duration: randomBetween(1.2, 2.2),
+          ease: 'power2.inOut',
+          onUpdate: () => {
+            autoX = proxy.x;
+            autoY = proxy.y;
+            startLoop();
+          },
+          onComplete: () => {
+            autoTween = gsap.to(proxy, {
+              x: 0,
+              y: 0,
+              duration: randomBetween(1.0, 1.8),
+              ease: 'power2.inOut',
+              onUpdate: () => {
+                autoX = proxy.x;
+                autoY = proxy.y;
+                startLoop();
+              },
+              onComplete: () => {
+                autoX = 0;
+                autoY = 0;
+                autoPlaying = false;
+                schedulNext();
+              },
+            });
+          },
+        });
+      }
+
+      // Сценарий pulse: короткий выброс в случайную сторону и возврат
+      function playPulse() {
+        const cfg = AUTO_ANIM_CONFIG;
+        const angle = Math.random() * Math.PI * 2;
+        const toX = Math.cos(angle) * cfg.pulseDist;
+        const toY = Math.sin(angle) * cfg.pulseDist;
+
+        autoPlaying = true;
+        const proxy = { x: autoX, y: autoY };
+
+        autoTween = gsap.to(proxy, {
+          x: toX,
+          y: toY,
+          duration: cfg.pulseDuration,
+          ease: 'power3.out',
+          onUpdate: () => {
+            autoX = proxy.x;
+            autoY = proxy.y;
+            startLoop();
+          },
+          onComplete: () => {
+            autoTween = gsap.to(proxy, {
+              x: 0,
+              y: 0,
+              duration: cfg.pulseDuration,
+              ease: 'power3.inOut',
+              onUpdate: () => {
+                autoX = proxy.x;
+                autoY = proxy.y;
+                startLoop();
+              },
+              onComplete: () => {
+                autoX = 0;
+                autoY = 0;
+                autoPlaying = false;
+                schedulNext();
+              },
+            });
+          },
+        });
+      }
+
+      // Сценарий shake: быстрые случайные подёргивания
+      function playShake() {
+        const cfg = AUTO_ANIM_CONFIG;
+        let count = cfg.shakeCount;
+        autoPlaying = true;
+
+        const proxy = { x: autoX, y: autoY };
+
+        function nextShakeStep() {
+          if (count <= 0) {
+            autoTween = gsap.to(proxy, {
+              x: 0,
+              y: 0,
+              duration: cfg.shakeDuration * 3,
+              ease: 'power2.out',
+              onUpdate: () => {
+                autoX = proxy.x;
+                autoY = proxy.y;
+                startLoop();
+              },
+              onComplete: () => {
+                autoX = 0;
+                autoY = 0;
+                autoPlaying = false;
+                schedulNext();
+              },
+            });
+            return;
+          }
+
+          const tx = randomBetween(-cfg.shakeAmplitude, cfg.shakeAmplitude);
+          const ty = randomBetween(-cfg.shakeAmplitude, cfg.shakeAmplitude);
+
+          autoTween = gsap.to(proxy, {
+            x: tx,
+            y: ty,
+            duration: cfg.shakeDuration,
+            ease: 'none',
+            onUpdate: () => {
+              autoX = proxy.x;
+              autoY = proxy.y;
+              startLoop();
+            },
+            onComplete: () => {
+              count--;
+              nextShakeStep();
+            },
+          });
+        }
+
+        nextShakeStep();
+      }
+
+      function playRandomScenario() {
+        if (isActive) return;
+        const name = scenarios[Math.floor(Math.random() * scenarios.length)];
+        if (name === 'float') playFloat();
+        else if (name === 'drift') playDrift();
+        else if (name === 'pulse') playPulse();
+        else if (name === 'shake') playShake();
+      }
+
+      function schedulNext() {
+        if (isActive) return;
+        clearTimeout(pauseTimer);
+        const delay = randomBetween(
+          AUTO_ANIM_CONFIG.pauseMin,
+          AUTO_ANIM_CONFIG.pauseMax
+        ) * 1000;
+        pauseTimer = setTimeout(playRandomScenario, delay);
+      }
+
+      // Останавливаем автоанимацию когда курсор перехватывает
+      function stopAuto() {
+        if (autoTween) {
+          autoTween.kill();
+          autoTween = null;
+        }
+        clearTimeout(pauseTimer);
+        autoPlaying = false;
+      }
+
+      // rAF петля - считает и применяет transform
+      function tick() {
+        if (isActive) {
+          const rect = el.getBoundingClientRect();
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
+
+          const deltaX = mouseX - centerX;
+          const deltaY = mouseY - centerY;
+
+          // Курсор тянет элемент + плавно гасим оставшееся авто-смещение
+          targetX = deltaX * strength + autoX;
+          targetY = deltaY * strength + autoY;
+
+          // Гасим авто-смещение пока курсор активен
+          autoX = lerp(autoX, 0, 0.05);
+          autoY = lerp(autoY, 0, 0.05);
+        } else {
+          // Без курсора - цель это текущее авто-смещение
+          targetX = autoX;
+          targetY = autoY;
+        }
+
+        const factor = isActive ? lerpFactor : returnLerpFactor;
+        currentX = lerp(currentX, targetX, factor);
+        currentY = lerp(currentY, targetY, factor);
+
+        el.style.transform = `translate(${currentX}px, ${currentY}px)`;
+
+        // Считаем суммарное расстояние до цели
+        const distToTarget = Math.abs(currentX - targetX) + Math.abs(currentY - targetY);
+
+        // Останавливаем петлю только если курсор не активен,
+        // автоанимация не играет и элемент дошёл до цели
+        const isSettled = !isActive && !autoPlaying && distToTarget < 0.05;
+
+        if (isSettled) {
+          currentX = 0;
+          currentY = 0;
+          el.style.transform = 'translate(0px, 0px)';
+          rafId = null;
+          return;
+        }
+
+        rafId = requestAnimationFrame(tick);
+      }
+
+      // Запускаем петлю только если она не запущена
+      function startLoop() {
+        if (rafId === null) {
+          rafId = requestAnimationFrame(tick);
+        }
+      }
+
+      function onMouseMove(e) {
+        // На тач-устройствах магнетизм не нужен - нет курсора
+        if (window.matchMedia('(hover: none)').matches) return;
+
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        const rect = el.getBoundingClientRect();
+        const dist = distanceToRect(mouseX, mouseY, rect);
+
+        if (dist <= triggerDistance) {
+          if (!isActive) {
+            isActive = true;
+            el.classList.add('is-magnet-active');
+            stopAuto();
+          }
+          startLoop();
+        } else {
+          if (isActive) {
+            isActive = false;
+            el.classList.remove('is-magnet-active');
+            startLoop();
+            schedulNext();
+          }
+        }
+      }
+
+      function onMouseLeave() {
+        // На тач-устройствах магнетизм не нужен - нет курсора
+        if (window.matchMedia('(hover: none)').matches) return;
+
+        if (isActive) {
+          isActive = false;
+          el.classList.remove('is-magnet-active');
+          startLoop();
+          schedulNext();
+        }
+      }
+
+      window.addEventListener('mousemove', onMouseMove, { passive: true });
+      document.addEventListener('mouseleave', onMouseLeave, { passive: true });
+
+      // Запускаем первый сценарий после паузы
+      schedulNext();
+    }
+
+    document.querySelectorAll('.hero__cover-eye').forEach(initMagnet);
+
+  })();
 
 
 
@@ -3102,5 +3529,5 @@ document.addEventListener('DOMContentLoaded', () => {
       window.visualViewport.addEventListener('resize', safeRefresh);
     }
   })();
-  
+
 });

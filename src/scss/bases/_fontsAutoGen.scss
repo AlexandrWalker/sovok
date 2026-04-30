@@ -1,13 +1,6 @@
 @font-face {
 	font-family: Redoctober;
 	font-display: swap;
-	src: url("../fonts/Redoctober-ultra.woff2") format("woff2"), url("../fonts/Redoctober-ultra.woff") format("woff");
-	font-weight: 1000;
-	font-style: normal;
-}
-@font-face {
-	font-family: Redoctober;
-	font-display: swap;
 	src: url("../fonts/Redoctober-regular.woff2") format("woff2"), url("../fonts/Redoctober-regular.woff") format("woff");
 	font-weight: 400;
 	font-style: normal;
@@ -17,6 +10,13 @@
 	font-display: swap;
 	src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
 	font-weight: 900;
+	font-style: normal;
+}
+@font-face {
+	font-family: Redoctober;
+	font-display: swap;
+	src: url("../fonts/Redoctober-ultra.woff2") format("woff2"), url("../fonts/Redoctober-ultra.woff") format("woff");
+	font-weight: 1000;
 	font-style: normal;
 }
 @font-face {

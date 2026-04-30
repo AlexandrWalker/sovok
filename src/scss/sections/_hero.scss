@@ -38,109 +38,109 @@
     }
   }
 
-&__title {
-  display: flex;
-  flex-direction: column;
-  min-height: 54.6rem;
-
-  font-family: var(--second-family);
-  font-weight: 1000;
-  font-size: 27rem;
-  // line-height: 27rem;
-  line-height: 1;
-  text-transform: uppercase;
-
-  @include sm {
-    min-height: 14.8rem;
-
-    font-size: 6.5rem;
-    // line-height: 100%;
-    line-height: 1;
-  }
-}
-
-.typewriter {
-
-  @include dosm {
-    padding: 0 0 0 0.5rem;
-  }
-
-  &__word {
-    display: inline-block;
-    vertical-align: text-bottom;
-
-    font-size: inherit;
-    // line-height: 85%;
-    // line-height: 23rem;
-    line-height: 0.85;
-    // line-height: 32.4rem;
-    letter-spacing: -0.05em;
-    color: var(--black);
-
-    @include sm {
-      line-height: 85%;
-    }
-  }
-
-  &__line {
+  &__title {
     display: flex;
-    align-items: center;
-    gap: 0.1em;
+    flex-direction: column;
+    min-height: 54.6rem;
 
-    font-size: inherit;
-    // line-height: 120%;
-    // line-height: 32.4rem;
-    line-height: 1.2;
+    font-family: var(--second-family);
+    font-weight: 1000;
+    font-size: 27rem;
+    // line-height: 27rem;
+    line-height: 1;
+    text-transform: uppercase;
 
     @include sm {
-      line-height: 120%;
+      min-height: 14.8rem;
+
+      font-size: 6.5rem;
+      // line-height: 100%;
+      line-height: 1;
+    }
+  }
+
+  .typewriter {
+
+    @include dosm {
+      padding: 0 0 0 0.5rem;
     }
 
-    &:nth-child(1) {
+    &__word {
+      display: inline-block;
+      vertical-align: text-bottom;
 
-      @include dosm {
-        // margin-top: -4.7rem;
+      font-size: inherit;
+      // line-height: 85%;
+      // line-height: 23rem;
+      line-height: 0.85;
+      // line-height: 32.4rem;
+      letter-spacing: -0.05em;
+      color: var(--black);
+
+      @include sm {
+        line-height: 85%;
       }
     }
 
-    &:nth-child(2) {
+    &__line {
+      display: flex;
+      align-items: center;
+      gap: 0.1em;
 
-      @include dosm {
-        // margin-top: -9.4rem;
+      font-size: inherit;
+      // line-height: 120%;
+      // line-height: 32.4rem;
+      line-height: 1.2;
+
+      @include sm {
+        line-height: 120%;
       }
 
-      .typewriter__cursor,
-      .typewriter__word {
-        color: #DC143C;
-      }
-    }
+      &:nth-child(1) {
 
-    &:last-child {
-
-      @include dosm {
-        // margin-top: -4.7rem;
+        @include dosm {
+          // margin-top: -4.7rem;
+        }
       }
 
-      .typewriter__cursor,
-      .typewriter__word {
-        font-size: 10rem;
-        // line-height: 8.5rem;
-        line-height: 0.85;
+      &:nth-child(2) {
 
-        @include sm {
-          font-size: 4rem;
-          line-height: 85%;
+        @include dosm {
+          // margin-top: -9.4rem;
+        }
+
+        .typewriter__cursor,
+        .typewriter__word {
+          color: #DC143C;
+        }
+      }
+
+      &:last-child {
+
+        @include dosm {
+          // margin-top: -4.7rem;
+        }
+
+        .typewriter__cursor,
+        .typewriter__word {
+          font-size: 10rem;
+          // line-height: 8.5rem;
+          line-height: 0.85;
+
+          @include sm {
+            font-size: 4rem;
+            line-height: 85%;
+          }
         }
       }
     }
-  }
 
-  &__cursor {
-    // line-height: 85%;
-    line-height: 0.85;
-    will-change: opacity;
+    &__cursor {
+      // line-height: 85%;
+      line-height: 0.85;
+      will-change: opacity;
+    }
   }
-}
 
   &__cover {
     width: auto;
@@ -162,18 +162,56 @@
       right: unset;
     }
 
-    img {
-      max-width: unset;
-      width: auto;
+    &-img {
+      width: 100%;
       height: 100%;
-      object-fit: contain;
+
+      position: relative;
+      z-index: 3;
+
+      img {
+        max-width: unset;
+        width: auto;
+        height: 100%;
+        object-fit: contain;
+
+        @include sm {
+          position: absolute;
+          top: 0;
+          left: 46%;
+          transform: translateX(-50%);
+        }
+      }
+    }
+
+    &-el {
+      width: 11.1rem;
+      width: calc(100vw/(1920/111));
+      height: calc(100vw/(1920/111));
+
+      position: absolute;
+      top: 14.7rem;
+      top: calc(100vw/(1920/147));
+      left: 29.7rem;
+      left: calc(100vw/(1920/297));
 
       @include sm {
-        position: absolute;
-        top: 0;
-        left: 46%;
-        transform: translateX(-50%);
+        width: 7rem;
+        height: 7rem;
+
+        top: 8.6rem;
+        left: 10.5rem;
       }
+    }
+
+    &-blind {
+      z-index: 1;
+    }
+
+    &-eye {
+      will-change: transform;
+
+      z-index: 2;
     }
   }
 
