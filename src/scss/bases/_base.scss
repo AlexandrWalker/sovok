@@ -6,7 +6,7 @@ html {
   // $ratio: 0.5;
 
   font-size: calc(100vw / var(--refRes) * 10);
-  font-size: calc(100dvw / var(--refRes) * 10);
+  // font-size: calc(100dvw / var(--refRes) * 10);
   scroll-behavior: smooth;
 
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);

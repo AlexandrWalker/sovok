@@ -5,7 +5,6 @@
 html {
   --refRes: 1920;
   font-size: calc(100vw / var(--refRes) * 10);
-  font-size: calc(100dvw / var(--refRes) * 10);
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
@@ -151,22 +150,6 @@ img {
 }
 
 @font-face {
-  font-family: Redoctober;
-  font-display: swap;
-  src: url("../fonts/Redoctober-ultra.woff2") format("woff2"), url("../fonts/Redoctober-ultra.woff") format("woff");
-  font-weight: 1000;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
   font-family: Roboto;
   font-display: swap;
   src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
@@ -179,6 +162,22 @@ img {
   font-display: swap;
   src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
   font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Redoctober;
+  font-display: swap;
+  src: url("../fonts/Redoctober-ultra.woff2") format("woff2"), url("../fonts/Redoctober-ultra.woff") format("woff");
+  font-weight: 1000;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
+  font-weight: 900;
   font-style: normal;
 }
 
@@ -4418,7 +4417,7 @@ canvas {
   position: relative;
 }
 
-.produce__item-block li {
+.produce__item-block a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4433,16 +4432,10 @@ canvas {
   -ms-flex-align: center;
   align-items: center;
   gap: 1rem;
+  width: 100%;
 }
 
-.produce__item-block li i {
-  --font-size: 1.9rem;
-}
-
-.produce__item-block a {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+.produce__item-block a span {
   font-weight: 700;
   font-size: 3rem;
   line-height: 120%;
@@ -4450,6 +4443,10 @@ canvas {
   text-decoration-line: underline;
   text-transform: uppercase;
   color: var(--white);
+}
+
+.produce__item-block a i {
+  --font-size: 1.9rem;
 }
 
 .produce__item-list {

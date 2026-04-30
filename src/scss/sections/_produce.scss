@@ -325,31 +325,32 @@
         // }
       }
 
-      li {
+      li {}
+
+      a {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
         gap: 1rem;
-
-        i {
-          --font-size: 1.9rem;
-        }
-      }
-
-      a {
-        width: fit-content;
-
-        font-weight: 700;
-        font-size: 3rem;
-        line-height: 120%;
-        letter-spacing: -0.04em;
-        text-decoration-line: underline;
-        text-transform: uppercase;
-        color: var(--white);
+        width: 100%;
 
         @include sm {
           font-size: 2rem;
+        }
+
+        span {
+          font-weight: 700;
+          font-size: 3rem;
+          line-height: 120%;
+          letter-spacing: -0.04em;
+          text-decoration-line: underline;
+          text-transform: uppercase;
+          color: var(--white);
+        }
+
+        i {
+          --font-size: 1.9rem;
         }
       }
     }
@@ -370,7 +371,7 @@
   &__indicator {
     position: absolute;
     left: -1.3rem;
-    
+
     width: 3.9rem;
     height: 5.3rem;
     background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzkiIGhlaWdodD0iNTMiIHZpZXdCb3g9IjAgMCAzOSA1MyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik0zOSAyNi41TDAgNTNMNC4zOTEyZS0wNiAwTDM5IDI2LjVaIiBmaWxsPSIjMTcxNzFBIi8+DQo8L3N2Zz4NCg==);
