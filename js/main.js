@@ -2693,8 +2693,8 @@ document.addEventListener('DOMContentLoaded', () => {
           const navRect = nav.getBoundingClientRect();
           const liRect = li.getBoundingClientRect();
 
-          const top = liRect.top - navRect.top + nav.scrollTop + 5;
-          const height = (53 - liRect.height) / -2;
+          const top = liRect.top - navRect.top + nav.scrollTop;
+          const height = (35 - liRect.height) / -2;
 
           indicator.style.top = `${top}px`;
           indicator.style.marginTop = `${height}px`;
