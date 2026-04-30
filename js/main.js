@@ -383,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // АНИМАЦИЯ ВЫСОТЫ ХЕДЕРА ПРИ СКРОЛЛЕ
       // 
       animateHeight: true,                // true = менять высоту, false = не менять
-      heightMultiplier: 0.7,              // во сколько раз уменьшить (0.7 = 70%)
+      heightMultiplier: 1,              // во сколько раз уменьшить (0.7 = 70%)
 
     };
 
@@ -1458,6 +1458,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
   })();
 
+  /**
+   * Функция для меню
+   */
+  (function () {
+
+    const html = document.documentElement;
+    const items = document.querySelectorAll('.menu__list-item--dropdown');
+
+    if (!items.length) return;
+
+    function onEnter() {
+      html.classList.add('menu-item-hover');
+    }
+
+    function onLeave() {
+      html.classList.remove('menu-item-hover');
+    }
+
+    function onTouchStart(e) {
+      // Если касание не на этом элементе и не внутри него — убираем класс
+      items.forEach(function (item) {
+        if (!item.contains(e.target)) {
+          onLeave();
+        } else {
+          onEnter();
+        }
+      });
+    }
+
+    items.forEach(function (item) {
+      item.addEventListener('mouseenter', onEnter, { passive: true });
+      item.addEventListener('mouseleave', onLeave, { passive: true });
+    });
+
+    document.addEventListener('touchstart', onTouchStart, { passive: true });
+
+  })();
 
 
 
