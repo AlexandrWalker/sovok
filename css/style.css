@@ -2759,6 +2759,9 @@ p {
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   overflow: hidden;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   position: absolute;
   top: 0;
   left: 100%;
@@ -2775,6 +2778,9 @@ p {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   overflow: hidden;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .nav__item:hover .nav__item-list {
@@ -2967,7 +2973,7 @@ canvas {
 }
 
 .approach__body .general__title {
-  font-size: 18rem;
+  font-size: 9.375vw;
   color: var(--black);
 }
 
@@ -4707,6 +4713,8 @@ canvas {
   flex-direction: column;
   color: var(--white);
   overflow: hidden;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .produce__item-title {
@@ -5482,6 +5490,16 @@ canvas {
   }
 
   .menu__inner {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
     padding: 2.5rem 0 0;
   }
 
@@ -5627,6 +5645,10 @@ canvas {
     padding: 8.4rem 17rem 8.4rem 6rem;
     top: 28rem;
     right: -15.5rem;
+  }
+
+  .approach__block .general__text {
+    font-size: 2rem;
   }
 
   .approach__block .general__text br:last-child {
@@ -5790,6 +5812,10 @@ canvas {
     right: 2rem;
     left: unset;
     bottom: unset;
+  }
+
+  .cases__btn {
+    display: none;
   }
 
   .contacts__inner {
@@ -6128,6 +6154,10 @@ canvas {
     padding: 3rem 2rem;
   }
 
+  .produce__item--active .produce__item-wrap {
+    margin-bottom: 3rem;
+  }
+
   .produce__item-title {
     font-size: 3rem;
   }
@@ -6149,12 +6179,15 @@ canvas {
   }
 
   .produce__item-block {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
     padding: 0 2rem;
   }
 
   .produce__item--active .produce__item-block {
-    grid-template-rows: 1fr auto;
-    gap: 3rem;
+    grid-template-rows: 1fr auto auto;
+    gap: 0;
     padding: 4rem 2rem 4.4rem;
   }
 
