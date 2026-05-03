@@ -147,6 +147,7 @@
       background-color: var(--red);
       transition: all 0.5s ease;
       overflow: hidden;
+      width: fit-content;
 
       position: absolute;
       top: 0;
@@ -163,6 +164,7 @@
       padding: 4rem 0 5rem 0;
       transition: all 0.3s ease;
       overflow: hidden;
+      width: fit-content;
 
       .nav__item:hover & {
         width: max-content;
@@ -187,6 +189,7 @@
         text-decoration: underline;
         text-transform: uppercase;
         color: var(--white);
+        // white-space: nowrap;
 
         &:hover {
           color: var(--black);

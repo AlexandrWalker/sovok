@@ -1555,6 +1555,20 @@ document.addEventListener('DOMContentLoaded', () => {
    */
 
   (function () {
+    // Брейкпоинт уже есть ниже, выносим наверх чтобы использовать везде
+    const MOBILE_BREAKPOINT = 600;
+    const isMobile = () => window.innerWidth < MOBILE_BREAKPOINT;
+
+    // Настройки анимаций для мобильной версии
+    const MOBILE_CONFIG = {
+      fadeDuration: 0.3,
+      fadeStart: 'top 100%',
+      splitDurationTitle: 0.3,
+      splitDurationText: 0.3,
+      splitStart: 'top 100%',
+      splitStaggerTitle: 0.06,
+      splitStaggerText: 0.03,
+    };
 
     // Реестр анимаций: element -> duration
     // Нужен чтобы дочерние split знали длительность родительской анимации
@@ -1574,19 +1588,38 @@ document.addEventListener('DOMContentLoaded', () => {
       orderMap.get(orderParent).push(el);
     });
 
-    orderMap.forEach((els, parent) => {
-      els.sort((a, b) => parseInt(a.dataset.animOrder) - parseInt(b.dataset.animOrder));
+    // Вспомогательная функция - глубина элемента в DOM
+    function getDomDepth(el) {
+      let depth = 0;
+      let node = el;
+      while (node.parentElement) {
+        depth++;
+        node = node.parentElement;
+      }
+      return depth;
+    }
 
-      let accumulated = 0;
+    // Сортируем группы по глубине - родители всегда обрабатываются раньше детей
+    // Без этого вложенный блок может обработаться до родителя
+    // и parent.dataset.animDelay будет ещё не установлен
+    Array.from(orderMap.entries())
+      .sort((a, b) => getDomDepth(a[0]) - getDomDepth(b[0]))
+      .forEach(([parent, els]) => {
+        els.sort((a, b) => parseInt(a.dataset.animOrder) - parseInt(b.dataset.animOrder));
 
-      els.forEach(el => {
-        // parentDelay — задержка унаследованная от родителя с data-anim-order
-        const parentOrderDelay = parseFloat(parent.dataset.animDelay ?? 0);
-        el.dataset.animDelay = (accumulated + parentOrderDelay).toFixed(3);
-        const duration = parseFloat(el.dataset.animDuration ?? FADE_DURATION);
-        accumulated += duration;
+        // Дочерняя группа стартует после того как родитель закончил анимацию:
+        // delay родителя + его duration
+        const parentStartDelay = parseFloat(parent.dataset.animDelay ?? 0);
+        const parentDuration = parseFloat(parent.dataset.animDuration ?? FADE_DURATION);
+        const parentOrderDelay = parentStartDelay + parentDuration;
+        let accumulated = 0;
+
+        els.forEach(el => {
+          el.dataset.animDelay = (accumulated + parentOrderDelay).toFixed(3);
+          const duration = parseFloat(el.dataset.animDuration ?? FADE_DURATION);
+          accumulated += duration;
+        });
       });
-    });
 
     // Ищет ближайшего зарегистрированного родителя, возвращает его duration
     function getParentDelay(el) {
@@ -1620,6 +1653,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //     },
     //   });
     // });
+
     gsap.utils.toArray('[data-animate]').forEach(section => {
 
       const prev = section.previousElementSibling;
@@ -1713,11 +1747,11 @@ document.addEventListener('DOMContentLoaded', () => {
       fadeDown: { xPercent: 0, yPercent: -100 },
     };
 
-    // Брейкпоинт мобильной версии
-    const MOBILE_BREAKPOINT = 600;
+    // // Брейкпоинт мобильной версии
+    // const MOBILE_BREAKPOINT = 600;
 
-    // Проверяем мобильное ли устройство прямо сейчас
-    const isMobile = () => window.innerWidth < MOBILE_BREAKPOINT;
+    // // Проверяем мобильное ли устройство прямо сейчас
+    // const isMobile = () => window.innerWidth < MOBILE_BREAKPOINT;
 
     Object.entries(fadeDirections).forEach(([name, from]) => {
       gsap.utils.toArray(`[data-anim="${name}"]`).forEach(el => {
@@ -1747,7 +1781,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         ScrollTrigger.create({
           trigger,
-          start: 'top 85%',
+          // start: 'top 85%',
+          start: isMobile() ? MOBILE_CONFIG.fadeStart : 'top 90%',
           once: true,
           onEnter: () => {
             // В момент срабатывания триггера пересчитываем направление
@@ -1758,7 +1793,8 @@ document.addEventListener('DOMContentLoaded', () => {
               xPercent: 0,
               yPercent: 0,
               opacity: 1,
-              duration: FADE_DURATION,
+              // duration: FADE_DURATION,
+              duration: isMobile() ? MOBILE_CONFIG.fadeDuration : FADE_DURATION,
               delay,
               ease: 'power2.out',
               overwrite: true,
@@ -1869,6 +1905,22 @@ document.addEventListener('DOMContentLoaded', () => {
     //
 
     function initSplitAnim(container, { opacity, rotation, stagger, duration, start }) {
+
+      // Переопределяем параметры для мобильной версии
+      const activeDuration = isMobile() ? (
+        stagger === 0.1
+          ? MOBILE_CONFIG.splitDurationTitle
+          : MOBILE_CONFIG.splitDurationText
+      ) : duration;
+
+      const activeStagger = isMobile() ? (
+        stagger === 0.1
+          ? MOBILE_CONFIG.splitStaggerTitle
+          : MOBILE_CONFIG.splitStaggerText
+      ) : stagger;
+
+      const activeStart = isMobile() ? MOBILE_CONFIG.splitStart : start;
+
       const textSplits = container.querySelectorAll('*');
 
       const validTargets = Array.from(textSplits).filter(el =>
@@ -1896,13 +1948,16 @@ document.addEventListener('DOMContentLoaded', () => {
               y: lineHeight / 10 + 'rem',
               opacity,
               rotation,
-              stagger,
-              duration,
+              // stagger,
+              // duration,
+              stagger: activeStagger,
+              duration: activeDuration,
               delay,
               ease: 'power3.out',
               scrollTrigger: {
                 trigger: container,
-                start,
+                // start,
+                start: activeStart,
                 end: 'bottom top',
               },
             });

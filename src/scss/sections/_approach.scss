@@ -62,7 +62,7 @@
     .general {
 
       &__title {
-        font-size: 18rem;
+        font-size: calc(100vw/(1920/180));
         color: var(--black);
 
         @include sm {
@@ -144,6 +144,10 @@
 
     .general__text {
       font-size: calc(100vw/(1920/40));
+
+      @include sm {
+        font-size: 2rem;
+      }
 
       br:last-child {
 

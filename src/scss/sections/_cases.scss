@@ -237,4 +237,11 @@
       bottom: unset;
     }
   }
+
+  &__btn {
+
+    @include sm {
+      display: none;
+    }
+  }
 }

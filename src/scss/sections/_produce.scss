@@ -105,6 +105,14 @@
       flex-direction: column;
       color: var(--white);
       overflow: hidden;
+      transition: all 0.3s ease;
+
+       .produce__item--active & {
+
+        @include sm {
+          margin-bottom: 3rem;
+        }
+       }
     }
 
     &-title {
@@ -266,6 +274,7 @@
       z-index: 2;
 
       @include sm {
+        height: fit-content;
         padding: 0 2rem;
       }
 
@@ -281,8 +290,8 @@
       .produce__item--active & {
 
         @include sm {
-          grid-template-rows: 1fr auto;
-          gap: 3rem;
+          grid-template-rows: 1fr auto auto;
+          gap: 0;
           padding: 4rem 2rem 4.4rem;
         }
       }
