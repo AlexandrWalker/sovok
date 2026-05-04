@@ -19,6 +19,8 @@ body {
   line-height: 120%;
   color: var(--black);
   cursor: default;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .wrapper {
@@ -160,8 +162,8 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
+  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
+  font-weight: 900;
   font-style: normal;
 }
 
@@ -176,8 +178,8 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
-  font-weight: 900;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -2759,34 +2761,26 @@ p {
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   overflow: hidden;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
   position: absolute;
   top: 0;
   left: 100%;
   z-index: 1;
+  display: none;
 }
 
 .nav__item:hover .nav__item-body {
-  grid-template-columns: 1fr;
+  grid-template-columns: auto;
+  z-index: 2;
 }
 
 .nav__item-list {
-  width: 0;
   padding: 4rem 0 5rem 0;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   overflow: hidden;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
 }
 
 .nav__item:hover .nav__item-list {
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
   padding: 4rem 5rem 5rem 3rem;
 }
 
@@ -2799,7 +2793,6 @@ p {
   -ms-flex-direction: column;
   flex-direction: column;
   gap: 3rem;
-  overflow: hidden;
 }
 
 .nav__item-list li {
