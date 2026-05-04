@@ -39,6 +39,9 @@ body {
   line-height: 120%;
   color: var(--black);
   cursor: default;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .wrapper {

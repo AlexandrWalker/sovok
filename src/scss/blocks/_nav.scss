@@ -147,27 +147,26 @@
       background-color: var(--red);
       transition: all 0.5s ease;
       overflow: hidden;
-      width: fit-content;
 
       position: absolute;
       top: 0;
       left: 100%;
       z-index: 1;
 
+      display: none;
+
       .nav__item:hover & {
-        grid-template-columns: 1fr;
+        grid-template-columns: auto;
+        z-index: 2;
       }
     }
 
     &-list {
-      width: 0;
       padding: 4rem 0 5rem 0;
       transition: all 0.3s ease;
       overflow: hidden;
-      width: fit-content;
 
       .nav__item:hover & {
-        width: max-content;
         padding: 4rem 5rem 5rem 3rem;
       }
 
@@ -175,7 +174,6 @@
         display: flex;
         flex-direction: column;
         gap: 3rem;
-        overflow: hidden;
       }
 
       li {
