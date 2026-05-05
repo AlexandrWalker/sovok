@@ -9,6 +9,7 @@
   height: 100vh;
   transition: all 0.5s ease;
   overflow: hidden;
+  pointer-events: none;
 
   position: fixed;
   top: 0;
@@ -185,6 +186,7 @@
     padding: 0 9rem 0 9rem;
     overflow: hidden;
     background-color: var(--black);
+    pointer-events: all;
 
     .tender--open & {
       padding: 15rem 9rem 8rem 9rem;
