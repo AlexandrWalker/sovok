@@ -284,6 +284,10 @@
         grid-template-columns: 1fr;
       }
 
+      &--dropdown {
+        pointer-events: none;
+      }
+
       &:first-child {
 
         .menu__list-link {
@@ -319,6 +323,7 @@
     &-link {
       width: fit-content;
       padding: 2rem 0;
+      pointer-events: all;
 
       font-family: var(--second-family);
       font-weight: 1000;

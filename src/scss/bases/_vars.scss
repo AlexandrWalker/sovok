@@ -10,6 +10,7 @@
   --header-height: 17rem;
   --section-padding-top: 2.5rem;
   --section-padding-bottom: 2.5rem;
+  --plate-height: 7rem;
 
   --callback-width: 5.2rem;
   --callback-mini-width: 54rem;
@@ -35,7 +36,7 @@
 
   @include sm {
     --container-padding: 1.5rem;
-    --header-height: 9.5rem;
+    --header-height: 9rem;
     --section-padding-top: 2rem;
     --section-padding-bottom: 2rem;
   }

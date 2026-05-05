@@ -12,13 +12,16 @@
     height: var(--header-inner-height);
     background-color: var(--black);
     flex-shrink: 0;
+    transition: all 0.3s ease;
 
     position: relative;
 
-
     @include sm {
-      // width: 5rem;
-      // height: 5rem;
+      grid-column: 3/4;
+    }
+
+    .tender--open & {
+      background-color: var(--white);
     }
 
     &.burger--open {
@@ -36,6 +39,10 @@
 
       position: absolute;
       top: 50%;
+
+      .tender--open & {
+        background-color: var(--black);
+      }
 
       &--first {
         transform: translateY(calc(-50% - 0.5rem));

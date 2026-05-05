@@ -6,6 +6,20 @@
   align-items: center;
 
   white-space: nowrap;
+
+  &-x {
+    display: flex;
+    margin-top: auto;
+    margin-right: 0.5ch;
+
+    font-size: 6rem;
+    line-height: 1.1;
+
+    @include sm {
+      font-size: 3rem;
+      line-height: 1.15;
+    }
+  }
 }
 
 .digit-container {

@@ -7,7 +7,7 @@
   flex-shrink: 0;
 
   @include sm {
-    // height: 5rem;
+    grid-column: 1/2;
   }
 
   svg,
@@ -22,6 +22,7 @@
     transition: fill 0.3s ease;
   }
 
+  html.header-off-top &,
   .header-theme-dark &,
   .menu--open & {
 
@@ -33,6 +34,21 @@
 
       #point {
         fill: var(--black);
+      }
+    }
+  }
+
+
+  .tender--open & {
+
+    svg {
+
+      path {
+        fill: var(--white);
+      }
+
+      #point {
+        fill: var(--red);
       }
     }
   }

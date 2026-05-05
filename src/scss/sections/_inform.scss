@@ -236,9 +236,6 @@
       position: absolute;
       inset: 0;
       z-index: 0;
-
-      filter: drop-shadow(0 0 0 #DC143C) brightness(0) saturate(100%) invert(14%) sepia(90%) saturate(6000%) hue-rotate(338deg) brightness(95%);
-      transform: rotate(6deg);
     }
 
     &-img {
@@ -280,5 +277,9 @@
       width: auto;
       height: 100%;
     }
+  }
+
+  &-button-next {
+    display: none;
   }
 }

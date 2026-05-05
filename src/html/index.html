@@ -12,6 +12,8 @@
     @@include('./blocks/menu.html')
     <!-- callback -->
     @@include('./blocks/callback.html')
+    <!-- Тендер -->
+    @@include('./blocks/tender.html')
     <main class="main">
 
       <section class="hero">
@@ -132,7 +134,7 @@
               <picture>
                 <source media="(min-width:601px)" srcset="./../images/temp/gagarin.png">
                 <source media="(max-width:600px)" srcset="./../images/temp/gagarin-mob.png">
-                <img src="./../images/temp/gagarin.png" alt="">
+                <img src="./../images/temp/gagarin.png" alt="" data-anim="parallax">
               </picture>
             </div>
 
@@ -169,7 +171,7 @@
                 <div class="produce__item-content">
                   <div class="produce__item-cover">
                     <div class="object-shadow">
-                      <img src="./../images/temp/produce-1-cover.svg" alt="">
+                      <img src="./../images/temp/produce-1-cover-shadow.svg" alt="">
                     </div>
                     <div class="object-body">
                       <img src="./../images/temp/produce-1-cover.svg" alt="">
@@ -193,14 +195,14 @@
                   </div>
                 </div>
                 <div class="produce__item-block">
-                  <div class="produce__item-wrap">
+                  <a class="produce__item-wrap" href="/">
                     <div class="produce__item-title">
                       Брендинг
                     </div>
                     <div class="produce__item-text">
                       и айдентика
                     </div>
-                  </div>
+                  </a>
                   <div class="produce__item-list">
                     <ul>
                       <li>
@@ -208,12 +210,6 @@
                           <span>
                             Нейминг 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -221,12 +217,6 @@
                           <span>
                             Позиционирование, УТП
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -234,12 +224,6 @@
                           <span>
                             Фирменный стиль 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -247,12 +231,6 @@
                           <span>
                             Брендбук 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -260,12 +238,6 @@
                           <span>
                             Упаковка 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -273,12 +245,6 @@
                           <span>
                             Графически дизайн 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -286,12 +252,6 @@
                           <span>
                             Моушен - дизайн 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -299,12 +259,6 @@
                           <span>
                             ИИ-дизайн 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -312,12 +266,6 @@
                           <span>
                             Pos - материалы 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -325,12 +273,6 @@
                           <span>
                             Презентации 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -338,12 +280,6 @@
                           <span>
                             Мерч 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                     </ul>
@@ -380,14 +316,14 @@
                   </div>
                 </div>
                 <div class="produce__item-block">
-                  <div class="produce__item-wrap">
+                  <a class="produce__item-wrap" href="/">
                     <div class="produce__item-title">
                       цифровые
                     </div>
                     <div class="produce__item-text">
                       продукты
                     </div>
-                  </div>
+                  </a>
                   <div class="produce__item-list">
                     <ul>
                       <li>
@@ -395,12 +331,6 @@
                           <span>
                             Нейминг 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -408,12 +338,6 @@
                           <span>
                             Позиционирование, УТП
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -421,12 +345,6 @@
                           <span>
                             Фирменный стиль 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -434,12 +352,6 @@
                           <span>
                             Брендбук 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -447,12 +359,6 @@
                           <span>
                             Упаковка 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -460,12 +366,6 @@
                           <span>
                             Графически дизайн 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -473,12 +373,6 @@
                           <span>
                             Моушен - дизайн 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -486,12 +380,6 @@
                           <span>
                             ИИ-дизайн 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -499,12 +387,6 @@
                           <span>
                             Pos - материалы 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -512,12 +394,6 @@
                           <span>
                             Презентации 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -525,12 +401,6 @@
                           <span>
                             Мерч 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                     </ul>
@@ -543,7 +413,7 @@
                 <div class="produce__item-content">
                   <div class="produce__item-cover">
                     <div class="object-shadow">
-                      <img src="./../images/temp/produce-3-cover.svg" alt="">
+                      <img src="./../images/temp/produce-3-cover-shadow.svg" alt="">
                     </div>
                     <div class="object-body">
                       <img src="./../images/temp/produce-3-cover.svg" alt="">
@@ -567,14 +437,14 @@
                   </div>
                 </div>
                 <div class="produce__item-block">
-                  <div class="produce__item-wrap">
+                  <a class="produce__item-wrap" href="/">
                     <div class="produce__item-title">
                       Комплексные
                     </div>
                     <div class="produce__item-text">
                       стратегии
                     </div>
-                  </div>
+                  </a>
                   <div class="produce__item-list">
                     <ul>
                       <li>
@@ -582,12 +452,6 @@
                           <span>
                             Нейминг 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -595,12 +459,6 @@
                           <span>
                             Позиционирование, УТП
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -608,12 +466,6 @@
                           <span>
                             Фирменный стиль 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -621,12 +473,6 @@
                           <span>
                             Брендбук 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -634,12 +480,6 @@
                           <span>
                             Упаковка 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -647,12 +487,6 @@
                           <span>
                             Графически дизайн 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -660,12 +494,6 @@
                           <span>
                             Моушен - дизайн 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -673,12 +501,6 @@
                           <span>
                             ИИ-дизайн 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -686,12 +508,6 @@
                           <span>
                             Pos - материалы 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -699,12 +515,6 @@
                           <span>
                             Презентации 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                       <li>
@@ -712,12 +522,6 @@
                           <span>
                             Мерч 
                           </span>
-                          <i class="icon-chevron-double-bw-right">
-                            <div class="path1"></div>
-                            <div class="path2"></div>
-                            <div class="path3"></div>
-                            <div class="path4"></div>
-                          </i>
                         </a>
                       </li>
                     </ul>
@@ -763,7 +567,7 @@
                 <div class="effect__feat-item">
                   <div class="effect__feat-count">
                     <div class="numbers">
-                      <span>x</span>
+                      <span class="numbers-x">x</span>
                       <div class="number-roll" data-number="3">
                       </div>
                       <span>&nbsp;LTV</span>
@@ -1090,6 +894,8 @@
                     </div>
                   </div>
                 </div>
+                <div class="swiper-button-next inform-button-next">
+                </div>
               </div>
             </div>
 
@@ -1109,8 +915,8 @@
               </div>
             </div>
 
-            <div class="inform__cover">
-              <img class="inform__cover-shadow" src="./../images/temp/rupor.svg" alt="">
+            <div class="inform__cover" data-anim="parallax">
+              <img class="inform__cover-shadow" src="./../images/temp/rupor-shadow.svg" alt="">
               <img class="inform__cover-img" src="./../images/temp/rupor.svg" alt="">
             </div>
 
@@ -1145,13 +951,12 @@
                 <img src="./../images/temp/awards-img.png" alt="">
               </div>
 
-              <div class="awards__cover" data-anim="bounce">
-                <img src="./../images/temp/awards-cover-1.png" alt="">
-              </div>
-
               <div class="swiper awards__slider">
                 <div class="swiper-wrapper">
                   <div class="swiper-slide awards__slide">
+                    <div class="awards__cover" data-anim="bounce">
+                      <img src="./../images/temp/awards-cover-1.png" alt="">
+                    </div>
                     <div class="awards__slide-content">
                       <div class="awards__slide-name">
                         благодарственное письмо
@@ -1168,6 +973,9 @@
                     </div>
                   </div>
                   <div class="swiper-slide awards__slide">
+                    <div class="awards__cover" data-anim="bounce">
+                      <img src="./../images/temp/awards-cover-2.png" alt="">
+                    </div>
                     <div class="awards__slide-content">
                       <div class="awards__slide-name">
                         рейтинг рунета

@@ -9,6 +9,8 @@
   box-sizing: border-box;
   will-change: transform;
   padding-top: env(safe-area-inset-top);
+  transition: background-color 0.5s ease;
+  pointer-events: none;
 
   position: fixed;
   top: 0;
@@ -18,19 +20,28 @@
 
   @include sm {
     --header-inner-height: 5rem;
+
+    max-height: 9rem;
   }
 
   &.header-out {
     pointer-events: none;
   }
 
-  &.html.header-fixed {}
+  html.header-hidden & {}
 
   /* хедер зафиксировался */
-  &.html.header-off-top {}
+  html.header-off-top & {
+    background-color: var(--red);
+    max-height: 11rem;
+
+    @include sm {
+      max-height: 9rem;
+    }
+  }
 
   /* прошли первую секцию */
-  &.html.header-at-footer {}
+  html.header-at-footer & {}
 
   .nav {
 
@@ -49,12 +60,18 @@
     align-items: center;
     gap: 4rem;
     padding: 5rem 0;
+    transition: padding 0.5s ease;
+    pointer-events: all;
 
     position: relative;
     z-index: 2;
 
     @include sm {
       gap: 3rem;
+      padding: 2rem 0;
+    }
+
+    html.header-off-top & {
       padding: 2rem 0;
     }
 
@@ -91,8 +108,9 @@
     flex-shrink: 0;
 
     @include sm {
-      // gap: 2rem;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 5rem auto 5rem;
+      gap: 1rem;
       width: 100%;
     }
 
@@ -101,6 +119,10 @@
       @include sm {
         display: none;
       }
+
+      html.header-off-top & {
+        background-color: var(--white);
+      }
     }
 
     .btn--accent {
@@ -108,12 +130,39 @@
       font-size: 2rem;
 
       @include sm {
-        display: none;
+        --btn-height: 5rem;
+        width: 100%;
+        grid-column: 2/3;
+        grid-row: 1/2;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        font-size: 1.6rem;
+        line-height: 100%;
+      }
+
+      .menu--open & {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+      }
+
+      .object-shadow {
+
+        @include sm {
+          display: none;
+        }
       }
 
       .object-body {
         transition: all 0.3s ease;
 
+        @include sm {
+          width: 100%;
+        }
+
+        html.header-off-top &,
         .menu--open & {
           background-color: var(--white);
           color: var(--black);
@@ -132,6 +181,11 @@
     transform: translateX(150%);
     transition: transform 0.3s linear;
 
+    &:hover {
+      color: var(--black);
+    }
+
+    html.header-off-top &,
     .menu--open & {
       transform: translateX(0%);
 

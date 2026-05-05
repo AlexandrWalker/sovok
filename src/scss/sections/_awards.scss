@@ -41,30 +41,31 @@
   }
 
   &__body {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: 1fr auto;
+    display: flex;
+    flex-direction: column;
     gap: 2rem 3.3rem;
 
     @include dosm {
-      display: flex;
-      flex-direction: column;
       gap: 5rem;
-      margin-left: 50rem;
     }
 
     .swiper-button-next {
       width: 9rem;
-      margin: 0 !important;
+      margin: 0 0 0 50rem !important;
       transform: unset;
 
       position: static;
+      z-index: 1;
 
       @include sm {
-        transform: translateY(16.8rem);
+        margin: 0!important;
+        // transform: translateY(16.8rem);
 
-        grid-column: 2/3;
-        grid-row: 1/2;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        z-index: 2;
+        transform: translateY(-50%);
       }
     }
   }
@@ -96,10 +97,10 @@
     height: calc(100vw/(1920/638));
 
     position: absolute;
-    top: 22rem;
-    top: calc(100vw/(1920/220));
-    left: 0.4rem;
-    left: calc(100vw/(1920/4));
+    top: -11.8rem;
+    top: calc(-100vw/(1920/118));
+    left: -3.8rem;
+    left: calc(-100vw/(1920/38));
     z-index: 2;
 
     @include sm {
@@ -107,9 +108,6 @@
       margin-bottom: 2rem;
 
       position: static;
-
-      grid-column: 1/2;
-      grid-row: 1/2;
     }
 
     img {
@@ -120,17 +118,17 @@
   }
 
   &__slider {
-    z-index: 1;
-
-    @include sm {
-      grid-column: 1/3;
-      grid-row: 2/3;
-    }
+    max-width: 100%;
+    z-index: 2;
   }
 
   &__slide {
     opacity: 0;
     transition: opacity 0.1s ease;
+
+    @include dosm {
+      padding-left: 50rem;
+    }
 
     &.swiper-slide-active {
       opacity: 1;
@@ -193,6 +191,10 @@
       line-height: 120%;
       letter-spacing: -0.04em;
       color: var(--red);
+
+      @include sm {
+        display: none;
+      }
     }
   }
 }

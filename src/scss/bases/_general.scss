@@ -95,6 +95,7 @@
   width: 0.1rem;
   background-color: var(--black);
   flex-shrink: 0;
+  transition: background-color 0.5s ease;
 
   @include sm {
     // height: 5rem;

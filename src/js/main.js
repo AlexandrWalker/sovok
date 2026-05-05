@@ -383,7 +383,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // АНИМАЦИЯ ВЫСОТЫ ХЕДЕРА ПРИ СКРОЛЛЕ
       // 
       animateHeight: true,                // true = менять высоту, false = не менять
-      heightMultiplier: 1,              // во сколько раз уменьшить (0.7 = 70%)
+      heightMultiplier: 1,              // во сколько раз уменьшить (0.7 = 63.53%)
+      // heightMultiplier: 0.6353,
 
     };
 
@@ -586,7 +587,8 @@ document.addEventListener('DOMContentLoaded', () => {
           const firstSectionBottom = getFirstSectionBottom();
 
           // Скролл вниз после первой секции - прячем
-          if (scrollingDown && currentScrollY > firstSectionBottom) {
+          // if (scrollingDown && currentScrollY > firstSectionBottom) {
+          if (scrollingDown && currentScrollY > 0) {
             hideHeader();
           }
 
@@ -646,6 +648,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const openMenu = () => {
       burgerBtn.classList.add('burger--open');
       document.documentElement.classList.add('menu--open');
+      document.documentElement.classList.remove('tender--open');
       lenis.stop();
     };
 
@@ -1496,6 +1499,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   })();
 
+  /**
+   * Функция для вызова окна тендера
+   */
+  (function () {
+    const tenderBtn = document.querySelector('.tender-btn');
+
+    if (!tenderBtn) return;
+
+    tenderBtn.addEventListener('click', () => {
+      const isOpen = document.documentElement.classList.toggle('tender--open');
+
+      if (isOpen) {
+        lenis?.stop();
+      } else {
+        lenis?.start();
+      }
+    });
+  })();
+
 
 
 
@@ -2047,6 +2069,68 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   (function () {
 
+    // Возвращает Promise который резолвится только когда одновременно:
+    // 1. #welcome отсутствует в DOM
+    // 2. <html> не имеет класса popup-open
+    function waitForReadyToType() {
+      return new Promise(resolve => {
+
+        function isReady() {
+          const noWelcome = !document.getElementById('welcome');
+          const noPopup = !document.documentElement.classList.contains('popup-open');
+          return noWelcome && noPopup;
+        }
+
+        if (isReady()) {
+          resolve();
+          return;
+        }
+
+        const observer = new MutationObserver(() => {
+          if (isReady()) {
+            observer.disconnect();
+            resolve();
+          }
+        });
+
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true,
+        });
+
+        observer.observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ['class'],
+        });
+      });
+    }
+
+    // Возвращает Promise который резолвится когда указанный элемент
+    // получает указанный класс
+    function waitForClass(selector, className) {
+      return new Promise(resolve => {
+        const el = document.querySelector(selector);
+        if (!el) return;
+
+        if (el.classList.contains(className)) {
+          resolve();
+          return;
+        }
+
+        const observer = new MutationObserver(() => {
+          if (el.classList.contains(className)) {
+            observer.disconnect();
+            resolve();
+          }
+        });
+
+        observer.observe(el, {
+          attributes: true,
+          attributeFilter: ['class'],
+        });
+      });
+    }
+
     const groupMap = new Map();
 
     document.querySelectorAll('.typewriter').forEach(container => {
@@ -2064,9 +2148,6 @@ document.addEventListener('DOMContentLoaded', () => {
       initSyncGroup(containers);
     });
 
-    // Координатор синхронной группы.
-    // Управляет несколькими экземплярами как одним целым,
-    // все тикают одновременно, ни один не отстаёт.
     function initSyncGroup(containers) {
 
       const first = containers[0];
@@ -2075,6 +2156,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const DELETE_SPEED = parseFloat(first.dataset.deleteSpeed ?? 0.04);
       const PAUSE_AFTER_TYPE = parseFloat(first.dataset.pauseAfterType ?? 2.0);
       const PAUSE_AFTER_DEL = parseFloat(first.dataset.pauseAfterDelete ?? 0.5);
+      const START_DELAY = parseFloat(first.dataset.startDelay ?? 3) * 1000;
+
+      const trigger = first.dataset.trigger ?? null;
+      const triggerEl = first.dataset.triggerEl ?? null;
 
       let isStopped = false;
       let abortSignal = false;
@@ -2097,7 +2182,9 @@ document.addEventListener('DOMContentLoaded', () => {
         })
       );
 
-      const phraseCount = instances[0]?.phraseCount ?? 0;
+      if (instances.some(inst => !inst)) return;
+
+      const phraseCount = instances[0].phraseCount;
       if (phraseCount === 0) return;
 
       function getTypeDelay() {
@@ -2108,8 +2195,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return new Promise(resolve => setTimeout(resolve, seconds * 1000));
       }
 
-      // sleep который можно прервать через abortSignal,
-      // чтобы не ждать конца паузы когда пришёл focus
       function sleepAbortable(seconds) {
         return new Promise(resolve => {
           const ms = seconds * 1000;
@@ -2124,42 +2209,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
 
-      // Синхронный набор: количество шагов = самое длинное слово среди всех экземпляров
-      async function typeAll(phraseIndex) {
-        const steps = Math.max(...instances.map(inst => inst.getStepCount(phraseIndex)));
-
-        instances.forEach(inst => inst.prepareCursor(phraseIndex));
+      // Набираем текст одного экземпляра посимвольно
+      async function typeOne(inst, phraseIndex) {
+        const steps = inst.getStepCount(phraseIndex);
+        inst.prepareCursor(phraseIndex);
 
         for (let i = 0; i < steps; i++) {
           if (abortSignal) break;
-          instances.forEach(inst => inst.typeStep(phraseIndex, i));
+          inst.typeStep(phraseIndex, i);
           await sleepAbortable(getTypeDelay());
         }
 
-        instances.forEach(inst => inst.resumeCursor());
+        inst.resumeCursor();
       }
 
-      // Синхронное удаление
-      async function deleteAll(phraseIndex) {
-        const steps = Math.max(...instances.map(inst => inst.getStepCount(phraseIndex)));
-
-        instances.forEach(inst => inst.prepareCursor(phraseIndex));
+      // Стираем текст одного экземпляра посимвольно
+      async function deleteOne(inst, phraseIndex) {
+        const steps = inst.getStepCount(phraseIndex);
+        inst.prepareCursor(phraseIndex);
 
         for (let i = 0; i < steps; i++) {
           if (abortSignal) break;
-          instances.forEach(inst => inst.deleteStep());
+          inst.deleteStep();
           await sleepAbortable(DELETE_SPEED);
         }
 
-        instances.forEach(inst => inst.resumeCursor());
-      }
-
-      function applyAll(phraseIndex) {
-        instances.forEach(inst => inst.applyPhrase(phraseIndex));
-      }
-
-      function clearAll() {
-        instances.forEach(inst => inst.clearSlots());
+        inst.resumeCursor();
       }
 
       // Финальный stop-text набирается параллельно во всех экземплярах
@@ -2167,40 +2242,69 @@ document.addEventListener('DOMContentLoaded', () => {
         await Promise.all(instances.map(inst => inst.typeStopText()));
       }
 
+      // Вспомогательная функция обработки abortSignal во время итерации
+      async function handleAbort() {
+        abortSignal = false;
+        instances.forEach(inst => inst.clearSlots());
+        await typeStopAll();
+        isStopped = true;
+      }
+
       async function runLoop() {
-        let index = 0;
+
+        instances.forEach(inst => inst.clearSlots());
+
+        let phraseIndex = 0;
 
         while (true) {
+
           if (isStopped) { await sleep(0.1); continue; }
 
-          const phraseIndex = index % phraseCount;
+          // Последовательно набираем текст у каждого экземпляра
+          for (const inst of instances) {
 
-          // Чистим перед каждой итерацией, в том числе после resume
-          clearAll();
-          applyAll(phraseIndex);
+            if (isStopped) break;
 
-          await typeAll(phraseIndex);
-          if (abortSignal) { abortSignal = false; clearAll(); await typeStopAll(); isStopped = true; continue; }
+            inst.clearSlots();
+            inst.applyPhrase(phraseIndex);
 
+            await typeOne(inst, phraseIndex);
+            if (abortSignal) { await handleAbort(); break; }
+          }
+
+          if (isStopped) continue;
+
+          // Пауза пока все экземпляры показывают набранный текст
           await sleepAbortable(PAUSE_AFTER_TYPE);
-          if (abortSignal) { abortSignal = false; clearAll(); await typeStopAll(); isStopped = true; continue; }
+          if (abortSignal) { await handleAbort(); continue; }
 
-          await deleteAll(phraseIndex);
-          if (abortSignal) { abortSignal = false; clearAll(); await typeStopAll(); isStopped = true; continue; }
+          // Стираем все экземпляры одновременно
+          await Promise.all(instances.map(inst => deleteOne(inst, phraseIndex)));
+          if (abortSignal) { await handleAbort(); continue; }
 
           await sleepAbortable(PAUSE_AFTER_DEL);
-          if (abortSignal) { abortSignal = false; clearAll(); await typeStopAll(); isStopped = true; continue; }
+          if (abortSignal) { await handleAbort(); continue; }
 
-          index++;
+          // Переходим к следующей фразе
+          phraseIndex = (phraseIndex + 1) % phraseCount;
         }
       }
 
-      runLoop();
+      // Показываем stop-text сразу при инициализации
+      instances.forEach(inst => inst.typeStopText());
+
+      // Ждём триггера и запускаем
+      const readyPromise = (trigger && triggerEl)
+        ? waitForClass(triggerEl, trigger)
+        : waitForReadyToType();
+
+      readyPromise.then(() => {
+        setTimeout(() => {
+          runLoop();
+        }, START_DELAY);
+      });
     }
 
-    // Один экземпляр typewriter.
-    // Если externalControl: true - не запускает свой цикл,
-    // отдаёт API координатору и следит только за своим input-ом.
     function initTypewriter(container, options = {}) {
 
       const TYPE_SPEED = parseFloat(container.dataset.typeSpeed ?? 0.07);
@@ -2275,20 +2379,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
 
-      // Максимальная длина слова среди всех слотов для данной фразы.
-      // Координатор использует это чтобы выровнять все экземпляры по шагам.
       function getStepCount(phraseIndex) {
         return Math.max(...slots.map(slot => (slot.words[phraseIndex] ?? '').length));
       }
 
-      // Переносим курсор в последний непустой слот перед стартом
       function prepareCursor(phraseIndex) {
         const lastActive = [...slots].reverse().find(slot => slot.words[phraseIndex ?? 0]);
         if (lastActive) moveCursorTo(lastActive.el);
       }
 
-      // Добавляет i-й символ в каждый слот этого экземпляра.
-      // Курсор статичен - resume вызывает координатор после всех шагов.
       function typeStep(phraseIndex, i) {
         cursorTween.pause();
         gsap.set(cursorEl, { opacity: 1 });
@@ -2309,7 +2408,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
 
-      // Удаляет последний символ из каждого слота этого экземпляра.
       function deleteStep() {
         cursorTween.pause();
         gsap.set(cursorEl, { opacity: 1 });
@@ -2319,19 +2417,12 @@ document.addEventListener('DOMContentLoaded', () => {
           if (spans.length === 0) return;
           spans[spans.length - 1].remove();
         });
-
-        // container.style.webkitTransform = 'translateZ(0)';
-        // requestAnimationFrame(() => {
-        //   container.style.webkitTransform = '';
-        // });
       }
 
-      // Возобновляет мигание - вызывается после завершения набора или удаления
       function resumeCursor() {
         cursorTween.resume();
       }
 
-      // Пересоздаём tween после kill() - нужно когда экземпляр возвращается из stopped
       function restoreCursor() {
         gsap.killTweensOf(cursorEl);
         cursorTween = gsap.to(cursorEl, {
@@ -2343,8 +2434,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
 
-      // Набирает финальный stop-text когда input активен или заполнен.
-      // После завершения курсор гасим - анимация для этого экземпляра закончена.
       async function typeStopText() {
         if (!STOP_TEXT) return;
 
@@ -2366,9 +2455,6 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.to(cursorEl, { opacity: 0, duration: 0.3 });
       }
 
-
-      // Собственный цикл - только для одиночных экземпляров.
-      // Слоты идут последовательно как части одного предложения.
       if (!options.externalControl) {
 
         async function typePhrase(phraseIndex) {
@@ -2430,7 +2516,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const phraseIndex = index % phraseCount;
 
-            // Чистим перед каждой итерацией, в том числе после resume
             clearSlots();
             applyPhrase(phraseIndex);
 
@@ -2462,9 +2547,7 @@ document.addEventListener('DOMContentLoaded', () => {
             clearTimeout(deactivateTimer);
             deactivateTimer = setTimeout(() => {
               if (!isStopped) return;
-              // Поле заполнено - оставляем stop-text, не трогаем
               if (inputEl.classList.contains('filled') || inputEl.value?.trim()) return;
-              // Только снимаем флаг - цикл сам почистит слоты и начнёт заново
               isStopped = false;
               restoreCursor();
             }, 50);
@@ -2475,11 +2558,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
           const observer = new MutationObserver(() => {
             if (inputEl.classList.contains('filled')) {
-              // Поле заполнено - это постоянное состояние, не зависит от фокуса
               clearTimeout(deactivateTimer);
               if (!isStopped) abortSignal = true;
             } else {
-              // Класс убрали - деактивируем только если не в фокусе
               if (!inputEl.matches(':focus')) deactivate();
             }
           });
@@ -2490,9 +2571,6 @@ document.addEventListener('DOMContentLoaded', () => {
         runLoop();
       }
 
-
-      // Режим внешнего управления - свой цикл не запускаем,
-      // но за своим input-ом следим и уведомляем координатора.
       if (options.externalControl && inputEl) {
         let selfStopped = false;
         let deactivateTimer = null;
@@ -2508,9 +2586,7 @@ document.addEventListener('DOMContentLoaded', () => {
           clearTimeout(deactivateTimer);
           deactivateTimer = setTimeout(() => {
             if (!selfStopped) return;
-            // Поле заполнено - оставляем stop-text, не трогаем
             if (inputEl.classList.contains('filled') || inputEl.value?.trim()) return;
-            // Только снимаем флаг и уведомляем координатора
             selfStopped = false;
             restoreCursor();
             onResume?.();
@@ -2782,6 +2858,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (isMobile()) return;
 
           const li = link.closest('li');
+          if (!li) return;
           const navRect = nav.getBoundingClientRect();
           const liRect = li.getBoundingClientRect();
 
@@ -2993,7 +3070,9 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       {
         sliderSelector: '.inform__slider',
+        nextSelector: '.inform-button-next',
         highlight: false,
+        edgeTracker: true,
         swiperOptions: {
           slidesPerGroup: 1,
           slidesPerView: 'auto',
@@ -3005,7 +3084,7 @@ document.addEventListener('DOMContentLoaded', () => {
           resistance: true,
           resistanceRatio: 0.4,
           centeredSlides: false,
-          centeredSlidesBounds: true,
+          centeredSlidesBounds: false,
           simulateTouch: true,
           direction: 'horizontal',
           touchStartPreventDefault: true,
@@ -3013,14 +3092,7 @@ document.addEventListener('DOMContentLoaded', () => {
           threshold: 8,
           touchAngle: 25,
           watchOverflow: true,
-          freeMode: {
-            enabled: true,
-            momentum: true,
-            momentumRatio: 0.85,
-            momentumVelocityRatio: 1,
-            momentumBounce: false,
-            sticky: true,
-          },
+          freeMode: false,
           mousewheel: {
             forceToAxis: true,
             sensitivity: 1,
@@ -3529,6 +3601,12 @@ document.addEventListener('DOMContentLoaded', () => {
       swiper.on('touchStart', resetImpulse);
       swiper.on('slideChange', updateDisabled);
       swiper.on('resize', updateDisabled);
+      swiper.on('touchEnd', () => {
+        const dir = swiper.swipeDirection;
+        if (dir === 'next') edgeTracker.handleEdgeNext();
+        else if (dir === 'prev') edgeTracker.handleEdgePrev();
+        updateDisabled();
+      });
 
       swiper.on('destroy', () => {
         if (decayTimer) clearInterval(decayTimer);

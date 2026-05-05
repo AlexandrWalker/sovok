@@ -40,6 +40,14 @@
           &::after {
             opacity: 1;
           }
+
+          .nav__wrap {
+            grid-template-rows: 1fr;
+          }
+
+          .nav__items {
+            padding: 2.5rem 0 3.5rem 0;
+          }
         }
       }
 
@@ -47,6 +55,22 @@
         --font-size: 1.3rem !important;
 
         transform: rotate(-90deg) scale(-1, 1);
+
+        .path1::before,
+        .path2::before {
+
+          html.header-off-top & {
+            color: var(--white);
+          }
+        }
+
+        .path3::before,
+        .path4::before {
+
+          html.header-off-top & {
+            color: var(--black);
+          }
+        }
       }
 
       &:hover {
@@ -58,14 +82,6 @@
             transform: rotate(90deg) scale(-1, 1);
           }
         }
-
-        .nav__wrap {
-          grid-template-rows: 1fr;
-        }
-
-        .nav__items {
-          padding: 2.5rem 0 3.5rem 0;
-        }
       }
     }
 
@@ -76,6 +92,7 @@
       text-transform: uppercase;
       text-decoration: underline;
 
+      html.header-off-top &,
       .header-theme-dark &,
       .menu--open & {
         color: var(--white);
@@ -84,6 +101,13 @@
       &:link,
       &:visited {
         text-decoration: underline;
+      }
+
+      &:hover {
+
+        html.header-off-top & {
+          color: var(--black);
+        }
       }
     }
   }
@@ -143,37 +167,34 @@
 
     &-body {
       display: grid;
-      grid-template-columns: 0fr;
+      grid-template-columns: 0;
       background-color: var(--red);
-      transition: all 0.5s ease;
       overflow: hidden;
+      transition: all 0.5s ease;
+      width: max-content;
 
       position: absolute;
       top: 0;
       left: 100%;
       z-index: 1;
 
-      display: none;
-
       .nav__item:hover & {
-        grid-template-columns: auto;
+        grid-template-columns: 1fr;
         z-index: 2;
       }
     }
 
     &-list {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
       padding: 4rem 0 5rem 0;
       transition: all 0.3s ease;
       overflow: hidden;
+      width: fit-content;
 
       .nav__item:hover & {
         padding: 4rem 5rem 5rem 3rem;
-      }
-
-      ul {
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;
       }
 
       li {
@@ -187,7 +208,7 @@
         text-decoration: underline;
         text-transform: uppercase;
         color: var(--white);
-        // white-space: nowrap;
+        white-space: nowrap;
 
         &:hover {
           color: var(--black);
