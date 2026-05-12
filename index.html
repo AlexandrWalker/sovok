@@ -68,8 +68,7 @@
         </button>
         <button class="btn btn--red btn--accent tender-btn">
           <div class="object-shadow"></div>
-          <div class="object-body">
-            пригласить в тендер
+          <div class="object-body" data-text="Пригласить в тендер" data-text-close="Закрыть">
           </div>
         </button>
       </div>
@@ -314,17 +313,21 @@
   <div class="container">
     <div class="menu__inner">
       <div class="menu__left">
+
         <div class="menu__phone">
           <a href="tel:+79133777977">
             8 913 377 79 77
           </a>
         </div>
+
         <div class="menu__nav">
           <ul class="menu__list">
+
             <li class="menu__list-item menu__list-item--dropdown">
-              <a class="menu__list-link" href="/sovok/404.html">
+              <div class="menu__list-link">
                 производство
-              </a>
+                <i class="icon-chevron-right"></i>
+              </div>
               <div class="menu__nav-wrap">
                 <div class="menu__nav-items">
                   <div class="menu__nav-item">
@@ -332,6 +335,7 @@
                       <span>
                         Брендинг и айдентика
                       </span>
+                      <i class="icon-chevron-right"></i>
                     </div>
                     <div class="menu__nav-body">
                       <div class="menu__nav-list">
@@ -401,6 +405,7 @@
                         Цифровые
                         продукты 
                       </span>
+                      <i class="icon-chevron-right"></i>
                     </div>
                     <div class="menu__nav-body">
                       <div class="menu__nav-list">
@@ -450,6 +455,7 @@
                         Комплексные
                         стратегии 
                       </span>
+                      <i class="icon-chevron-right"></i>
                     </div>
                     <div class="menu__nav-body">
                       <div class="menu__nav-list">
@@ -516,6 +522,7 @@
                 </div>
               </div>
             </li>
+
             <li class="menu__list-item">
               <a class="menu__list-link" href="/sovok/404.html">
                 контора
@@ -548,6 +555,7 @@
             </li>
           </ul>
         </div>
+
         <div class="menu__foot">
           <div class="coordinates">
             <div class="coordinates__title">
@@ -578,7 +586,9 @@
             </a>
           </div>
         </div>
+
       </div>
+
       <div class="menu__right">
 
         <div class="menu__content">
@@ -795,9 +805,9 @@
 
               <div class="typewriter" data-sync-group="tender" data-type-speed="0.07" data-type-variance="0.04"
                 data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
-                data-input="#tender_gorod_input" data-stop-text="Имя субъекта">
+                data-input="#tender_gorod_input" data-stop-text="Город субъекта">
                 <div class="typewriter__line">
-                  <span class="typewriter__word" data-words="Давай знакомиться!|Сюда писать имя"></span>
+                  <span class="typewriter__word" data-words="Откуда вы?|Сюда писать город"></span>
                 </div>
                 <span class="typewriter__cursor">|</span>
               </div>
@@ -827,9 +837,9 @@
 
               <div class="typewriter" data-sync-group="tender" data-type-speed="0.07" data-type-variance="0.04"
                 data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
-                data-input="#tender_email_input" data-stop-text="КАНАЛ СВЯЗИ">
+                data-input="#tender_email_input" data-stop-text="Электронная почта">
                 <div class="typewriter__line">
-                  <span class="typewriter__word" data-words="Номер телефона|Можно указать почту|Ждем обращения)"></span>
+                  <span class="typewriter__word" data-words="Электронная почта|Можно указать почту|Ждем обращения)"></span>
                 </div>
                 <span class="typewriter__cursor">|</span>
               </div>
@@ -1039,10 +1049,10 @@
           <div class="produce__inner">
 
             <div class="general__head">
-              <div class="general__title" data-anim="fadeLeft" data-anim-order="1">
+              <div class="general__title" data-anim="fadeLeft">
                 производим
               </div>
-              <div class="general__text" data-anim="fadeLeft" data-anim-order="2">
+              <div class="general__text" data-anim="fadeLeft">
                 <span>
                   ЦЕХ ВИЗУАЛЬНОЙ ИДЕОЛОГИИ
                 </span>
@@ -1428,10 +1438,10 @@
           <div class="effect__inner">
 
             <div class="general__head">
-              <div class="general__suptitle" data-anim="fadeLeft" data-anim-order="1">
+              <div class="general__suptitle" data-anim="fadeLeft">
                 обеспечиваем
               </div>
-              <div class="general__title" data-anim="fadeLeft" data-anim-order="2">
+              <div class="general__title" data-anim="fadeLeft">
                 эффективность
               </div>
             </div>
@@ -1499,7 +1509,7 @@
         <div class="container">
           <div class="cases__inner">
 
-            <div class="general__head" data-anim="fadeLeft" data-anim-order="2">
+            <div class="general__head" data-anim="fadeLeft" data-anim-order="2" data-anim-order-mobile="1">
               <div class="general__title">
                 делом
               </div>
@@ -1508,7 +1518,7 @@
               </div>
             </div>
 
-            <div class="cases__cover" data-anim="fadeUp" data-anim-order="1">
+            <div class="cases__cover" data-anim="fadeUp" data-anim-order="1" data-anim-order-mobile="2">
               <img src="./images/temp/cases-cover.png" alt="">
             </div>
 
@@ -1591,10 +1601,10 @@
           <div class="growth__inner" data-anim-scene>
 
             <div class="general__head">
-              <div class="general__title" data-anim="fadeLeft" data-anim-order="1">
+              <div class="general__title" data-anim="fadeLeft">
                 механика
               </div>
-              <div class="general__suptitle" data-anim="fadeLeft" data-anim-order="2">
+              <div class="general__suptitle" data-anim="fadeLeft">
                 роста
               </div>
             </div>
@@ -1663,7 +1673,7 @@
           <div class="inform__inner">
 
             <div class="general__head">
-              <div class="general__title" data-anim="fadeLeft" data-anim-order="1">
+              <div class="general__title" data-anim="fadeLeft">
                 информбюро
               </div>
             </div>
@@ -1790,14 +1800,26 @@
                 перейти в раздел
               </a>
               <div class="inform__svg">
-                <svg id="inform__svg" width="675" height="63" viewBox="0 0 675 63" fill="none"
+                <!-- <svg id="inform__svg" width="675" height="63" viewBox="0 0 675 63" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <rect x="29.2891" y="28.3594" width="644.814" height="5.11388" fill="#DC143C" />
-                  <rect id="inform__rect" x="17.5293" y="11.6758" width="53.6474" height="30.4487" fill="#17171A" />
+                  <rect id="inform__rect" class="swiper-svg-scrollbar" x="17.5293" y="11.6758" width="53.6474"
+                    height="30.4487" fill="#17171A" />
                   <rect x="55.3232" y="16.2715" width="342.63" height="5.11388" fill="#DC143C" />
                   <rect x="2.56543" y="1.38265e-05" width="29.9265" height="5.24466" fill="#DC143C" />
                   <rect y="45.582" width="55.4223" height="16.7738" fill="#DC143C" />
+                </svg> -->
+
+                <svg id="inform__svg" width="1104" height="219" viewBox="0 0 1104 219" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <rect x="102.865" y="99.5996" width="1000.89" height="17.9605" fill="#DC143C" />
+                  <rect id="inform__rect" class="swiper-svg-scrollbar swiper-scrollbar-drag" x="61.5645" y="41.0039"
+                    width="188.416" height="106.939" fill="#17171A" />
+                  <rect x="194.299" y="57.1465" width="692.296" height="17.9605" fill="#DC143C" />
+                  <rect x="21.2266" width="105.105" height="18.4198" fill="#DC143C" />
+                  <rect y="160.088" width="194.649" height="58.9116" fill="#DC143C" />
                 </svg>
+
               </div>
             </div>
 
@@ -1823,10 +1845,10 @@
           <div class="awards__inner">
 
             <div class="general__head">
-              <div class="general__suptitle" data-anim="fadeLeft" data-anim-order="1">
+              <div class="general__suptitle" data-anim="fadeLeft">
                 ордена
               </div>
-              <div class="general__title" data-anim="fadeLeft" data-anim-order="2">
+              <div class="general__title" data-anim="fadeLeft">
                 и награды
               </div>
             </div>
@@ -1910,10 +1932,10 @@
           <div class="request__inner">
 
             <div class="general__head">
-              <div class="general__suptitle" data-anim="fadeLeft" data-anim-order="1">
+              <div class="general__suptitle" data-anim="fadeLeft">
                 готовы
               </div>
-              <div class="general__title" data-anim="fadeLeft" data-anim-order="2">
+              <div class="general__title" data-anim="fadeLeft">
                 к запуску?
               </div>
             </div>
