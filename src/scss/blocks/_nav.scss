@@ -26,13 +26,14 @@
           width: 100vw;
           height: calc(100vh + var(--header-height));
           background-color: var(--black-20);
+          background-color: var(--white-80);
           opacity: 0;
           transition: opacity 0.3s ease;
           pointer-events: none;
 
           position: fixed;
           inset: 0;
-          z-index: 0;
+          z-index: 999;
         }
 
         &:hover {
@@ -43,6 +44,7 @@
 
           .nav__wrap {
             grid-template-rows: 1fr;
+            z-index: 1000;
           }
 
           .nav__items {

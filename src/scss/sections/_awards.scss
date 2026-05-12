@@ -124,7 +124,8 @@
 
   &__slide {
     opacity: 0;
-    transition: opacity 0.1s ease;
+    visibility: hidden;
+    transition: opacity 0.1s ease, visibility 0.1s ease;
 
     @include dosm {
       padding-left: 50rem;
@@ -132,6 +133,7 @@
 
     &.swiper-slide-active {
       opacity: 1;
+      visibility: visible;
     }
 
     &-content {

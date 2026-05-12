@@ -656,6 +656,7 @@ document.addEventListener('DOMContentLoaded', () => {
       burgerBtn.classList.remove('burger--open');
       document.documentElement.classList.remove('menu--open');
       lenis.start();
+      document.dispatchEvent(new CustomEvent('menu:close'));
     };
 
     const toggleMenu = (e) => {
@@ -1041,7 +1042,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // data-magnet-strength="0.1"
   // data-magnet-lerp="0.12"
   // data-magnet-return-lerp="0.08">
-
   (function () {
 
     // Настройки магнетизма
@@ -1583,10 +1583,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Настройки анимаций для мобильной версии
     const MOBILE_CONFIG = {
-      fadeDuration: 0.3,
+      // fadeDuration: 0.3,
+      fadeDuration: 0.5,
       fadeStart: 'top 100%',
-      splitDurationTitle: 0.3,
-      splitDurationText: 0.3,
+      splitDurationTitle: 0.5,
+      splitDurationText: 0.5,
       splitStart: 'top 100%',
       splitStaggerTitle: 0.06,
       splitStaggerText: 0.03,
@@ -1597,18 +1598,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const animRegistry = new Map();
 
     // Длительности fade-анимаций для расчёта задержки в группах
-    const FADE_DURATION = 0.3;
+    // const FADE_DURATION = 0.3;
+    const FADE_DURATION = 0.5;
 
     // data-anim-order — порядок внутри общего родителя
     // Группируем элементы по родителю, считаем накопленную задержку
     const orderMap = new Map();
 
-    gsap.utils.toArray('[data-anim-order]').forEach(el => {
-      // Ищем ближайшего предка у которого тоже есть data-anim-order
-      const orderParent = el.parentElement?.closest('[data-anim-order]') ?? el.parentElement;
-      if (!orderMap.has(orderParent)) orderMap.set(orderParent, []);
-      orderMap.get(orderParent).push(el);
-    });
+    // gsap.utils.toArray('[data-anim-order]').forEach(el => {
+    //   // Ищем ближайшего предка у которого тоже есть data-anim-order
+    //   const orderParent = el.parentElement?.closest('[data-anim-order]') ?? el.parentElement;
+    //   if (!orderMap.has(orderParent)) orderMap.set(orderParent, []);
+    //   orderMap.get(orderParent).push(el);
+    // });
 
     // Вспомогательная функция - глубина элемента в DOM
     function getDomDepth(el) {
@@ -1624,24 +1626,82 @@ document.addEventListener('DOMContentLoaded', () => {
     // Сортируем группы по глубине - родители всегда обрабатываются раньше детей
     // Без этого вложенный блок может обработаться до родителя
     // и parent.dataset.animDelay будет ещё не установлен
-    Array.from(orderMap.entries())
-      .sort((a, b) => getDomDepth(a[0]) - getDomDepth(b[0]))
-      .forEach(([parent, els]) => {
-        els.sort((a, b) => parseInt(a.dataset.animOrder) - parseInt(b.dataset.animOrder));
+    // Array.from(orderMap.entries())
+    //   .sort((a, b) => getDomDepth(a[0]) - getDomDepth(b[0]))
+    //   .forEach(([parent, els]) => {
+    //     // els.sort((a, b) => parseInt(a.dataset.animOrder) - parseInt(b.dataset.animOrder));
 
-        // Дочерняя группа стартует после того как родитель закончил анимацию:
-        // delay родителя + его duration
-        const parentStartDelay = parseFloat(parent.dataset.animDelay ?? 0);
-        const parentDuration = parseFloat(parent.dataset.animDuration ?? FADE_DURATION);
-        const parentOrderDelay = parentStartDelay + parentDuration;
-        let accumulated = 0;
+    //     // На мобильном берём data-anim-order-mobile если он задан, иначе data-anim-order
+    //     els.sort((a, b) => {
+    //       const aOrder = parseInt(isMobile() && a.dataset.animOrderMobile ? a.dataset.animOrderMobile : a.dataset.animOrder);
+    //       const bOrder = parseInt(isMobile() && b.dataset.animOrderMobile ? b.dataset.animOrderMobile : b.dataset.animOrder);
+    //       return aOrder - bOrder;
+    //     });
 
-        els.forEach(el => {
-          el.dataset.animDelay = (accumulated + parentOrderDelay).toFixed(3);
-          const duration = parseFloat(el.dataset.animDuration ?? FADE_DURATION);
-          accumulated += duration;
-        });
+    //     // Дочерняя группа стартует после того как родитель закончил анимацию:
+    //     // delay родителя + его duration
+    //     const parentStartDelay = parseFloat(parent.dataset.animDelay ?? 0);
+    //     const parentDuration = parseFloat(parent.dataset.animDuration ?? FADE_DURATION);
+    //     const parentOrderDelay = parentStartDelay + parentDuration;
+    //     let accumulated = 0;
+
+    //     els.forEach(el => {
+    //       // Первый элемент в группе всегда получает parentOrderDelay без накопления
+    //       // Это гарантирует что order-1 на мобильном не получит задержку от order-2
+    //       el.dataset.animDelay = (accumulated + parentOrderDelay).toFixed(3);
+    //       const duration = parseFloat(el.dataset.animDuration ?? FADE_DURATION);
+    //       accumulated += duration;
+    //     });
+    //   });
+
+    function recalcAnimOrder() {
+      // Очищаем карту перед пересчётом - иначе элементы задвоятся при ресайзе
+      orderMap.clear();
+
+      gsap.utils.toArray('[data-anim-order]').forEach(el => {
+        const orderParent = el.parentElement?.closest('[data-anim-order]') ?? el.parentElement;
+        if (!orderMap.has(orderParent)) orderMap.set(orderParent, []);
+        orderMap.get(orderParent).push(el);
       });
+
+      Array.from(orderMap.entries())
+        .sort((a, b) => getDomDepth(a[0]) - getDomDepth(b[0]))
+        .forEach(([parent, els]) => {
+          // На мобильном берём data-anim-order-mobile если задан
+          els.sort((a, b) => {
+            const aOrder = parseInt(isMobile() && a.dataset.animOrderMobile ? a.dataset.animOrderMobile : a.dataset.animOrder);
+            const bOrder = parseInt(isMobile() && b.dataset.animOrderMobile ? b.dataset.animOrderMobile : b.dataset.animOrder);
+            return aOrder - bOrder;
+          });
+
+          const parentStartDelay = parseFloat(parent.dataset.animDelay ?? 0);
+          // const parentDuration = parseFloat(parent.dataset.animDuration ?? FADE_DURATION);
+
+          // parentDuration добавляем только если родитель сам анимируется
+          // иначе первый дочерний элемент получает лишнюю задержку 0.5
+          const parentHasAnim = parent.hasAttribute('data-anim') || parent.hasAttribute('data-split');
+          const parentDuration = parentHasAnim ? parseFloat(parent.dataset.animDuration ?? FADE_DURATION) : 0;
+
+          const parentOrderDelay = parentStartDelay + parentDuration;
+          let accumulated = 0;
+
+          els.forEach(el => {
+            el.dataset.animDelay = (accumulated + parentOrderDelay).toFixed(3);
+            const duration = parseFloat(el.dataset.animDuration ?? FADE_DURATION);
+            accumulated += duration;
+          });
+        });
+    }
+
+    // Первичный расчёт
+    recalcAnimOrder();
+
+    // Пересчёт при ресайзе через дебаунс - не спамим пересчётами
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(recalcAnimOrder, 150);
+    });
 
     // Ищет ближайшего зарегистрированного родителя, возвращает его duration
     function getParentDelay(el) {
@@ -1781,14 +1841,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const hasOrder = el.dataset.animOrder !== undefined;
         const trigger = hasOrder ? el.parentElement : el;
 
-        const manualDelay = parseFloat(el.dataset.animDelay ?? 0);
-        const parentDelay = (() => {
-          const parent = el.closest('[data-anim]:not([data-anim="' + name + '"])');
-          if (!parent) return 0;
-          return parseFloat(parent.dataset.animDuration ?? FADE_DURATION);
-        })();
+        // const manualDelay = parseFloat(el.dataset.animDelay ?? 0);
+        // const parentDelay = (() => {
+        //   const parent = el.closest('[data-anim]:not([data-anim="' + name + '"])');
+        //   if (!parent) return 0;
+        //   return parseFloat(parent.dataset.animDuration ?? FADE_DURATION);
+        // })();
 
-        const delay = manualDelay || parentDelay;
+        // const delay = manualDelay || parentDelay;
 
         // Читаем атрибут data-anim-mobile="fadeRight"
         // Если атрибута нет -- используем исходное направление
@@ -1807,6 +1867,15 @@ document.addEventListener('DOMContentLoaded', () => {
           start: isMobile() ? MOBILE_CONFIG.fadeStart : 'top 90%',
           once: true,
           onEnter: () => {
+            // Читаем delay в момент срабатывания - учитывает пересчитанный order для мобильного
+            const manualDelay = parseFloat(el.dataset.animDelay ?? 0);
+            const parentDelay = (() => {
+              const parent = el.closest('[data-anim]:not([data-anim="' + name + '"])');
+              if (!parent) return 0;
+              return parseFloat(parent.dataset.animDuration ?? FADE_DURATION);
+            })();
+            const delay = manualDelay || parentDelay;
+
             // В момент срабатывания триггера пересчитываем направление
             // Это важно если пользователь изменил размер окна до скролла
             gsap.set(el, { xPercent: getFrom().xPercent, yPercent: getFrom().yPercent, opacity: 0 });
@@ -1913,7 +1982,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ease,
             scrollTrigger: {
               trigger: el,
-              start: 'bottom 60%',
+              start: 'top 90%',
+              // start: isMobile() ? MOBILE_CONFIG.fadeStart : 'top 90%',
             },
           }
         );
@@ -2028,41 +2098,41 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Анимация svg
    */
-  (function () {
+  // (function () {
 
-    // Получаем SVG чтобы знать его ширину для ограничения движения
-    const svg = document.getElementById("inform__svg");
+  //   // Получаем SVG чтобы знать его ширину для ограничения движения
+  //   const svg = document.getElementById("inform__svg");
 
-    if (!svg) return;
+  //   if (!svg) return;
 
-    // Получаем элемент который будем двигать
-    const rect = document.getElementById("inform__rect");
+  //   // Получаем элемент который будем двигать
+  //   const rect = document.getElementById("inform__rect");
 
-    // Начальная позиция rect по оси X из атрибута
-    const startX = parseFloat(rect.getAttribute("x"));
+  //   // Начальная позиция rect по оси X из атрибута
+  //   const startX = parseFloat(rect.getAttribute("x"));
 
-    // Максимальное смещение вправо в пикселях
-    const maxShift = 700;
+  //   // Максимальное смещение вправо в пикселях
+  //   const maxShift = 700;
 
-    // Создаем ScrollTrigger который следит за .wrapper
-    ScrollTrigger.create({
-      trigger: ".wrapper",
-      start: "top top",
-      end: "bottom bottom",
-      scrub: 1,
-      onUpdate: (self) => {
-        // self.progress от 0 до 1 в зависимости от позиции скролла
-        const progress = self.progress;
+  //   // Создаем ScrollTrigger который следит за .wrapper
+  //   ScrollTrigger.create({
+  //     trigger: ".wrapper",
+  //     start: "top top",
+  //     end: "bottom bottom",
+  //     scrub: 1,
+  //     onUpdate: (self) => {
+  //       // self.progress от 0 до 1 в зависимости от позиции скролла
+  //       const progress = self.progress;
 
-        // Вычисляем новую позицию X
-        const newX = startX + maxShift * progress;
+  //       // Вычисляем новую позицию X
+  //       const newX = startX + maxShift * progress;
 
-        // Устанавливаем атрибут x напрямую на SVG элемент
-        rect.setAttribute("x", newX);
-      },
-    });
+  //       // Устанавливаем атрибут x напрямую на SVG элемент
+  //       rect.setAttribute("x", newX);
+  //     },
+  //   });
 
-  })();
+  // })();
 
   /**
    * Анимация набора текста
@@ -3087,8 +3157,12 @@ document.addEventListener('DOMContentLoaded', () => {
           centeredSlidesBounds: false,
           simulateTouch: true,
           direction: 'horizontal',
-          touchStartPreventDefault: true,
-          touchMoveStopPropagation: true,
+
+          // touchStartPreventDefault: true,
+          touchStartPreventDefault: false,
+          // touchMoveStopPropagation: true,
+          touchMoveStopPropagation: false,
+
           threshold: 8,
           touchAngle: 25,
           watchOverflow: true,
@@ -3098,6 +3172,12 @@ document.addEventListener('DOMContentLoaded', () => {
             sensitivity: 1,
             releaseOnEdges: true,
           },
+          // scrollbar: {
+          //   el: ".inform-swiper-scrollbar",
+          //   hide: true,
+          //   draggable: true,
+          // },
+          scrollbar: false,
           navigation: false,
           breakpoints: {
             0: {
@@ -3114,6 +3194,11 @@ document.addEventListener('DOMContentLoaded', () => {
               slidesPerGroup: 1,
               slidesPerView: 2,
               spaceBetween: 40,
+            },
+          },
+          on: {
+            init(swiper) {
+              updateRect(swiper);
             },
           },
         },
@@ -3615,6 +3700,212 @@ document.addEventListener('DOMContentLoaded', () => {
 
       updateDisabled();
     }
+
+    /**
+     * логика свг пагинации
+     */
+    // function updateRect(swiper) {
+    //   // Дорожка — красный rect на всю ширину (x="29.2891" width="644.814")
+    //   const TRACK_START = 29.2891;
+    //   const TRACK_END = 29.2891 + 644.814; // 674.1031
+    //   const RECT_WIDTH = 53.6474;
+
+    //   // Крайние позиции rect-индикатора:
+    //   // левый край = начало дорожки
+    //   // правый край = конец дорожки минус ширина rect
+    //   const POS_MIN = TRACK_START;
+    //   const POS_MAX = TRACK_END - RECT_WIDTH; // 620.4557
+
+    //   const total = swiper.slides.length - 1; // количество шагов
+    //   const index = swiper.realIndex;
+    //   const progress = total > 0 ? index / total : 0;
+    //   const targetX = POS_MIN + (POS_MAX - POS_MIN) * progress;
+
+    //   const rect = document.getElementById('inform__rect');
+
+    //   gsap.to(rect, {
+    //     attr: { x: targetX },
+    //     duration: 0.4,
+    //     ease: 'power2.out',
+    //   });
+    // }
+    function updateRect(swiper) {
+      const scrollbarRect = document.getElementById('inform__rect');
+
+      // Координаты трека на основе SVG
+      const rectTrackStartX = 61.5645; // Начало красной линии
+      const rectTrackEndX = 600.339;   // Конец красной линии с учётом ширины rect
+      const trackLength = rectTrackEndX - rectTrackStartX; // 812.474
+
+      // Синхронизация позиции rect с прогрессом слайдера
+      swiper.on('progress', function () {
+        if (isDragging) return;
+        const progress = swiper.progress; // 0–1
+        const newX = rectTrackStartX + progress * trackLength;
+        scrollbarRect.setAttribute('x', newX.toFixed(3));
+      });
+
+      // Инициализация при загрузке
+      swiper.on('init', function () {
+        swiper.update();
+        const initialX = rectTrackStartX;
+        scrollbarRect.setAttribute('x', initialX.toFixed(3));
+      });
+
+      // Drag-and-drop для rect
+      let isDragging = false;
+      let startClientX = 0; // Координата мыши при начале перетаскивания
+      let initialRectX = 0; // Начальная координата rect при начале перетаскивания
+
+      scrollbarRect.addEventListener('mousedown', startDrag);
+      scrollbarRect.addEventListener('touchstart', startDrag);
+
+      function startDrag(e) {
+        isDragging = true;
+        e.preventDefault();
+
+        // Получаем начальные координаты
+        startClientX = e.clientX || e.touches[0].clientX;
+        initialRectX = parseFloat(scrollbarRect.getAttribute('x'));
+
+        // Кешируем размер SVG один раз при начале drag
+        // Не вызываем getBoundingClientRect на каждый mousemove - дорогая операция
+        const svgEl = document.getElementById('inform__svg');
+        cachedSvgScreenWidth = svgEl.getBoundingClientRect().width;
+        // Отключаем CSS transition во время drag - иначе rect плетётся за курсором
+        scrollbarRect.style.transition = 'none';
+
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('touchmove', drag);
+        document.addEventListener('mouseup', stopDrag);
+        document.addEventListener('touchend', stopDrag);
+      }
+
+      let cachedSvgScreenWidth = 0;
+      let lastSlideTime = 0;
+
+      function drag(e) {
+        if (!isDragging) return;
+
+        const currentClientX = e.clientX || e.touches[0].clientX;
+        const deltaClientX = currentClientX - startClientX; // Смещение мыши в пикселях экрана
+
+        // Переводим смещение мыши в смещение rect относительно трека
+        // Коэффициент масштабирования: длина трека SVG / ширина контейнера слайдера
+        // const containerWidth = swiper.el.offsetWidth;
+        // const scaleFactor = trackLength / containerWidth;
+        // const deltaRectX = deltaClientX * scaleFactor;
+
+        // Считаем масштаб через реальную ширину SVG на экране
+        // Так rect двигается точно за курсором при любом размере SVG
+        // const svgEl = document.getElementById('inform__svg');
+        // const svgScreenWidth = svgEl.getBoundingClientRect().width;
+        const svgViewBoxWidth = 1104; // width из viewBox SVG
+        // const scaleFactor = svgViewBoxWidth / svgScreenWidth;
+
+        const scaleFactor = svgViewBoxWidth / cachedSvgScreenWidth;
+        const deltaRectX = deltaClientX * scaleFactor;
+
+        let newRectX = initialRectX + deltaRectX;
+
+        // Ограничиваем перемещение в пределах трека
+        newRectX = Math.max(rectTrackStartX, Math.min(newRectX, rectTrackEndX));
+
+        // Обновляем позицию rect
+        scrollbarRect.setAttribute('x', newRectX.toFixed(3));
+
+        // Переводим позицию rect в прогресс слайдера
+        const progress = (newRectX - rectTrackStartX) / trackLength;
+
+        // Устанавливаем слайд по прогрессу
+        swiper.slideTo(
+          Math.round(progress * (swiper.slides.length - 1)),
+          // 1 // Без анимации при перетаскивании
+          300
+        );
+      }
+
+      function stopDrag() {
+        isDragging = false;
+
+        scrollbarRect.style.transition = '';
+
+        document.removeEventListener('mousemove', drag);
+        document.removeEventListener('touchmove', drag);
+        document.removeEventListener('mouseup', stopDrag);
+        document.removeEventListener('touchend', stopDrag);
+      }
+    }
+
+  })();
+
+  (function () {
+    const menuListDropdowns = document.querySelectorAll('.menu__list-item--dropdown');
+
+    let isClosing = false;
+
+    // Сброс всех активных классов во всех дропдаунах
+    function closeAll() {
+      isClosing = true;
+
+      document.documentElement.classList.remove('menu-list--active', 'menu-nav--active');
+
+      menuListDropdowns.forEach(dropdown => {
+        dropdown.classList.remove('list--active');
+        dropdown.querySelectorAll('.menu__nav-item').forEach(item => {
+          item.classList.remove('item--active');
+        });
+      });
+
+      isClosing = false;
+    }
+
+    menuListDropdowns.forEach(dropdown => {
+      const menuListLink = dropdown.querySelector('.menu__list-link');
+      const menuNavItems = dropdown.querySelectorAll('.menu__nav-item');
+
+      menuListLink.addEventListener('click', e => {
+        e.stopPropagation();
+
+        const isActive = dropdown.classList.contains('list--active');
+
+        // Закрываем все перед открытием нового - один активный дропдаун
+        closeAll();
+
+        if (!isActive) {
+          document.documentElement.classList.add('menu-list--active');
+          dropdown.classList.add('list--active');
+        }
+      });
+
+      menuNavItems.forEach(menuNavItem => {
+        menuNavItem.addEventListener('click', e => {
+          e.stopPropagation();
+
+          const isActive = menuNavItem.classList.contains('item--active');
+
+          menuNavItems.forEach(item => item.classList.remove('item--active'));
+
+          if (isActive) {
+            document.documentElement.classList.remove('menu-nav--active');
+          } else {
+            document.documentElement.classList.add('menu-nav--active');
+            menuNavItem.classList.add('item--active');
+          }
+        });
+      });
+    });
+
+    // Клик вне дропдауна - закрываем всё
+    document.addEventListener('click', e => {
+      if (e.target.closest('.menu__list-item--dropdown')) return;
+      closeAll();
+    });
+
+    document.addEventListener('menu:close', closeAll);
+
+    // Закрытие меню - сбрасываем все классы внутри дропдаунов
+    // Слушаем удаление класса menu--active с html если меню закрывается снаружи
 
   })();
 

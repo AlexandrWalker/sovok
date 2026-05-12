@@ -180,7 +180,16 @@
       z-index: 1;
 
       @include sm {
-        display: none;
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: all 0.5s ease;
+        overflow: hidden;
+        opacity: 1;
+      }
+
+      .menu__list-item--dropdown.list--active & {
+        grid-template-rows: 1fr;
+        padding-bottom: 2rem;
       }
 
       &::after {
@@ -193,6 +202,10 @@
         top: -7rem;
         left: -23rem;
         z-index: 1;
+
+        @include sm {
+          display: none;
+        }
       }
     }
 
@@ -205,6 +218,14 @@
       top: 0;
       left: 0;
       z-index: 2;
+
+      @include sm {
+        flex-direction: column;
+        gap: 2rem;
+        overflow: hidden;
+
+        position: static;
+      }
     }
 
     &-item {
@@ -214,39 +235,132 @@
       transform: translateY(-150%);
       transition: transform 0.2s ease;
 
+      @include sm {
+        // display: grid;
+        // grid-template-rows: 1fr 0fr;
+        gap: 0;
+        transition: all 0.5s ease;
+        overflow: hidden;
+        transform: none;
+      }
+
+      &.item--active {
+        // grid-template-rows: 1fr auto;
+        gap: 2rem;
+      }
+
       &:nth-child(1) {
         transition-delay: 0s;
       }
 
       &:nth-child(2) {
         transition-delay: 0.1s;
+
+        @include sm {
+          transition-delay: 0s;
+        }
       }
 
       &:nth-child(3) {
         transition-delay: 0.2s;
+
+        @include sm {
+          transition-delay: 0s;
+        }
       }
     }
 
     &-head {
 
+      @include sm {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+      }
+
       span {
+        transition: all 0.3s ease;
+
         font-family: var(--second-family);
         font-weight: 1000;
         font-size: 3rem;
         line-height: 120%;
         text-transform: uppercase;
         color: var(--black);
+
+        @include sm {
+          font-size: 2rem;
+          color: var(--white);
+        }
+
+        .item--active & {
+
+          @include sm {
+            color: var(--black);
+          }
+        }
+      }
+
+      i {
+        --font-size: 1.5rem;
+
+        display: none;
+        transform: rotate(90deg);
+
+        font-weight: 400;
+        color: var(--white);
+
+        @include sm {
+          display: block;
+        }
+
+        .item--active & {
+
+          @include sm {
+            color: var(--black);
+          }
+        }
+
+        .menu__nav-item.item--active & {
+
+          @include sm {
+            transform: rotate(-90deg);
+          }
+        }
       }
     }
 
-    &-body {}
+    &-body {
+
+      @include sm {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: all 0.5s ease;
+        overflow: hidden;
+      }
+
+      .menu__nav-item.item--active & {
+        grid-template-rows: 1fr;
+      }
+    }
 
     &-list {
+
+      @include sm {
+        overflow: hidden;
+        transition: all 0.5s ease;
+      }
 
       ul {
         display: flex;
         flex-direction: column;
+        transition: all 0.5s ease;
         gap: 3rem;
+
+        @include sm {
+          gap: 2rem;
+        }
       }
 
       a {
@@ -256,6 +370,11 @@
         text-decoration-line: underline;
         text-transform: uppercase;
         color: var(--white);
+
+        @include sm {
+          font-family: var(--font-family);
+          font-size: 1.4rem;
+        }
 
         &:hover {
           color: var(--black);
@@ -281,7 +400,10 @@
       width: 100%;
 
       @include sm {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        transition: all 0.5s linear;
       }
 
       &--dropdown {
@@ -323,6 +445,7 @@
     &-link {
       width: fit-content;
       padding: 2rem 0;
+      transition: all 0.3s ease;
       pointer-events: all;
 
       font-family: var(--second-family);
@@ -336,9 +459,40 @@
       z-index: 2;
 
       @include sm {
-        padding: 1rem 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        padding: 0 0 2rem 0;
+        grid-row: 1/2;
 
         font-size: 2rem;
+      }
+
+      &:not(.list--active .menu__list-link) {
+
+        html.menu-list--active & {
+
+          @include sm {
+            opacity: 0.5;
+
+          }
+        }
+      }
+
+      html.menu-nav--active & {
+
+        @include sm {
+          opacity: 0.5;
+
+        }
+      }
+
+      .menu__list-item--dropdown.list--active & {
+
+        @include sm {
+          color: var(--black);
+        }
       }
 
       .menu-item-hover .menu__list-item--dropdown &,
@@ -376,6 +530,24 @@
 
         @include sm {
           display: none;
+        }
+      }
+
+      i {
+        --font-size: 1.5rem;
+
+        display: none;
+        transform: rotate(90deg);
+
+        @include sm {
+          display: block;
+        }
+
+        .menu__list-item--dropdown.list--active & {
+
+          @include sm {
+            transform: rotate(-90deg);
+          }
         }
       }
     }

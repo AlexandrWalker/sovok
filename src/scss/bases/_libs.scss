@@ -60,7 +60,7 @@
     bottom: unset !important;
 
     @include domd {
-      display: none;
+      // display: none;
     }
 
     &-bullet {
@@ -74,6 +74,11 @@
         background-color: var(--black);
       }
     }
+  }
+
+  &-scrollbar-drag {
+    max-width: 18.8rem;
+    height: 10.7rem;
   }
 }
 
@@ -183,3 +188,19 @@
 // .category__slider-highlight[data-direction="prev"] {
 //   clip-path: inset(0 0% 0 0);
 // }
+
+
+.fancybox__content {
+  border-radius: var(--border-radius);
+  margin: 2rem;
+overflow: hidden !important;
+padding: 0;
+}
+
+.fancybox__content::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+}
