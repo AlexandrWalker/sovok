@@ -403,4 +403,59 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 4rem 2rem;
   }
+
+  &-file {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+
+    &-input {
+      visibility: hidden;
+      position: absolute;
+      top: -99999px;
+      left: -999999px;
+    }
+
+    &-label {
+      display: block;
+      width: fit-content;
+    }
+
+    &-wrap {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+
+      color: var(--red);
+
+      i {
+        --font-size: 2.4rem;
+      }
+
+      span {
+        font-weight: 400;
+        font-size: 2rem;
+        line-height: 120%;
+        letter-spacing: -0.04em;
+      }
+    }
+
+    &-clear {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
+
+      font-weight: 400;
+      font-size: 2rem;
+      line-height: 120%;
+      letter-spacing: -0.04em;
+      color: var(--red);
+
+      i {
+        --font-size: 1.6rem;
+      }
+    }
+  }
 }

@@ -1054,6 +1054,13 @@ document.addEventListener('DOMContentLoaded', () => {
       lerpFactor: 0.12,
       // Скорость возврата когда курсор ушёл
       returnLerpFactor: 0.08,
+
+      // Режим работы:
+      // 'magnet'  - притяжение только в зоне triggerDistance (текущее поведение)
+      // 'follow'  - глаз следует за курсором по всему сайту
+      mode: 'follow',
+      // Сила следования в режиме follow: насколько далеко глаз уходит за курсором
+      followStrength: 0.08,
     };
 
     // Настройки автоанимации
@@ -1092,6 +1099,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function initMagnet(el) {
+
+      // Находим блок-границу - ищем ближайший hero__cover-blind
+      // const boundaryEl = el.closest('.hero__cover-blind') ?? document.querySelector('.hero__cover-blind');
+
+      // Ищем соседний hero__cover-blind - элемент на том же уровне вложенности
+      const boundaryEl = el.parentElement?.querySelector('.hero__cover-blind')
+        ?? el.closest('.hero__cover-blind');
 
       const triggerDistance = parseFloat(
         el.dataset.magnetDistance ?? MAGNET_CONFIG.triggerDistance
@@ -1367,9 +1381,35 @@ document.addEventListener('DOMContentLoaded', () => {
           const deltaX = mouseX - centerX;
           const deltaY = mouseY - centerY;
 
+          // В режиме follow используем followStrength - элемент уходит дальше за курсором
+          const activeStrength = MAGNET_CONFIG.mode === 'follow'
+            ? MAGNET_CONFIG.followStrength
+            : strength;
+
           // Курсор тянет элемент + плавно гасим оставшееся авто-смещение
-          targetX = deltaX * strength + autoX;
-          targetY = deltaY * strength + autoY;
+          // targetX = deltaX * strength + autoX;
+          // targetY = deltaY * strength + autoY;
+          targetX = deltaX * activeStrength + autoX;
+          targetY = deltaY * activeStrength + autoY;
+
+          // Клампим смещение так чтобы центр глаза не вышел за hero__cover-blind
+          if (boundaryEl) {
+            const boundaryRect = boundaryEl.getBoundingClientRect();
+            const elRect = el.getBoundingClientRect();
+
+            // Текущий центр глаза без смещения
+            const elCenterX = elRect.left + elRect.width / 2.5;
+            const elCenterY = elRect.top + elRect.height / 2.5;
+
+            // Максимально допустимое смещение в каждую сторону
+            const maxLeft = boundaryRect.left - elCenterX;
+            const maxRight = boundaryRect.right - elCenterX;
+            const maxTop = boundaryRect.top - elCenterY;
+            const maxBottom = boundaryRect.bottom - elCenterY;
+
+            targetX = Math.min(Math.max(targetX, maxLeft), maxRight);
+            targetY = Math.min(Math.max(targetY, maxTop), maxBottom);
+          }
 
           // Гасим авто-смещение пока курсор активен
           autoX = lerp(autoX, 0, 0.05);
@@ -1418,6 +1458,17 @@ document.addEventListener('DOMContentLoaded', () => {
         mouseX = e.clientX;
         mouseY = e.clientY;
 
+        // Режим follow - следим за курсором по всему сайту
+        if (MAGNET_CONFIG.mode === 'follow') {
+          if (!isActive) {
+            isActive = true;
+            el.classList.add('is-magnet-active');
+            stopAuto();
+          }
+          startLoop();
+          return;
+        }
+
         const rect = el.getBoundingClientRect();
         const dist = distanceToRect(mouseX, mouseY, rect);
 
@@ -1446,6 +1497,7 @@ document.addEventListener('DOMContentLoaded', () => {
           isActive = false;
           el.classList.remove('is-magnet-active');
           startLoop();
+          // В режиме follow запускаем автоанимацию когда курсор ушёл за пределы окна
           schedulNext();
         }
       }
@@ -1464,40 +1516,40 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Функция для меню
    */
-  (function () {
+  // (function () {
 
-    const html = document.documentElement;
-    const items = document.querySelectorAll('.menu__list-item--dropdown');
+  //   const html = document.documentElement;
+  //   const items = document.querySelectorAll('.menu__list-item--dropdown');
 
-    if (!items.length) return;
+  //   if (!items.length) return;
 
-    function onEnter() {
-      html.classList.add('menu-item-hover');
-    }
+  //   function onEnter() {
+  //     html.classList.add('menu-item-hover');
+  //   }
 
-    function onLeave() {
-      html.classList.remove('menu-item-hover');
-    }
+  //   function onLeave() {
+  //     html.classList.remove('menu-item-hover');
+  //   }
 
-    function onTouchStart(e) {
-      // Если касание не на этом элементе и не внутри него — убираем класс
-      items.forEach(function (item) {
-        if (!item.contains(e.target)) {
-          onLeave();
-        } else {
-          onEnter();
-        }
-      });
-    }
+  //   function onTouchStart(e) {
+  //     // Если касание не на этом элементе и не внутри него — убираем класс
+  //     items.forEach(function (item) {
+  //       if (!item.contains(e.target)) {
+  //         onLeave();
+  //       } else {
+  //         onEnter();
+  //       }
+  //     });
+  //   }
 
-    items.forEach(function (item) {
-      item.addEventListener('mouseenter', onEnter, { passive: true });
-      item.addEventListener('mouseleave', onLeave, { passive: true });
-    });
+  //   items.forEach(function (item) {
+  //     item.addEventListener('mouseenter', onEnter, { passive: true });
+  //     item.addEventListener('mouseleave', onLeave, { passive: true });
+  //   });
 
-    document.addEventListener('touchstart', onTouchStart, { passive: true });
+  //   document.addEventListener('touchstart', onTouchStart, { passive: true });
 
-  })();
+  // })();
 
   /**
    * Функция для вызова окна тендера
@@ -2084,6 +2136,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   (function () {
     const rocket = document.getElementById('rocket');
+
+    if (!rocket) return;
+
     const formBtn = document.getElementById('rocket-btn');
     const rocketSound = document.getElementById('rocket-sound');
 
@@ -2120,7 +2175,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Взлёт по диагонали вправо-вверх с ускорением
         // x - вправо, y - вверх (отрицательное значение)
         .to(rocket, {
-          x: 400,
+          x: 200,
           y: -2500,
           opacity: 0,
           duration: 3,
@@ -3277,7 +3332,7 @@ document.addEventListener('DOMContentLoaded', () => {
           slidesPerGroup: 1,
           slidesPerView: 1,
           spaceBetween: 40,
-          speed: 500,
+          speed: 800,
           grabCursor: true,
           loop: true,
           touchRatio: 1.6,
@@ -3909,6 +3964,8 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   (function () {
     const menuListDropdowns = document.querySelectorAll('.menu__list-item--dropdown');
+    const burgerMenu = document.getElementById('burger-menu');
+    const menuListItems = document.querySelectorAll('.menu__list-item:not(.menu__list-item--dropdown)');
 
     let isClosing = false;
 
@@ -3927,6 +3984,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
       isClosing = false;
     }
+
+    // Наводимся на обычный пункт - скрываем дропдаун список
+    menuListItems.forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        burgerMenu.classList.remove('list-dropdown-active');
+      });
+    });
+    // Возвращаем класс только при выходе за пределы всего меню
+    burgerMenu.addEventListener('mouseleave', (e) => {
+      // Проверяем куда ушёл курсор - если внутрь меню то игнорируем
+      if (burgerMenu.contains(e.relatedTarget)) return;
+      if (document.documentElement.classList.contains('menu--open')) return;
+      burgerMenu.classList.add('list-dropdown-active');
+    });
 
     menuListDropdowns.forEach(dropdown => {
       const menuListLink = dropdown.querySelector('.menu__list-link');
@@ -3970,7 +4041,14 @@ document.addEventListener('DOMContentLoaded', () => {
       closeAll();
     });
 
-    document.addEventListener('menu:close', closeAll);
+    document.addEventListener('menu:close', () => {
+      closeAll();
+      // При закрытии меню возвращаем класс
+      // burgerMenu.classList.add('list-dropdown-active');
+      if (!document.documentElement.classList.contains('menu--open')) {
+        burgerMenu.classList.add('list-dropdown-active');
+      }
+    });
 
     // Закрытие меню - сбрасываем все классы внутри дропдаунов
     // Слушаем удаление класса menu--active с html если меню закрывается снаружи
@@ -4055,6 +4133,29 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   })();
+
+  // (function () {
+  //   const main = document.querySelector('.main');
+  //   const footer = document.querySelector('.footer');
+
+  //   // Footer стоит на своём месте
+  //   gsap.set(footer, {
+  //     yPercent: 0,
+  //     // marginBottom: -footer.offsetHeight,
+  //   });
+
+  //   // При скролле поднимается вверх на свою высоту
+  //   gsap.to(footer, {
+  //     yPercent: -100,
+  //     ease: 'none',
+  //     scrollTrigger: {
+  //       trigger: request,
+  //       start: 'bottom bottom',
+  //       end: 'bottom top',
+  //       scrub: true,
+  //     },
+  //   });
+  // })();
 
   /**
    * iOS-safe ScrollTrigger refresh handler

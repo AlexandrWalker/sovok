@@ -125,7 +125,7 @@
   &__slide {
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.1s ease, visibility 0.1s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 
     @include dosm {
       padding-left: 50rem;

@@ -40,6 +40,10 @@
     max-width: calc(100vw/(1920/1146));
     z-index: 2;
 
+    &-inner {
+      gap: 3rem;
+    }
+
     &-group {
 
       &:last-child {
@@ -108,6 +112,10 @@
   }
 
   &-btn {
+
+    @include sm {
+      pointer-events: none !important;
+    }
 
     .object-body {
 

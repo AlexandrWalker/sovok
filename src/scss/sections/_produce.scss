@@ -110,7 +110,7 @@
       .produce__item--active & {
 
         @include sm {
-          margin-bottom: 3rem;
+          // margin-bottom: 3rem;
         }
       }
     }
@@ -273,9 +273,14 @@
       left: 0;
       z-index: 2;
 
+      display: none;
+
       @include sm {
+        display: grid;
         height: fit-content;
         padding: 0 2rem;
+
+        display: none;
       }
 
       .produce__item:hover & {

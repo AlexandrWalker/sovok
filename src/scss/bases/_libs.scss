@@ -120,7 +120,7 @@
       .path1:before {
 
         @include sm {
-          content: "\e906";
+          content: "\e90d";
           color: rgb(250, 244, 237);
         }
       }
@@ -128,7 +128,7 @@
       .path2:before {
 
         @include sm {
-          content: "\e907";
+          content: "\e90e";
           margin-left: -1em;
           color: rgb(250, 244, 237);
         }
@@ -137,7 +137,7 @@
       .path3:before {
 
         @include sm {
-          content: "\e908";
+          content: "\e90f";
           margin-left: -1em;
           color: rgb(220, 20, 60);
         }
@@ -146,7 +146,7 @@
       .path4:before {
 
         @include sm {
-          content: "\e909";
+          content: "\e910";
           margin-left: -1em;
           color: rgb(220, 20, 60);
         }

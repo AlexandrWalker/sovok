@@ -53,72 +53,72 @@
       margin: 0;
       min-height: 13.1rem;
     }
-  }
 
-  .typewriter {
-    display: flex;
-    flex-direction: column;
-
-    &__line {
+    .typewriter {
       display: flex;
-      align-items: center;
-      gap: 2.5rem;
+      flex-direction: column;
 
-      @include sm {
-        gap: 1rem;
-      }
+      &__line {
+        display: flex;
+        align-items: center;
+        gap: 2.5rem;
 
-      &:nth-child(2) {
-
-        .typewriter__cursor,
-        .typewriter__word {
-          color: var(--red);
+        @include sm {
+          gap: 1rem;
         }
-      }
 
-      &:last-child {
+        &:nth-child(2) {
 
-        .typewriter__cursor,
-        .typewriter__word {
-          font-size: 10rem;
-          line-height: 95%;
-          letter-spacing: normal;
+          .typewriter__cursor,
+          .typewriter__word {
+            color: var(--red);
+          }
+        }
 
-          @include sm {
-            font-size: 3rem;
-            letter-spacing: -0.05em;
+        &:last-child {
+
+          .typewriter__cursor,
+          .typewriter__word {
+            font-size: 10rem;
+            line-height: 95%;
+            letter-spacing: normal;
+
+            @include sm {
+              font-size: 3rem;
+              letter-spacing: -0.05em;
+            }
           }
         }
       }
-    }
 
-    &__word {
-      display: inline-block;
-      vertical-align: text-bottom;
+      &__word {
+        display: inline-block;
+        vertical-align: text-bottom;
 
-      font-family: var(--second-family);
-      font-weight: 1000;
-      font-size: 27rem;
-      line-height: 85%;
-      letter-spacing: -0.05em;
-      text-transform: uppercase;
-      color: var(--black);
+        font-family: var(--second-family);
+        font-weight: 1000;
+        font-size: 27rem;
+        line-height: 85%;
+        letter-spacing: -0.05em;
+        text-transform: uppercase;
+        color: var(--black);
 
-      @include sm {
-        font-size: 6rem;
+        @include sm {
+          font-size: 6rem;
+        }
       }
-    }
 
-    &__cursor {
-      font-weight: 1000;
-      font-size: 27rem;
-      line-height: 85%;
-      text-transform: uppercase;
-      color: var(--black);
-      will-change: opacity;
+      &__cursor {
+        font-weight: 1000;
+        font-size: 27rem;
+        line-height: 85%;
+        text-transform: uppercase;
+        color: var(--black);
+        will-change: opacity;
 
-      @include sm {
-        font-size: 6rem;
+        @include sm {
+          font-size: 6rem;
+        }
       }
     }
   }
@@ -215,18 +215,19 @@
   // }
 
   &__cover {
-    width: auto;
+    width: 80.4rem;
     height: 77rem;
-    height: calc(100vw/(1920/770));
+    // height: calc(100vw/(1920/770));
 
     position: absolute;
     top: -5.9rem;
-    top: calc(-100vw/(1920/59));
+    // top: calc(-100vw/(1920/59));
     right: 12.3rem;
-    right: calc(100vw/(1920/123));
+    // right: calc(100vw/(1920/123));
     z-index: 2;
 
     @include sm {
+      width: auto;
       height: 46.7rem;
 
       position: relative;
@@ -258,14 +259,15 @@
 
     &-el {
       width: 11.1rem;
-      width: calc(100vw/(1920/111));
-      height: calc(100vw/(1920/111));
+      // width: calc(100vw/(1920/111));
+      height: 11.1rem;
+      // height: calc(100vw/(1920/111));
 
       position: absolute;
       top: 14.7rem;
-      top: calc(100vw/(1920/147));
+      // top: calc(100vw/(1920/147));
       left: 29.7rem;
-      left: calc(100vw/(1920/297));
+      // left: calc(100vw/(1920/297));
 
       @include sm {
         width: 7rem;
@@ -290,13 +292,13 @@
   &__mask {
     width: auto;
     height: 73.1rem;
-    height: calc(100vw/(1920/731));
+    // height: calc(100vw/(1920/731));
 
     position: absolute;
     top: calc(((var(--header-height)) + 20.2rem) * -1);
-    top: calc(-100vw/(1920/372));
+    // top: calc(-100vw/(1920/372));
     right: 21.9rem;
-    right: calc(100vw/(1920/219));
+    // right: calc(100vw/(1920/219));
     z-index: 1;
 
     @include sm {
@@ -314,17 +316,4 @@
       object-fit: contain;
     }
   }
-}
-
-/* Стилизация конкретных слов через data-word */
-[data-word="уровень"] {
-  color: #DC143C;
-}
-
-[data-word="фраза"] {
-  color: #2a9d8f;
-}
-
-[data-word="одна"] {
-  color: #e9c46a;
 }

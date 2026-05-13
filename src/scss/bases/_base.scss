@@ -8,7 +8,7 @@ html {
   font-size: calc(100vw / var(--refRes) * 10);
   font-size: calc(100dvw / var(--refRes) * 10);
   scroll-behavior: smooth;
-  will-change: font-size;
+  // will-change: font-size;
 
   @include sm {
     --refRes: 402;
@@ -36,8 +36,9 @@ body {
   height: 100%;
   min-height: 100vh;
   overflow: hidden;
-
   padding-top: var(--header-height);
+
+  position: relative;
 }
 
 .main {

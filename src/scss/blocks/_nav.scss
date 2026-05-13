@@ -28,7 +28,8 @@
           background-color: var(--black-20);
           background-color: var(--white-80);
           opacity: 0;
-          transition: opacity 0.3s ease;
+          visibility: hidden;
+          transition: opacity 0.3s ease, visibility 0.3s ease;
           pointer-events: none;
 
           position: fixed;
@@ -40,6 +41,7 @@
 
           &::after {
             opacity: 1;
+            visibility: visible;
           }
 
           .nav__wrap {
@@ -118,7 +120,7 @@
     display: grid;
     grid-template-rows: 0fr;
     width: max-content;
-    transition: all 0.3s ease;
+    transition: grid-template-rows 0.3s ease;
 
     position: absolute;
     top: 100%;
