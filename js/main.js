@@ -2082,6 +2082,71 @@ document.addEventListener('DOMContentLoaded', () => {
 
   })();
 
+  (function () {
+    const rocket = document.getElementById('rocket');
+    const formBtn = document.getElementById('rocket-btn');
+    const rocketSound = document.getElementById('rocket-sound');
+
+    let isLaunched = false;
+
+    function launchRocket() {
+      // if (isLaunched) return;
+      isLaunched = true;
+
+      // Сбрасываем звук если уже играл
+      // rocketSound.currentTime = 0;
+      // rocketSound.play().catch(() => {
+      // Браузер может заблокировать autoplay - молча игнорируем
+      // });
+
+      // GSAP timeline с ускорением
+      const tl = gsap.timeline({
+        // onComplete: () => {
+        //   // Сбрасываем ракету после завершения анимации
+        //   gsap.set(rocket, { clearProps: 'all' });
+        //   isLaunched = false;
+        // }
+      });
+
+      tl
+        // Короткое дрожание перед стартом - имитация прогрева двигателей
+        .to(rocket, {
+          x: -3,
+          duration: 0.05,
+          repeat: 6,
+          yoyo: true,
+          ease: 'none',
+        })
+        // Взлёт по диагонали вправо-вверх с ускорением
+        // x - вправо, y - вверх (отрицательное значение)
+        .to(rocket, {
+          x: 400,
+          y: -2500,
+          opacity: 0,
+          duration: 3,
+          // power4.in - начинает медленно, резко ускоряется к концу
+          ease: 'power4.in',
+        });
+    }
+
+    formBtn.addEventListener('click', launchRocket);
+
+    // Следим за исчезновением класса tender--open - возвращаем ракету
+    const observer = new MutationObserver(() => {
+      const isOpen = document.documentElement.classList.contains('tender--open');
+
+      if (!isOpen && isLaunched) {
+        gsap.killTweensOf(rocket);
+        gsap.set(rocket, { clearProps: 'all' });
+        isLaunched = false;
+      }
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+  })();
 
 
 
@@ -3839,6 +3904,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   })();
 
+  /**
+   * Функция для пунктов и подпунктов меню
+   */
   (function () {
     const menuListDropdowns = document.querySelectorAll('.menu__list-item--dropdown');
 
@@ -3907,6 +3975,85 @@ document.addEventListener('DOMContentLoaded', () => {
     // Закрытие меню - сбрасываем все классы внутри дропдаунов
     // Слушаем удаление класса menu--active с html если меню закрывается снаружи
 
+  })();
+
+  /**
+   * ВЫПАДАЮЩИЙ СПИСОК (dropdown--js)
+   *    
+   * Кастомный select на основе radio-инпутов.
+   * Открывается кликом, закрывается кликом вне или выбором опции.
+   */
+  (function () {
+    const html = document.documentElement;
+
+    const dropdowns = document.querySelectorAll('.dropdown--js');
+    if (!dropdowns.length) return;
+
+    dropdowns.forEach(dropdown => {
+      const isCityDropdown = dropdown.classList.contains('js-city-dropdown');
+
+      const selectedJs = dropdown.querySelector('.dropdown__selected--js');
+      const selectedInputJs = dropdown.querySelector('.dropdown__selected-input--js');
+      const selectedLabelJs = dropdown.querySelector('.dropdown__selected-label--js');
+      const dropdownRadios = dropdown.querySelectorAll('.dropdown__radio');
+      const dropdownValue = dropdown.querySelector('.dropdown__value');
+
+      if (!selectedJs) return;
+
+      selectedJs.addEventListener('click', e => {
+        e.stopPropagation();
+        dropdown.classList.toggle('is-active');
+      });
+
+      document.addEventListener('click', e => {
+        if (!dropdown.contains(e.target)) {
+          dropdown.classList.remove('is-active');
+        }
+      });
+
+      dropdownRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+          if (!radio.checked) return;
+
+          const dataValue = radio.dataset.city;
+          const value = radio.value;
+
+          // Обновляем UI в текущем dropdown
+          if (selectedLabelJs) selectedLabelJs.textContent = value;
+          if (selectedInputJs) selectedInputJs.value = value;
+          if (dropdownValue) dropdownValue.value = value;
+
+          // Только для dropdown с городами
+          if (isCityDropdown) {
+            // 1) Синхронизируем ВСЕ js-city-dropdown:
+            // меняем текст и input, а также отмечаем нужную радиокнопку в каждом dropdown
+            const allCityDropdowns = document.querySelectorAll('.dropdown--js.js-city-dropdown');
+
+            allCityDropdowns.forEach(cityDropdown => {
+              const label = cityDropdown.querySelector('.dropdown__selected-label--js');
+              const input = cityDropdown.querySelector('.dropdown__selected-input--js');
+              const hiddenValue = cityDropdown.querySelector('.dropdown__value');
+
+              if (label) label.textContent = value;
+              if (input) input.value = value;
+              if (hiddenValue) hiddenValue.value = value;
+
+              // Отмечаем нужную радиокнопку в каждом dropdown по data-city
+              const cityRadios = cityDropdown.querySelectorAll('.dropdown__radio');
+              cityRadios.forEach(r => {
+                // dataset.city хранит код города, который мы и используем для синхронизации
+                if (r.dataset.city === dataValue) {
+                  r.checked = true;
+                }
+              });
+            });
+          }
+
+          dropdown.classList.remove('is-active');
+          dropdown.classList.add('filled');
+        });
+      });
+    });
   })();
 
   /**

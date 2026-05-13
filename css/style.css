@@ -260,16 +260,16 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-ExtraBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraBold.woff") format("woff");
-  font-weight: 800;
+  src: url("../fonts/RobotoCondensed-ExtraLight.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraLight.woff") format("woff");
+  font-weight: 200;
   font-style: normal;
 }
 
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-ExtraLight.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraLight.woff") format("woff");
-  font-weight: 200;
+  src: url("../fonts/RobotoCondensed-ExtraBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraBold.woff") format("woff");
+  font-weight: 800;
   font-style: normal;
 }
 
@@ -893,6 +893,180 @@ body {
 
 .coordinates__content a:hover {
   color: var(--black);
+}
+
+.dropdown {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: relative;
+  z-index: 9;
+}
+
+.dropdown__selected {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  height: 7rem;
+  background-color: transparent;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.dropdown__selected i {
+  --font-size: 1.5rem;
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+  margin-top: -1.5rem;
+  color: var(--red);
+}
+
+.dropdown.is-active .dropdown__selected i {
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+.dropdown__selected-label--js::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 0.2rem;
+  background-color: var(--white-50);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.dropdown__selected-label--js::after {
+  content: "";
+  display: block;
+  width: 0%;
+  height: 0.2rem;
+  background-color: var(--white);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.dropdown__input {
+  display: none;
+  width: 100%;
+  height: 7rem;
+  background-color: transparent;
+  font-weight: 400;
+  font-size: 3rem;
+  line-height: 120%;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.filled .dropdown__input + .form-label,
+.dropdown__input:focus + .form-label,
+.dropdown__input:active + .form-label,
+.dropdown__input:checked + .form-label {
+  height: calc(100% + 2rem);
+  font-size: 2rem;
+  top: -2rem;
+}
+
+.filled .dropdown__input + .form-label::after,
+.dropdown__input:focus + .form-label::after,
+.dropdown__input:active + .form-label::after,
+.dropdown__input:checked + .form-label::after {
+  width: 100%;
+}
+
+.dropdown__input:hover + .dropdown__label::after {
+  width: 100%;
+}
+
+.dropdown__input:required + .form-label .typewriter__word::after {
+  content: "";
+  width: 1.6rem;
+  height: 1.6rem;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: absolute;
+  top: 0;
+  right: -2rem;
+}
+
+.dropdown__label {
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  overflow: hidden;
+  font-weight: 400;
+  font-size: 3rem;
+  line-height: 120%;
+  color: var(--white);
+  white-space: nowrap;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.dropdown__container {
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  top: calc(100% + 0.2rem);
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.dropdown.is-active .dropdown__container {
+  pointer-events: all;
+}
+
+.dropdown__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 4rem 3rem;
+  background-color: var(--red);
+  -webkit-transform: translateY(-110%);
+  -ms-transform: translateY(-110%);
+  transform: translateY(-110%);
+  will-change: transform;
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+
+.dropdown.is-active .dropdown__content {
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.dropdown__content .dropdown__label {
+  font-size: 2rem;
+  color: var(--white);
+}
+
+.dropdown__radio {
+  display: none;
 }
 
 .form-inner {
@@ -2201,6 +2375,7 @@ html.header-off-top .header__left .line-col {
 .header__left .btn--accent .object-body {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
+  width: 26.2rem;
 }
 
 html.tender--open .header__left .btn--accent .object-body,
@@ -3138,7 +3313,6 @@ canvas {
 
 .tender {
   display: grid;
-  grid-template-rows: 0fr;
   width: 100dvw;
   width: 100vw;
   height: 100dvh;
@@ -3151,15 +3325,6 @@ canvas {
   top: 0;
   left: 0;
   z-index: 400;
-}
-
-.tender--open .tender {
-  grid-template-rows: 1fr;
-}
-
-.header-at-footer .tender,
-.menu--open .tender {
-  grid-template-rows: 0fr;
 }
 
 .tender * {
@@ -3339,15 +3504,26 @@ html.tender--open .tender-btn .object-body::before {
   -ms-flex-direction: column;
   flex-direction: column;
   gap: 5rem;
-  padding: 0 9rem 0 9rem;
+  padding: 15rem 9rem 8rem 9rem;
   overflow: hidden;
   background-color: var(--black);
   pointer-events: all;
+  width: 100%;
+  height: 100%;
+  clip-path: inset(4% 74% 91% 14%);
+  -webkit-transition: clip-path 1s cubic-bezier(0.7, 0, 0.4, 1), all 0.5s ease;
+  transition: clip-path 1s cubic-bezier(0.7, 0, 0.4, 1), all 0.5s ease;
+  will-change: clip-path;
 }
 
 .tender--open .tender__inner {
-  padding: 15rem 9rem 8rem 9rem;
   overflow-y: auto;
+  clip-path: inset(0 0 0 0);
+}
+
+.header-at-footer .tender__inner,
+.menu--open .tender__inner {
+  clip-path: inset(4% 74% 91% 14%);
 }
 
 .tender__inner::-webkit-scrollbar {
@@ -3369,55 +3545,21 @@ html.tender--open .tender-btn .object-body::before {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  width: 92.8rem;
-  width: 48.3333333333vw;
-  height: 103.5rem;
-  height: 53.90625vw;
   pointer-events: none;
   position: absolute;
-  top: 0;
-  right: 4.2rem;
-  right: 2.1875vw;
+  top: 4.8rem;
+  right: 16.9rem;
   z-index: 1;
 }
 
 .tender__cover-img {
   width: auto;
+  height: 122.6rem;
+  -webkit-transform: rotate(18.48deg);
+  -ms-transform: rotate(18.48deg);
+  transform: rotate(18.48deg);
   -webkit-transition: none;
   transition: none;
-  position: absolute;
-}
-
-.tender__cover-img--first {
-  height: 62.7rem;
-  height: 32.65625vw;
-  top: -2.8rem;
-  top: -1.4583333333vw;
-  right: -1.5rem;
-  right: -0.78125vw;
-  z-index: 2;
-}
-
-.tender__cover-img--first img {
-  -webkit-transform: rotate(16.41deg);
-  -ms-transform: rotate(16.41deg);
-  transform: rotate(16.41deg);
-}
-
-.tender__cover-img--second {
-  height: 45rem;
-  height: 23.4375vw;
-  right: 12.4rem;
-  right: 6.4583333333vw;
-  bottom: 25rem;
-  bottom: 13.0208333333vw;
-  z-index: 1;
-}
-
-.tender__cover-img--second img {
-  -webkit-transform: rotate(70.79deg);
-  -ms-transform: rotate(70.79deg);
-  transform: rotate(70.79deg);
 }
 
 .tender__cover-img img {
@@ -5323,15 +5465,15 @@ html.tender--open .tender-btn .object-body::before {
 }
 
 .produce__item.produce__item--2 .object-shadow {
-  -webkit-transform: scale(1.05) rotate(4.41deg);
-  -ms-transform: scale(1.05) rotate(4.41deg);
-  transform: scale(1.05) rotate(4.41deg);
+  -webkit-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
 }
 
 .produce__item.produce__item--2:hover .object-shadow {
-  -webkit-transform: scale(1.05) rotate(-2deg);
-  -ms-transform: scale(1.05) rotate(-2deg);
-  transform: scale(1.05) rotate(-2deg);
+  -webkit-transform: rotate(-2deg);
+  -ms-transform: rotate(-2deg);
+  transform: rotate(-2deg);
 }
 
 .produce__item.produce__item--2:hover .object-img {
@@ -5720,6 +5862,29 @@ html.tender--open .tender-btn .object-body::before {
 
   .coordinates__content p {
     font-size: 1.6rem;
+  }
+
+  .dropdown__selected-label--js::before {
+    height: 0.3rem;
+  }
+
+  .dropdown__selected-label--js::after {
+    height: 0.3rem;
+  }
+
+  .filled .dropdown__input + .form-label,
+  .dropdown__input:focus + .form-label,
+  .dropdown__input:active + .form-label,
+  .dropdown__input:checked + .form-label {
+    height: calc(100% + 1.6rem);
+    font-size: 1.4rem;
+    top: -1.6rem;
+  }
+
+  .dropdown__input:required + .form-label .typewriter__word::after {
+    width: 1rem;
+    height: 1rem;
+    right: -1.2rem;
   }
 
   .form-body {
@@ -6494,6 +6659,11 @@ html.tender--open .tender-btn .object-body::before {
     max-width: 23.6rem;
     margin-bottom: 2rem;
     font-size: 1.6rem;
+  }
+
+  .cases__slide-link {
+    font-size: 1.6rem;
+    text-transform: none;
   }
 
   .cases .swiper-button-prev {
