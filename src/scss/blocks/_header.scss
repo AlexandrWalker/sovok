@@ -160,6 +160,7 @@
 
       .object-body {
         transition: all 0.3s ease;
+        width: 26.2rem;
 
         @include sm {
           width: 100%;

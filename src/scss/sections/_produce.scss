@@ -223,13 +223,13 @@
     &.produce__item--2 {
 
       .object-shadow {
-        transform: scale(1.05) rotate(4.41deg);
+        transform: rotate(2deg);
       }
 
       &:hover {
 
         .object-shadow {
-          transform: scale(1.05) rotate(-2deg);
+          transform: rotate(-2deg);
         }
 
         .object-img {

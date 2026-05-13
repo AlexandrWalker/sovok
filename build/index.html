@@ -798,11 +798,9 @@
 
             </label>
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <input id="tender_gorod_input" class="form-input" type="text" name="tender_gorod" required>
             <label class="form-label">
-              <!-- Город -->
-
               <div class="typewriter" data-sync-group="tender" data-type-speed="0.07" data-type-variance="0.04"
                 data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
                 data-input="#tender_gorod_input" data-stop-text="Город субъекта">
@@ -811,9 +809,47 @@
                 </div>
                 <span class="typewriter__cursor">|</span>
               </div>
-
             </label>
+          </div> -->
+
+          <div class="form-group">
+            <div class="dropdown dropdown--js">
+              <div class="dropdown__selected dropdown__selected--js">
+                <input id="tender_gorod_input" class="dropdown__input dropdown__selected-input--js" type="text"
+                  name="tender_gorod" value="" required>
+                <label class="form-label">
+                  <div class="typewriter" data-sync-group="tender" data-type-speed="0.07" data-type-variance="0.04"
+                    data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                    data-input="#tender_gorod_input" data-stop-text="Город субъекта">
+                    <div class="typewriter__line">
+                      <span class="typewriter__word" data-words="Откуда вы?|Сюда писать город"></span>
+                    </div>
+                    <span class="typewriter__cursor">|</span>
+                  </div>
+                </label>
+                <label class="dropdown__label dropdown__selected-label--js"></label>
+                <i class="icon-chevron-right"></i>
+              </div>
+              <div class="dropdown__container">
+                <div class="dropdown__content">
+                  <div class="dropdown__option">
+                    <input id="place_1" class="dropdown__radio" name="place_name" type="radio" value="Новосибирск">
+                    <label for="place_1" class="dropdown__label">Новосибирск</label>
+                  </div>
+                  <div class="dropdown__option">
+                    <input id="place_2" class="dropdown__radio" name="place_name" type="radio" value="Москва">
+                    <label for="place_2" class="dropdown__label">Москва</label>
+                  </div>
+                  <div class="dropdown__option">
+                    <input id="place_3" class="dropdown__radio" name="place_name" type="radio" value="Санкт-Петербург">
+                    <label for="place_3" class="dropdown__label">Санкт-Петербург</label>
+                  </div>
+                </div>
+              </div>
+              <input class="dropdown__value" type="hidden">
+            </div>
           </div>
+
           <div class="form-group">
             <input id="tender_tel_input" class="form-input" type="tel" name="tender_tel" required>
             <label class="form-label">
@@ -839,7 +875,8 @@
                 data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
                 data-input="#tender_email_input" data-stop-text="Электронная почта">
                 <div class="typewriter__line">
-                  <span class="typewriter__word" data-words="Электронная почта|Можно указать почту|Ждем обращения)"></span>
+                  <span class="typewriter__word"
+                    data-words="Электронная почта|Можно указать почту|Ждем обращения)"></span>
                 </div>
                 <span class="typewriter__cursor">|</span>
               </div>
@@ -865,7 +902,7 @@
           </div>
         </div>
         <div class="form-foot">
-          <button class="form-btn" type="button" data-btn-sound="poehali">
+          <button id="rocket-btn" class="form-btn" type="button" data-btn-sound="poehali">
             <div class="form-btn__text">
               поехали!
             </div>
@@ -897,11 +934,13 @@
       </div>
     </form>
 
-    <!-- <div class="tender__cover">
-      <div class="tender__cover-img tender__cover-img--first" data-tender-anim="fadeUp">
-        <img src="./images/temp/raketa.png" alt="">
+    <div class="tender__cover">
+      <div class="tender__cover-img">
+        <img id="rocket" src="./images/temp/raketa.png" alt="">
       </div>
-    </div> -->
+      <!-- Звук запуска -->
+      <!-- <audio id="rocket-sound" src="./sound/raketa_zvuk.mp3" preload="auto"></audio> -->
+    </div>
 
     <!-- <div class="tender__btn">
       <span class="tender__btn-line tender__btn-line--first"></span>
@@ -1188,7 +1227,7 @@
                 <div class="produce__item-content">
                   <div class="produce__item-cover">
                     <div class="object-shadow">
-                      <img src="./images/temp/produce-2-cover.svg" alt="">
+                      <img src="./images/temp/produce-2-cover-shadow.svg" alt="">
                     </div>
                     <div class="object-body">
                       <img src="./images/temp/produce-2-cover.svg" alt="">
