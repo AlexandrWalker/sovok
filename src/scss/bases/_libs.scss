@@ -248,12 +248,3 @@
   padding: 0;
   margin: 0;
 }
-
-html.with-fancybox {
-  overflow: hidden !important;
-}
-
-html.with-fancybox body.hide-scrollbar {
-  max-height: 100vh;
-  overflow: hidden !important;
-}

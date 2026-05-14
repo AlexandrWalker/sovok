@@ -4176,13 +4176,10 @@ document.addEventListener('DOMContentLoaded', () => {
    * Инициализация Fabcybox
    */
   Fancybox.bind('[data-fancybox]', {
-    Html: {
-      autoSize: false,
+    on: {
+      init: () => lenis.stop(),
+      destroy: () => lenis.start(),
     },
-    // on: {
-    //   open: () => lenis.stop(),
-    //   destroy: () => lenis.start(),
-    // },
   });
 
   /**
