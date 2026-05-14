@@ -193,16 +193,16 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
-  font-weight: 200;
+  src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
+  font-weight: 800;
   font-style: normal;
 }
 
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
-  font-weight: 800;
+  src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
+  font-weight: 200;
   font-style: normal;
 }
 
@@ -239,18 +239,18 @@ img {
 }
 
 @font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Thin.woff2") format("woff2"), url("../fonts/Roboto-Thin.woff") format("woff");
-  font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
   font-family: RobotoCondensed;
   font-display: swap;
   src: url("../fonts/RobotoCondensed-Black.woff2") format("woff2"), url("../fonts/RobotoCondensed-Black.woff") format("woff");
   font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-Thin.woff2") format("woff2"), url("../fonts/Roboto-Thin.woff") format("woff");
+  font-weight: 100;
   font-style: normal;
 }
 
@@ -281,16 +281,16 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Light.woff2") format("woff2"), url("../fonts/RobotoCondensed-Light.woff") format("woff");
-  font-weight: 300;
+  src: url("../fonts/RobotoCondensed-Medium.woff2") format("woff2"), url("../fonts/RobotoCondensed-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Medium.woff2") format("woff2"), url("../fonts/RobotoCondensed-Medium.woff") format("woff");
-  font-weight: 500;
+  src: url("../fonts/RobotoCondensed-Light.woff2") format("woff2"), url("../fonts/RobotoCondensed-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
@@ -530,8 +530,6 @@ img {
   --f-close-button-bg: #000000;
   --f-close-button-hover-bg: #000000;
   --f-close-button-active-bg: #000000;
-  --f-close-button-svg-width: 2.2rem;
-  --f-close-button-svg-height: 2.2rem;
   --f-button-svg-stroke-width: 0.4rem;
   top: 4rem;
   right: 4rem;
@@ -566,6 +564,15 @@ img {
   height: 0;
   padding: 0;
   margin: 0;
+}
+
+html.with-fancybox {
+  overflow: hidden !important;
+}
+
+html.with-fancybox body.hide-scrollbar {
+  max-height: 100vh;
+  overflow: hidden !important;
 }
 
 /* Reset and base styles  */
@@ -2020,6 +2027,7 @@ p {
   gap: 5rem;
   padding: 11rem 9rem 8rem 9rem;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .callback__inner::-webkit-scrollbar {
@@ -2652,8 +2660,23 @@ html.header-off-top .logo svg #point,
   transform: translateY(0);
 }
 
+.menu--open body {
+  overflow: hidden !important;
+  overscroll-behavior-y: none;
+  max-height: 100vh;
+}
+
 .menu .container {
   overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.menu .container::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .menu__inner {
@@ -3407,6 +3430,14 @@ html.header-off-top .nav__list-link:hover {
   position: relative;
 }
 
+.popup__wrap::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+}
+
 .popup__wrap::before {
   content: "";
   width: auto;
@@ -3680,6 +3711,12 @@ canvas {
   z-index: 400;
 }
 
+.tender--open body {
+  overflow: hidden !important;
+  overscroll-behavior-y: none;
+  max-height: 100vh;
+}
+
 .tender * {
   -webkit-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
@@ -3874,19 +3911,28 @@ html.tender--open .tender-btn .object-body::before {
   height: 100%;
   -webkit-clip-path: inset(5% 83% 95% 17%);
           clip-path: inset(5% 83% 95% 17%);
-  -webkit-transition: clip-path 1s cubic-bezier(0.7, 0, 0.4, 1), all 0.5s ease;
-  -webkit-transition: all 0.5s ease, -webkit-clip-path 1s cubic-bezier(0.7, 0, 0.4, 1);
-  transition: all 0.5s ease, -webkit-clip-path 1s cubic-bezier(0.7, 0, 0.4, 1);
-  -o-transition: clip-path 1s cubic-bezier(0.7, 0, 0.4, 1), all 0.5s ease;
-  transition: clip-path 1s cubic-bezier(0.7, 0, 0.4, 1), all 0.5s ease;
-  transition: clip-path 1s cubic-bezier(0.7, 0, 0.4, 1), all 0.5s ease, -webkit-clip-path 1s cubic-bezier(0.7, 0, 0.4, 1);
+  -webkit-transition: clip-path 0.5s cubic-bezier(0.7, 0, 0.4, 1), all 0.5s ease;
+  -webkit-transition: all 0.5s ease, -webkit-clip-path 0.5s cubic-bezier(0.7, 0, 0.4, 1);
+  transition: all 0.5s ease, -webkit-clip-path 0.5s cubic-bezier(0.7, 0, 0.4, 1);
+  -o-transition: clip-path 0.5s cubic-bezier(0.7, 0, 0.4, 1), all 0.5s ease;
+  transition: clip-path 0.5s cubic-bezier(0.7, 0, 0.4, 1), all 0.5s ease;
+  transition: clip-path 0.5s cubic-bezier(0.7, 0, 0.4, 1), all 0.5s ease, -webkit-clip-path 0.5s cubic-bezier(0.7, 0, 0.4, 1);
   will-change: clip-path;
 }
 
 .tender--open .tender__inner {
   overflow-y: auto;
+  overflow-x: hidde;
   -webkit-clip-path: inset(0 0 0 0);
           clip-path: inset(0 0 0 0);
+}
+
+.tender__inner::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .header-at-footer .tender__inner,
@@ -6996,6 +7042,7 @@ html.tender--open .tender-btn .object-body::before {
     max-height: 100vh;
     height: 100%;
     overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .popup__wrap::before {
