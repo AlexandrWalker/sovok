@@ -1,0 +1,165 @@
+@use './../mixins' as *;
+
+.popup {
+  display: none;
+
+  &__wrap {
+    width: 141.6rem;
+    position: relative;
+
+    @include sm {
+      width: 100%;
+      max-height: 100vh;
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    &::before {
+      content: "";
+      width: auto;
+      height: auto;
+      background-color: var(--black);
+      transform: rotate(0.96deg);
+
+      position: absolute;
+      top: -0.4rem;
+      right: -0.7rem;
+      bottom: -0.9rem;
+      left: -2.7rem;
+
+      @include sm {
+        display: none;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    // padding: 7rem 11.4rem 13.6rem 11.4rem;
+    padding: 7rem 11.4rem 7.6rem 11.4rem;
+    background-color: var(--red);
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+
+    @include sm {
+      gap: 2rem;
+      padding: 2rem;
+    }
+  }
+
+  &__head {
+    position: relative;
+    z-index: 2;
+  }
+
+  &__title {
+    padding-right: 5rem;
+
+    font-family: var(--second-family);
+    font-weight: 1000;
+    font-size: 10rem;
+    line-height: 120%;
+    text-transform: uppercase;
+
+    @include sm {
+      font-size: 3rem;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: row;
+    // gap: 11.2rem;
+    gap: 2.5rem;
+
+    position: relative;
+    z-index: 2;
+
+    @include sm {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
+  &__list {
+    max-width: 40.6rem;
+    width: 100%;
+
+    &:nth-child(2) {
+      max-width: 26.6rem;
+    }
+
+    li {
+      margin-bottom: 3rem;
+
+      @include sm {
+        margin-bottom: 1rem;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      font-weight: 400;
+      font-size: 3rem;
+      line-height: 140%;
+      text-decoration: underline;
+      text-transform: uppercase;
+      color: var(--white);
+
+      @include sm {
+        font-size: 2rem;
+      }
+
+      &:hover {
+        color: var(--black);
+      }
+    }
+  }
+
+  &__cover {
+    width: auto;
+
+    position: absolute;
+    z-index: 1;
+
+    @include sm {
+      display: none;
+    }
+
+    #popup-1 & {
+      height: 56rem;
+      transform: rotate(15deg);
+
+      right: -16.6rem;
+      bottom: -1rem;
+    }
+
+    #popup-2 & {
+      height: 50.4rem;
+      transform: rotate(-11.81deg);
+
+      right: -5.7rem;
+      bottom: -1.1rem;
+    }
+
+    #popup-3 & {
+      height: 54.3rem;
+      transform: rotate(-11.81deg);
+
+      right: 3.7rem;
+      bottom: -1.85rem;
+    }
+
+    img {
+      width: auto;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}

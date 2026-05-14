@@ -67,7 +67,7 @@
     flex-direction: column;
     justify-content: space-between;
     gap: 5rem;
-    overflow: hidden;
+    // overflow: hidden;
     height: 100%;
 
     position: relative;
@@ -284,12 +284,32 @@
     }
 
     &-head {
+      position: relative;
 
       @include sm {
         display: flex;
         flex-direction: row;
         align-items: center;
         gap: 1rem;
+      }
+
+      &--img {
+        width: 10.2rem;
+        height: 8rem;
+
+        position: absolute;
+        bottom: 0;
+        right: calc(100% + 2rem);
+
+        @include sm {
+          display: none;
+        }
+
+        img {
+          width: auto;
+          height: 100%;
+          object-fit: contain;
+        }
       }
 
       span {
@@ -686,6 +706,7 @@
       // height: calc(100vw/(1920/941));
       transition: transform 0.3s ease;
 
+      position: absolute;
       top: unset;
       right: -19rem;
       // right: calc(-100vw/(1920/190));

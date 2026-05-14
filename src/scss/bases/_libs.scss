@@ -189,12 +189,56 @@
 //   clip-path: inset(0 0% 0 0);
 // }
 
+.f-html {
+  padding: 0;
+}
+
+.f-button.is-close-button {
+  --f-close-button-width: 6rem;
+  --f-close-button-height: 6rem;
+  --f-close-border-radius: 50%;
+  --f-close-button-color: var(--white);
+  --f-close-button-hover-color: var(--white);
+  --f-close-button-bg: #000000;
+  --f-close-button-hover-bg: #000000;
+  --f-close-button-active-bg: #000000;
+  --f-close-button-svg-width: 2.2rem;
+  --f-close-button-svg-height: 2.2rem;
+  --f-button-svg-stroke-width: 0.4rem;
+
+  top: 4rem;
+  right: 4rem;
+
+  @include sm {
+    --f-close-button-width: 4rem;
+    --f-close-button-height: 4rem;
+    --f-button-svg-stroke-width: 0.2rem;
+
+    top: 2rem;
+    right: 2rem;
+  }
+}
+
+.fancybox__container,
+.fancybox__viewport,
+.fancybox__slide {
+  touch-action: pan-y;
+}
+
+.f-button svg {
+  stroke-linecap: square;
+  stroke-linejoin: square;
+}
+
+.fancybox__backdrop {
+  background: var(--white-80);
+}
 
 .fancybox__content {
   border-radius: var(--border-radius);
   margin: 2rem;
-overflow: hidden !important;
-padding: 0;
+  overflow: hidden !important;
+  padding: 0;
 }
 
 .fancybox__content::-webkit-scrollbar {
