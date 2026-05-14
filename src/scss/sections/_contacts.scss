@@ -10,7 +10,10 @@
   }
 
   .container {
-    overflow: hidden;
+    
+    @include sm {
+      overflow: hidden;
+    }
   }
 
   &__inner {
@@ -187,6 +190,9 @@
 
     img {
       max-width: unset;
+      width: auto;
+      height: 100%;
+      object-fit: contain;
     }
   }
 }

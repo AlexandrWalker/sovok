@@ -177,16 +177,16 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
-  font-weight: 900;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
+  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
+  font-weight: 900;
   font-style: normal;
 }
 
@@ -4435,10 +4435,6 @@ html.tender--open .tender-btn .object-body::before {
   --section-padding-bottom: 5rem;
 }
 
-.contacts .container {
-  overflow: hidden;
-}
-
 .contacts__inner {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -4553,6 +4549,10 @@ html.tender--open .tender-btn .object-body::before {
 
 .contacts__cover img {
   max-width: unset;
+  width: auto;
+  height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
 }
 
 /* ── Обёртка всей сцены ── */
@@ -7380,6 +7380,10 @@ html.tender--open .tender-btn .object-body::before {
   .contacts {
     --section-padding-top: 1rem;
     --section-padding-bottom: 0;
+  }
+
+  .contacts .container {
+    overflow: hidden;
   }
 
   .contacts__inner {
