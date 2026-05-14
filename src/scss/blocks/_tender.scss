@@ -20,6 +20,15 @@
     display: none;
   }
 
+  &--open {
+
+    body {
+      overflow: hidden !important;
+      overscroll-behavior-y: none;
+      max-height: 100vh;
+    }
+  }
+
   .tender--open & {
     // grid-template-rows: 1fr;
 
@@ -217,13 +226,22 @@
     height: 100%;
     clip-path: inset(5% 83% 95% 17%);
     // clip-path: inset(4% 74% 91% 14%);
-    transition: clip-path 1s cubic-bezier(0.7, 0, 0.4, 1), all 0.5s ease;
+    transition: clip-path 0.5s cubic-bezier(0.7, 0, 0.4, 1), all 0.5s ease;
     will-change: clip-path;
 
     .tender--open & {
       // padding: 15rem 9rem 8rem 9rem;
       overflow-y: auto;
+      overflow-x: hidde;
       clip-path: inset(0 0 0 0);
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
+      padding: 0;
+      margin: 0;
     }
 
     .header-at-footer &,

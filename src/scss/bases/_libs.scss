@@ -202,8 +202,8 @@
   --f-close-button-bg: #000000;
   --f-close-button-hover-bg: #000000;
   --f-close-button-active-bg: #000000;
-  --f-close-button-svg-width: 2.2rem;
-  --f-close-button-svg-height: 2.2rem;
+  // --f-close-button-svg-width: 2.2rem;
+  // --f-close-button-svg-height: 2.2rem;
   --f-button-svg-stroke-width: 0.4rem;
 
   top: 4rem;
@@ -247,4 +247,13 @@
   height: 0;
   padding: 0;
   margin: 0;
+}
+
+html.with-fancybox {
+  overflow: hidden !important;
+}
+
+html.with-fancybox body.hide-scrollbar {
+  max-height: 100vh;
+  overflow: hidden !important;
 }

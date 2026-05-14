@@ -234,6 +234,7 @@
     gap: 5rem;
     padding: 11rem 9rem 8rem 9rem;
     overflow-y: auto;
+    overflow-x: hidden;
 
     &::-webkit-scrollbar {
       display: none;
