@@ -13,6 +13,8 @@
   &__inner {}
 
   &__head {
+    display: flex;
+    flex-direction: column;
     max-width: 74.7rem;
 
     font-family: var(--second-family);
@@ -20,21 +22,21 @@
     &-suptitle {
       font-weight: 1000;
       font-size: 6.5rem;
-      font-size: calc(100vw/(1920/65));
+      // font-size: calc(100vw/(1920/65));
       line-height: 85%;
       letter-spacing: -0.05em;
       text-transform: uppercase;
 
       @include sm {
-        // font-size: calc(100vw/(402/41));
         font-size: 4.1rem;
+        // font-size: calc(100vw/(402/41));
       }
     }
 
     &-title {
       font-weight: 1000;
       font-size: 45rem;
-      font-size: calc(100vw/(1920/450));
+      // font-size: calc(100vw/(1920/450));
       line-height: 100%;
       letter-spacing: -0.05em;
       text-transform: uppercase;
@@ -50,7 +52,7 @@
     &-text {
       font-weight: 1000;
       font-size: 6.5rem;
-      font-size: calc(100vw/(1920/65));
+      // font-size: calc(100vw/(1920/65));
       line-height: 110%;
       letter-spacing: -0.05em;
       text-transform: uppercase;
@@ -69,14 +71,14 @@
 
   &__cover {
     width: auto;
-    // height: 112.4rem;
-    height: calc(100vw/(1920/1124));
+    height: 112.4rem;
+    // height: calc(100vw/(1920/1124));
 
     position: absolute;
     top: -2.5rem;
-    top: calc(-100vw/(1920/25));
-    // right: var(--callback-mini-width);
-    right: calc(100vw/(1920/540));
+    // top: calc(-100vw/(1920/25));
+    right: var(--callback-mini-width);
+    // right: calc(100vw/(1920/540));
     z-index: 1;
 
     @include sm {

@@ -105,6 +105,9 @@
     z-index: 2;
 
     @include sm {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
       gap: 2rem 4rem;
     }
   }
@@ -116,6 +119,7 @@
 
     @include sm {
       gap: 1.5rem;
+      width: calc(50% - 2rem);
     }
 
     &-count {

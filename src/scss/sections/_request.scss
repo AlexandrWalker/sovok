@@ -20,12 +20,20 @@
       gap: 0;
     }
 
-    &__title {
-      color: var(--red);
-    }
-
     &__suptitle {
       color: var(--white);
+
+      @include sm {
+        font-size: 6.7rem;
+      }
+    }
+
+    &__title {
+      color: var(--red);
+
+      @include sm {
+        font-size: 5.5rem;
+      }
     }
   }
 

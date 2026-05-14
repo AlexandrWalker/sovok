@@ -10,13 +10,17 @@
   z-index: 2;
 
   @include sm {
-    --section-padding-bottom: rem;
+    --section-padding-bottom: 2rem;
 
     margin-right: 0;
   }
 
   .general__head {
     gap: 0.2rem;
+
+    @include sm {
+      gap: 1rem;
+    }
   }
 
   &__inner {

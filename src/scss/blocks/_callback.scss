@@ -131,6 +131,10 @@
     max-width: 114.6rem;
     max-width: calc(100vw/(1920/1146));
     z-index: 2;
+
+    @include sm {
+      max-width: 100%;
+    }
   }
 
   .general {

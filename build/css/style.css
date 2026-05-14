@@ -177,14 +177,6 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
-  font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
   src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
   font-weight: 900;
   font-style: normal;
@@ -195,6 +187,14 @@ img {
   font-display: swap;
   src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
   font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
+  font-weight: 800;
   font-style: normal;
 }
 
@@ -2295,6 +2295,9 @@ p {
 }
 
 .footer__link {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   font-weight: 400;
   font-size: 2rem;
   line-height: 100%;
@@ -2400,6 +2403,10 @@ p {
 
 .footer__download a:hover {
   color: var(--black);
+}
+
+.footer .social__links {
+  max-width: 25rem;
 }
 
 .header {
@@ -4398,6 +4405,9 @@ html.tender--open .tender-btn .object-body::before {
 }
 
 .cases__slide-link {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   font-weight: 400;
   font-size: 2rem;
   line-height: 120%;
@@ -4422,7 +4432,11 @@ html.tender--open .tender-btn .object-body::before {
 
 .contacts {
   --section-padding-top: 2rem;
-  --section-padding-bottom: 2rem;
+  --section-padding-bottom: 5rem;
+}
+
+.contacts .container {
+  overflow: hidden;
 }
 
 .contacts__inner {
@@ -4450,7 +4464,8 @@ html.tender--open .tender-btn .object-body::before {
 }
 
 .contacts__head-suptitle {
-  font-weight: 900;
+  font-family: var(--second-family);
+  font-weight: 1000;
   font-size: 3rem;
   line-height: 100%;
   text-transform: uppercase;
@@ -4463,6 +4478,10 @@ html.tender--open .tender-btn .object-body::before {
   line-height: 100%;
   text-decoration: underline;
   text-transform: uppercase;
+}
+
+.contacts__head-title:hover {
+  color: var(--red);
 }
 
 .contacts__body {
@@ -4499,13 +4518,7 @@ html.tender--open .tender-btn .object-body::before {
   color: var(--red);
 }
 
-.contacts__body .social {
-  gap: 1.5rem;
-}
-
 .contacts__body .social__title {
-  font-weight: 900;
-  font-size: 3rem;
   text-decoration: none;
   color: var(--red);
 }
@@ -4531,13 +4544,11 @@ html.tender--open .tender-btn .object-body::before {
 
 .contacts__cover {
   width: auto;
-  height: 56.3rem;
-  height: 27.0833333333vw;
+  height: 54.8rem;
   pointer-events: none;
   position: absolute;
   right: 0;
   bottom: calc(var(--section-padding-bottom) * -1);
-  bottom: -1.0416666667vw;
 }
 
 .contacts__cover img {
@@ -5744,6 +5755,13 @@ html.tender--open .tender-btn .object-body::before {
 }
 
 .notfound__head {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
   max-width: 74.7rem;
   font-family: var(--second-family);
 }
@@ -5751,7 +5769,6 @@ html.tender--open .tender-btn .object-body::before {
 .notfound__head-suptitle {
   font-weight: 1000;
   font-size: 6.5rem;
-  font-size: 3.3854166667vw;
   line-height: 85%;
   letter-spacing: -0.05em;
   text-transform: uppercase;
@@ -5760,7 +5777,6 @@ html.tender--open .tender-btn .object-body::before {
 .notfound__head-title {
   font-weight: 1000;
   font-size: 45rem;
-  font-size: 23.4375vw;
   line-height: 100%;
   letter-spacing: -0.05em;
   text-transform: uppercase;
@@ -5771,7 +5787,6 @@ html.tender--open .tender-btn .object-body::before {
 .notfound__head-text {
   font-weight: 1000;
   font-size: 6.5rem;
-  font-size: 3.3854166667vw;
   line-height: 110%;
   letter-spacing: -0.05em;
   text-transform: uppercase;
@@ -5783,11 +5798,10 @@ html.tender--open .tender-btn .object-body::before {
 
 .notfound__cover {
   width: auto;
-  height: 58.5416666667vw;
+  height: 112.4rem;
   position: absolute;
   top: -2.5rem;
-  top: -1.3020833333vw;
-  right: 28.125vw;
+  right: var(--callback-mini-width);
   z-index: 1;
 }
 
@@ -6124,12 +6138,12 @@ html.tender--open .tender-btn .object-body::before {
   gap: 0;
 }
 
-.request .general__title {
-  color: var(--red);
-}
-
 .request .general__suptitle {
   color: var(--white);
+}
+
+.request .general__title {
+  color: var(--red);
 }
 
 .request .form {
@@ -6600,8 +6614,13 @@ html.tender--open .tender-btn .object-body::before {
     height: 41rem;
   }
 
+  .callback .form {
+    max-width: 100%;
+  }
+
   .footer {
     --container-padding: 1.5rem;
+    padding-top: 3rem;
     padding-bottom: var(--plate-height);
   }
 
@@ -6613,12 +6632,13 @@ html.tender--open .tender-btn .object-body::before {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 3rem;
   }
 
   .footer__phone {
     min-height: auto;
     font-size: 4.3rem;
+    color: var(--black);
   }
 
   .footer__phone a {
@@ -6663,7 +6683,7 @@ html.tender--open .tender-btn .object-body::before {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem;
   }
 
   .footer__menu {
@@ -6676,6 +6696,9 @@ html.tender--open .tender-btn .object-body::before {
 
   .footer__links {
     gap: 1rem;
+    -webkit-box-ordinal-group: 5;
+    -ms-flex-order: 4;
+    order: 4;
   }
 
   .footer__link {
@@ -6683,7 +6706,7 @@ html.tender--open .tender-btn .object-body::before {
   }
 
   .footer__contacts {
-    gap: 2rem;
+    gap: 1rem;
   }
 
   .footer__contacts-wrap {
@@ -6694,8 +6717,29 @@ html.tender--open .tender-btn .object-body::before {
     font-size: 1.6rem;
   }
 
+  .footer__contacts .footer__menu-link {
+    color: var(--black);
+  }
+
   .footer__foot {
     display: none;
+  }
+
+  .footer__download {
+    margin-top: 1rem;
+  }
+
+  .footer__download i {
+    --font-size: 1.6rem;
+  }
+
+  .footer__download a {
+    gap: 0.7rem;
+    font-size: 1.4rem;
+  }
+
+  .footer .social__title {
+    color: var(--black);
   }
 
   .header {
@@ -7228,6 +7272,7 @@ html.tender--open .tender-btn .object-body::before {
   }
 
   .awards__slide-name {
+    margin-bottom: 0;
     font-size: 2rem;
   }
 
@@ -7294,7 +7339,7 @@ html.tender--open .tender-btn .object-body::before {
   }
 
   .cases__slide-content {
-    padding: 2rem;
+    padding: 3rem 2rem;
   }
 
   .cases__slide-title {
@@ -7332,9 +7377,18 @@ html.tender--open .tender-btn .object-body::before {
     display: none;
   }
 
+  .contacts {
+    --section-padding-top: 1rem;
+    --section-padding-bottom: 0;
+  }
+
   .contacts__inner {
     gap: 3rem;
     width: 100%;
+  }
+
+  .contacts__head {
+    gap: 1rem;
   }
 
   .contacts__head-suptitle {
@@ -7346,7 +7400,8 @@ html.tender--open .tender-btn .object-body::before {
   }
 
   .contacts__body {
-    margin-bottom: calc(35rem - var(--section-padding-bottom));
+    gap: 3rem;
+    margin-bottom: 26.2rem;
   }
 
   .contacts__body .footer__contacts {
@@ -7370,9 +7425,9 @@ html.tender--open .tender-btn .object-body::before {
   }
 
   .contacts__cover {
-    height: 51.5rem;
-    right: -40.3rem;
-    bottom: calc(var(--section-padding-bottom) * -1);
+    height: 48.3rem;
+    right: -34rem;
+    bottom: -13.1rem;
   }
 
   .effect {
@@ -7432,11 +7487,21 @@ html.tender--open .tender-btn .object-body::before {
   }
 
   .growth__items {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
     gap: 2rem 4rem;
   }
 
   .growth__item {
     gap: 1.5rem;
+    width: calc(50% - 2rem);
   }
 
   .growth__item-count {
@@ -7465,7 +7530,8 @@ html.tender--open .tender-btn .object-body::before {
   }
 
   .hero {
-    padding: 0;
+    padding-top: 0.5rem;
+    padding-bottom: 0;
     overflow: hidden;
   }
 
@@ -7667,8 +7733,12 @@ html.tender--open .tender-btn .object-body::before {
   }
 
   .produce {
-    --section-padding-bottom: rem;
+    --section-padding-bottom: 2rem;
     margin-right: 0;
+  }
+
+  .produce .general__head {
+    gap: 1rem;
   }
 
   .produce__inner {
@@ -7754,6 +7824,14 @@ html.tender--open .tender-btn .object-body::before {
   .request {
     --section-padding-top: 5rem;
     --section-padding-bottom: 31rem;
+  }
+
+  .request .general__suptitle {
+    font-size: 6.7rem;
+  }
+
+  .request .general__title {
+    font-size: 5.5rem;
   }
 
   .request .form-label::before {

@@ -2,7 +2,16 @@
 
 .contacts {
   --section-padding-top: 2rem;
-  --section-padding-bottom: 2rem;
+  --section-padding-bottom: 5rem;
+
+  @include sm {
+    --section-padding-top: 1rem;
+    --section-padding-bottom: 0;
+  }
+
+  .container {
+    overflow: hidden;
+  }
 
   &__inner {
     display: flex;
@@ -23,8 +32,13 @@
     flex-direction: column;
     gap: 2rem;
 
+    @include sm {
+      gap: 1rem;
+    }
+
     &-suptitle {
-      font-weight: 900;
+      font-family: var(--second-family);
+      font-weight: 1000;
       font-size: 3rem;
       line-height: 100%;
       text-transform: uppercase;
@@ -42,6 +56,10 @@
       text-decoration: underline;
       text-transform: uppercase;
 
+      &:hover {
+        color: var(--red);
+      }
+
       @include sm {
         font-size: 3rem;
       }
@@ -54,7 +72,9 @@
     gap: 4rem;
 
     @include sm {
-      margin-bottom: calc(35rem - var(--section-padding-bottom));
+      gap: 3rem;
+      // margin-bottom: calc(26.2rem - var(--section-padding-bottom));
+      margin-bottom: 26.2rem;
     }
 
     .footer {
@@ -98,15 +118,12 @@
     }
 
     .social {
-      gap: 1.5rem;
 
       @include sm {
         max-width: 24.2rem;
       }
 
       &__title {
-        font-weight: 900;
-        font-size: 3rem;
         text-decoration: none;
         color: var(--red);
 
@@ -154,20 +171,18 @@
 
   &__cover {
     width: auto;
-    height: 56.3rem;
-    height: calc(100vw/(1920/520));
+    height: 54.8rem;
     pointer-events: none;
 
     position: absolute;
     right: 0;
     bottom: calc(var(--section-padding-bottom) * -1);
-    bottom: calc(-100vw/(1920/20));
 
     @include sm {
-      height: 51.5rem;
+      height: 48.3rem;
 
-      right: -40.3rem;
-      bottom: calc(var(--section-padding-bottom) * -1);
+      right: -34rem;
+      bottom: -13.1rem;
     }
 
     img {
