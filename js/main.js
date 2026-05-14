@@ -4055,6 +4055,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   })();
 
+  (function () {
+    const menuListDropdowns = document.querySelectorAll('.menu__list-item--dropdown');
+
+    if (menuListDropdowns.length) {
+      menuListDropdowns.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+          document.documentElement.classList.add('menu-item-hover');
+        });
+        item.addEventListener('mouseleave', () => {
+          document.documentElement.classList.remove('menu-item-hover');
+        });
+      });
+    }
+  })();
+
   /**
    * ВЫПАДАЮЩИЙ СПИСОК (dropdown--js)
    *    
@@ -4156,6 +4171,19 @@ document.addEventListener('DOMContentLoaded', () => {
   //     },
   //   });
   // })();
+
+  /**
+   * Инициализация Fabcybox
+   */
+  Fancybox.bind('[data-fancybox]', {
+    Html: {
+      autoSize: false,
+    },
+    // on: {
+    //   open: () => lenis.stop(),
+    //   destroy: () => lenis.start(),
+    // },
+  });
 
   /**
    * iOS-safe ScrollTrigger refresh handler
