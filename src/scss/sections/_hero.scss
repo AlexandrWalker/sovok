@@ -88,7 +88,7 @@
       &__line {
         display: flex;
         align-items: center;
-        gap: 2.5rem;
+        gap: 6rem;
 
         @include sm {
           gap: 1rem;
@@ -103,6 +103,11 @@
         }
 
         &:last-child {
+          gap: 2.5rem;
+
+          @include sm {
+            gap: 1rem;
+          }
 
           .typewriter__cursor,
           .typewriter__word {
