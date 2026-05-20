@@ -18,6 +18,8 @@
 
   @include sm {
     grid-template-columns: 1fr;
+    top: -100%;
+    left: 0;
   }
 
   &::-webkit-scrollbar {
@@ -43,6 +45,7 @@
 
     @include sm {
       left: 0;
+      top: 0;
     }
   }
 
@@ -50,6 +53,11 @@
   .menu--open & {
     grid-template-columns: 1fr;
     left: 120%;
+    
+    @include sm {
+      top: -100%;
+      left: 0;
+    }
   }
 
   * {

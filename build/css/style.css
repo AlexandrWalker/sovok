@@ -167,6 +167,30 @@ img {
 }
 
 @font-face {
+  font-family: Redoctober;
+  font-display: swap;
+  src: url("../fonts/Redoctober-regular.woff2") format("woff2"), url("../fonts/Redoctober-regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Redoctober;
+  font-display: swap;
+  src: url("../fonts/Redoctober-ultra.woff2") format("woff2"), url("../fonts/Redoctober-ultra.woff") format("woff");
+  font-weight: 1000;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
   font-family: Roboto;
   font-display: swap;
   src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
@@ -231,14 +255,6 @@ img {
 }
 
 @font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
-  font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
   font-family: RobotoCondensed;
   font-display: swap;
   src: url("../fonts/RobotoCondensed-Black.woff2") format("woff2"), url("../fonts/RobotoCondensed-Black.woff") format("woff");
@@ -257,6 +273,14 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
+  src: url("../fonts/RobotoCondensed-ExtraBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraBold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoCondensed;
+  font-display: swap;
   src: url("../fonts/RobotoCondensed-ExtraLight.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraLight.woff") format("woff");
   font-weight: 200;
   font-style: normal;
@@ -267,14 +291,6 @@ img {
   font-display: swap;
   src: url("../fonts/RobotoCondensed-Light.woff2") format("woff2"), url("../fonts/RobotoCondensed-Light.woff") format("woff");
   font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Redoctober;
-  font-display: swap;
-  src: url("../fonts/Redoctober-ultra.woff2") format("woff2"), url("../fonts/Redoctober-ultra.woff") format("woff");
-  font-weight: 1000;
   font-style: normal;
 }
 
@@ -307,22 +323,6 @@ img {
   font-display: swap;
   src: url("../fonts/RobotoCondensed-Thin.woff2") format("woff2"), url("../fonts/RobotoCondensed-Thin.woff") format("woff");
   font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Redoctober;
-  font-display: swap;
-  src: url("../fonts/Redoctober-regular.woff2") format("woff2"), url("../fonts/Redoctober-regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: RobotoCondensed;
-  font-display: swap;
-  src: url("../fonts/RobotoCondensed-ExtraBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraBold.woff") format("woff");
-  font-weight: 800;
   font-style: normal;
 }
 
@@ -6671,7 +6671,8 @@ html.tender--open .tender-btn .object-body::before {
   .callback {
     -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
-    left: 100%;
+    top: -100%;
+    left: 0;
   }
 
   .callback.callback-mini {
@@ -6694,6 +6695,14 @@ html.tender--open .tender-btn .object-body::before {
   .callback--open .callback:not(.callback.callback-mini) {
     -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
+    top: 0;
+    left: 0;
+  }
+
+  .tender--open .callback:not(.callback.callback-mini),
+  .header-at-footer .callback:not(.callback.callback-mini),
+  .menu--open .callback:not(.callback.callback-mini) {
+    top: -100%;
     left: 0;
   }
 
@@ -6712,9 +6721,9 @@ html.tender--open .tender-btn .object-body::before {
   }
 
   .callback--open .callback .form:not(.callback.callback-mini .form) {
-    -webkit-transition: all 0.5s ease 0.2s;
-    -o-transition: all 0.5s ease 0.2s;
-    transition: all 0.5s ease 0.2s;
+    -webkit-transition: all 0.5s ease 0.5s;
+    -o-transition: all 0.5s ease 0.5s;
+    transition: all 0.5s ease 0.5s;
     -webkit-transform: translateY(0);
     -ms-transform: translateY(0);
     transform: translateY(0);
@@ -6787,7 +6796,15 @@ html.tender--open .tender-btn .object-body::before {
 
   .callback__cover-img--second {
     height: 100%;
+    opacity: 0;
     position: static;
+  }
+
+  .callback--open .callback__cover-img--second {
+    -webkit-transition: opacity 0.3s ease 0.5s;
+    -o-transition: opacity 0.3s ease 0.5s;
+    transition: opacity 0.3s ease 0.5s;
+    opacity: 1;
   }
 
   .footer {
@@ -7334,9 +7351,18 @@ html.tender--open .tender-btn .object-body::before {
   .tender {
     -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
+    top: -100%;
+    left: 0;
   }
 
   .tender--open .tender {
+    left: 0;
+    top: 0;
+  }
+
+  .header-at-footer .tender,
+  .menu--open .tender {
+    top: -100%;
     left: 0;
   }
 

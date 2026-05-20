@@ -18,7 +18,8 @@
   @include sm {
     grid-template-columns: 1fr;
 
-    left: 100%;
+    top: -100%;
+    left: 0;
   }
 
   &.callback-mini {
@@ -124,6 +125,7 @@
       @include sm {
         grid-template-columns: 1fr;
 
+        top: 0;
         left: 0;
       }
     }
@@ -132,6 +134,11 @@
     .header-at-footer &,
     .menu--open & {
       left: calc(100% + var(--callback-width));
+
+      @include sm {
+        top: -100%;
+        left: 0;
+      }
     }
   }
 
@@ -156,7 +163,7 @@
         opacity: 0;
 
         .callback--open & {
-          transition: all 0.5s ease 0.2s;
+          transition: all 0.5s ease 0.5s;
           transform: translateY(0);
           opacity: 1;
         }
@@ -397,8 +404,17 @@
 
         @include sm {
           height: 100%;
+          opacity: 0;
 
           position: static;
+        }
+
+        .callback--open & {
+
+          @include sm {
+            transition: opacity 0.3s ease 0.5s;
+            opacity: 1;
+          }
         }
 
         img {
