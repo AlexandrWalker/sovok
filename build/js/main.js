@@ -1509,7 +1509,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // 'follow'  - глаз следует за курсором по всему сайту
       mode: 'follow',
       // Сила следования в режиме follow: насколько далеко глаз уходит за курсором
-      followStrength: 0.08,
+      // followStrength: 0.08,
+      followStrength: 0.06,
     };
 
     // Настройки автоанимации

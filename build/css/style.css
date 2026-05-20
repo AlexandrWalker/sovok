@@ -185,16 +185,16 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
-  font-weight: 800;
+  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
+  font-weight: 900;
   font-style: normal;
 }
 
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
-  font-weight: 900;
+  src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
+  font-weight: 800;
   font-style: normal;
 }
 
@@ -2818,7 +2818,7 @@ html.header-off-top .logo svg #point,
   content: "";
   display: block;
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - var(--header-height));
   position: absolute;
   top: -7rem;
   left: -23rem;
@@ -3826,13 +3826,9 @@ canvas {
   overflow-x: hidden;
   width: 100%;
   height: 100%;
-  -webkit-transition: clip-path 0.5s cubic-bezier(0.7, 0, 0.4, 1), all 0.5s ease;
-  -webkit-transition: all 0.5s ease, -webkit-clip-path 0.5s cubic-bezier(0.7, 0, 0.4, 1);
-  transition: all 0.5s ease, -webkit-clip-path 0.5s cubic-bezier(0.7, 0, 0.4, 1);
-  -o-transition: clip-path 0.5s cubic-bezier(0.7, 0, 0.4, 1), all 0.5s ease;
-  transition: clip-path 0.5s cubic-bezier(0.7, 0, 0.4, 1), all 0.5s ease;
-  transition: clip-path 0.5s cubic-bezier(0.7, 0, 0.4, 1), all 0.5s ease, -webkit-clip-path 0.5s cubic-bezier(0.7, 0, 0.4, 1);
-  will-change: clip-path;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .tender--open .tender__inner {
@@ -3908,6 +3904,7 @@ html.tender--open .tender-btn .object-body::before {
   -o-transition: transform 0.3s ease;
   transition: transform 0.3s ease;
   transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+  pointer-events: all;
   cursor: pointer;
   position: absolute;
   top: 50%;
