@@ -11,547 +11,15 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Инициализация Lenis
    */
-  // const lenis = new Lenis({
-  //   anchors: {
-  //     offset: -60,
-  //   },
-  // });
-
-  // gsap.ticker.add((time) => {
-  //   lenis.raf(time * 1000);
-  // });
-
-  // /**
-  //  * Прелоадер
-  //  */
-  // (function () {
-  //   // =========================
-  //   // ГЛОБАЛЬНАЯ НАСТРОЙКА
-  //   // =========================
-  //   window.PRELOADER_MODE = window.PRELOADER_MODE || {
-  //     // 'overlay'     -> как сейчас (белое лого + красная заливка)
-  //     // 'singleLogo' -> без наслоения (просто одно лого)
-  //     mode: 'overlay',
-
-  //     // Пути к изображениям
-  //     assets: {
-  //       // можно поменять на разные файлы, если у вас реально разные варианты
-  //       logoWhiteSrc: './images/logo/logo-bez-podpisi.svg',
-  //       // для совместимости с вашим overlay-режимом
-  //       logoCyanSrc: './images/logo/logo-bez-podpisi-2.svg'
-  //     },
-
-  //     // Размеры (можно под вашу верстку)
-  //     logoWidth: 71,
-  //     logoHeight: 70,
-
-  //     // safety timeout
-  //     safetyTimeoutMs: 8000,
-
-  //     // delay перед скрытием после 100% (только overlay)
-  //     overlayHideDelayMs: 600
-  //   };
-
-  //   const config = window.PRELOADER_MODE;
-  //   const mode = config.mode;
-
-  //   const preloaderEl = document.querySelector('.preloader');
-  //   if (!preloaderEl) return;
-
-  //   document.body.classList.add('no-scroll');
-
-  //   const safetyTimer = setTimeout(function () {
-  //     const preloader = document.querySelector('.preloader');
-  //     if (preloader && preloader.style.display !== 'none') {
-  //       preloader.style.display = 'none';
-  //       restoreScroll();
-  //     }
-  //   }, config.safetyTimeoutMs);
-
-  //   function restoreScroll() {
-  //     document.body.classList.remove('no-scroll');
-  //   }
-
-  //   function clearSafety() {
-  //     try { clearTimeout(safetyTimer); } catch (e) { }
-  //   }
-
-  //   const canvas = document.getElementById('logo-canvas');
-  //   if (!canvas) return;
-  //   const ctx = canvas.getContext('2d');
-
-  //   // =========================
-  //   // Hide (общая функция)
-  //   // =========================
-  //   function hidePreloader() {
-  //     gsap.set(canvas, { opacity: 0 });
-
-  //     gsap.to(preloaderEl, {
-  //       scaleY: 0,
-  //       duration: 0.7,
-  //       ease: 'power2.inOut',
-  //       transformOrigin: 'top center',
-  //       onComplete: function () {
-  //         preloaderEl.style.display = 'none';
-  //         restoreScroll();
-  //         clearSafety();
-  //       }
-  //     });
-
-  //     gsap.to(canvas, {
-  //       scaleY: 2,
-  //       duration: 0.7,
-  //       ease: 'power2.inOut',
-  //       transformOrigin: 'bottom center'
-  //     });
-  //   }
-
-  //   // =========================
-  //   // canvas init
-  //   // =========================
-  //   function initCanvas() {
-  //     const logoWidth = config.logoWidth;
-  //     const logoHeight = config.logoHeight;
-
-  //     const dpr = window.devicePixelRatio || 1;
-
-  //     canvas.width = logoWidth * dpr;
-  //     canvas.height = logoHeight * dpr;
-
-  //     // не накапливаем scale
-  //     if (ctx.setTransform) ctx.setTransform(1, 0, 0, 1, 0, 0);
-  //     ctx.scale(dpr, dpr);
-
-  //     return { logoWidth, logoHeight };
-  //   }
-
-  //   // =========================
-  //   // РЕЖИМ 1: overlay (как было)
-  //   // =========================
-  //   function startOverlayPreloader() {
-  //     const { logoWidth, logoHeight } = initCanvas();
-  //     let fillHeight = 0;
-
-  //     const logoWhite = new Image();
-  //     const logoCyan = new Image();
-  //     let loadedImages = 0;
-
-  //     function draw() {
-  //       ctx.clearRect(0, 0, logoWidth, logoHeight);
-
-  //       ctx.globalCompositeOperation = 'source-over';
-  //       ctx.drawImage(logoWhite, 0, 0, logoWidth, logoHeight);
-
-  //       ctx.globalCompositeOperation = 'source-atop';
-  //       ctx.fillStyle = '#FAF4ED';
-
-  //       var rectY = logoHeight - fillHeight;
-  //       ctx.fillRect(0, rectY, logoWidth, fillHeight);
-
-  //       ctx.globalCompositeOperation = 'source-over';
-  //     }
-
-  //     function onImageLoaded() {
-  //       loadedImages++;
-  //       if (loadedImages === 2) start();
-  //     }
-
-  //     logoWhite.onload = onImageLoaded;
-  //     logoCyan.onload = onImageLoaded;
-  //     logoWhite.onerror = onImageLoaded;
-  //     logoCyan.onerror = onImageLoaded;
-
-  //     logoWhite.src = config.assets.logoWhiteSrc;
-  //     logoCyan.src = config.assets.logoCyanSrc;
-
-  //     function start() {
-  //       draw();
-
-  //       var progress = { val: 0 };
-
-  //       gsap.to(progress, {
-  //         val: 30,
-  //         duration: 0.4,
-  //         ease: 'power2.out',
-  //         onUpdate: function () {
-  //           fillHeight = (progress.val / 100) * logoHeight;
-  //           draw();
-  //         }
-  //       });
-
-  //       gsap.to(progress, {
-  //         val: 85,
-  //         duration: 2.5,
-  //         ease: 'power1.out',
-  //         delay: 0.4,
-  //         onUpdate: function () {
-  //           fillHeight = (progress.val / 100) * logoHeight;
-  //           draw();
-  //         }
-  //       });
-
-  //       window.addEventListener('load', function onWindowLoad() {
-  //         window.removeEventListener('load', onWindowLoad);
-
-  //         gsap.killTweensOf(progress);
-
-  //         gsap.to(progress, {
-  //           val: 100,
-  //           duration: 0.4,
-  //           ease: 'power2.out',
-  //           onUpdate: function () {
-  //             fillHeight = (progress.val / 100) * logoHeight;
-  //             draw();
-  //           },
-  //           onComplete: function () {
-  //             setTimeout(hidePreloader, config.overlayHideDelayMs);
-  //           }
-  //         });
-  //       });
-  //     }
-  //   }
-
-  //   // =========================
-  //   // РЕЖИМ 2: singleLogo (без наслоения)
-  //   // =========================
-  //   function startSingleLogoPreloader() {
-  //     const { logoWidth, logoHeight } = initCanvas();
-
-  //     const logo = new Image();
-  //     logo.onload = function () {
-  //       // Просто рисуем одно лого без заливки
-  //       ctx.clearRect(0, 0, logoWidth, logoHeight);
-  //       ctx.globalCompositeOperation = 'source-over';
-  //       ctx.drawImage(logo, 0, 0, logoWidth, logoHeight);
-  //       ctx.globalCompositeOperation = 'source-over';
-
-  //       // лёгкая анимация (опционально)
-  //       gsap.fromTo(canvas, { opacity: 0.2, scaleY: 0.98 }, { opacity: 1, scaleY: 1, duration: 0.4, ease: 'power2.out' });
-
-  //       window.addEventListener('load', function onWindowLoad() {
-  //         window.removeEventListener('load', onWindowLoad);
-  //         hidePreloader();
-  //       });
-  //     };
-
-  //     logo.onerror = function () {
-  //       // fallback: если не загрузилось — просто скрываем по load
-  //       window.addEventListener('load', function onWindowLoad() {
-  //         window.removeEventListener('load', onWindowLoad);
-  //         hidePreloader();
-  //       });
-  //     };
-
-  //     // берём путь из js-конфига
-  //     logo.src = config.assets.logoWhiteSrc;
-  //   }
-
-  //   // =========================
-  //   // START
-  //   // =========================
-  //   if (mode === 'singleLogo') {
-  //     startSingleLogoPreloader();
-  //   } else {
-  //     startOverlayPreloader();
-  //   }
-  // })();
-
-  // Блокируем браузерное восстановление скролла до того как браузер успеет прыгнуть к якорю
-  if (history.scrollRestoration) {
-    history.scrollRestoration = 'manual';
-  }
-
-  (function () {
-
-    // Длительность анимации закрытия мобильного меню в миллисекундах
-    const MENU_CLOSE_DURATION = 400;
-
-    // Конфигурация прелоадера
-    const PRELOADER_CONFIG = {
-      mode: 'overlay',
-      assets: {
-        logoWhiteSrc: './images/logo/logo-bez-podpisi.svg',
-        logoCyanSrc: './images/logo/logo-bez-podpisi-2.svg',
-      },
-      logoWidth: 71,
-      logoHeight: 70,
-      safetyTimeoutMs: 8000,
-      overlayHideDelayMs: 600,
-    };
-
-    // Инициализация Lenis и привязка к GSAP ticker
-    const lenis = new Lenis();
-    window.lenis = lenis;
-
-    gsap.ticker.add((time) => lenis.raf(time * 1000));
-    gsap.ticker.lagSmoothing(0);
-
-    // Плавный скролл к целевому элементу через Lenis
-    function scrollToTarget(target) {
-      lenis.scrollTo(target, {
-        offset: -60,
-        duration: 1.5,
-      });
-    }
-
-    // Возвращает промис который резолвится когда прелоадер скрыт
-    // Используем MutationObserver чтобы отследить удаление класса preloader--active
-    function waitForPreloader() {
-      return new Promise((resolve) => {
-        if (!document.documentElement.classList.contains('preloader--active')) {
-          resolve();
-          return;
-        }
-
-        const observer = new MutationObserver(() => {
-          if (!document.documentElement.classList.contains('preloader--active')) {
-            observer.disconnect();
-            resolve();
-          }
-        });
-
-        observer.observe(document.documentElement, {
-          attributes: true,
-          attributeFilter: ['class'],
-        });
-      });
-    }
-
-    // Обработчик кликов по якорным ссылкам
-    // capture: true позволяет перехватить событие раньше stopPropagation в меню
-    document.addEventListener('click', (e) => {
-      const link = e.target.closest('a[href]');
-      if (!link) return;
-
-      const href = link.getAttribute('href');
-      if (!href || !href.includes('#')) return;
-
-      const hash = href.split('#')[1];
-      if (!hash) return;
-
-      // Ищем элемент на текущей странице
-      // Если его нет — браузер сам перейдёт на нужную страницу
-      // После загрузки сработает обработчик load ниже
-      const target = document.getElementById(hash);
-      if (!target) return;
-
-      e.preventDefault();
-      history.pushState(null, null, `#${hash}`);
-
-      const isMenuOpen = document.documentElement.classList.contains('menu--open');
-
-      if (isMenuOpen) {
-        // Останавливаем Lenis пока меню закрывается анимацией
-        lenis.stop();
-        setTimeout(() => {
-          lenis.start();
-          scrollToTarget(target);
-        }, MENU_CLOSE_DURATION);
-      } else {
-        scrollToTarget(target);
-      }
-
-    }, true);
-
-    // При загрузке страницы с якорем в URL
-    // Сначала сбрасываем позицию чтобы браузер не прыгал сам
-    // Потом ждём конца прелоадера и плавно скроллим
-    window.addEventListener('load', () => {
-      const hash = window.location.hash.slice(1);
-      if (!hash) return;
-
-      const target = document.getElementById(hash);
-      if (!target) return;
-
-      window.scrollTo(0, 0);
-
-      waitForPreloader().then(() => scrollToTarget(target));
-    });
-
-    // Инициализация прелоадера
-    const preloaderEl = document.querySelector('.preloader');
-    if (!preloaderEl) return;
-
-    // Блокируем скролл страницы пока прелоадер активен
-    document.body.classList.add('no-scroll');
-    document.documentElement.classList.add('preloader--active');
-
-    // Страховочный таймер на случай если что-то пошло не так
-    // Принудительно скрывает прелоадер через safetyTimeoutMs миллисекунд
-    const safetyTimer = setTimeout(() => {
-      if (preloaderEl.style.display !== 'none') {
-        preloaderEl.style.display = 'none';
-        restoreScroll();
-      }
-    }, PRELOADER_CONFIG.safetyTimeoutMs);
-
-    function restoreScroll() {
-      document.body.classList.remove('no-scroll');
-    }
-
-    function clearSafety() {
-      try { clearTimeout(safetyTimer); } catch (e) { }
-    }
-
-    const canvas = document.getElementById('logo-canvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-
-    // Настраиваем canvas с учётом плотности пикселей экрана
-    function initCanvas() {
-      const { logoWidth, logoHeight } = PRELOADER_CONFIG;
-      const dpr = window.devicePixelRatio || 1;
-
-      canvas.width = logoWidth * dpr;
-      canvas.height = logoHeight * dpr;
-
-      if (ctx.setTransform) ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.scale(dpr, dpr);
-
-      return { logoWidth, logoHeight };
-    }
-
-    // Скрываем прелоадер с анимацией схлопывания
-    // После завершения анимации удаляем класс preloader--active с html
-    function hidePreloader() {
-      gsap.set(canvas, { opacity: 0 });
-
-      gsap.to(preloaderEl, {
-        scaleY: 0,
-        duration: 0.7,
-        ease: 'power2.inOut',
-        transformOrigin: 'top center',
-        onComplete() {
-          preloaderEl.style.display = 'none';
-          restoreScroll();
-          clearSafety();
-          document.documentElement.classList.remove('preloader--active');
-        },
-      });
-
-      gsap.to(canvas, {
-        scaleY: 2,
-        duration: 0.7,
-        ease: 'power2.inOut',
-        transformOrigin: 'bottom center',
-      });
-    }
-
-    // Режим overlay — два логотипа с анимацией заливки снизу вверх
-    function startOverlayPreloader() {
-      const { logoWidth, logoHeight } = initCanvas();
-      let fillHeight = 0;
-
-      const logoWhite = new Image();
-      const logoCyan = new Image();
-      let loadedCount = 0;
-
-      function draw() {
-        ctx.clearRect(0, 0, logoWidth, logoHeight);
-        ctx.globalCompositeOperation = 'source-over';
-        ctx.drawImage(logoWhite, 0, 0, logoWidth, logoHeight);
-        ctx.globalCompositeOperation = 'source-atop';
-        ctx.fillStyle = '#FFFFFF';
-        ctx.fillRect(0, logoHeight - fillHeight, logoWidth, fillHeight);
-        ctx.globalCompositeOperation = 'source-over';
-      }
-
-      function onImageLoaded() {
-        loadedCount++;
-        if (loadedCount === 2) startAnimation();
-      }
-
-      logoWhite.onload = logoWhite.onerror = onImageLoaded;
-      logoCyan.onload = logoCyan.onerror = onImageLoaded;
-      logoWhite.src = PRELOADER_CONFIG.assets.logoWhiteSrc;
-      logoCyan.src = PRELOADER_CONFIG.assets.logoCyanSrc;
-
-      function startAnimation() {
-        draw();
-
-        const progress = { val: 0 };
-
-        // Быстрый старт до 30%
-        gsap.to(progress, {
-          val: 30,
-          duration: 0.4,
-          ease: 'power2.out',
-          onUpdate() {
-            fillHeight = (progress.val / 100) * logoHeight;
-            draw();
-          },
-        });
-
-        // Медленное движение до 85% пока грузится страница
-        gsap.to(progress, {
-          val: 85,
-          duration: 2.5,
-          ease: 'power1.out',
-          delay: 0.4,
-          onUpdate() {
-            fillHeight = (progress.val / 100) * logoHeight;
-            draw();
-          },
-        });
-
-        // После полной загрузки страницы добиваем до 100% и скрываем
-        window.addEventListener('load', function onLoad() {
-          window.removeEventListener('load', onLoad);
-          gsap.killTweensOf(progress);
-
-          gsap.to(progress, {
-            val: 100,
-            duration: 0.4,
-            ease: 'power2.out',
-            onUpdate() {
-              fillHeight = (progress.val / 100) * logoHeight;
-              draw();
-            },
-            onComplete() {
-              setTimeout(hidePreloader, PRELOADER_CONFIG.overlayHideDelayMs);
-            },
-          });
-        });
-      }
-    }
-
-    // Режим singleLogo — одно лого без заливки, скрывается после загрузки
-    function startSingleLogoPreloader() {
-      const { logoWidth, logoHeight } = initCanvas();
-      const logo = new Image();
-
-      function showAndWait() {
-        window.addEventListener('load', function onLoad() {
-          window.removeEventListener('load', onLoad);
-          hidePreloader();
-        });
-      }
-
-      logo.onload = () => {
-        ctx.clearRect(0, 0, logoWidth, logoHeight);
-        ctx.globalCompositeOperation = 'source-over';
-        ctx.drawImage(logo, 0, 0, logoWidth, logoHeight);
-
-        gsap.fromTo(canvas,
-          { opacity: 0.2, scaleY: 0.98 },
-          { opacity: 1, scaleY: 1, duration: 0.4, ease: 'power2.out' }
-        );
-
-        showAndWait();
-      };
-
-      logo.onerror = showAndWait;
-      logo.src = PRELOADER_CONFIG.assets.logoWhiteSrc;
-    }
-
-    // Запускаем нужный режим прелоадера
-    if (PRELOADER_CONFIG.mode === 'singleLogo') {
-      startSingleLogoPreloader();
-    } else {
-      startOverlayPreloader();
-    }
-
-  })();
+  const lenis = new Lenis({
+    anchors: {
+      offset: -60,
+    },
+  });
+
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000);
+  });
 
   /**
    * Функция воспроизведения звука при нажатии на кнопку
@@ -1193,22 +661,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const toggleMenu = (e) => {
       e.preventDefault();
-      const isMenuOpen = document.documentElement.classList.contains('menu--open');
-      const isTenderOpen = document.documentElement.classList.contains('tender--open');
-      const isCallbackOpen = document.documentElement.classList.contains('callback--open');
-
-      if (isMenuOpen) {
-        closeMenu();
-      } else if (isTenderOpen || isCallbackOpen) {
-        if (isTenderOpen) {
-          document.dispatchEvent(new CustomEvent('popup:close', { detail: { name: 'tender' } }));
-        }
-        if (isCallbackOpen) {
-          document.dispatchEvent(new CustomEvent('popup:close', { detail: { name: 'callback' } }));
-        }
-      } else {
-        openMenu();
-      }
+      const isOpen = document.documentElement.classList.contains('menu--open');
+      isOpen ? closeMenu() : openMenu();
     };
 
     burgerBtn.addEventListener('click', toggleMenu);
@@ -1239,248 +693,345 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /**
-   * Функция для попапов
+   * Функция для блока callback
    */
   (function () {
+    const callbackBtn = document.querySelector('.callback__btn');
+    const callbackBlock = document.querySelector('.callback');
 
-    // Конфигурация каждого попапа - анимации и хуки задаются здесь
-    const popupConfigs = {
+    const fadeUpItems = gsap.utils.toArray('[data-callback-anim="fadeUp"]');
+    const fadeDownItems = gsap.utils.toArray('[data-callback-anim="fadeDown"]');
 
-      callback: {
-        // onOpen вызывается при открытии попапа
-        onOpen: (popup) => {
-          const openTl = gsap.timeline();
+    let isClosing = false;
+    let closeTimeout = null;
 
-          // Сбрасываем стили оставшиеся от анимации закрытия
-          popup.fadeUpItems.forEach(el => {
-            gsap.set(el, { clearProps: 'all' });
-          });
-          popup.fadeDownItems.forEach(el => {
-            gsap.set(el, { clearProps: 'all' });
-          });
+    // Timeline открытия
+    const openTl = gsap.timeline({ paused: true });
 
-          popup.fadeUpItems.forEach(el => {
-            openTl.from(el, {
-              duration: 0.8,
-              y: 350,
-              ease: 'none',
-            }, 0);
-          });
+    fadeUpItems.forEach(el => {
+      openTl.from(el, {
+        duration: 0.8,
+        y: 350,
+        ease: 'none',
+      }, 0);
+    });
 
-          popup.fadeDownItems.forEach(el => {
-            openTl.from(el, {
-              duration: 0.8,
-              rotate: -20,
-              y: -500,
-              ease: 'none',
-            }, 0);
-          });
+    fadeDownItems.forEach(el => {
+      openTl.from(el, {
+        duration: 0.8,
+        rotate: -20,
+        y: -500,
+        ease: 'none',
+      }, 0);
+    });
 
-          popup.currentOpenTl = openTl;
-        },
+    const openMenu = () => {
+      if (isClosing) return;
 
-        // onClose вызывается при закрытии попапа
-        onClose: (popup, onComplete) => {
-          if (popup.currentOpenTl) {
-            popup.currentOpenTl.pause();
-          }
-
-          const closeTl = gsap.timeline({ onComplete });
-
-          popup.fadeUpItems.forEach(el => {
-            closeTl.to(el, {
-              duration: 0.2,
-              y: 1000,
-              ease: 'none',
-            }, 0);
-          });
-
-          popup.fadeDownItems.forEach(el => {
-            closeTl.to(el, {
-              duration: 0.2,
-              rotate: 10,
-              y: 50,
-              ease: 'none',
-            }, 0);
-          });
-        },
-      },
-
-      tender: {
-        onOpen: (popup) => {
-          // У тендера нет сложной анимации открытия - просто показываем
-        },
-
-        onClose: (popup, onComplete) => {
-          // У тендера нет анимации закрытия - сразу вызываем коллбек
-          onComplete();
-        },
-
-        // onAfterClose вызывается после полного закрытия попапа
-        onAfterClose: (popup) => {
-          // Сбрасываем ракету при закрытии тендера
-          const rocket = document.getElementById('rocket');
-          if (rocket && popup.isLaunched) {
-            gsap.killTweensOf(rocket);
-            gsap.set(rocket, { clearProps: 'all' });
-            popup.isLaunched = false;
-          }
-        },
-      },
-
+      callbackBtn.classList.add('callback--open');
+      document.documentElement.classList.add('callback--open');
+      lenis.stop();
+      openTl.restart();
     };
 
-    // Хранилище состояний для каждого попапа
-    const popups = {};
+    const closeMenu = () => {
+      if (isClosing) return;
+      isClosing = true;
 
-    // Инициализация попапов
-    document.querySelectorAll('[data-popup]').forEach(popupBlock => {
-      const name = popupBlock.dataset.popup;
+      openTl.pause();
 
-      popups[name] = {
-        block: popupBlock,
-        name,
-        isClosing: false,
-        closeTimeout: null,
-        currentOpenTl: null,
-        // Дополнительные поля для кастомных анимаций
-        isLaunched: false,
-        // Собираем fadeUp и fadeDown элементы внутри попапа
-        fadeUpItems: gsap.utils.toArray(
-          `[data-popup="${name}"] [data-popup-anim="fadeUp"]`
-        ),
-        fadeDownItems: gsap.utils.toArray(
-          `[data-popup="${name}"] [data-popup-anim="fadeDown"]`
-        ),
-      };
-    });
-
-    function openPopup(name) {
-      const popup = popups[name];
-      const config = popupConfigs[name];
-      if (!popup || !config) return;
-
-      // Если попап закрывается - отменяем закрытие и открываем заново
-      if (popup.isClosing) {
-        clearTimeout(popup.closeTimeout);
-        gsap.killTweensOf([...popup.fadeUpItems, ...popup.fadeDownItems]);
-        popup.isClosing = false;
-      }
-
-      document.documentElement.classList.add(`${name}--open`);
-      lenis.stop();
-
-      if (config.onOpen) {
-        config.onOpen(popup);
-      }
-    }
-
-    function closePopup(name) {
-      const popup = popups[name];
-      const config = popupConfigs[name];
-      if (!popup || !config || popup.isClosing) return;
-
-      popup.isClosing = true;
-
-      const onComplete = () => {
-        popup.closeTimeout = setTimeout(() => {
-          document.documentElement.classList.remove(`${name}--open`);
-          lenis.start();
-          popup.isClosing = false;
-
-          if (config.onAfterClose) {
-            config.onAfterClose(popup);
-          }
-        }, 100);
-      };
-
-      if (config.onClose) {
-        config.onClose(popup, onComplete);
-      } else {
-        onComplete();
-      }
-    }
-
-    function togglePopup(name) {
-      const isOpen = document.documentElement.classList.contains(`${name}--open`);
-      isOpen ? closePopup(name) : openPopup(name);
-    }
-
-    // Кнопки вызова попапов
-    document.querySelectorAll('[data-popup-btn]').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const name = btn.dataset.popupBtn;
-        togglePopup(name);
+      // Анимация fadeUp и fadeDown запускается сразу без задержки
+      const closeTl = gsap.timeline({
+        onComplete: () => {
+          // После анимации ждём 1 секунду и только потом скрываем блок
+          closeTimeout = setTimeout(() => {
+            callbackBtn.classList.remove('callback--open');
+            document.documentElement.classList.remove('callback--open');
+            lenis.start();
+            isClosing = false;
+          }, 100);
+        },
       });
-    });
 
-    // Закрытие по Escape
+      fadeUpItems.forEach(el => {
+        closeTl.to(el, {
+          duration: 0.2,
+          y: 1000,
+          ease: 'none',
+        }, 0);
+      });
+
+      fadeDownItems.forEach(el => {
+        closeTl.to(el, {
+          duration: 0.2,
+          rotate: 10,
+          y: 50,
+          ease: 'none',
+        }, 0);
+      });
+    };
+
+    const toggleMenu = (e) => {
+      e.preventDefault();
+      const isOpen = document.documentElement.classList.contains('callback--open');
+      isOpen ? closeMenu() : openMenu();
+    };
+
+    if (callbackBtn) {
+      callbackBtn.addEventListener('click', toggleMenu);
+    }
+
     window.addEventListener('keydown', (e) => {
-      if (e.key !== 'Escape') return;
-
-      Object.keys(popups).forEach(name => {
-        if (document.documentElement.classList.contains(`${name}--open`)) {
-          closePopup(name);
-        }
-      });
+      if (e.key === 'Escape' && document.documentElement.classList.contains('callback--open')) {
+        closeMenu();
+      }
     });
 
-    // Закрытие по клику вне попапа
-    document.addEventListener('click', (e) => {
-      Object.keys(popups).forEach(name => {
-        const popup = popups[name];
-        const isOpen = document.documentElement.classList.contains(`${name}--open`);
+    document.addEventListener('click', (event) => {
+      const isMenuOpen = document.documentElement.classList.contains('callback--open');
+      const clickInsideMenu = callbackBlock.contains(event.target);
+      const clickOnButton = callbackBtn.contains(event.target);
 
-        if (!isOpen) return;
-
-        const clickInsidePopup = popup.block.contains(e.target);
-        const clickOnBtn = e.target.closest(`[data-popup-btn="${name}"]`);
-
-        if (!clickInsidePopup && !clickOnBtn) {
-          closePopup(name);
-        }
-      });
+      if (isMenuOpen && !clickInsideMenu && !clickOnButton) {
+        closeMenu();
+      }
     });
 
-    // Ракета для тендера
-    (function () {
-      const rocket = document.getElementById('rocket');
-      const formBtn = document.getElementById('rocket-btn');
+  })();
 
-      if (!rocket || !formBtn) return;
+  /**
+   * Прелоадер
+   */
+  (function () {
+    // =========================
+    // ГЛОБАЛЬНАЯ НАСТРОЙКА
+    // =========================
+    window.PRELOADER_MODE = window.PRELOADER_MODE || {
+      // 'overlay'     -> как сейчас (белое лого + красная заливка)
+      // 'singleLogo' -> без наслоения (просто одно лого)
+      mode: 'overlay',
 
-      function launchRocket() {
-        const tenderPopup = popups['tender'];
-        if (tenderPopup) tenderPopup.isLaunched = true;
+      // Пути к изображениям
+      assets: {
+        // можно поменять на разные файлы, если у вас реально разные варианты
+        logoWhiteSrc: './images/logo/logo-bez-podpisi.svg',
+        // для совместимости с вашим overlay-режимом
+        logoCyanSrc: './images/logo/logo-bez-podpisi-2.svg'
+      },
 
-        const tl = gsap.timeline();
+      // Размеры (можно под вашу верстку)
+      logoWidth: 71,
+      logoHeight: 70,
 
-        tl
-          .to(rocket, {
-            x: -3,
-            duration: 0.05,
-            repeat: 6,
-            yoyo: true,
-            ease: 'none',
-          })
-          .to(rocket, {
-            x: 200,
-            y: -2500,
-            opacity: 0,
-            duration: 3,
-            ease: 'power4.in',
-          });
+      // safety timeout
+      safetyTimeoutMs: 8000,
+
+      // delay перед скрытием после 100% (только overlay)
+      overlayHideDelayMs: 600
+    };
+
+    const config = window.PRELOADER_MODE;
+    const mode = config.mode;
+
+    const preloaderEl = document.querySelector('.preloader');
+    if (!preloaderEl) return;
+
+    document.body.classList.add('no-scroll');
+
+    const safetyTimer = setTimeout(function () {
+      const preloader = document.querySelector('.preloader');
+      if (preloader && preloader.style.display !== 'none') {
+        preloader.style.display = 'none';
+        restoreScroll();
+      }
+    }, config.safetyTimeoutMs);
+
+    function restoreScroll() {
+      document.body.classList.remove('no-scroll');
+    }
+
+    function clearSafety() {
+      try { clearTimeout(safetyTimer); } catch (e) { }
+    }
+
+    const canvas = document.getElementById('logo-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    // =========================
+    // Hide (общая функция)
+    // =========================
+    function hidePreloader() {
+      gsap.set(canvas, { opacity: 0 });
+
+      gsap.to(preloaderEl, {
+        scaleY: 0,
+        duration: 0.7,
+        ease: 'power2.inOut',
+        transformOrigin: 'top center',
+        onComplete: function () {
+          preloaderEl.style.display = 'none';
+          restoreScroll();
+          clearSafety();
+        }
+      });
+
+      gsap.to(canvas, {
+        scaleY: 2,
+        duration: 0.7,
+        ease: 'power2.inOut',
+        transformOrigin: 'bottom center'
+      });
+    }
+
+    // =========================
+    // canvas init
+    // =========================
+    function initCanvas() {
+      const logoWidth = config.logoWidth;
+      const logoHeight = config.logoHeight;
+
+      const dpr = window.devicePixelRatio || 1;
+
+      canvas.width = logoWidth * dpr;
+      canvas.height = logoHeight * dpr;
+
+      // не накапливаем scale
+      if (ctx.setTransform) ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+
+      return { logoWidth, logoHeight };
+    }
+
+    // =========================
+    // РЕЖИМ 1: overlay (как было)
+    // =========================
+    function startOverlayPreloader() {
+      const { logoWidth, logoHeight } = initCanvas();
+      let fillHeight = 0;
+
+      const logoWhite = new Image();
+      const logoCyan = new Image();
+      let loadedImages = 0;
+
+      function draw() {
+        ctx.clearRect(0, 0, logoWidth, logoHeight);
+
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.drawImage(logoWhite, 0, 0, logoWidth, logoHeight);
+
+        ctx.globalCompositeOperation = 'source-atop';
+        ctx.fillStyle = '#FAF4ED';
+
+        var rectY = logoHeight - fillHeight;
+        ctx.fillRect(0, rectY, logoWidth, fillHeight);
+
+        ctx.globalCompositeOperation = 'source-over';
       }
 
-      formBtn.addEventListener('click', launchRocket);
-    })();
+      function onImageLoaded() {
+        loadedImages++;
+        if (loadedImages === 2) start();
+      }
 
-    // Слушаем событие закрытия попапа от бургер-кнопки
-    document.addEventListener('popup:close', (e) => {
-      closePopup(e.detail.name);
-    });
+      logoWhite.onload = onImageLoaded;
+      logoCyan.onload = onImageLoaded;
+      logoWhite.onerror = onImageLoaded;
+      logoCyan.onerror = onImageLoaded;
 
+      logoWhite.src = config.assets.logoWhiteSrc;
+      logoCyan.src = config.assets.logoCyanSrc;
+
+      function start() {
+        draw();
+
+        var progress = { val: 0 };
+
+        gsap.to(progress, {
+          val: 30,
+          duration: 0.4,
+          ease: 'power2.out',
+          onUpdate: function () {
+            fillHeight = (progress.val / 100) * logoHeight;
+            draw();
+          }
+        });
+
+        gsap.to(progress, {
+          val: 85,
+          duration: 2.5,
+          ease: 'power1.out',
+          delay: 0.4,
+          onUpdate: function () {
+            fillHeight = (progress.val / 100) * logoHeight;
+            draw();
+          }
+        });
+
+        window.addEventListener('load', function onWindowLoad() {
+          window.removeEventListener('load', onWindowLoad);
+
+          gsap.killTweensOf(progress);
+
+          gsap.to(progress, {
+            val: 100,
+            duration: 0.4,
+            ease: 'power2.out',
+            onUpdate: function () {
+              fillHeight = (progress.val / 100) * logoHeight;
+              draw();
+            },
+            onComplete: function () {
+              setTimeout(hidePreloader, config.overlayHideDelayMs);
+            }
+          });
+        });
+      }
+    }
+
+    // =========================
+    // РЕЖИМ 2: singleLogo (без наслоения)
+    // =========================
+    function startSingleLogoPreloader() {
+      const { logoWidth, logoHeight } = initCanvas();
+
+      const logo = new Image();
+      logo.onload = function () {
+        // Просто рисуем одно лого без заливки
+        ctx.clearRect(0, 0, logoWidth, logoHeight);
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.drawImage(logo, 0, 0, logoWidth, logoHeight);
+        ctx.globalCompositeOperation = 'source-over';
+
+        // лёгкая анимация (опционально)
+        gsap.fromTo(canvas, { opacity: 0.2, scaleY: 0.98 }, { opacity: 1, scaleY: 1, duration: 0.4, ease: 'power2.out' });
+
+        window.addEventListener('load', function onWindowLoad() {
+          window.removeEventListener('load', onWindowLoad);
+          hidePreloader();
+        });
+      };
+
+      logo.onerror = function () {
+        // fallback: если не загрузилось — просто скрываем по load
+        window.addEventListener('load', function onWindowLoad() {
+          window.removeEventListener('load', onWindowLoad);
+          hidePreloader();
+        });
+      };
+
+      // берём путь из js-конфига
+      logo.src = config.assets.logoWhiteSrc;
+    }
+
+    // =========================
+    // START
+    // =========================
+    if (mode === 'singleLogo') {
+      startSingleLogoPreloader();
+    } else {
+      startOverlayPreloader();
+    }
   })();
 
   /**
@@ -1961,6 +1512,74 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.hero__cover-eye').forEach(initMagnet);
 
   })();
+
+  /**
+   * Функция для меню
+   */
+  // (function () {
+
+  //   const html = document.documentElement;
+  //   const items = document.querySelectorAll('.menu__list-item--dropdown');
+
+  //   if (!items.length) return;
+
+  //   function onEnter() {
+  //     html.classList.add('menu-item-hover');
+  //   }
+
+  //   function onLeave() {
+  //     html.classList.remove('menu-item-hover');
+  //   }
+
+  //   function onTouchStart(e) {
+  //     // Если касание не на этом элементе и не внутри него — убираем класс
+  //     items.forEach(function (item) {
+  //       if (!item.contains(e.target)) {
+  //         onLeave();
+  //       } else {
+  //         onEnter();
+  //       }
+  //     });
+  //   }
+
+  //   items.forEach(function (item) {
+  //     item.addEventListener('mouseenter', onEnter, { passive: true });
+  //     item.addEventListener('mouseleave', onLeave, { passive: true });
+  //   });
+
+  //   document.addEventListener('touchstart', onTouchStart, { passive: true });
+
+  // })();
+
+  /**
+   * Функция для вызова окна тендера
+   */
+  (function () {
+    const tenderBtn = document.querySelector('.tender-btn');
+
+    if (!tenderBtn) return;
+
+    tenderBtn.addEventListener('click', () => {
+      const isOpen = document.documentElement.classList.toggle('tender--open');
+
+      if (isOpen) {
+        lenis?.stop();
+      } else {
+        lenis?.start();
+      }
+    });
+  })();
+
+
+
+
+
+
+
+
+
+
+
 
   /**
    * GSAP Animation System
@@ -2514,6 +2133,126 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
   })();
+
+  (function () {
+    const rocket = document.getElementById('rocket');
+
+    if (!rocket) return;
+
+    const formBtn = document.getElementById('rocket-btn');
+    const rocketSound = document.getElementById('rocket-sound');
+
+    let isLaunched = false;
+
+    function launchRocket() {
+      // if (isLaunched) return;
+      isLaunched = true;
+
+      // Сбрасываем звук если уже играл
+      // rocketSound.currentTime = 0;
+      // rocketSound.play().catch(() => {
+      // Браузер может заблокировать autoplay - молча игнорируем
+      // });
+
+      // GSAP timeline с ускорением
+      const tl = gsap.timeline({
+        // onComplete: () => {
+        //   // Сбрасываем ракету после завершения анимации
+        //   gsap.set(rocket, { clearProps: 'all' });
+        //   isLaunched = false;
+        // }
+      });
+
+      tl
+        // Короткое дрожание перед стартом - имитация прогрева двигателей
+        .to(rocket, {
+          x: -3,
+          duration: 0.05,
+          repeat: 6,
+          yoyo: true,
+          ease: 'none',
+        })
+        // Взлёт по диагонали вправо-вверх с ускорением
+        // x - вправо, y - вверх (отрицательное значение)
+        .to(rocket, {
+          x: 200,
+          y: -2500,
+          opacity: 0,
+          duration: 3,
+          // power4.in - начинает медленно, резко ускоряется к концу
+          ease: 'power4.in',
+        });
+    }
+
+    formBtn.addEventListener('click', launchRocket);
+
+    // Следим за исчезновением класса tender--open - возвращаем ракету
+    const observer = new MutationObserver(() => {
+      const isOpen = document.documentElement.classList.contains('tender--open');
+
+      if (!isOpen && isLaunched) {
+        gsap.killTweensOf(rocket);
+        gsap.set(rocket, { clearProps: 'all' });
+        isLaunched = false;
+      }
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+  })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /**
+   * Анимация svg
+   */
+  // (function () {
+
+  //   // Получаем SVG чтобы знать его ширину для ограничения движения
+  //   const svg = document.getElementById("inform__svg");
+
+  //   if (!svg) return;
+
+  //   // Получаем элемент который будем двигать
+  //   const rect = document.getElementById("inform__rect");
+
+  //   // Начальная позиция rect по оси X из атрибута
+  //   const startX = parseFloat(rect.getAttribute("x"));
+
+  //   // Максимальное смещение вправо в пикселях
+  //   const maxShift = 700;
+
+  //   // Создаем ScrollTrigger который следит за .wrapper
+  //   ScrollTrigger.create({
+  //     trigger: ".wrapper",
+  //     start: "top top",
+  //     end: "bottom bottom",
+  //     scrub: 1,
+  //     onUpdate: (self) => {
+  //       // self.progress от 0 до 1 в зависимости от позиции скролла
+  //       const progress = self.progress;
+
+  //       // Вычисляем новую позицию X
+  //       const newX = startX + maxShift * progress;
+
+  //       // Устанавливаем атрибут x напрямую на SVG элемент
+  //       rect.setAttribute("x", newX);
+  //     },
+  //   });
+
+  // })();
 
   /**
    * Анимация набора текста
@@ -4410,6 +4149,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
+  // (function () {
+  //   const main = document.querySelector('.main');
+  //   const footer = document.querySelector('.footer');
+
+  //   // Footer стоит на своём месте
+  //   gsap.set(footer, {
+  //     yPercent: 0,
+  //     // marginBottom: -footer.offsetHeight,
+  //   });
+
+  //   // При скролле поднимается вверх на свою высоту
+  //   gsap.to(footer, {
+  //     yPercent: -100,
+  //     ease: 'none',
+  //     scrollTrigger: {
+  //       trigger: request,
+  //       start: 'bottom bottom',
+  //       end: 'bottom top',
+  //       scrub: true,
+  //     },
+  //   });
+  // })();
+
   /**
    * Инициализация Fabcybox
    */
@@ -4423,6 +4185,40 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * iOS-safe ScrollTrigger refresh handler
    */
+  // (function () {
+  //   let resizeTimer;
+  //   let lastWidth = window.innerWidth;
+  //   let lastHeight = window.innerHeight;
+
+  //   // Функция для стабильного пересчёта
+  //   const safeRefresh = () => {
+  //     clearTimeout(resizeTimer);
+  //     resizeTimer = setTimeout(() => {
+  //       const currentWidth = window.innerWidth;
+  //       const currentHeight = window.innerHeight;
+
+  //       // Проверяем - реально ли изменился размер экрана
+  //       const widthChanged = Math.abs(currentWidth - lastWidth) > 50;
+  //       const heightChanged = Math.abs(currentHeight - lastHeight) > 150;
+
+  //       if (widthChanged || heightChanged) {
+  //         lastWidth = currentWidth;
+  //         lastHeight = currentHeight;
+  //         console.log('refresh');
+  //         ScrollTrigger.refresh();
+  //       }
+  //     }, 250); // debounce 250ms - достаточно для всех платформ
+  //   };
+
+  //   // Реакция на изменение ориентации (особенно важно для iOS)
+  //   window.addEventListener('orientationchange', () => {
+  //     setTimeout(() => ScrollTrigger.refresh(), 300);
+  //   });
+
+  //   // Реакция на реальный resize, но фильтруем “мусорные” вызовы
+  //   window.addEventListener('resize', safeRefresh);
+  // })();
+
   (function () {
     let resizeTimer = null;
     let lastWidth = window.innerWidth;

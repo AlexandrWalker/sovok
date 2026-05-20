@@ -66,7 +66,7 @@
           <span class="burger-btn__line burger-btn__line--first"></span>
           <span class="burger-btn__line burger-btn__line--second"></span>
         </button>
-        <button class="btn btn--red btn--accent tender-btn">
+        <button class="btn btn--red btn--accent tender-btn" data-popup-btn="tender">
           <div class="object-shadow"></div>
           <div class="object-body" data-text="Пригласить в тендер" data-text-close="Закрыть">
           </div>
@@ -610,7 +610,7 @@
   </div>
 </div>
     <!-- callback -->
-    <div class="callback lenis" data-lenis-prevent>
+    <div class="callback lenis" data-popup="callback" data-lenis-prevent>
   <div class="callback__side">
     <div class="callback__side-text">
       Мир. дружба. жвачка.
@@ -741,15 +741,15 @@
     </form>
 
     <div class="callback__cover">
-      <div class="callback__cover-img callback__cover-img--first" data-callback-anim="fadeDown">
+      <div class="callback__cover-img callback__cover-img--first" data-popup-anim="fadeDown">
         <img src="./images/temp/callback-ruka.webp" alt="">
       </div>
-      <div class="callback__cover-img callback__cover-img--second" data-callback-anim="fadeUp">
+      <div class="callback__cover-img callback__cover-img--second" data-popup-anim="fadeUp">
         <img src="./images/temp/callback-syrok.png" alt="">
       </div>
     </div>
 
-    <div class="callback__btn">
+    <div class="callback__btn" data-popup-btn="callback">
       <span class="callback__btn-line callback__btn-line--first"></span>
       <span class="callback__btn-line callback__btn-line--second"></span>
     </div>
@@ -757,7 +757,7 @@
   </div>
 </div>
     <!-- Тендер -->
-    <div class="tender tender lenis" data-lenis-prevent>
+    <div class="tender lenis" data-popup="tender" data-lenis-prevent>
   <div class="tender__inner">
 
     <div class="general__head">
@@ -951,10 +951,10 @@
       <!-- <audio id="rocket-sound" src="./sound/raketa_zvuk.mp3" preload="auto"></audio> -->
     </div>
 
-    <!-- <div class="tender__btn">
+    <div class="tender__btn" data-popup-btn="tender">
       <span class="tender__btn-line tender__btn-line--first"></span>
       <span class="tender__btn-line tender__btn-line--second"></span>
-    </div> -->
+    </div>
 
   </div>
 </div>
@@ -2370,7 +2370,7 @@
     <div class="container">
       <div class="plate__inner">
 
-        <button class="plate__btn btn btn--red">
+        <button class="plate__btn btn btn--red" data-popup-btn="callback">
           Давайте дружить
         </button>
 
