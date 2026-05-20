@@ -22,6 +22,8 @@
     --header-inner-height: 5rem;
 
     max-height: 9rem;
+
+    z-index: 800;
   }
 
   &.header-out {
@@ -31,7 +33,7 @@
   html.header-hidden & {}
 
   /* хедер зафиксировался */
-  html.tender--open &,
+  // html.tender--open &,
   html.header-off-top & {
     background-color: var(--red);
     max-height: 11rem;
@@ -70,9 +72,11 @@
     @include sm {
       gap: 3rem;
       padding: 2rem 0;
+
+      pointer-events: none;
     }
 
-    html.tender--open &,
+    // html.tender--open &,
     html.header-off-top & {
       padding: 2rem 0;
     }
@@ -122,7 +126,7 @@
         display: none;
       }
 
-      html.tender--open &,
+      // html.tender--open &,
       html.header-off-top & {
         background-color: var(--white);
       }
@@ -166,7 +170,7 @@
           width: 100%;
         }
 
-        html.tender--open &,
+        // html.tender--open &,
         html.header-off-top &,
         .menu--open & {
           background-color: var(--white);
@@ -190,7 +194,7 @@
       color: var(--black);
     }
 
-    html.tender--open &,
+    // html.tender--open &,
     html.header-off-top &,
     .menu--open & {
       transform: translateX(0%);

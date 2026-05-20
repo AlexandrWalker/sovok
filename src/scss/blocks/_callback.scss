@@ -16,7 +16,9 @@
   z-index: 600;
 
   @include sm {
-    display: none;
+    grid-template-columns: 1fr;
+
+    left: 100%;
   }
 
   &.callback-mini {
@@ -106,6 +108,10 @@
         height: 41rem;
       }
     }
+
+    .typewriter__word::after {
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNiAxNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik03LjYwODQgMEw5LjQwNDUxIDUuNTI3ODZIMTUuMjE2OUwxMC41MTQ2IDguOTQ0MjdMMTIuMzEwNyAxNC40NzIxTDcuNjA4NCAxMS4wNTU3TDIuOTA2MTIgMTQuNDcyMUw0LjcwMjIzIDguOTQ0MjdMLTUuMzg4MjZlLTA1IDUuNTI3ODZINS44MTIyOUw3LjYwODQgMFoiIGZpbGw9IiNEQzE0M0MiLz4NCjwvc3ZnPg0K) !important;
+    }
   }
 
   &:not(.callback.callback-mini) {
@@ -114,6 +120,12 @@
       grid-template-columns: 0fr 1fr;
 
       left: 4.2rem;
+
+      @include sm {
+        grid-template-columns: 1fr;
+
+        left: 0;
+      }
     }
 
     .tender--open &,
@@ -135,6 +147,39 @@
     @include sm {
       max-width: 100%;
     }
+
+    &:not(.callback.callback-mini .form) {
+
+      @include sm {
+        transition: all 0.5s ease;
+        transform: translateY(-20rem);
+        opacity: 0;
+
+        .callback--open & {
+          transition: all 0.5s ease 0.2s;
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+    }
+
+    &-body {
+
+      @include sm {
+        gap: 2rem;
+      }
+    }
+
+    &-inner {
+
+      @include sm {
+        gap: 2rem;
+      }
+    }
+
+    &-checkbox--item::before {
+      background-color: var(--white);
+    }
   }
 
   .general {
@@ -142,15 +187,38 @@
     &__head {
       gap: 0;
       z-index: 2;
+
+      &:not(.callback.callback-mini .general__head) {
+
+        @include sm {
+          transition: all 0.5s ease;
+          transform: translateY(-20rem);
+          opacity: 0;
+
+          .callback--open & {
+            transition: all 0.5s ease 0.2s;
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+      }
     }
 
     &__suptitle {
       color: var(--black);
+
+      @include sm {
+        font-size: 4.5rem;
+      }
     }
 
     &__title {
       line-height: 100%;
       color: var(--white);
+
+      @include sm {
+        font-size: 6.5rem;
+      }
     }
   }
 
@@ -168,6 +236,10 @@
     padding: 4.5rem 0;
     transition: all 0.5s ease;
     overflow: hidden;
+
+    @include sm {
+      display: none;
+    }
 
     &-text {
       font-family: var(--second-family);
@@ -195,6 +267,10 @@
     left: -2.4rem;
     z-index: 2;
     transform: translateY(-50%);
+
+    @include sm {
+      display: none;
+    }
 
     &:hover {
       transform: translateY(-50%) scale(1.2);
@@ -240,6 +316,12 @@
     overflow-y: auto;
     overflow-x: hidden;
 
+    @include sm {
+      gap: 3.6rem;
+      padding: 11rem 1.5rem 0rem 1.5rem;
+      margin-bottom: -14.4rem;
+    }
+
     &::-webkit-scrollbar {
       display: none;
       width: 0;
@@ -266,11 +348,23 @@
     right: calc(100vw/(1920/42));
     z-index: 1;
 
+    @include sm {
+      width: auto;
+      height: 45rem;
+      margin-top: -5.6rem;
+      margin-right: 0.7rem;
+      margin-bottom: -14.4rem;
+      margin-left: auto;
+
+      position: static;
+    }
+
     &-img {
       width: auto;
       transition: none;
 
       position: absolute;
+      will-change: transform;
 
       &--first {
         height: 62.7rem;
@@ -281,6 +375,10 @@
         right: -1.5rem;
         right: calc(-100vw/(1920/15));
         z-index: 2;
+
+        @include sm {
+          display: none;
+        }
 
         img {
           transform: rotate(16.41deg);
@@ -296,6 +394,12 @@
         bottom: 25rem;
         bottom: calc(100vw/(1920/250));
         z-index: 1;
+
+        @include sm {
+          height: 100%;
+
+          position: static;
+        }
 
         img {
           transform: rotate(70.79deg);

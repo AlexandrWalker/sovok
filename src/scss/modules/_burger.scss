@@ -13,6 +13,7 @@
     background-color: var(--black);
     flex-shrink: 0;
     transition: all 0.3s ease;
+    pointer-events: all;
 
     position: relative;
 
@@ -21,7 +22,7 @@
     }
 
     .tender--open & {
-      background-color: var(--white);
+      background-color: var(--red);
     }
 
     &.burger--open {
@@ -40,13 +41,15 @@
       position: absolute;
       top: 50%;
 
-      .tender--open & {
-        background-color: var(--black);
-      }
+      // .tender--open & {
+      //   background-color: var(--black);
+      // }
 
       &--first {
         transform: translateY(calc(-50% - 0.5rem));
 
+        .tender--open &,
+        .callback--open &,
         .burger--open & {
           transform: rotate(45deg);
         }
@@ -55,6 +58,8 @@
       &--second {
         transform: translateY(calc(-50% + 0.5rem));
 
+        .tender--open &,
+        .callback--open &,
         .burger--open & {
           transform: rotate(-45deg);
         }

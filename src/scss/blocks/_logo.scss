@@ -5,9 +5,19 @@
   width: fit-content;
   height: var(--header-inner-height);
   flex-shrink: 0;
+  pointer-events: all;
 
   @include sm {
     grid-column: 1/2;
+  }
+
+  .tender--open &,
+  .callback--open & {
+
+    @include sm {
+      opacity: 0;
+      pointer-events: none;
+    }
   }
 
   svg,
@@ -39,19 +49,19 @@
   }
 
 
-  .tender--open & {
+  // .tender--open & {
 
-    svg {
+  //   svg {
 
-      path {
-        fill: var(--white);
-      }
+  //     path {
+  //       fill: var(--white);
+  //     }
 
-      #point {
-        fill: var(--red);
-      }
-    }
-  }
+  //     #point {
+  //       fill: var(--red);
+  //     }
+  //   }
+  // }
 
   .header-theme-dark & {}
 }

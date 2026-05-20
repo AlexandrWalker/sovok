@@ -54,11 +54,11 @@
         top: -2rem;
 
         @include sm {
-          height: calc(100% + 1.6rem);
+          height: calc(100% + 1.4rem);
 
           font-size: 1.4rem;
 
-          top: -1.6rem;
+          top: -1.4rem;
         }
 
         &::after {
@@ -262,6 +262,7 @@
         @include sm {
           width: 2.2rem;
           height: 1.8rem;
+          background-color: var(--red);
         }
       }
     }
@@ -396,6 +397,10 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+
+    @include sm {
+      gap: 1rem;
+    }
   }
 
   &-col-2 {
@@ -429,8 +434,16 @@
 
       color: var(--red);
 
+      @include sm {
+        gap: 0.5rem;
+      }
+
       i {
         --font-size: 2.4rem;
+
+        @include sm {
+          --font-size: 1.6rem;
+        }
       }
 
       span {
@@ -438,6 +451,10 @@
         font-size: 2rem;
         line-height: 120%;
         letter-spacing: -0.04em;
+
+        @include sm {
+          font-size: 1.2rem;
+        }
       }
     }
 
@@ -453,8 +470,16 @@
       letter-spacing: -0.04em;
       color: var(--red);
 
+      @include sm {
+        font-size: 1.2rem;
+      }
+
       i {
         --font-size: 1.6rem;
+
+        @include sm {
+          --font-size: 1.2rem;
+        }
       }
     }
   }

@@ -18,6 +18,10 @@
 
     position: relative;
 
+    @include sm {
+      height: 3.7rem;
+    }
+
     i {
       --font-size: 1.5rem;
 
@@ -83,6 +87,10 @@
     text-transform: uppercase;
     color: var(--white);
 
+    @include sm {
+      font-size: 1.6rem;
+    }
+
     .filled &,
     &:focus,
     &:active,
@@ -96,11 +104,11 @@
         top: -2rem;
 
         @include sm {
-          height: calc(100% + 1.6rem);
+          height: calc(100% + 1.4rem);
 
           font-size: 1.4rem;
 
-          top: -1.6rem;
+          top: -1.4rem;
         }
 
         &::after {
@@ -164,6 +172,10 @@
     white-space: nowrap;
     text-transform: uppercase;
     cursor: pointer;
+
+    @include sm {
+      font-size: 1.6rem;
+    }
   }
 
   &__container {
@@ -191,6 +203,11 @@
     will-change: transform;
     transition: transform 0.3s ease;
 
+    @include sm {
+      gap: 2rem;
+      padding: 2rem 1.5rem;
+    }
+
     .dropdown.is-active & {
       transform: translateY(0);
     }
@@ -198,6 +215,10 @@
     .dropdown__label {
       font-size: 2rem;
       color: var(--white);
+
+      @include sm {
+        font-size: 1.6rem;
+      }
     }
   }
 

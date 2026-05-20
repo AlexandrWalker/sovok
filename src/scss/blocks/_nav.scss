@@ -63,7 +63,7 @@
         .path1::before,
         .path2::before {
 
-          .tender--open &,
+          // .tender--open &,
           html.header-off-top & {
             color: var(--white);
           }
@@ -72,7 +72,7 @@
         .path3::before,
         .path4::before {
 
-          .tender--open &,
+          // .tender--open &,
           html.header-off-top & {
             color: var(--black);
           }
@@ -98,7 +98,7 @@
       text-transform: uppercase;
       text-decoration: underline;
 
-      .tender--open &,
+      // .tender--open &,
       html.header-off-top &,
       .header-theme-dark &,
       .menu--open & {
@@ -112,7 +112,7 @@
 
       &:hover {
 
-        .tender--open &,
+        // .tender--open &,
         html.header-off-top & {
           color: var(--black);
         }
