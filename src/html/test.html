@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="ru" class="main-page">
+@@include('blocks/head.html', {"title": "СОВОК"})
+
+<body>
+  <div class="wrapper">
+    <!-- Прелоадер -->
+    @@include('./blocks/preloader.html')
+    <!-- Шапка -->
+    @@include('./blocks/header.html')
+    <!-- Меню -->
+    @@include('./blocks/menu.html')
+    <!-- callback -->
+    @@include('./blocks/callback.html')
+    <!-- Тендер -->
+    @@include('./blocks/tender.html')
+    <main class="main">
+
+      <section class="hero test">
+        <div class="container">
+          <div class="hero__inner">
+
+            <div class="hero__content">
+              <h1 style="display: none;">за! уровень в цифре</h1>
+
+              <div class="hero__suptitle" data-split="title">
+                без права <br>
+                на посредственность
+              </div>
+
+              <!-- <div class="hero__title-line">
+                  <span class="hero__title-word" data-word="за!"></span>
+                </div>
+                <div class="hero__title-line">
+                  <span class="hero__title-word" data-word="уровень"></span>
+                </div>
+                <div class="hero__title-line">
+                  <span class="hero__title-word" data-word="в"></span>
+                  <span class="hero__title-word" data-word="цифре"></span>
+                  <span class="hero__title-cursor">|</span>
+                </div> -->
+
+              <div class="hero__title">
+                <div class="typewriter" data-type-speed="0.07" data-type-variance="0.04" data-delete-speed="0.04"
+                  data-pause-after-type="2.0" data-pause-after-delete="0.5">
+                  <div class="typewriter__line">
+                    <span class="typewriter__word" data-words="Делаем|Одно|Не|От|Семь"></span>
+                    <span class="typewriter__word" data-words="|||мерча|"></span>
+                  </div>
+                  <div class="typewriter__line">
+                    <span class="typewriter__word" data-words="хорошо|агентство|бросаем|до|раз"></span>
+                    <span class="typewriter__word" data-words="|||сайта|отмерь"></span>
+                  </div>
+                  <div class="typewriter__line">
+                    <span class="typewriter__word" data-words="или|все|после|со|один"></span>
+                    <span class="typewriter__word" data-words="никак|решения|проекта|знанием|раз"></span>
+                    <span class="typewriter__word" data-words="|||дела|запусти"></span>
+                  </div>
+                  <span class="typewriter__cursor">|</span>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="hero__cover">
+              <div class="hero__cover-img">
+                <img src="./../images/temp/hero-cover-exclude.webp" alt="">
+              </div>
+              <div class="hero__cover-el hero__cover-blind">
+                <img src="./../images/temp/hero-cover-eye-blind.png" alt="">
+              </div>
+              <div class="hero__cover-el hero__cover-eye">
+                <img src="./../images/temp/hero-cover-eye.png" alt="">
+              </div>
+            </div>
+
+            <picture class="hero__mask">
+              <source media="(min-width: 601px)" srcset="./../images/mask/mask-hero.svg">
+              <source media="(max-width: 600px)" srcset="./../images/mask/mask-hero-mob.svg">
+              <img src="./../images/mask/mask-hero.svg" alt="">
+            </picture>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="approach">
+        <div class="container">
+          <div class="approach__inner">
+
+            <div class="approach__head">
+              <div class="general__head">
+                <div class="general__suptitle" data-anim="fadeLeft" data-anim-order="1">
+                  Работаем с&nbsp;теми, <br> кто мыслит <br> масштабом
+                </div>
+                <div class="general__text" data-split="text">
+                  Вы строите бренд, <br>
+                  а не проект. <br>
+                  Вам важна стратегия, <br>
+                  а не просто дизайн. <br>
+                  Вы ищете партнёра.
+                </div>
+              </div>
+            </div>
+
+            <div class="approach__body">
+              <div class="approach__content">
+
+                <div class="general__head">
+                  <div class="general__title" data-anim="fadeLeft" data-anim-order="3">
+                    Что<br><span>получает<span class="general__suptitle">бизнес</span></span>
+                  </div>
+                  <div class="general__text" data-split="text">
+                    Строим цифровую систему роста. <br> Без декоративности. <br>
+                    Только результат.
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="approach__block" data-anim="scale" data-anim-once data-anim-duration="0.6" data-anim-order="1">
+              <div class="general__head" data-anim="fadeRight" data-anim-order="2">
+                <div class="general__suptitle">
+                  Не <br> подходим, <br> если
+                </div>
+                <div class="general__text">
+                  Нужен быстрый <br>
+                  запуск «как у всех». <br>
+                  Важна минимальная цена. <br>
+                  Важнее отчёт, чем <br>
+                  результат.
+                </div>
+              </div>
+              <!-- <div class="approach__block-round" data-anim="scale" data-anim-once></div> -->
+            </div>
+
+            <div class="approach__cover" data-anim="fadeLeft" data-anim-mobile="fadeRight" data-anim-order="2">
+              <picture>
+                <source media="(min-width:601px)" srcset="./../images/temp/gagarin.webp">
+                <source media="(max-width:600px)" srcset="./../images/temp/gagarin-mob.png">
+                <img src="./../images/temp/gagarin.webp" alt="" data-anim="parallax">
+              </picture>
+            </div>
+
+            <div class="approach__satellite-wrap" data-anim-scene>
+              <div class="approach__satellite-item" data-anim="satellite" data-anim-strength="500">
+                <img src="./../images/temp/sputnik.png" alt="">
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="produce">
+        <div class="container">
+          <div class="produce__inner">
+
+            <div class="general__head">
+              <div class="general__title" data-anim="fadeLeft">
+                производим
+              </div>
+              <div class="general__text" data-anim="fadeLeft">
+                <span>
+                  ЦЕХ ВИЗУАЛЬНОЙ ИДЕОЛОГИИ
+                </span>
+              </div>
+            </div>
+
+            <div class="produce__body">
+              <!-- <div class="swiper produce__slider"> -->
+              <!-- <div class="swiper-wrapper"> -->
+              <!-- <div class="swiper-slide"> -->
+              <div class="produce__item produce__item--1" data-fancybox href="#popup-1">
+                <div class="produce__item-content">
+                  <div class="produce__item-cover">
+                    <div class="object-shadow">
+                      <img src="./../images/temp/produce-1-cover-shadow.svg" alt="">
+                    </div>
+                    <div class="object-body">
+                      <img src="./../images/temp/produce-1-cover.svg" alt="">
+                    </div>
+                  </div>
+                  <div class="produce__item-wrap">
+                    <div class="produce__item-title">
+                      Брендинг
+                    </div>
+                    <div class="produce__item-text">
+                      и айдентика
+                    </div>
+                  </div>
+                  <div class="produce__item-icon">
+                    <i class="icon-chevron-double-rw-right">
+                      <div class="path1"></div>
+                      <div class="path2"></div>
+                      <div class="path3"></div>
+                      <div class="path4"></div>
+                    </i>
+                  </div>
+                </div>
+                <div class="produce__item-block">
+                  <a class="produce__item-wrap" href="/">
+                    <div class="produce__item-title">
+                      Брендинг
+                    </div>
+                    <div class="produce__item-text">
+                      и айдентика
+                    </div>
+                  </a>
+                  <div class="produce__item-list">
+                    <ul>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Нейминг 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Позиционирование, УТП
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Фирменный стиль 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Брендбук 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Упаковка 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Графически дизайн 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Моушен - дизайн 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            ИИ-дизайн 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Pos - материалы 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Презентации 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Мерч 
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- </div> -->
+              <!-- <div class="swiper-slide"> -->
+              <div class="produce__item produce__item--2" data-fancybox href="#popup-2">
+                <div class="produce__item-content">
+                  <div class="produce__item-cover">
+                    <div class="object-shadow">
+                      <img src="./../images/temp/produce-2-cover-shadow.svg" alt="">
+                    </div>
+                    <div class="object-body">
+                      <img src="./../images/temp/produce-2-cover.svg" alt="">
+                    </div>
+                  </div>
+                  <div class="produce__item-wrap">
+                    <div class="produce__item-title">
+                      цифровые
+                    </div>
+                    <div class="produce__item-text">
+                      продукты
+                    </div>
+                  </div>
+                  <div class="produce__item-icon">
+                    <i class="icon-chevron-double-rw-right">
+                      <div class="path1"></div>
+                      <div class="path2"></div>
+                      <div class="path3"></div>
+                      <div class="path4"></div>
+                    </i>
+                  </div>
+                </div>
+                <div class="produce__item-block">
+                  <a class="produce__item-wrap" href="/">
+                    <div class="produce__item-title">
+                      цифровые
+                    </div>
+                    <div class="produce__item-text">
+                      продукты
+                    </div>
+                  </a>
+                  <div class="produce__item-list">
+                    <ul>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Нейминг 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Позиционирование, УТП
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Фирменный стиль 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Брендбук 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Упаковка 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Графически дизайн 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Моушен - дизайн 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            ИИ-дизайн 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Pos - материалы 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Презентации 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Мерч 
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- </div> -->
+              <!-- <div class="swiper-slide"> -->
+              <div class="produce__item produce__item--3" data-fancybox href="#popup-3">
+                <div class="produce__item-content">
+                  <div class="produce__item-cover">
+                    <div class="object-shadow">
+                      <img src="./../images/temp/produce-3-cover-shadow.svg" alt="">
+                    </div>
+                    <div class="object-body">
+                      <img src="./../images/temp/produce-3-cover.svg" alt="">
+                    </div>
+                  </div>
+                  <div class="produce__item-wrap">
+                    <div class="produce__item-title">
+                      Комплексные
+                    </div>
+                    <div class="produce__item-text">
+                      стратегии
+                    </div>
+                  </div>
+                  <div class="produce__item-icon">
+                    <i class="icon-chevron-double-rw-right">
+                      <div class="path1"></div>
+                      <div class="path2"></div>
+                      <div class="path3"></div>
+                      <div class="path4"></div>
+                    </i>
+                  </div>
+                </div>
+                <div class="produce__item-block">
+                  <a class="produce__item-wrap" href="/">
+                    <div class="produce__item-title">
+                      Комплексные
+                    </div>
+                    <div class="produce__item-text">
+                      стратегии
+                    </div>
+                  </a>
+                  <div class="produce__item-list">
+                    <ul>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Нейминг 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Позиционирование, УТП
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Фирменный стиль 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Брендбук 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Упаковка 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Графически дизайн 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Моушен - дизайн 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            ИИ-дизайн 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Pos - материалы 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Презентации 
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>
+                            Мерч 
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- </div> -->
+              <!-- </div> -->
+              <!-- </div> -->
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="effect">
+        <div class="container">
+          <div class="effect__inner">
+
+            <div class="general__head">
+              <div class="general__suptitle" data-anim="fadeLeft">
+                обеспечиваем
+              </div>
+              <div class="general__title" data-anim="fadeLeft">
+                эффективность
+              </div>
+            </div>
+            <div class="effect__body">
+              <div class="effect__feat">
+                <div class="effect__feat-item">
+                  <div class="effect__feat-count">
+                    <div class="numbers">
+                      <span>+</span>
+                      <div class="number-roll" data-number="127">
+                      </div>
+                      <span>%</span>
+                    </div>
+                  </div>
+                  <div class="effect__feat-text">
+                    средний рост выручки клиентов
+                  </div>
+                </div>
+                <div class="effect__feat-item">
+                  <div class="effect__feat-count">
+                    <div class="numbers">
+                      <span class="numbers-x">x</span>
+                      <div class="number-roll" data-number="3">
+                      </div>
+                      <span>&nbsp;LTV</span>
+                    </div>
+                  </div>
+                  <div class="effect__feat-text">
+                    Рост пожизненной ценности клиента
+                  </div>
+                </div>
+                <div class="effect__feat-item">
+                  <div class="effect__feat-count">
+                    <span>-&nbsp;</span>
+                    <div class="number-roll" data-number="38">
+                    </div>
+                    <span>%</span>
+                  </div>
+                  <div class="effect__feat-text">
+                    уменьшение стоимости привлечения
+                  </div>
+                </div>
+                <div class="effect__feat-item">
+                  <div class="effect__feat-count">
+                    <div class="numbers">
+                      <div class="number-roll" data-number="12">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="effect__feat-text">
+                    отраслей
+                  </div>
+                </div>
+              </div>
+              <div class="effect__ps">
+                *Средние показатели по реализованным проектам
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="cases">
+        <div class="container">
+          <div class="cases__inner">
+
+            <div class="general__head" data-anim="fadeLeft" data-anim-order="2" data-anim-order-mobile="1">
+              <div class="general__title">
+                делом
+              </div>
+              <div class="general__suptitle">
+                А НЕ СЛОВОМ
+              </div>
+            </div>
+
+            <div class="cases__cover" data-anim="fadeUp" data-anim-order="1" data-anim-order-mobile="2">
+              <img src="./../images/temp/cases-cover.webp" alt="">
+            </div>
+
+            <div class="cases__body">
+              <div class="swiper cases__slider">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide cases__slide">
+                    <div class="cases__slide-wrap">
+                      <picture class="cases__slide-bg">
+                        <source media="(min-width: 601px)" srcset="./../images/temp/cases-slide-bg.png">
+                        <source media="(max-width: 600px)" srcset="./../images/temp/cases-slide-bg-mob.png">
+                        <img src="./../images/temp/cases-slide-bg.png" alt="">
+                      </picture>
+                      <div class="cases__slide-content">
+                        <div class="cases__slide-title h1">
+                          отель <br> grand autogroph
+                        </div>
+                        <div class="cases__slide-text">
+                          Единственный пятизвездочный отель в Новосибирске.
+                        </div>
+                        <a class="cases__slide-link" href="/">
+                          Ознакомиться
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide cases__slide">
+                    <div class="cases__slide-wrap">
+                      <!-- <div class="cases__slide-bg">
+                        <img src="./../images/temp/cases-slide-bg.png" alt="">
+                      </div> -->
+                      <picture class="cases__slide-bg">
+                        <source media="(min-width: 601px)" srcset="./../images/temp/cases-slide-bg.png">
+                        <source media="(max-width: 600px)" srcset="./../images/temp/cases-slide-bg-mob.png">
+                        <img src="./../images/temp/cases-slide-bg.png" alt="">
+                      </picture>
+                      <div class="cases__slide-content">
+                        <div class="cases__slide-title h1">
+                          отель
+                          grand autogroph
+                        </div>
+                        <div class="cases__slide-text">
+                          Единственный пятизвездочный отель в Новосибирске.
+                        </div>
+                        <a class="cases__slide-link" href="/">
+                          Ознакомиться
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-button-prev cases-button-prev icons-mob-change">
+                <i class="icon-arrow-double-rb-right">
+                  <path class="path1"></path>
+                  <path class="path2"></path>
+                  <path class="path3"></path>
+                  <path class="path4"></path>
+                </i>
+              </div>
+              <div class="swiper-button-next cases-button-next icons-mob-change">
+                <i class="icon-arrow-double-rb-right">
+                  <path class="path1"></path>
+                  <path class="path2"></path>
+                  <path class="path3"></path>
+                  <path class="path4"></path>
+                </i>
+              </div>
+              <a class="cases__btn btn btn--red" href="/">
+                все кейсы
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="growth">
+        <div class="container">
+          <div class="growth__inner" data-anim-scene>
+
+            <div class="general__head">
+              <div class="general__title" data-anim="fadeLeft">
+                механика
+              </div>
+              <div class="general__suptitle" data-anim="fadeLeft">
+                роста
+              </div>
+            </div>
+
+            <div class="growth__body">
+              <div class="growth__items">
+                <div class="growth__item">
+                  <div class="growth__item-count">
+                    01.
+                  </div>
+                  <div class="growth__item-title">
+                    Диагностика бизнеса
+                  </div>
+                  <div class="growth__item-text">
+                    Анализ маркетинга, продукта, воронки продаж и юнит-экономики
+                  </div>
+                </div>
+                <div class="growth__item">
+                  <div class="growth__item-count">
+                    02.
+                  </div>
+                  <div class="growth__item-title">
+                    Поиск точек роста
+                  </div>
+                  <div class="growth__item-text">
+                    Определяем узкие места: трафик, конверсия, удержание, LTV
+                  </div>
+                </div>
+                <div class="growth__item">
+                  <div class="growth__item-count">
+                    03.
+                  </div>
+                  <div class="growth__item-title">
+                    Разработка стратегии
+                  </div>
+                  <div class="growth__item-text">
+                    Создаем систему роста: каналы, инструменты, гипо
+                  </div>
+                </div>
+                <div class="growth__item">
+                  <div class="growth__item-count">
+                    04.
+                  </div>
+                  <div class="growth__item-title">
+                    Масштабирование
+                  </div>
+                  <div class="growth__item-text">
+                    Увеличиваем оборот через рост LTV и снижение CAC
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="growth__cover" data-anim="fly-through">
+              <img class="growth__cover-shadow" src="./../images/temp/mishka-shadow.svg" alt="">
+              <img class="growth__cover-img" src="./../images/temp/mishka.svg" alt="">
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- <section class="inform sound-section" data-scroll-sound="levitan"> -->
+      <section class="inform">
+        <div class="container">
+          <div class="inform__inner">
+
+            <div class="general__head">
+              <div class="general__title" data-anim="fadeLeft">
+                информбюро
+              </div>
+            </div>
+
+            <div class="inform__body">
+              <div class="swiper inform__slider">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide inform__slide">
+                    <div class="inform__item">
+                      <div class="inform__item-cover">
+                        <img src="./../images/temp/inform-cover-1.jpg" alt="">
+                      </div>
+                      <div class="inform__item-content">
+                        <div class="inform__item-title">
+                          Диагностика бизнеса
+                        </div>
+                        <div class="inform__item-text">
+                          Анализ маркетинга, продукта, воронки продаж и юнит-экономики
+                        </div>
+                      </div>
+                    </div>
+                    <div class="inform__item-arrow">
+                      <img src="./../images/icon/arrow-double-rb-right.svg" alt="">
+                    </div>
+                  </div>
+                  <div class="swiper-slide inform__slide">
+                    <div class="inform__item">
+                      <div class="inform__item-cover">
+                        <img src="./../images/temp/inform-cover-2.jpg" alt="">
+                      </div>
+                      <div class="inform__item-content">
+                        <div class="inform__item-title">
+                          Диагностика бизнеса
+                        </div>
+                        <div class="inform__item-text">
+                          Анализ маркетинга, продукта, воронки продаж и юнит-экономики
+                        </div>
+                      </div>
+                    </div>
+                    <div class="inform__item-arrow">
+                      <img src="./../images/icon/arrow-double-rb-right.svg" alt="">
+                    </div>
+                  </div>
+                  <div class="swiper-slide inform__slide">
+                    <div class="inform__item">
+                      <div class="inform__item-cover">
+                        <img src="./../images/temp/inform-cover-3.png" alt="">
+                      </div>
+                      <div class="inform__item-content">
+                        <div class="inform__item-title">
+                          Диагностика бизнеса
+                        </div>
+                        <div class="inform__item-text">
+                          Анализ маркетинга, продукта, воронки продаж и юнит-экономики
+                        </div>
+                      </div>
+                    </div>
+                    <div class="inform__item-arrow">
+                      <img src="./../images/icon/arrow-double-rb-right.svg" alt="">
+                    </div>
+                  </div>
+                  <div class="swiper-slide inform__slide">
+                    <div class="inform__item">
+                      <div class="inform__item-cover">
+                        <img src="./../images/temp/inform-cover-1.jpg" alt="">
+                      </div>
+                      <div class="inform__item-content">
+                        <div class="inform__item-title">
+                          Диагностика бизнеса
+                        </div>
+                        <div class="inform__item-text">
+                          Анализ маркетинга, продукта, воронки продаж и юнит-экономики
+                        </div>
+                      </div>
+                    </div>
+                    <div class="inform__item-arrow">
+                      <img src="./../images/icon/arrow-double-rb-right.svg" alt="">
+                    </div>
+                  </div>
+                  <div class="swiper-slide inform__slide">
+                    <div class="inform__item">
+                      <div class="inform__item-cover">
+                        <img src="./../images/temp/inform-cover-2.jpg" alt="">
+                      </div>
+                      <div class="inform__item-content">
+                        <div class="inform__item-title">
+                          Диагностика бизнеса
+                        </div>
+                        <div class="inform__item-text">
+                          Анализ маркетинга, продукта, воронки продаж и юнит-экономики
+                        </div>
+                      </div>
+                    </div>
+                    <div class="inform__item-arrow">
+                      <img src="./../images/icon/arrow-double-rb-right.svg" alt="">
+                    </div>
+                  </div>
+                  <div class="swiper-slide inform__slide">
+                    <div class="inform__item">
+                      <div class="inform__item-cover">
+                        <img src="./../images/temp/inform-cover-3.png" alt="">
+                      </div>
+                      <div class="inform__item-content">
+                        <div class="inform__item-title">
+                          Диагностика бизнеса
+                        </div>
+                        <div class="inform__item-text">
+                          Анализ маркетинга, продукта, воронки продаж и юнит-экономики
+                        </div>
+                      </div>
+                    </div>
+                    <div class="inform__item-arrow">
+                      <img src="./../images/icon/arrow-double-rb-right.svg" alt="">
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-button-next inform-button-next">
+                </div>
+              </div>
+            </div>
+
+            <div class="inform__foot">
+              <a class="inform__btn btn btn--red" href="/">
+                перейти в раздел
+              </a>
+              <div class="inform__svg">
+                <!-- <svg id="inform__svg" width="675" height="63" viewBox="0 0 675 63" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <rect x="29.2891" y="28.3594" width="644.814" height="5.11388" fill="#DC143C" />
+                  <rect id="inform__rect" class="swiper-svg-scrollbar" x="17.5293" y="11.6758" width="53.6474"
+                    height="30.4487" fill="#17171A" />
+                  <rect x="55.3232" y="16.2715" width="342.63" height="5.11388" fill="#DC143C" />
+                  <rect x="2.56543" y="1.38265e-05" width="29.9265" height="5.24466" fill="#DC143C" />
+                  <rect y="45.582" width="55.4223" height="16.7738" fill="#DC143C" />
+                </svg> -->
+
+                <svg id="inform__svg" width="1104" height="219" viewBox="0 0 1104 219" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <rect x="102.865" y="99.5996" width="1000.89" height="17.9605" fill="#DC143C" />
+                  <rect id="inform__rect" class="swiper-svg-scrollbar swiper-scrollbar-drag" x="61.5645" y="41.0039"
+                    width="188.416" height="106.939" fill="#17171A" />
+                  <rect x="194.299" y="57.1465" width="692.296" height="17.9605" fill="#DC143C" />
+                  <rect x="21.2266" width="105.105" height="18.4198" fill="#DC143C" />
+                  <rect y="160.088" width="194.649" height="58.9116" fill="#DC143C" />
+                </svg>
+
+              </div>
+            </div>
+
+            <div class="inform__cover" data-anim="parallax">
+              <img class="inform__cover-shadow" src="./../images/temp/rupor-shadow.svg" alt="">
+              <img class="inform__cover-img" src="./../images/temp/rupor.svg" alt="">
+            </div>
+
+            <!-- <div class="inform__cover">
+              <img src="./../images/temp/rupor.png" alt="">
+            </div>
+
+            <div class="inform__cover-active sound-image">
+              <img src="./../images/temp/rupor-active.png" alt="">
+            </div> -->
+
+          </div>
+        </div>
+      </section>
+
+      <section class="awards">
+        <div class="container">
+          <div class="awards__inner">
+
+            <div class="general__head">
+              <div class="general__suptitle" data-anim="fadeLeft">
+                ордена
+              </div>
+              <div class="general__title" data-anim="fadeLeft">
+                и награды
+              </div>
+            </div>
+
+            <div class="awards__body">
+
+              <div class="awards__img">
+                <img src="./../images/temp/awards-img.png" alt="">
+              </div>
+
+              <div class="swiper awards__slider">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide awards__slide">
+                    <div class="awards__cover" data-anim="bounce">
+                      <img src="./../images/temp/awards-cover-1.webp" alt="">
+                    </div>
+                    <div class="awards__slide-content">
+                      <div class="awards__slide-name">
+                        благодарственное письмо
+                      </div>
+                      <div class="awards__slide-title">
+                        За&nbsp;многолетнее сотрудничество
+                      </div>
+                      <div class="awards__slide-text">
+                        Анализ маркетинга, продукта, воронки продаж и юнит-экономики
+                      </div>
+                      <a class="awards__slide-link" href="/sovok">
+                        Ознакомиться
+                      </a>
+                    </div>
+                  </div>
+                  <div class="swiper-slide awards__slide">
+                    <div class="awards__cover" data-anim="bounce">
+                      <img src="./../images/temp/awards-cover-2.webp" alt="">
+                    </div>
+                    <div class="awards__slide-content">
+                      <div class="awards__slide-name">
+                        рейтинг рунета
+                      </div>
+                      <div class="awards__slide-title">
+                        1 место за участие
+                        в&nbsp;пятилетке
+                      </div>
+                      <div class="awards__slide-text">
+                        Анализ маркетинга, продукта, воронки продаж и юнит-экономики
+                      </div>
+                      <a class="awards__slide-link" href="/sovok">
+                        Ознакомиться
+                      </a>
+                    </div>
+                  </div>
+                  <div class="swiper-slide awards__slide">
+                    <div class="awards__cover" data-anim="bounce">
+                      <img src="./../images/temp/awards-cover-1.webp" alt="">
+                    </div>
+                    <div class="awards__slide-content">
+                      <div class="awards__slide-name">
+                        благодарственное письмо
+                      </div>
+                      <div class="awards__slide-title">
+                        За&nbsp;многолетнее сотрудничество
+                      </div>
+                      <div class="awards__slide-text">
+                        Анализ маркетинга, продукта, воронки продаж и юнит-экономики
+                      </div>
+                      <a class="awards__slide-link" href="/sovok">
+                        Ознакомиться
+                      </a>
+                    </div>
+                  </div>
+                  <div class="swiper-slide awards__slide">
+                    <div class="awards__cover" data-anim="bounce">
+                      <img src="./../images/temp/awards-cover-2.webp" alt="">
+                    </div>
+                    <div class="awards__slide-content">
+                      <div class="awards__slide-name">
+                        рейтинг рунета
+                      </div>
+                      <div class="awards__slide-title">
+                        1 место за участие
+                        в&nbsp;пятилетке
+                      </div>
+                      <div class="awards__slide-text">
+                        Анализ маркетинга, продукта, воронки продаж и юнит-экономики
+                      </div>
+                      <a class="awards__slide-link" href="/sovok">
+                        Ознакомиться
+                      </a>
+                    </div>
+                  </div>
+                  <div class="swiper-slide awards__slide">
+                    <div class="awards__cover" data-anim="bounce">
+                      <img src="./../images/temp/awards-cover-1.webp" alt="">
+                    </div>
+                    <div class="awards__slide-content">
+                      <div class="awards__slide-name">
+                        благодарственное письмо
+                      </div>
+                      <div class="awards__slide-title">
+                        За&nbsp;многолетнее сотрудничество
+                      </div>
+                      <div class="awards__slide-text">
+                        Анализ маркетинга, продукта, воронки продаж и юнит-экономики
+                      </div>
+                      <a class="awards__slide-link" href="/sovok">
+                        Ознакомиться
+                      </a>
+                    </div>
+                  </div>
+                  <div class="swiper-slide awards__slide">
+                    <div class="awards__cover" data-anim="bounce">
+                      <img src="./../images/temp/awards-cover-2.webp" alt="">
+                    </div>
+                    <div class="awards__slide-content">
+                      <div class="awards__slide-name">
+                        рейтинг рунета
+                      </div>
+                      <div class="awards__slide-title">
+                        1 место за участие
+                        в&nbsp;пятилетке
+                      </div>
+                      <div class="awards__slide-text">
+                        Анализ маркетинга, продукта, воронки продаж и юнит-экономики
+                      </div>
+                      <a class="awards__slide-link" href="/sovok">
+                        Ознакомиться
+                      </a>
+                    </div>
+                  </div>
+                  <div class="swiper-slide awards__slide">
+                    <div class="awards__cover" data-anim="bounce">
+                      <img src="./../images/temp/awards-cover-1.webp" alt="">
+                    </div>
+                    <div class="awards__slide-content">
+                      <div class="awards__slide-name">
+                        благодарственное письмо
+                      </div>
+                      <div class="awards__slide-title">
+                        За&nbsp;многолетнее сотрудничество
+                      </div>
+                      <div class="awards__slide-text">
+                        Анализ маркетинга, продукта, воронки продаж и юнит-экономики
+                      </div>
+                      <a class="awards__slide-link" href="/sovok">
+                        Ознакомиться
+                      </a>
+                    </div>
+                  </div>
+                  <div class="swiper-slide awards__slide">
+                    <div class="awards__cover" data-anim="bounce">
+                      <img src="./../images/temp/awards-cover-2.webp" alt="">
+                    </div>
+                    <div class="awards__slide-content">
+                      <div class="awards__slide-name">
+                        рейтинг рунета
+                      </div>
+                      <div class="awards__slide-title">
+                        1 место за участие
+                        в&nbsp;пятилетке
+                      </div>
+                      <div class="awards__slide-text">
+                        Анализ маркетинга, продукта, воронки продаж и юнит-экономики
+                      </div>
+                      <a class="awards__slide-link" href="/sovok">
+                        Ознакомиться
+                      </a>
+                    </div>
+                  </div>
+                  <div class="swiper-slide awards__slide">
+                    <div class="awards__cover" data-anim="bounce">
+                      <img src="./../images/temp/awards-cover-1.webp" alt="">
+                    </div>
+                    <div class="awards__slide-content">
+                      <div class="awards__slide-name">
+                        благодарственное письмо
+                      </div>
+                      <div class="awards__slide-title">
+                        За&nbsp;многолетнее сотрудничество
+                      </div>
+                      <div class="awards__slide-text">
+                        Анализ маркетинга, продукта, воронки продаж и юнит-экономики
+                      </div>
+                      <a class="awards__slide-link" href="/sovok">
+                        Ознакомиться
+                      </a>
+                    </div>
+                  </div>
+                  <div class="swiper-slide awards__slide">
+                    <div class="awards__cover" data-anim="bounce">
+                      <img src="./../images/temp/awards-cover-2.webp" alt="">
+                    </div>
+                    <div class="awards__slide-content">
+                      <div class="awards__slide-name">
+                        рейтинг рунета
+                      </div>
+                      <div class="awards__slide-title">
+                        1 место за участие
+                        в&nbsp;пятилетке
+                      </div>
+                      <div class="awards__slide-text">
+                        Анализ маркетинга, продукта, воронки продаж и юнит-экономики
+                      </div>
+                      <a class="awards__slide-link" href="/sovok">
+                        Ознакомиться
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="swiper-button-prev awards-button-prev">
+                <i class="icon-arrow-double-rb-right">
+                  <div class="path1"></div>
+                  <div class="path2"></div>
+                  <div class="path3"></div>
+                  <div class="path4"></div>
+                </i>
+              </div> -->
+
+              <div class="swiper-button-next awards-button-next">
+                <i class="icon-arrow-double-rb-right">
+                  <div class="path1"></div>
+                  <div class="path2"></div>
+                  <div class="path3"></div>
+                  <div class="path4"></div>
+                </i>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="request" data-header-theme="dark">
+        <div class="container">
+          <div class="request__inner">
+
+            <div class="general__head">
+              <div class="general__suptitle" data-anim="fadeLeft">
+                готовы
+              </div>
+              <div class="general__title" data-anim="fadeLeft">
+                к запуску?
+              </div>
+            </div>
+
+            <form class="form" action="">
+              <div class="form-inner">
+                <div class="form-body">
+                  <div class="form-group">
+                    <input id="request_name_input" class="form-input" type="text" name="names" required>
+                    <label class="form-label">
+                      <!-- Имя субъекта -->
+                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07" data-type-variance="0.04"
+                        data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                        data-input="#request_name_input" data-stop-text="Имя субъекта">
+                        <div class="typewriter__line">
+                          <span class="typewriter__word" data-words="Давай знакомиться!|Сюда писать имя"></span>
+                        </div>
+                        <span class="typewriter__cursor">|</span>
+                      </div>
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <input id="request_tel_input" class="form-input" type="tel" name="tel" required>
+                    <label class="form-label">
+                      <!-- КАНАЛ СВЯЗИ -->
+                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07" data-type-variance="0.04"
+                        data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                        data-input="#request_tel_input" data-stop-text="КАНАЛ СВЯЗИ">
+                        <div class="typewriter__line">
+                          <span class="typewriter__word"
+                            data-words="Номер телефона|Можно указать почту|Ждем обращения)"></span>
+                        </div>
+                        <span class="typewriter__cursor">|</span>
+                      </div>
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <input id="request_comments_input" class="form-input" type="text" name="comments" required>
+                    <label class="form-label">
+                      <!-- СУТЬ ОБРАЩЕНИЯ -->
+                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07" data-type-variance="0.04"
+                        data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                        data-input="#request_comments_input" data-stop-text="СУТЬ ОБРАЩЕНИЯ">
+                        <div class="typewriter__line">
+                          <span class="typewriter__word"
+                            data-words="суть нашего разговора|главная идея моего сообщения|основная цель"></span>
+                        </div>
+                        <span class="typewriter__cursor">|</span>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <div class="form-foot">
+                  <button class="form-btn" type="button" data-btn-sound="poehali">
+                    <div class="form-btn__text">
+                      поехали!
+                    </div>
+                  </button>
+                  <div class="form-wrap">
+                    <div class="form-text">
+                      Нажимая на кнопку «Отправить» вы соглашаетесь с <a href="/">Политикой обработки персональных
+                        данных</a>
+                    </div>
+                    <div class="form-group">
+                      <input id="form-checkbox-3" class="form-checkbox" type="checkbox" data-btn-sound="shutdown_sound">
+                      <label for="form-checkbox-3" class="form-checkbox-label">
+                        <div class="form-checkbox--item"></div>
+                        <div class="form-text">
+                          Я согласен на обработку персональных данных
+                        </div>
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <input id="form-checkbox-4" class="form-checkbox" type="checkbox" data-btn-sound="shutdown_sound">
+                      <label for="form-checkbox-4" class="form-checkbox-label">
+                        <div class="form-checkbox--item"></div>
+                        <div class="form-text">
+                          Я согласен на рекламные уведомления
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <div class="request__cover" data-anim="parallax-shadow">
+              <img class="request__cover-img request__cover-img--2" src="./../images/temp/request-cover-2.svg" alt="">
+              <img class="request__cover-img request__cover-img--1" src="./../images/temp/request-cover-1.svg" alt="">
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+    <!-- Подвал -->
+    @@include('blocks/footer.html')

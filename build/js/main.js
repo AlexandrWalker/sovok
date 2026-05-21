@@ -323,6 +323,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const link = e.target.closest('a[href]');
       if (!link) return;
 
+      // Не мешаем Fancybox — пропускаем ссылки с data-fancybox
+      if (link.hasAttribute('data-fancybox')) return;
+
       const href = link.getAttribute('href');
       if (!href || !href.includes('#')) return;
 
