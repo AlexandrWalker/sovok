@@ -193,16 +193,16 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
-  font-weight: 800;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
+  src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
+  font-weight: 800;
   font-style: normal;
 }
 
@@ -5469,13 +5469,25 @@ html.tender--open .tender-btn .object-body::before {
   color: var(--black);
 }
 
+.test .hero__title .typewriter__word {
+  font-family: var(--font-family);
+  font-weight: 900;
+  font-size: 27.2rem;
+}
+
 .hero__title .typewriter__cursor {
+  font-family: var(--second-family);
   font-weight: 1000;
   font-size: 26.2rem;
   line-height: 85%;
   text-transform: uppercase;
   color: var(--black);
   will-change: opacity;
+}
+
+.test .hero__title .typewriter__cursor {
+  font-family: var(--font-family);
+  font-weight: 900;
 }
 
 .hero__cover {
@@ -7842,7 +7854,15 @@ html.tender--open .tender-btn .object-body::before {
     font-size: 6rem;
   }
 
+  .test .hero__title .typewriter__word {
+    font-size: 6rem;
+  }
+
   .hero__title .typewriter__cursor {
+    font-size: 6rem;
+  }
+
+  .test .hero__title .typewriter__cursor {
     font-size: 6rem;
   }
 
