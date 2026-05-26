@@ -29,7 +29,10 @@
     }
 
     &:hover {
-      color: var(--black);
+
+      @include dosm {
+        color: var(--black);
+      }
     }
   }
 
@@ -50,10 +53,13 @@
 
     &:hover {
 
-      i {
-        border-color: var(--black);
+      @include dosm {
 
-        color: var(--black);
+        i {
+          border-color: var(--black);
+
+          color: var(--black);
+        }
       }
     }
 

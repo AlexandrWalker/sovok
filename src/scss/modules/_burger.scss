@@ -21,11 +21,6 @@
       grid-column: 3/4;
     }
 
-    &:hover {
-
-      .burger-btn__line {}
-    }
-
     .tender--open & {
       background-color: var(--red);
     }
