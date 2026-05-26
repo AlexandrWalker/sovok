@@ -186,6 +186,14 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
+  src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
   src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
   font-weight: 900;
   font-style: normal;
@@ -204,22 +212,6 @@ img {
   font-display: swap;
   src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
   font-weight: 200;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
-  font-weight: 800;
   font-style: normal;
 }
 
@@ -248,10 +240,10 @@ img {
 }
 
 @font-face {
-  font-family: RobotoCondensed;
+  font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Black.woff2") format("woff2"), url("../fonts/RobotoCondensed-Black.woff") format("woff");
-  font-weight: 900;
+  src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
@@ -260,6 +252,14 @@ img {
   font-display: swap;
   src: url("../fonts/Roboto-Thin.woff2") format("woff2"), url("../fonts/Roboto-Thin.woff") format("woff");
   font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoCondensed;
+  font-display: swap;
+  src: url("../fonts/RobotoCondensed-Black.woff2") format("woff2"), url("../fonts/RobotoCondensed-Black.woff") format("woff");
+  font-weight: 900;
   font-style: normal;
 }
 
@@ -573,6 +573,17 @@ img {
   --f-close-button-hover-bg: #000000;
   --f-close-button-active-bg: #000000;
   --f-button-svg-stroke-width: 0.4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
   top: 4rem;
   right: 4rem;
 }
@@ -1907,6 +1918,8 @@ p {
 }
 
 .callback.callback-mini {
+  -ms-grid-columns: 1fr;
+  grid-template-columns: 1fr;
   background-color: var(--black);
   width: var(--callback-mini-width);
   height: 100%;
@@ -1956,11 +1969,11 @@ p {
 
 .callback.callback-mini .callback__inner {
   gap: 4rem;
-  padding: 21rem 9rem 8rem 9rem;
+  padding: 21rem 4rem 8rem 4rem;
 }
 
 .contacts-page .callback.callback-mini .callback__inner {
-  padding: 23rem 9rem 8rem 9rem;
+  padding: 23rem 4rem 8rem 4rem;
 }
 
 .callback.callback-mini .request__cover {
@@ -2799,6 +2812,8 @@ p {
   height: fit-content;
   min-height: 100%;
   padding: 3.5rem 0;
+  overflow: hidden;
+  position: relative;
 }
 
 .menu__phone {
@@ -2865,11 +2880,15 @@ p {
   -ms-flex-direction: column;
   flex-direction: column;
   gap: 3rem;
-  -webkit-transition: -webkit-transform 0.3s ease;
-  transition: -webkit-transform 0.3s ease;
-  -o-transition: transform 0.3s ease;
-  transition: transform 0.3s ease;
-  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+  -webkit-transition: opacity 0.3s ease, -webkit-transform 0.3s ease;
+  transition: opacity 0.3s ease, -webkit-transform 0.3s ease;
+  -o-transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease, -webkit-transform 0.3s ease;
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+  opacity: 1;
   position: absolute;
   bottom: 29.4rem;
   left: 54.7rem;
@@ -3213,11 +3232,15 @@ p {
 .menu .hero__cover {
   width: 98.4rem;
   height: 94.1rem;
-  -webkit-transition: -webkit-transform 0.5s ease;
-  transition: -webkit-transform 0.5s ease;
-  -o-transition: transform 0.5s ease;
-  transition: transform 0.5s ease;
-  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+  -webkit-transition: opacity 0.3s ease, -webkit-transform 0.3s ease;
+  transition: opacity 0.3s ease, -webkit-transform 0.3s ease;
+  -o-transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease, -webkit-transform 0.3s ease;
+  -webkit-transform: translateY(0%);
+  -ms-transform: translateY(0%);
+  transform: translateY(0%);
+  opacity: 1;
   position: absolute;
   top: unset;
   right: -19rem;
@@ -3225,9 +3248,10 @@ p {
 }
 
 .menu-item-hover .menu .hero__cover {
-  -webkit-transform: translateY(100vh);
-  -ms-transform: translateY(100vh);
-  transform: translateY(100vh);
+  -webkit-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  transform: translateY(100%);
+  opacity: 0;
 }
 
 .menu .hero__cover-el {
@@ -6414,16 +6438,18 @@ html.tender--open .tender-btn .object-body::before {
   }
 
   .menu.list-dropdown-active .hero__cover {
-    -webkit-transform: translateY(100vh);
-    -ms-transform: translateY(100vh);
-    transform: translateY(100vh);
+    -webkit-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    transform: translateY(100%);
+    opacity: 0;
   }
 
   .list-dropdown-active .menu__content,
   .menu-item-hover .menu__content {
-    -webkit-transform: translateY(100vh);
-    -ms-transform: translateY(100vh);
-    transform: translateY(100vh);
+    -webkit-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    transform: translateY(100%);
+    opacity: 0;
   }
 
   .menu__content-title {

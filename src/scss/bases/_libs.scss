@@ -206,6 +206,11 @@
   // --f-close-button-svg-height: 2.2rem;
   --f-button-svg-stroke-width: 0.4rem;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+
   top: 4rem;
   right: 4rem;
 
