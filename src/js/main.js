@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //     };
 
   //     logo.onerror = function () {
-  //       // fallback: если не загрузилось — просто скрываем по load
+  //       // fallback: если не загрузилось - просто скрываем по load
   //       window.addEventListener('load', function onWindowLoad() {
   //         window.removeEventListener('load', onWindowLoad);
   //         hidePreloader();
@@ -261,6 +261,9 @@ document.addEventListener('DOMContentLoaded', () => {
     history.scrollRestoration = 'manual';
   }
 
+  /**
+   * Прелоадер + якорь + инициализация Lenis
+   */
   (function () {
 
     // Длительность анимации закрытия мобильного меню в миллисекундах
@@ -323,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const link = e.target.closest('a[href]');
       if (!link) return;
 
-      // Не мешаем Fancybox — пропускаем ссылки с data-fancybox
+      // Не мешаем Fancybox - пропускаем ссылки с data-fancybox
       if (link.hasAttribute('data-fancybox')) return;
 
       const href = link.getAttribute('href');
@@ -333,7 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!hash) return;
 
       // Ищем элемент на текущей странице
-      // Если его нет — браузер сам перейдёт на нужную страницу
+      // Если его нет - браузер сам перейдёт на нужную страницу
       // После загрузки сработает обработчик load ниже
       const target = document.getElementById(hash);
       if (!target) return;
@@ -440,7 +443,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Режим overlay — два логотипа с анимацией заливки снизу вверх
+    // Режим overlay - два логотипа с анимацией заливки снизу вверх
     function startOverlayPreloader() {
       const { logoWidth, logoHeight } = initCanvas();
       let fillHeight = 0;
@@ -518,7 +521,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Режим singleLogo — одно лого без заливки, скрывается после загрузки
+    // Режим singleLogo - одно лого без заливки, скрывается после загрузки
     function startSingleLogoPreloader() {
       const { logoWidth, logoHeight } = initCanvas();
       const logo = new Image();
@@ -905,7 +908,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // 
       animateBg: false,                    // true = менять фон, false = не менять
       bgInitial: 'rgba(255, 255, 255, 0)',
-      bgScrolled: 'rgba(255, 255, 255, 1)',
+      bgScrolled: 'rgba(220, 20, 60, 1)',
 
       // 
       // АНИМАЦИЯ ТЕНИ ХЕДЕРА ПРИ СКРОЛЛЕ
@@ -918,9 +921,16 @@ document.addEventListener('DOMContentLoaded', () => {
       // АНИМАЦИЯ ВЫСОТЫ ХЕДЕРА ПРИ СКРОЛЛЕ
       // 
       animateHeight: true,                // true = менять высоту, false = не менять
-      heightMultiplier: 1,              // во сколько раз уменьшить (0.7 = 63.53%)
-      // heightMultiplier: 0.6353,
+      heightMultiplier: 0.645,              // во сколько раз уменьшить (0.7 = 63.53%)
 
+      // Множитель высоты для мобильной версии
+      // Используется когда ширина окна меньше mobileBreakpoint
+      // Если null - используется heightMultiplier (общее значение)
+      heightMultiplierMobile: 1,
+
+      // Брейкпоинт мобильной версии в px
+      // При window.innerWidth < mobileBreakpoint применяется heightMultiplierMobile
+      mobileBreakpoint: 600,
     };
 
     // 
@@ -936,6 +946,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const firstSection = CONFIG.firstSectionSelector
       ? document.querySelector(CONFIG.firstSectionSelector)
       : null;
+
+    // Проверка мобильной версии по ширине окна
+    // Вызывается каждый раз при инициализации scrub-анимации
+    // и при resize чтобы пересобрать анимацию с актуальным множителем
+    const isMobile = () => window.innerWidth < CONFIG.mobileBreakpoint;
+
+    // Возвращает актуальный множитель высоты в зависимости от ширины экрана
+    // Если для мобильной версии множитель не задан (null) - возвращает общий
+    const getHeightMultiplier = () => {
+      if (isMobile() && CONFIG.heightMultiplierMobile !== null) {
+        return CONFIG.heightMultiplierMobile;
+      }
+      return CONFIG.heightMultiplier;
+    };
 
     // Зона скролла для scrub-анимации
     const scrollZone = firstSection
@@ -1018,7 +1042,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (CONFIG.animateHeight) {
-      animateTo.height = headerHeight * CONFIG.heightMultiplier;
+      // Берём множитель через функцию - она сама решает мобильный или десктопный
+      animateTo.height = headerHeight * getHeightMultiplier();
     }
 
     // Запускаем scrub только если есть хотя бы одно включённое свойство
@@ -1163,6 +1188,47 @@ document.addEventListener('DOMContentLoaded', () => {
       window.visualViewport.addEventListener('resize', () => {
         lastScrollY = window.scrollY || window.pageYOffset;
       });
+    }
+
+    // Пересчёт высоты при ресайзе окна
+    // Когда пользователь переходит через брейкпоинт (например, поворот телефона
+    // или ресайз окна разработчиком), множитель высоты должен пересчитаться
+    // Используем дебаунс чтобы не дёргать пересборку на каждый пиксель ресайза
+    if (CONFIG.animateHeight) {
+      let resizeTimer = null;
+      let lastIsMobile = isMobile();
+
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+
+        resizeTimer = setTimeout(() => {
+          const currentIsMobile = isMobile();
+
+          // Реагируем только если реально пересекли брейкпоинт
+          // Иначе при каждом мини-ресайзе будем без нужды пересобирать анимацию
+          if (currentIsMobile === lastIsMobile) return;
+          lastIsMobile = currentIsMobile;
+
+          // Находим scrub-таймлайн нашего хедера и обновляем целевую высоту
+          // ScrollTrigger.getAll() возвращает все триггеры на странице -
+          // фильтруем по trigger === document.documentElement
+          const newHeight = headerHeight * getHeightMultiplier();
+
+          ScrollTrigger.getAll().forEach(st => {
+            // Ищем именно scrub-триггер хедера
+            if (st.trigger === document.documentElement && st.animation) {
+              // Меняем целевое значение height в текущем твине
+              const tween = st.animation.getChildren()[0];
+              if (tween && tween.vars) {
+                tween.vars.height = newHeight;
+                // Инвалидируем чтобы GSAP перечитал from/to значения
+                tween.invalidate();
+                st.refresh();
+              }
+            }
+          });
+        }, 200);
+      }, { passive: true });
     }
 
     // 
@@ -2038,7 +2104,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // const FADE_DURATION = 0.3;
     const FADE_DURATION = 0.5;
 
-    // data-anim-order — порядок внутри общего родителя
+    // data-anim-order - порядок внутри общего родителя
     // Группируем элементы по родителю, считаем накопленную задержку
     const orderMap = new Map();
 
@@ -3298,10 +3364,10 @@ document.addEventListener('DOMContentLoaded', () => {
       return window.innerWidth <= MOBILE_BREAKPOINT;
     }
 
-    // ИНДИКАТОР — только для десктопа
+    // ИНДИКАТОР - только для десктопа
 
     // document.querySelectorAll('.produce__item-list>ul').forEach(nav => {
-    document.querySelectorAll('.produce__item-block').forEach(nav => {
+    document.querySelectorAll('.popup__list').forEach(nav => {
       const indicator = document.createElement('div');
       indicator.className = 'produce__indicator';
       nav.appendChild(indicator);
@@ -3332,7 +3398,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // АКТИВНЫЙ КЛАСС — только для мобильных
+    // АКТИВНЫЙ КЛАСС - только для мобильных
 
     document.querySelectorAll('.produce__item').forEach(item => {
       item.addEventListener('click', (e) => {
@@ -3345,17 +3411,17 @@ document.addEventListener('DOMContentLoaded', () => {
           el.classList.remove('produce__item--active');
         });
 
-        // Если клик по ссылке — не переключаем активный класс
+        // Если клик по ссылке - не переключаем активный класс
         if (e.target.closest('a')) return;
 
-        // Если айтем не был активен — делаем активным, иначе оставляем снятым
+        // Если айтем не был активен - делаем активным, иначе оставляем снятым
         if (!isActive) {
           item.classList.add('produce__item--active');
         }
       });
     });
 
-    // Клик вне айтема — снимаем со всех
+    // Клик вне айтема - снимаем со всех
     document.addEventListener('click', (e) => {
       if (!isMobile()) return;
       if (e.target.closest('.produce__item')) return;
@@ -4090,7 +4156,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * логика свг пагинации
      */
     // function updateRect(swiper) {
-    //   // Дорожка — красный rect на всю ширину (x="29.2891" width="644.814")
+    //   // Дорожка - красный rect на всю ширину (x="29.2891" width="644.814")
     //   const TRACK_START = 29.2891;
     //   const TRACK_END = 29.2891 + 644.814; // 674.1031
     //   const RECT_WIDTH = 53.6474;
@@ -4320,6 +4386,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   })();
 
+  /**
+   * Функция для добавления активного класса при наведении на пункты меню
+   */
   (function () {
     const menuListDropdowns = document.querySelectorAll('.menu__list-item--dropdown');
 
@@ -4431,11 +4500,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let resizeTimer = null;
     let lastWidth = window.innerWidth;
 
-    // Единственный надёжный триггер для refresh — смена ширины.
+    // Единственный надёжный триггер для refresh - смена ширины.
     // Высоту игнорируем полностью: на iOS она "прыгает" при скролле
     // из-за адресной строки и вызывает ложные refresh.
     function safeRefresh() {
-      // Читаем ширину через visualViewport если доступен — точнее на iOS
+      // Читаем ширину через visualViewport если доступен - точнее на iOS
       const currentWidth = window.visualViewport
         ? Math.round(window.visualViewport.width)
         : window.innerWidth;
@@ -4445,13 +4514,13 @@ document.addEventListener('DOMContentLoaded', () => {
       lastWidth = currentWidth;
 
       clearTimeout(resizeTimer);
-      // 400ms — даём iOS время завершить layout после поворота
+      // 400ms - даём iOS время завершить layout после поворота
       resizeTimer = setTimeout(() => {
         ScrollTrigger.refresh();
       }, 400);
     }
 
-    // orientationchange — основной триггер поворота на мобильных
+    // orientationchange - основной триггер поворота на мобильных
     window.addEventListener('orientationchange', () => {
       // Дополнительная задержка: браузер применяет новые размеры
       // не сразу после события а через ~300-500ms
@@ -4464,10 +4533,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 500);
     });
 
-    // window.resize — для десктопа и Android
+    // window.resize - для десктопа и Android
     window.addEventListener('resize', safeRefresh);
 
-    // visualViewport.resize — для iOS Safari (надёжнее чем window.resize)
+    // visualViewport.resize - для iOS Safari (надёжнее чем window.resize)
     if (window.visualViewport) {
       window.visualViewport.addEventListener('resize', safeRefresh);
     }

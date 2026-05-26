@@ -47,7 +47,6 @@
   &__item {
     width: calc((100% / 3) - (16.8rem / 3));
     height: 100%;
-    // min-height: 54rem;
 
     position: relative;
 
@@ -96,6 +95,8 @@
       padding: 2.5rem 3rem 8.8rem 3rem;
       height: 100%;
 
+      cursor: pointer;
+
       position: relative;
       z-index: 1;
 
@@ -121,7 +122,7 @@
 
     &-title {
       font-family: var(--second-family);
-      font-weight: 1000;
+      font-weight: 900;
       font-size: 5rem;
       line-height: 120%;
       text-transform: uppercase;
@@ -382,7 +383,7 @@
 
   &__indicator {
     position: absolute;
-    left: -1.3rem;
+    left: -5.2rem;
 
     width: 3.9rem;
     height: 5.3rem;

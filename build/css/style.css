@@ -42,8 +42,7 @@ body {
   flex-direction: column;
   height: 100%;
   min-height: 100vh;
-  overflow: hidden;
-  padding-top: var(--header-height);
+  overflow: clip;
   position: relative;
 }
 
@@ -169,32 +168,16 @@ img {
 @font-face {
   font-family: Redoctober;
   font-display: swap;
-  src: url("../fonts/Redoctober-regular.woff2") format("woff2"), url("../fonts/Redoctober-regular.woff") format("woff");
-  font-weight: 400;
+  src: url("../fonts/Redoctober-Fat.woff2") format("woff2"), url("../fonts/Redoctober-Fat.woff") format("woff");
+  font-weight: 900;
   font-style: normal;
 }
 
 @font-face {
   font-family: Redoctober;
   font-display: swap;
-  src: url("../fonts/Redoctober-ultra.woff2") format("woff2"), url("../fonts/Redoctober-ultra.woff") format("woff");
-  font-weight: 1000;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
+  src: url("../fonts/Redoctober-Regular.woff2") format("woff2"), url("../fonts/Redoctober-Regular.woff") format("woff");
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -209,16 +192,16 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
-  font-weight: 200;
+  src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
-  font-weight: 300;
+  src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
+  font-weight: 200;
   font-style: normal;
 }
 
@@ -249,8 +232,16 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Thin.woff2") format("woff2"), url("../fonts/Roboto-Thin.woff") format("woff");
-  font-weight: 100;
+  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -259,6 +250,14 @@ img {
   font-display: swap;
   src: url("../fonts/RobotoCondensed-Black.woff2") format("woff2"), url("../fonts/RobotoCondensed-Black.woff") format("woff");
   font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-Thin.woff2") format("woff2"), url("../fonts/Roboto-Thin.woff") format("woff");
+  font-weight: 100;
   font-style: normal;
 }
 
@@ -305,16 +304,16 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Regular.woff2") format("woff2"), url("../fonts/RobotoCondensed-Regular.woff") format("woff");
-  font-weight: 400;
+  src: url("../fonts/RobotoCondensed-SemiBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-SemiBold.woff") format("woff");
+  font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-SemiBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-SemiBold.woff") format("woff");
-  font-weight: 600;
+  src: url("../fonts/RobotoCondensed-Regular.woff2") format("woff2"), url("../fonts/RobotoCondensed-Regular.woff") format("woff");
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -340,7 +339,7 @@ img {
 
 .general__suptitle {
   font-family: var(--second-family);
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 10rem;
   line-height: 100%;
   letter-spacing: -0.05em;
@@ -350,7 +349,7 @@ img {
 
 .general__title {
   font-family: var(--second-family);
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 18rem;
   line-height: 85%;
   letter-spacing: -0.05em;
@@ -749,7 +748,7 @@ body {
   --black-20: rgba(23, 23, 26, 0.2);
   --black-50: rgba(23, 23, 26, 0.5);
   --gray: #718595;
-  --red: #DC143C;
+  --red: #dc143c;
   --red-50: rgba(220, 20, 60, 0.5);
 }
 
@@ -824,10 +823,11 @@ body {
 
 .btn {
   --btn-width: fit-content;
-  --btn-height: 8rem;
+  --btn-height: 7rem;
   --btn-padding-x: 2rem;
-  --btn-color: var(--black);
   --btn-background: var(--white);
+  --btn-hover-background: var(--black);
+  --btn-color: var(--black);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -844,13 +844,15 @@ body {
   min-width: var(--btn-height);
   height: var(--btn-height);
   padding: 0 var(--btn-padding-x);
-  background-color: var(--btn-background);
-  -webkit-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-  font-family: var(--font-family);
+  background-color: transparent;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  pointer-events: all;
+  cursor: pointer;
+  font-family: var(--second-family);
   font-weight: 400;
-  font-size: 3rem;
+  font-size: 2rem;
   line-height: 100%;
   text-align: center;
   white-space: nowrap;
@@ -859,14 +861,45 @@ body {
   position: relative;
 }
 
+.btn__text {
+  position: relative;
+  z-index: 5;
+}
+
+.btn::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: var(--btn-background);
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.btn::after {
+  content: "";
+  display: block;
+  width: 0%;
+  height: 100%;
+  background-color: var(--btn-hover-background);
+  -webkit-transition: width 0.3s ease;
+  -o-transition: width 0.3s ease;
+  transition: width 0.3s ease;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
 .btn:disabled {
   opacity: 0.5;
   pointer-events: none;
 }
 
 .btn--red {
-  --btn-color: var(--white);
   --btn-background: var(--red);
+  --btn-hover-background: var(--black);
+  --btn-color: var(--white);
 }
 
 .btn--accent {
@@ -874,6 +907,12 @@ body {
   --btn-color: var(--white);
   padding: 0;
   background: none;
+  font-family: var(--font-family);
+}
+
+.btn--accent::before,
+.btn--accent::after {
+  display: none;
 }
 
 .btn--accent:hover .object-shadow {
@@ -915,7 +954,7 @@ body {
 
 .coordinates__title {
   font-family: var(--second-family);
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 3rem;
   line-height: 100%;
   text-transform: uppercase;
@@ -2153,7 +2192,7 @@ p {
   width: 100%;
   min-height: 20rem;
   font-family: var(--second-family);
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 19.5rem;
   line-height: 100%;
   letter-spacing: -0.05em;
@@ -2285,7 +2324,7 @@ p {
   width: -moz-fit-content;
   width: fit-content;
   font-family: var(--second-family);
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 3rem;
   line-height: 100%;
   text-transform: uppercase;
@@ -2431,6 +2470,7 @@ p {
   --header-inner-height: 7rem;
   width: 100%;
   height: var(--header-height);
+  max-height: var(--header-height);
   background-color: rgba(255, 255, 255, 0);
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -2440,7 +2480,8 @@ p {
   -o-transition: background-color 0.5s ease;
   transition: background-color 0.5s ease;
   pointer-events: none;
-  position: fixed;
+  position: -webkit-sticky;
+  position: sticky;
   top: 0;
   right: 0;
   left: 0;
@@ -2451,17 +2492,9 @@ p {
   pointer-events: none;
 }
 
-.header {
-  /* хедер зафиксировался */
-}
-
-html.header-off-top .header {
+.menu--open .header,
+.header-fixed .header {
   background-color: var(--red);
-  max-height: 11rem;
-}
-
-.header {
-  /* прошли первую секцию */
 }
 
 .menu--open .header .nav {
@@ -2480,17 +2513,13 @@ html.header-off-top .header {
   -ms-flex-align: center;
   align-items: center;
   gap: 4rem;
-  padding: 5rem 0;
-  -webkit-transition: padding 0.5s ease;
-  -o-transition: padding 0.5s ease;
-  transition: padding 0.5s ease;
+  height: 100%;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
   pointer-events: all;
   position: relative;
   z-index: 2;
-}
-
-html.header-off-top .header__inner {
-  padding: 2rem 0;
 }
 
 .header__right {
@@ -2532,7 +2561,7 @@ html.header-off-top .header__inner {
   flex-shrink: 0;
 }
 
-html.header-off-top .header__left .line-col {
+.header-fixed .header__left .line-col {
   background-color: var(--white);
 }
 
@@ -2554,7 +2583,7 @@ html.header-off-top .header__left .line-col {
   width: 26.2rem;
 }
 
-html.header-off-top .header__left .btn--accent .object-body,
+.header-fixed .header__left .btn--accent .object-body,
 .menu--open .header__left .btn--accent .object-body {
   background-color: var(--white);
   color: var(--black);
@@ -2562,7 +2591,7 @@ html.header-off-top .header__left .btn--accent .object-body,
 
 .header__phone {
   font-family: var(--second-family);
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 6rem;
   line-height: 100%;
   color: var(--white);
@@ -2580,11 +2609,21 @@ html.header-off-top .header__left .btn--accent .object-body,
   color: var(--black);
 }
 
-html.header-off-top .header__phone,
 .menu--open .header__phone {
   -webkit-transform: translateX(0%);
   -ms-transform: translateX(0%);
   transform: translateX(0%);
+}
+
+.header-fixed .header__phone {
+  -webkit-transform: translateX(0%);
+  -ms-transform: translateX(0%);
+  transform: translateX(0%);
+  -webkit-transition: -webkit-transform 0.3s linear 0.5s;
+  transition: -webkit-transform 0.3s linear 0.5s;
+  -o-transition: transform 0.3s linear 0.5s;
+  transition: transform 0.3s linear 0.5s;
+  transition: transform 0.3s linear 0.5s, -webkit-transform 0.3s linear 0.5s;
 }
 
 .invert-overlay {
@@ -2628,13 +2667,13 @@ html.header-off-top .header__phone,
   transition: fill 0.3s ease;
 }
 
-html.header-off-top .logo svg path,
+.header-fixed .logo svg path,
 .header-theme-dark .logo svg path,
 .menu--open .logo svg path {
   fill: var(--white);
 }
 
-html.header-off-top .logo svg #point,
+.header-fixed .logo svg #point,
 .header-theme-dark .logo svg #point,
 .menu--open .logo svg #point {
   fill: var(--black);
@@ -2694,7 +2733,7 @@ html.header-off-top .logo svg #point,
 .menu__phone {
   display: none;
   font-family: var(--second-family);
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 9.9502487562vw;
   line-height: 100%;
   color: var(--white);
@@ -2776,7 +2815,7 @@ html.header-off-top .logo svg #point,
 
 .menu__content-title {
   font-family: var(--second-family);
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 20rem;
   line-height: 85%;
   letter-spacing: -0.05em;
@@ -2905,7 +2944,7 @@ html.header-off-top .logo svg #point,
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   font-family: var(--second-family);
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 3rem;
   line-height: 120%;
   text-transform: uppercase;
@@ -2988,7 +3027,7 @@ html.header-off-top .logo svg #point,
   transition: all 0.3s ease;
   pointer-events: all;
   font-family: var(--second-family);
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 3rem;
   line-height: 100%;
   text-transform: uppercase;
@@ -3205,18 +3244,22 @@ html.header-off-top .logo svg #point,
   transform: rotate(-90deg) scale(-1, 1);
 }
 
-html.header-off-top .nav__list-item > i .path1::before,
-html.header-off-top .nav__list-item > i .path2::before {
+.header-fixed .nav__list-item > i .path1::before,
+.header-fixed .nav__list-item > i .path2::before {
   color: var(--white);
 }
 
-html.header-off-top .nav__list-item > i .path3::before,
-html.header-off-top .nav__list-item > i .path4::before {
+.header-fixed .nav__list-item > i .path3::before,
+.header-fixed .nav__list-item > i .path4::before {
   color: var(--black);
 }
 
 .nav__list-item:hover .nav__list-link {
   color: var(--red);
+}
+
+.header-fixed .nav__list-item:hover .nav__list-link {
+  color: var(--black);
 }
 
 .nav__list-item:hover .nav__list-link + i {
@@ -3233,7 +3276,7 @@ html.header-off-top .nav__list-item > i .path4::before {
   text-decoration: underline;
 }
 
-html.header-off-top .nav__list-link,
+.header-fixed .nav__list-link,
 .header-theme-dark .nav__list-link,
 .menu--open .nav__list-link {
   color: var(--white);
@@ -3242,10 +3285,6 @@ html.header-off-top .nav__list-link,
 .nav__list-link:link,
 .nav__list-link:visited {
   text-decoration: underline;
-}
-
-html.header-off-top .nav__list-link:hover {
-  color: var(--black);
 }
 
 .nav__wrap {
@@ -3402,8 +3441,10 @@ html.header-off-top .nav__list-link:hover {
   -webkit-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
-  position: fixed;
-  inset: 0;
+  padding-bottom: env(safe-area-inset-bottom, 20px);
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
   z-index: 700;
 }
 
@@ -3483,7 +3524,7 @@ html.header-off-top .nav__list-link:hover {
 .popup__title {
   padding-right: 5rem;
   font-family: var(--second-family);
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 10rem;
   line-height: 120%;
   text-transform: uppercase;
@@ -3505,6 +3546,7 @@ html.header-off-top .nav__list-link:hover {
 .popup__list {
   max-width: 40.6rem;
   width: 100%;
+  position: relative;
 }
 
 .popup__list:nth-child(2) {
@@ -3627,7 +3669,7 @@ canvas {
   width: -moz-fit-content;
   width: fit-content;
   font-family: var(--second-family);
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 3rem;
   line-height: 100%;
   text-transform: uppercase;
@@ -3681,7 +3723,7 @@ canvas {
 
 .template h1 {
   font-family: var(--second-family);
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 16rem;
   line-height: 100%;
   letter-spacing: -0.05em;
@@ -4258,7 +4300,7 @@ html.tender--open .tender-btn .object-body::before {
 .awards__slide-name {
   margin-bottom: 1rem;
   font-family: var(--second-family);
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 4rem;
   line-height: 100%;
   letter-spacing: -0.04em;
@@ -4268,7 +4310,7 @@ html.tender--open .tender-btn .object-body::before {
 
 .awards__slide-title {
   font-family: var(--second-family);
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 4rem;
   line-height: 120%;
   text-transform: uppercase;
@@ -4479,7 +4521,7 @@ html.tender--open .tender-btn .object-body::before {
 
 .contacts__head-suptitle {
   font-family: var(--second-family);
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 3rem;
   line-height: 100%;
   text-transform: uppercase;
@@ -5110,7 +5152,7 @@ html.tender--open .tender-btn .object-body::before {
   -ms-flex-direction: row;
   flex-direction: row;
   font-family: var(--second-family);
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 10rem;
   line-height: 1em;
   letter-spacing: -0.05em;
@@ -5215,7 +5257,7 @@ html.tender--open .tender-btn .object-body::before {
 
 .growth__item-count {
   font-family: var(--second-family);
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 10rem;
   line-height: 100%;
   letter-spacing: -0.04em;
@@ -5225,7 +5267,7 @@ html.tender--open .tender-btn .object-body::before {
 
 .growth__item-title {
   font-family: var(--second-family);
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 4rem;
   line-height: 120%;
   text-transform: uppercase;
@@ -5461,7 +5503,7 @@ html.tender--open .tender-btn .object-body::before {
   display: inline-block;
   vertical-align: text-bottom;
   font-family: var(--second-family);
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 26.2rem;
   line-height: 85%;
   letter-spacing: -0.05em;
@@ -5477,7 +5519,7 @@ html.tender--open .tender-btn .object-body::before {
 
 .hero__title .typewriter__cursor {
   font-family: var(--second-family);
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 26.2rem;
   line-height: 85%;
   text-transform: uppercase;
@@ -5801,7 +5843,7 @@ html.tender--open .tender-btn .object-body::before {
 }
 
 .notfound__head-suptitle {
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 6.5rem;
   line-height: 85%;
   letter-spacing: -0.05em;
@@ -5809,7 +5851,7 @@ html.tender--open .tender-btn .object-body::before {
 }
 
 .notfound__head-title {
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 45rem;
   line-height: 100%;
   letter-spacing: -0.05em;
@@ -5819,7 +5861,7 @@ html.tender--open .tender-btn .object-body::before {
 }
 
 .notfound__head-text {
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 6.5rem;
   line-height: 110%;
   letter-spacing: -0.05em;
@@ -5906,6 +5948,7 @@ html.tender--open .tender-btn .object-body::before {
   padding: 2.5rem 3rem 3rem 3rem;
   padding: 2.5rem 3rem 8.8rem 3rem;
   height: 100%;
+  cursor: pointer;
   position: relative;
   z-index: 1;
 }
@@ -5927,7 +5970,7 @@ html.tender--open .tender-btn .object-body::before {
 
 .produce__item-title {
   font-family: var(--second-family);
-  font-weight: 1000;
+  font-weight: 900;
   font-size: 5rem;
   line-height: 120%;
   text-transform: uppercase;
@@ -6136,7 +6179,7 @@ html.tender--open .tender-btn .object-body::before {
 
 .produce__indicator {
   position: absolute;
-  left: -1.3rem;
+  left: -5.2rem;
   width: 3.9rem;
   height: 5.3rem;
   background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzkiIGhlaWdodD0iNTMiIHZpZXdCb3g9IjAgMCAzOSA1MyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik0zOSAyNi41TDAgNTNMNC4zOTEyZS0wNiAwTDM5IDI2LjVaIiBmaWxsPSIjMTcxNzFBIi8+DQo8L3N2Zz4NCg==);
@@ -6252,7 +6295,10 @@ html.tender--open .tender-btn .object-body::before {
 @media (min-width: 601px) {
   .btn:hover {
     --btn-color: var(--white);
-    --btn-background: var(--black);
+  }
+
+  .btn:hover::after {
+    width: 100%;
   }
 
   .btn--accent:hover {
@@ -6469,7 +6515,8 @@ html.tender--open .tender-btn .object-body::before {
   }
 
   .btn {
-    --btn-height: 7rem;
+    --btn-height: 5rem;
+    font-size: 1.6rem;
   }
 
   .coordinates {
@@ -6942,12 +6989,7 @@ html.tender--open .tender-btn .object-body::before {
 
   .header {
     --header-inner-height: 5rem;
-    max-height: 9rem;
     z-index: 800;
-  }
-
-  html.header-off-top .header {
-    max-height: 9rem;
   }
 
   .header .nav {
@@ -7009,8 +7051,11 @@ html.tender--open .tender-btn .object-body::before {
     width: 100%;
   }
 
-  html.header-off-top .header__phone,
   .menu--open .header__phone {
+    font-size: 9.9502487562vw;
+  }
+
+  .header-fixed .header__phone {
     font-size: 9.9502487562vw;
   }
 

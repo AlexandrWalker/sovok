@@ -68,7 +68,7 @@
     padding-right: 5rem;
 
     font-family: var(--second-family);
-    font-weight: 1000;
+    font-weight: 900;
     font-size: 10rem;
     line-height: 120%;
     text-transform: uppercase;
@@ -96,6 +96,8 @@
   &__list {
     max-width: 40.6rem;
     width: 100%;
+
+    position: relative;
 
     &:nth-child(2) {
       max-width: 26.6rem;

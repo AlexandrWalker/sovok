@@ -63,8 +63,7 @@
         .path1::before,
         .path2::before {
 
-          // .tender--open &,
-          html.header-off-top & {
+          .header-fixed & {
             color: var(--white);
           }
         }
@@ -72,8 +71,7 @@
         .path3::before,
         .path4::before {
 
-          // .tender--open &,
-          html.header-off-top & {
+          .header-fixed & {
             color: var(--black);
           }
         }
@@ -83,6 +81,10 @@
 
         .nav__list-link {
           color: var(--red);
+
+          .header-fixed & {
+            color: var(--black);
+          }
 
           &+i {
             transform: rotate(90deg) scale(-1, 1);
@@ -98,8 +100,7 @@
       text-transform: uppercase;
       text-decoration: underline;
 
-      // .tender--open &,
-      html.header-off-top &,
+      .header-fixed &,
       .header-theme-dark &,
       .menu--open & {
         color: var(--white);
@@ -108,14 +109,6 @@
       &:link,
       &:visited {
         text-decoration: underline;
-      }
-
-      &:hover {
-
-        // .tender--open &,
-        html.header-off-top & {
-          color: var(--black);
-        }
       }
     }
   }

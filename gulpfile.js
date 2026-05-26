@@ -298,12 +298,10 @@ gulp.task('fontsStyle', () => {
             fontWeight = 600;
           } else if (fontWeight.toLowerCase() === 'bold') {
             fontWeight = 700;
-          } else if (fontWeight.toLowerCase() === 'extrabold' || fontWeight.toLowerCase() === 'heavy') {
+          } else if (fontWeight.toLowerCase() === 'extrabold' || fontWeight.toLowerCase() === 'ultrabold') {
             fontWeight = 800;
-          } else if (fontWeight.toLowerCase() === 'black') {
+          } else if (fontWeight.toLowerCase() === 'black' || fontWeight.toLowerCase() === 'ultra' || fontWeight.toLowerCase() === 'extrablack' || fontWeight.toLowerCase() === 'ultrablack' || fontWeight.toLowerCase() === 'heavy' || fontWeight.toLowerCase() === 'fat') {
             fontWeight = 900;
-          } else if (fontWeight.toLowerCase() === 'ultra' || fontWeight.toLowerCase() === 'fat') {
-            fontWeight = 1000;
           } else {
             fontWeight = 400;
           }
@@ -319,7 +317,7 @@ gulp.task('fontsStyle', () => {
   });
 
   return gulp.src(`${srcFolder}`);
-  function cb() {}
+  function cb() { }
 });
 
 gulp.task('files', function () {

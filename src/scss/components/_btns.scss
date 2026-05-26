@@ -3,10 +3,12 @@
 /* Кнопки */
 .btn {
   --btn-width: fit-content;
-  --btn-height: 8rem;
+  --btn-height: 7rem;
   --btn-padding-x: 2rem;
-  --btn-color: var(--black);
+
   --btn-background: var(--white);
+  --btn-hover-background: var(--black);
+  --btn-color: var(--black);
 
   display: flex;
   justify-content: center;
@@ -17,12 +19,14 @@
   min-width: var(--btn-height);
   height: var(--btn-height);
   padding: 0 var(--btn-padding-x);
-  background-color: var(--btn-background);
-  transition: all 0.5s ease;
+  background-color: transparent;
+  transition: all 0.3s ease;
+  pointer-events: all;
+  cursor: pointer;
 
-  font-family: var(--font-family);
+  font-family: var(--second-family);
   font-weight: 400;
-  font-size: 3rem;
+  font-size: 2rem;
   line-height: 100%;
   text-align: center;
   white-space: nowrap;
@@ -32,7 +36,39 @@
   position: relative;
 
   @include sm {
-    --btn-height: 7rem;
+    --btn-height: 5rem;
+
+    font-size: 1.6rem;
+  }
+
+  &__text {
+    position: relative;
+    z-index: 5;
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: var(--btn-background);
+
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    width: 0%;
+    height: 100%;
+    background-color: var(--btn-hover-background);
+    transition: width 0.3s ease;
+
+    position: absolute;
+    inset: 0;
+    z-index: 2;
   }
 
   &:disabled {
@@ -44,21 +80,33 @@
 
     @include dosm {
       --btn-color: var(--white);
-      --btn-background: var(--black);
+
+      &::after {
+        width: 100%;
+      }
     }
   }
 
   &--red {
-    --btn-color: var(--white);
     --btn-background: var(--red);
+    --btn-hover-background: var(--black);
+    --btn-color: var(--white);
   }
 
   &--accent {
     --btn-height: var(--header-inner-height);
+
     --btn-color: var(--white);
 
     padding: 0;
     background: none;
+
+    font-family: var(--font-family);
+
+    &::before,
+    &::after {
+      display: none;
+    }
 
     &:hover {
 

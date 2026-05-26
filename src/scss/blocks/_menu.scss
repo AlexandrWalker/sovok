@@ -68,7 +68,7 @@
     display: none;
 
     font-family: var(--second-family);
-    font-weight: 1000;
+    font-weight: 900;
     font-size: calc(100vw/(402/40));
     line-height: 100%;
     color: var(--white);
@@ -173,7 +173,7 @@
 
     &-title {
       font-family: var(--second-family);
-      font-weight: 1000;
+      font-weight: 900;
       font-size: 20rem;
       line-height: 85%;
       letter-spacing: -0.05em;
@@ -334,7 +334,7 @@
         transition: all 0.3s ease;
 
         font-family: var(--second-family);
-        font-weight: 1000;
+        font-weight: 900;
         font-size: 3rem;
         line-height: 120%;
         text-transform: uppercase;
@@ -506,7 +506,7 @@
       pointer-events: all;
 
       font-family: var(--second-family);
-      font-weight: 1000;
+      font-weight: 900;
       font-size: 3rem;
       line-height: 100%;
       text-transform: uppercase;

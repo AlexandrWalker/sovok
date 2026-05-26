@@ -5,6 +5,7 @@
 
   width: 100%;
   height: var(--header-height);
+  max-height: var(--header-height);
   background-color: rgba(255, 255, 255, 0);
   box-sizing: border-box;
   will-change: transform;
@@ -12,7 +13,7 @@
   transition: background-color 0.5s ease;
   pointer-events: none;
 
-  position: fixed;
+  position: sticky;
   top: 0;
   right: 0;
   left: 0;
@@ -21,8 +22,6 @@
   @include sm {
     --header-inner-height: 5rem;
 
-    max-height: 9rem;
-
     z-index: 800;
   }
 
@@ -30,21 +29,10 @@
     pointer-events: none;
   }
 
-  html.header-hidden & {}
-
-  /* хедер зафиксировался */
-  // html.tender--open &,
-  html.header-off-top & {
+  .menu--open &,
+  .header-fixed & {
     background-color: var(--red);
-    max-height: 11rem;
-
-    @include sm {
-      max-height: 9rem;
-    }
   }
-
-  /* прошли первую секцию */
-  html.header-at-footer & {}
 
   .nav {
 
@@ -62,8 +50,9 @@
     flex-direction: row;
     align-items: center;
     gap: 4rem;
-    padding: 5rem 0;
-    transition: padding 0.5s ease;
+    // padding: 5rem 0;
+    height: 100%;
+    transition: all 0.5s ease;
     pointer-events: all;
 
     position: relative;
@@ -76,9 +65,8 @@
       pointer-events: none;
     }
 
-    // html.tender--open &,
-    html.header-off-top & {
-      padding: 2rem 0;
+    .header-fixed & {
+      // padding: 2rem 0;
     }
 
     .menu--open & {
@@ -126,8 +114,7 @@
         display: none;
       }
 
-      // html.tender--open &,
-      html.header-off-top & {
+      .header-fixed & {
         background-color: var(--white);
       }
     }
@@ -170,8 +157,7 @@
           width: 100%;
         }
 
-        // html.tender--open &,
-        html.header-off-top &,
+        .header-fixed &,
         .menu--open & {
           background-color: var(--white);
           color: var(--black);
@@ -182,7 +168,7 @@
 
   &__phone {
     font-family: var(--second-family);
-    font-weight: 1000;
+    font-weight: 900;
     font-size: 6rem;
     line-height: 100%;
     color: var(--white);
@@ -194,10 +180,17 @@
       color: var(--black);
     }
 
-    // html.tender--open &,
-    html.header-off-top &,
     .menu--open & {
       transform: translateX(0%);
+
+      @include sm {
+        font-size: calc(100vw/(402/40));
+      }
+    }
+
+    .header-fixed & {
+      transform: translateX(0%);
+      transition: transform 0.3s linear 0.5s;
 
       @include sm {
         font-size: calc(100vw/(402/40));
