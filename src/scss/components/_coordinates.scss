@@ -42,10 +42,17 @@
     }
 
     a {
-      text-decoration: underline;
 
       &:hover {
         color: var(--black);
+      }
+
+      &.underline {
+
+        &::before,
+        &::after {
+          bottom: 0.2rem;
+        }
       }
     }
   }

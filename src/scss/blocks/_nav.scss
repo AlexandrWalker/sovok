@@ -89,6 +89,10 @@
           &+i {
             transform: rotate(90deg) scale(-1, 1);
           }
+
+          &.underline::after {
+            width: 100%;
+          }
         }
       }
     }
@@ -98,7 +102,7 @@
       font-size: 2rem;
       line-height: 100%;
       text-transform: uppercase;
-      text-decoration: underline;
+      // text-decoration: underline;
 
       .header-fixed &,
       .header-theme-dark &,
@@ -108,7 +112,18 @@
 
       &:link,
       &:visited {
-        text-decoration: underline;
+        // text-decoration: underline;
+      }
+
+      &.underline {
+
+        &::before {
+          background-color: var(--black);
+        }
+        
+        &::after {
+          background-color: var(--red);
+        }
       }
     }
   }
@@ -206,7 +221,6 @@
         font-weight: 400;
         font-size: 2rem;
         line-height: 100%;
-        text-decoration: underline;
         text-transform: uppercase;
         color: var(--white);
         white-space: nowrap;

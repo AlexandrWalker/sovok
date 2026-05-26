@@ -6,8 +6,7 @@
   width: 100%;
   height: var(--header-height);
   max-height: var(--header-height);
-  // background-color: rgba(255, 255, 255, 0);
-  background-color: var(--white);
+  background-color: rgba(255, 255, 255, 0);
   box-sizing: border-box;
   will-change: transform;
   padding-top: env(safe-area-inset-top, 20px);
@@ -22,6 +21,8 @@
 
   @include sm {
     --header-inner-height: 5rem;
+
+    background-color: var(--white);
 
     z-index: 800;
   }

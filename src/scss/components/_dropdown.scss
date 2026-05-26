@@ -25,10 +25,14 @@
     i {
       --font-size: 1.5rem;
 
-      transform: rotate(90deg);
+      transform: rotate(90deg) translateY(-50%);
       margin-top: -1.5rem;
 
       color: var(--red);
+
+      position: absolute;
+      top: 50%;
+      right: 1rem;
 
       .dropdown.is-active & {
         transform: rotate(-90deg);
@@ -75,17 +79,12 @@
   }
 
   &__input {
-    display: none;
-    width: 100%;
-    height: 7rem;
-    background-color: transparent;
+    cursor: text;
 
-    font-weight: 400;
-    font-size: 3rem;
-    line-height: 120%;
-    letter-spacing: -0.04em;
-    text-transform: uppercase;
-    color: var(--white);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
 
     @include sm {
       font-size: 1.6rem;

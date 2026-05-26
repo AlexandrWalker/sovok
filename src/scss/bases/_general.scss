@@ -106,3 +106,46 @@
   // top: unset !important;
   z-index: 3;
 }
+
+.underline {
+  position: relative;
+
+  &:hover {
+
+    @include dosm {
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 0.1rem;
+    background-color: var(--white);
+    pointer-events: none;
+
+    position: absolute;
+    left: 0;
+    bottom: 0.1rem;
+    z-index: 1;
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    width: 0%;
+    height: 0.1rem;
+    background-color: var(--black);
+    transition: all 0.3s ease;
+    pointer-events: none;
+
+    position: absolute;
+    left: 0;
+    bottom: 0.1rem;
+    z-index: 2;
+  }
+}

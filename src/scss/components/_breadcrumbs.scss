@@ -49,10 +49,16 @@
   }
 
   a {
-    text-decoration: underline;
 
     &:hover {
-      text-decoration: none;
+      color: var(--black);
+    }
+
+    &.underline {
+
+      &::before {
+        background-color: var(--red);
+      }
     }
   }
 }
