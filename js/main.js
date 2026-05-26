@@ -4562,7 +4562,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const value = radio.value;
 
           // Обновляем UI в текущем dropdown
-          if (selectedLabelJs) selectedLabelJs.textContent = value;
+          // if (selectedLabelJs) selectedLabelJs.textContent = value;
           if (selectedInputJs) selectedInputJs.value = value;
           if (dropdownValue) dropdownValue.value = value;
 
