@@ -1580,13 +1580,30 @@ document.addEventListener('DOMContentLoaded', () => {
       // Сила следования в режиме follow: насколько далеко глаз уходит за курсором
       // followStrength: 0.08,
       followStrength: 0.06,
+
+      // Задержка в мс после остановки курсора - через сколько глаз возвращается
+      // в исходное положение (актуально для режима follow)
+      // Если курсор не двигается дольше этого времени - глаз "отпускает" его
+      idleDelay: 1000,
     };
 
     // Настройки автоанимации
     const AUTO_ANIM_CONFIG = {
+      // Включение/отключение автоанимации на десктопе
+      // true  - глаз периодически играет drift/pulse/shake/float
+      // false - автоанимация отключена, глаз стоит на месте когда курсор неактивен
+      enabled: true,
+      // Включение/отключение автоанимации на мобильной версии
+      // Отдельный флаг чтобы можно было выключить автоанимацию на телефонах
+      // (экономия батареи + на тач-устройствах глаз и так не следит за курсором)
+      enabledMobile: false,
+      // Брейкпоинт мобильной версии в px
+      // При window.innerWidth < mobileBreakpoint используется enabledMobile
+      mobileBreakpoint: 600,
       // Пауза между сценариями в секундах
-      pauseMin: 1.5,
-      pauseMax: 4.0,
+      // Текущие значения дают частоту примерно раз в минуту
+      pauseMin: 55,
+      pauseMax: 70,
       // Радиус смещения для drift в px
       driftRadius: 10,
       // Амплитуда покачивания float в px
@@ -1602,6 +1619,20 @@ document.addEventListener('DOMContentLoaded', () => {
       shakeDuration: 0.04,
       shakeCount: 6,
     };
+
+    // Проверка мобильной версии по ширине окна
+    // Используется для выбора enabled или enabledMobile флага
+    function isMobile() {
+      return window.innerWidth < AUTO_ANIM_CONFIG.mobileBreakpoint;
+    }
+
+    // Возвращает актуальный флаг включения автоанимации
+    // На мобилке проверяет enabledMobile, на десктопе - enabled
+    // Вызывается каждый раз при попытке запустить сценарий чтобы реагировать
+    // на ресайз окна без перезагрузки страницы
+    function isAutoAnimEnabled() {
+      return isMobile() ? AUTO_ANIM_CONFIG.enabledMobile : AUTO_ANIM_CONFIG.enabled;
+    }
 
     function lerp(a, b, t) {
       return a + (b - a) * t;
@@ -1668,6 +1699,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Текущий активный tween
       let autoTween = null;
+
+      // Таймер бездействия курсора - срабатывает когда курсор остановился
+      // По истечении idleDelay глаз "отпускает" курсор и возвращается в исходную точку
+      let idleTimer = null;
+
+      // Последние координаты курсора - нужны для определения реального движения
+      // Браузер иногда стреляет mousemove даже когда мышь не двигалась (скролл, layout shift)
+      let lastMouseX = 0;
+      let lastMouseY = 0;
 
       // Список сценариев - drift дублируем чтобы выпадал чаще
       // const scenarios = ['float', 'drift', 'drift', 'pulse', 'shake'];
@@ -1872,6 +1912,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       function schedulNext() {
         if (isActive) return;
+        // Если автоанимация выключена для текущей ширины экрана - не планируем
+        // Используем функцию isAutoAnimEnabled которая сама определяет
+        // мобилку и возвращает соответствующий флаг (enabled или enabledMobile)
+        if (!isAutoAnimEnabled()) return;
+
         clearTimeout(pauseTimer);
         const delay = randomBetween(
           AUTO_ANIM_CONFIG.pauseMin,
@@ -1979,12 +2024,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Режим follow - следим за курсором по всему сайту
         if (MAGNET_CONFIG.mode === 'follow') {
+          // Проверяем реальное движение курсора
+          // Если координаты не изменились - событие шумовое, игнорируем
+          // Это защищает от ложных срабатываний при скролле и ресайзе
+          const moved = e.clientX !== lastMouseX || e.clientY !== lastMouseY;
+          lastMouseX = e.clientX;
+          lastMouseY = e.clientY;
+
+          if (!moved) return;
+
+          // Курсор реально двигается - активируем слежение
           if (!isActive) {
             isActive = true;
             el.classList.add('is-magnet-active');
             stopAuto();
           }
           startLoop();
+
+          // Сбрасываем таймер бездействия на каждое движение курсора
+          // Пока курсор двигается - глаз продолжает следить
+          clearTimeout(idleTimer);
+          idleTimer = setTimeout(() => {
+            // Курсор остановился на idleDelay мс - "отпускаем" его
+            // Глаз плавно вернётся к autoX/autoY (или к 0,0 если автоанимация выключена)
+            if (isActive) {
+              isActive = false;
+              el.classList.remove('is-magnet-active');
+              startLoop();
+              schedulNext();
+            }
+          }, MAGNET_CONFIG.idleDelay);
+
           return;
         }
 
@@ -2012,6 +2082,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // На тач-устройствах магнетизм не нужен - нет курсора
         if (window.matchMedia('(hover: none)').matches) return;
 
+        // Чистим таймер бездействия - курсор ушёл за пределы окна,
+        // ждать его остановки уже не нужно
+        clearTimeout(idleTimer);
+
         if (isActive) {
           isActive = false;
           el.classList.remove('is-magnet-active');
@@ -2026,9 +2100,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Запускаем первый сценарий после паузы
       schedulNext();
+
+      // Возвращаем API инстанса для внешнего управления
+      return {
+        // Пересборка автоанимации - вызывается при ресайзе через брейкпоинт
+        // Если автоанимация теперь выключена - останавливаем текущую и чистим таймер
+        // Если включена - планируем следующий сценарий
+        refreshAutoAnim() {
+          if (!isAutoAnimEnabled()) {
+            stopAuto();
+          } else {
+            schedulNext();
+          }
+        },
+      };
     }
 
-    document.querySelectorAll('.hero__cover-eye').forEach(initMagnet);
+    // Список инстансов с их функциями управления автоанимацией
+    // Используется чтобы при ресайзе через брейкпоинт остановить или запустить
+    // автоанимацию на всех глазах сразу
+    const instances = [];
+
+    document.querySelectorAll('.hero__cover-eye').forEach(el => {
+      const instance = initMagnet(el);
+      if (instance) instances.push(instance);
+    });
+
+    // Реагируем на ресайз окна с дебаунсом
+    // Если пересекли брейкпоинт - применяем актуальное состояние автоанимации
+    let resizeTimer = null;
+    let lastIsMobile = isMobile();
+
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+
+      resizeTimer = setTimeout(() => {
+        const currentIsMobile = isMobile();
+
+        // Реагируем только если реально пересекли брейкпоинт
+        if (currentIsMobile === lastIsMobile) return;
+        lastIsMobile = currentIsMobile;
+
+        // Применяем новое состояние ко всем инстансам
+        instances.forEach(inst => inst.refreshAutoAnim());
+      }, 200);
+    }, { passive: true });
 
   })();
 

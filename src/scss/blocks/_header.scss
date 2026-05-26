@@ -6,7 +6,8 @@
   width: 100%;
   height: var(--header-height);
   max-height: var(--header-height);
-  background-color: rgba(255, 255, 255, 0);
+  // background-color: rgba(255, 255, 255, 0);
+  background-color: var(--white);
   box-sizing: border-box;
   will-change: transform;
   padding-top: env(safe-area-inset-top, 20px);
@@ -27,6 +28,20 @@
 
   &.header-out {
     pointer-events: none;
+  }
+
+  .tender--open & {
+
+    @include sm {
+      background-color: var(--black);
+    }
+  }
+
+  .callback--open & {
+
+    @include sm {
+      background-color: var(--red);
+    }
   }
 
   .menu--open &,
