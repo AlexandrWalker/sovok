@@ -2474,7 +2474,7 @@ p {
   width: 100%;
   height: var(--header-height);
   max-height: var(--header-height);
-  background-color: rgba(255, 255, 255, 0);
+  background-color: var(--white);
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   will-change: transform;
@@ -6994,6 +6994,14 @@ html.tender--open .tender-btn .object-body::before {
   .header {
     --header-inner-height: 5rem;
     z-index: 800;
+  }
+
+  .tender--open .header {
+    background-color: var(--black);
+  }
+
+  .callback--open .header {
+    background-color: var(--red);
   }
 
   .header .nav {
