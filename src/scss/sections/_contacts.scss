@@ -60,7 +60,10 @@
       text-transform: uppercase;
 
       &:hover {
-        color: var(--red);
+
+        @include dosm {
+          color: var(--red);
+        }
       }
 
       @include sm {
@@ -112,7 +115,7 @@
             color: var(--red);
 
             &:hover {
-              
+
               @include dosm {
                 color: var(--black);
               }
