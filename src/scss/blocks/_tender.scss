@@ -3,11 +3,11 @@
 .tender {
   display: grid;
   grid-template-columns: 1fr;
-  width: 100dvw;
   width: 100vw;
-  height: 100dvh;
+  width: 100dvw;
   height: 100vh;
-  transition: all 0.5s ease;
+  height: 100dvh;
+  transition: all 0.5s ease, opacity 0.3s ease;
   pointer-events: none;
 
   position: fixed;
@@ -20,6 +20,7 @@
     grid-template-columns: 1fr;
     top: -100%;
     left: 0;
+    opacity: 0;
   }
 
   &::-webkit-scrollbar {
@@ -46,6 +47,7 @@
     @include sm {
       left: 0;
       top: 0;
+      opacity: 1;
     }
   }
 

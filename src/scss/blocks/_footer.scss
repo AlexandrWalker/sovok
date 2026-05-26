@@ -269,7 +269,6 @@
     font-weight: 400;
     font-size: 2rem;
     line-height: 100%;
-    // text-decoration: underline;
 
     @include sm {
       font-size: 1.2rem;
@@ -281,8 +280,10 @@
     }
 
     &:hover {
-      color: var(--black);
-      // text-decoration-line: none;
+
+      @include dosm {
+        color: var(--black);
+      }
     }
   }
 
@@ -319,7 +320,10 @@
       a {
 
         &:hover {
-          color: var(--black);
+
+          @include dosm {
+            color: var(--black);
+          }
         }
 
         &.underline {

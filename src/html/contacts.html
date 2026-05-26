@@ -10,6 +10,10 @@
     @@include('./blocks/header.html')
     <!-- Меню -->
     @@include('./blocks/menu.html')
+    <!-- callback -->
+    @@include('./blocks/callback.html')
+    <!-- Тендер -->
+    @@include('./blocks/tender.html')
     <main class="main">
 
       <section class="template">
@@ -85,14 +89,18 @@
       </section>
 
       <!-- Форма обратной связи -->
-      @@include('./blocks/callback-mini.html')
+      @@include('./blocks/callback-mini.html', {"suptitle": "готовы", "title": "к запуску?"})
 
       <section class="map">
         <div class="container">
           <div class="map__inner">
 
             <div class="map__cover">
-              <img src="./../images/temp/contacts-map.jpg" alt="">
+              <picture>
+                <source media="(min-width: 601px)" srcset="./../images/temp/contacts-map.jpg">
+                <source media="(max-width: 600px)" srcset="./../images/temp/contacts-map-mob.jpg">
+                <img src="./../images/temp/contacts-map.jpg" alt="">
+              </picture>
             </div>
 
           </div>

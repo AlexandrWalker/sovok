@@ -34,14 +34,16 @@
   .tender--open & {
 
     @include sm {
-      background-color: var(--black);
+      // background-color: var(--black);
+      background-color: transparent;
     }
   }
 
   .callback--open & {
 
     @include sm {
-      background-color: var(--red);
+      // background-color: var(--red);
+      background-color: transparent;
     }
   }
 

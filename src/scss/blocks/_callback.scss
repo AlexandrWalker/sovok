@@ -4,11 +4,11 @@
   display: grid;
   grid-template-columns: var(--callback-width) 1fr;
   background-color: var(--red);
-  width: 100dvw;
   width: 100vw;
-  height: 100dvh;
+  width: 100dvw;
   height: 100vh;
-  transition: all 0.5s ease;
+  height: 100dvh;
+  transition: all 0.5s ease, opacity 0.3s ease;
 
   position: fixed;
   top: 0;
@@ -17,25 +17,76 @@
 
   @include sm {
     grid-template-columns: 1fr;
+    width: 100%;
+  }
 
-    top: -100%;
-    left: 0;
+  &:not(.callback-mini) {
+
+    .callback__inner {
+
+      @include sm {}
+    }
+
+    @include sm {
+      // top: -100%;
+      transform: translateY(-100%);
+      left: 0;
+      opacity: 0;
+
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .inner-page & {
+
+      @include dosm {
+        display: none;
+      }
+    }
+
+    .callback--open & {
+      grid-template-columns: 0fr 1fr;
+
+      left: 4.2rem;
+
+      @include sm {
+        grid-template-columns: 1fr;
+
+        // top: 0;
+        transform: translateY(0);
+        left: 0;
+        opacity: 1;
+      }
+    }
+
+    .tender--open &,
+    .header-at-footer &,
+    .menu--open & {
+      left: calc(100% + var(--callback-width));
+
+      @include sm {
+        // top: -100%;
+        transform: translateY(-100%);
+        left: 0;
+      }
+    }
   }
 
   &.callback-mini {
-    display: block;
     background-color: var(--black);
     width: var(--callback-mini-width);
-    height: auto;
-    min-height: 100vh;
-    min-height: 100dvh;
+    height: 100%;
 
+    position: absolute;
     right: 0;
     left: unset;
     z-index: 1;
 
     @include sm {
       width: 100%;
+      height: auto;
+      min-height: 100vh;
+      min-height: 100dvh;
 
       position: static;
     }
@@ -90,6 +141,7 @@
 
       &__inner {
         gap: 4rem;
+        padding: 21rem 9rem 8rem 9rem;
 
         @include sm {
           height: 100%;
@@ -97,6 +149,14 @@
           overflow: hidden;
 
           position: relative;
+        }
+
+        .contacts-page & {
+          padding: 23rem 9rem 8rem 9rem;
+
+          @include sm {
+            padding: 5rem 1.5rem 31rem;
+          }
         }
       }
     }
@@ -115,35 +175,8 @@
     }
   }
 
-  &:not(.callback.callback-mini) {
-
-    .callback--open & {
-      grid-template-columns: 0fr 1fr;
-
-      left: 4.2rem;
-
-      @include sm {
-        grid-template-columns: 1fr;
-
-        top: 0;
-        left: 0;
-      }
-    }
-
-    .tender--open &,
-    .header-at-footer &,
-    .menu--open & {
-      left: calc(100% + var(--callback-width));
-
-      @include sm {
-        top: -100%;
-        left: 0;
-      }
-    }
-  }
-
   * {
-    transition: all 0.5s ease;
+    // transition: all 0.5s ease;
   }
 
   .form {
@@ -325,8 +358,12 @@
 
     @include sm {
       gap: 3.6rem;
-      padding: 11rem 1.5rem 0rem 1.5rem;
+      padding: 11rem 1.5rem 28.6rem 1.5rem;
       margin-bottom: -14.4rem;
+      height: fit-content;
+      overflow: unset;
+
+      position: relative;
     }
 
     &::-webkit-scrollbar {
@@ -356,6 +393,7 @@
     z-index: 1;
 
     @include sm {
+      display: none;
       width: auto;
       height: 45rem;
       margin-top: -5.6rem;
@@ -382,10 +420,6 @@
         right: -1.5rem;
         right: calc(-100vw/(1920/15));
         z-index: 2;
-
-        @include sm {
-          display: none;
-        }
 
         img {
           transform: rotate(16.41deg);
@@ -425,6 +459,40 @@
       img {
         width: auto;
         height: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+
+  &__mob {
+
+    &-cover {
+      width: 100%;
+      height: auto;
+      transition: transform 0.5s ease 0.5s;
+
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      transform: translateY(100%);
+
+      .callback--open & {
+        transform: translateY(0%);
+      }
+
+      @include dosm {
+        display: none;
+      }
+    }
+
+    &-img {
+      width: 100%;
+      height: auto;
+
+      img {
+        width: 100%;
+        height: auto;
         object-fit: contain;
       }
     }

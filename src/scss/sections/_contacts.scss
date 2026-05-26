@@ -10,7 +10,7 @@
   }
 
   .container {
-    
+
     @include sm {
       overflow: hidden;
     }
@@ -112,7 +112,10 @@
             color: var(--red);
 
             &:hover {
-              color: var(--black);
+              
+              @include dosm {
+                color: var(--black);
+              }
             }
 
             &.underline {

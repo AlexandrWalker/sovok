@@ -24,6 +24,7 @@
       overflow: hidden !important;
       overscroll-behavior-y: none;
       max-height: 100vh;
+      max-height: 100dvh;
     }
   }
 
@@ -435,7 +436,10 @@
         }
 
         &:hover {
-          color: var(--black);
+
+          @include dosm {
+            color: var(--black);
+          }
         }
       }
     }
@@ -475,6 +479,16 @@
 
         .menu__list-link {
           padding-top: 0;
+        }
+      }
+
+      &:last-child {
+
+        .menu__list-link {
+
+          @include sm {
+            padding-bottom: 0;
+          }
         }
       }
 

@@ -44,7 +44,10 @@
     a {
 
       &:hover {
-        color: var(--black);
+
+        @include dosm {
+          color: var(--black);
+        }
       }
 
       &.underline {

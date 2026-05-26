@@ -10,6 +10,10 @@
     @@include('./blocks/header.html')
     <!-- Меню -->
     @@include('./blocks/menu.html')
+    <!-- callback -->
+    @@include('./blocks/callback.html')
+    <!-- Тендер -->
+    @@include('./blocks/tender.html')
     <main class="main">
 
       <section class="notfound">
@@ -37,7 +41,7 @@
       </section>
 
       <!-- Форма обратной связи -->
-      @@include('./blocks/callback-mini.html')
+      @@include('./blocks/callback-mini.html', {"suptitle": "напишите", "title": "нам"})
 
     </main>
     <!-- Подвал -->

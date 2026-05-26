@@ -931,6 +931,12 @@ document.addEventListener('DOMContentLoaded', () => {
       // Брейкпоинт мобильной версии в px
       // При window.innerWidth < mobileBreakpoint применяется heightMultiplierMobile
       mobileBreakpoint: 600,
+
+      // Классы попапов на <html> при которых нужно принудительно показывать шапку
+      // Если шапка скрыта (header-hidden) и появляется один из этих классов -
+      // шапка опускается обратно чтобы пользователь мог по ней кликнуть
+      // (например закрыть попап через кнопку в шапке)
+      forceShowOnClasses: ['callback--open', 'tender--open'],
     };
 
     // 
@@ -1229,6 +1235,54 @@ document.addEventListener('DOMContentLoaded', () => {
           });
         }, 200);
       }, { passive: true });
+    }
+
+    // 
+    // ПРИНУДИТЕЛЬНЫЙ ПОКАЗ ШАПКИ ПРИ ОТКРЫТИИ ПОПАПОВ
+    // 
+    // Когда на <html> появляется класс из forceShowOnClasses (callback--open,
+    // tender--open и т.д.) - принудительно показываем шапку если она скрыта
+    // Это нужно чтобы пользователь мог взаимодействовать с шапкой при открытом попапе
+    // Используем MutationObserver - он реагирует только на изменения класса
+    // и не дёргается при скролле, в отличие от глобальных слушателей
+    // 
+    if (CONFIG.forceShowOnClasses && CONFIG.forceShowOnClasses.length > 0) {
+
+      // Проверяет есть ли на <html> хотя бы один из "форсирующих" классов
+      const hasForceClass = () => {
+        return CONFIG.forceShowOnClasses.some(cls => htmlEl.classList.contains(cls));
+      };
+
+      // Запоминаем предыдущее состояние - чтобы реагировать только на переход
+      // false -> true (попап открылся), а не на каждое изменение класса
+      let wasForced = hasForceClass();
+
+      // Если попап уже открыт при инициализации скрипта - сразу показываем шапку
+      if (wasForced && isHidden) {
+        showHeader();
+      }
+
+      const popupObserver = new MutationObserver(() => {
+        const isForced = hasForceClass();
+
+        // Реагируем только в момент когда попап ОТКРЫЛСЯ
+        // (раньше форс-классов не было, теперь появился)
+        // На закрытие попапа не реагируем - дальше работает обычная логика hide/show
+        if (isForced && !wasForced) {
+          // Если шапка скрыта - принудительно показываем её
+          // Если уже видна - ничего не делаем (условие внутри showHeader)
+          if (isHidden) {
+            showHeader();
+          }
+        }
+
+        wasForced = isForced;
+      });
+
+      popupObserver.observe(htmlEl, {
+        attributes: true,
+        attributeFilter: ['class'],
+      });
     }
 
     // 
