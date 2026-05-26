@@ -194,16 +194,8 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
+  src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
@@ -218,8 +210,8 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
-  font-weight: 500;
+  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
+  font-weight: 900;
   font-style: normal;
 }
 
@@ -236,14 +228,6 @@ img {
   font-display: swap;
   src: url("../fonts/Roboto-SemiBold.woff2") format("woff2"), url("../fonts/Roboto-SemiBold.woff") format("woff");
   font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
-  font-weight: 300;
   font-style: normal;
 }
 
@@ -276,6 +260,22 @@ img {
   font-display: swap;
   src: url("../fonts/RobotoCondensed-ExtraBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraBold.woff") format("woff");
   font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -855,10 +855,6 @@ body {
 
 .breadcrumbs li:not(:last-child)::after {
   content: "/";
-}
-
-.breadcrumbs a:hover {
-  color: var(--black);
 }
 
 .breadcrumbs a.underline::before {
@@ -2541,10 +2537,6 @@ p {
   color: var(--white);
 }
 
-.footer__download a:hover {
-  color: var(--black);
-}
-
 .footer .social__links {
   max-width: 25rem;
 }
@@ -3771,21 +3763,12 @@ canvas {
   text-transform: uppercase;
 }
 
-.social__title:hover {
-  color: var(--black);
-}
-
 .social__links {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 4rem 1rem 4rem 1rem 4rem 1rem 4rem 1rem 4rem;
   grid-template-columns: repeat(5, 4rem);
   gap: 1rem;
-}
-
-.social__link:hover i {
-  border-color: var(--black);
-  color: var(--black);
 }
 
 .social__link i {
@@ -3959,7 +3942,7 @@ canvas {
   gap: 5rem;
   padding: 7.7rem 0 7rem 0;
   background-color: var(--black);
-  pointer-events: all;
+  pointer-events: none;
   overflow-y: auto;
   overflow-x: hidden;
   width: 100%;
@@ -3971,6 +3954,7 @@ canvas {
 
 .tender--open .tender__inner {
   padding: 7.7rem 9rem 7rem 9rem;
+  pointer-events: all;
 }
 
 .tender__inner::-webkit-scrollbar {
@@ -4042,7 +4026,7 @@ html.tender--open .tender-btn .object-body::before {
   -o-transition: transform 0.3s ease;
   transition: transform 0.3s ease;
   transition: transform 0.3s ease, -webkit-transform 0.3s ease;
-  pointer-events: all;
+  pointer-events: none;
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -4051,6 +4035,10 @@ html.tender--open .tender-btn .object-body::before {
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+}
+
+.tender--open .tender__btn {
+  pointer-events: all;
 }
 
 .tender__btn:hover {
@@ -6398,6 +6386,10 @@ html.tender--open .tender-btn .object-body::before {
     width: 100%;
   }
 
+  .breadcrumbs a:hover {
+    color: var(--black);
+  }
+
   .btn:hover {
     --btn-color: var(--white);
   }
@@ -6434,6 +6426,10 @@ html.tender--open .tender-btn .object-body::before {
   }
 
   .footer__contacts-wrap a:hover {
+    color: var(--black);
+  }
+
+  .footer__download a:hover {
     color: var(--black);
   }
 
@@ -6511,6 +6507,15 @@ html.tender--open .tender-btn .object-body::before {
   }
 
   .popup__list a:hover {
+    color: var(--black);
+  }
+
+  .social__title:hover {
+    color: var(--black);
+  }
+
+  .social__link:hover i {
+    border-color: var(--black);
     color: var(--black);
   }
 
@@ -6923,9 +6928,7 @@ html.tender--open .tender-btn .object-body::before {
   }
 
   .callback.callback-mini .callback__inner {
-    height: 100%;
     padding: 5rem 1.5rem 31rem;
-    overflow: hidden;
     position: relative;
   }
 
@@ -7269,6 +7272,7 @@ html.tender--open .tender-btn .object-body::before {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
+    overflow: unset;
     padding: 2.5rem 0 0;
   }
 
@@ -7516,11 +7520,15 @@ html.tender--open .tender-btn .object-body::before {
 
   .popup__wrap {
     width: 100%;
-    max-height: 100vh;
-    max-height: 100dvh;
+    max-height: calc(100vh - 42px);
+    max-height: calc(100dvh - 42px);
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+    scrollbar-gutter: stable;
   }
 
   .popup__wrap::before {
@@ -7602,6 +7610,8 @@ html.tender--open .tender-btn .object-body::before {
     top: -100%;
     left: 0;
     opacity: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .tender--open .tender {
@@ -7652,6 +7662,7 @@ html.tender--open .tender-btn .object-body::before {
     height: fit-content;
     min-height: 100vh;
     position: relative;
+    overflow: hidden;
   }
 
   .tender--open .tender__inner {
@@ -7926,6 +7937,7 @@ html.tender--open .tender-btn .object-body::before {
 
   .contacts__body .footer__menu-link {
     font-size: 1.6rem;
+    color: var(--red);
   }
 
   .contacts__body .social {

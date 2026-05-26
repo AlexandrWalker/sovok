@@ -4656,12 +4656,24 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Инициализация Fabcybox
    */
-  Fancybox.bind('[data-fancybox]', {
-    on: {
-      init: () => lenis.stop(),
-      destroy: () => lenis.start(),
+Fancybox.bind('[data-fancybox]', {
+  // Отключаем закрытие свайпом вниз
+  // Это главный виновник конфликта со скроллом внутри попапа
+  dragToClose: false,
+  // Отключаем жесты карусели (свайп влево/вправо)
+  Carousel: {
+    Panzoom: {
+      // Отключаем pan (перетаскивание контента)
+      panMode: 'mousemove',
+      // или полностью:
+      // touch: false,
     },
-  });
+  },
+  on: {
+    init: () => lenis.stop(),
+    destroy: () => lenis.start(),
+  },
+});
 
   /**
    * iOS-safe ScrollTrigger refresh handler
