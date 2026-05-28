@@ -2469,6 +2469,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     //
+    // PARALLAX - одиночный блок, медленный
+    //
+
+    gsap.utils.toArray('[data-anim="parallax-slow"]').forEach(el => {
+      const y = el.dataset.animY ?? '5%';
+      const start = el.dataset.animStart ?? 'top 90%';
+      const end = el.dataset.animEnd ?? 'bottom top';
+
+      gsap.fromTo(el,
+        { y: y },
+        {
+          y: `-${y}`,
+          scrollTrigger: { trigger: el, start, end, scrub: true },
+        }
+      );
+    });
+
+    //
     // PARALLAX SHADOW - параллакс дочерних слоёв
     //
 
@@ -4654,26 +4672,26 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /**
-   * Инициализация Fabcybox
+   * Инициализация Fancybox
    */
-Fancybox.bind('[data-fancybox]', {
-  // Отключаем закрытие свайпом вниз
-  // Это главный виновник конфликта со скроллом внутри попапа
-  dragToClose: false,
-  // Отключаем жесты карусели (свайп влево/вправо)
-  Carousel: {
-    Panzoom: {
-      // Отключаем pan (перетаскивание контента)
-      panMode: 'mousemove',
-      // или полностью:
-      // touch: false,
+  Fancybox.bind('[data-fancybox]', {
+    // Отключаем закрытие свайпом вниз
+    // Это главный виновник конфликта со скроллом внутри попапа
+    dragToClose: false,
+    // Отключаем жесты карусели (свайп влево/вправо)
+    Carousel: {
+      Panzoom: {
+        // Отключаем pan (перетаскивание контента)
+        panMode: 'mousemove',
+        // или полностью:
+        // touch: false,
+      },
     },
-  },
-  on: {
-    init: () => lenis.stop(),
-    destroy: () => lenis.start(),
-  },
-});
+    on: {
+      init: () => lenis.stop(),
+      destroy: () => lenis.start(),
+    },
+  });
 
   /**
    * iOS-safe ScrollTrigger refresh handler

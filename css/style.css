@@ -186,16 +186,24 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
-  font-weight: 800;
+  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
+  font-weight: 900;
   font-style: normal;
 }
 
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
-  font-weight: 300;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
+  font-weight: 800;
   font-style: normal;
 }
 
@@ -210,8 +218,16 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
-  font-weight: 900;
+  src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -260,22 +276,6 @@ img {
   font-display: swap;
   src: url("../fonts/RobotoCondensed-ExtraBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraBold.woff") format("woff");
   font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
-  font-weight: 500;
   font-style: normal;
 }
 
@@ -794,6 +794,7 @@ body {
   --black-20: rgba(23, 23, 26, 0.2);
   --black-50: rgba(23, 23, 26, 0.5);
   --gray: #718595;
+  --gray-2: #D0C9C3;
   --red: #dc143c;
   --red-50: rgba(220, 20, 60, 0.5);
 }
@@ -2471,6 +2472,10 @@ p {
   grid-row: 1/2;
 }
 
+.footer__contacts .footer__menu-link:hover {
+  color: var(--white);
+}
+
 .footer__contacts-wrap {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2980,10 +2985,6 @@ p {
   transition: transform 0.3s ease, -webkit-transform 0.3s ease;
 }
 
-.menu__nav-item.item--active {
-  gap: 2rem;
-}
-
 .menu__nav-item:nth-child(1) {
   -webkit-transition-delay: 0s;
   -o-transition-delay: 0s;
@@ -3071,6 +3072,7 @@ p {
   line-height: 100%;
   text-transform: uppercase;
   color: var(--white);
+  word-break: break-word;
 }
 
 .menu__list {
@@ -4311,7 +4313,7 @@ html.tender--open .tender-btn .object-body::before {
   -ms-transform: unset;
   transform: unset;
   position: static;
-  z-index: 1;
+  z-index: 3;
 }
 
 .awards__img {
@@ -4487,35 +4489,64 @@ html.tender--open .tender-btn .object-body::before {
   font-size: 2rem;
 }
 
-.cases__slider {
-  overflow: hidden;
-}
-
 .cases__slide {
   height: 100%;
+}
+
+.cases__slide::before {
+  content: "";
+  display: block;
+  width: 20.45rem;
+  height: 0.5rem;
+  background-color: var(--gray-2);
+  -webkit-transform: rotate(51deg);
+  -ms-transform: rotate(51deg);
+  transform: rotate(51deg);
+  position: absolute;
+  top: 12.67rem;
+  left: -6.32rem;
+  z-index: 3;
 }
 
 .cases__slide-wrap {
   width: 100%;
   height: auto;
   min-height: 54rem;
+  padding: 9rem 4rem 9rem 43rem;
+  background-color: var(--black);
+  overflow: hidden;
   position: relative;
 }
 
-.cases__slide-bg {
-  width: 100%;
-  height: 100%;
+.cases__slide-wrap::before {
+  content: "";
+  display: block;
+  width: 6.15rem;
+  height: 39.7rem;
+  background-color: var(--white);
+  -webkit-transform: rotate(51deg);
+  -ms-transform: rotate(51deg);
+  transform: rotate(51deg);
   position: absolute;
-  top: 0;
+  top: -11.75rem;
+  left: 4.9rem;
+  z-index: 2;
+}
+
+.cases__slide-cover {
+  width: 38.6rem;
+  height: auto;
+  position: absolute;
+  top: 2.1rem;
   left: 0;
   z-index: 1;
 }
 
-.cases__slide-bg img {
+.cases__slide-cover img {
   width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
+  height: auto;
+  -o-object-fit: contain;
+  object-fit: contain;
 }
 
 .cases__slide-content {
@@ -4526,7 +4557,6 @@ html.tender--open .tender-btn .object-body::before {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  padding: 9rem 4rem 9rem 43rem;
   width: 100%;
   height: 100%;
   color: var(--white);
@@ -5378,7 +5408,7 @@ html.tender--open .tender-btn .object-body::before {
   pointer-events: none;
   position: absolute;
   top: -6.1rem;
-  right: 4.4rem;
+  right: calc(4.4rem + var(--callback-width));
 }
 
 .growth__cover img {
@@ -5419,7 +5449,6 @@ html.tender--open .tender-btn .object-body::before {
 }
 
 .hero__inner {
-  /* add new */
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 8rem 1fr 8rem 1fr 8rem 1fr;
@@ -5510,10 +5539,6 @@ html.tender--open .tender-btn .object-body::before {
   -ms-grid-column: 7;
 }
 
-.hero__inner {
-  /* ./add new */
-}
-
 .hero__content {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -5533,15 +5558,13 @@ html.tender--open .tender-btn .object-body::before {
 }
 
 .hero__suptitle {
+  margin-bottom: 5rem;
   font-family: var(--second-family);
   font-weight: 400;
   font-size: 4rem;
   line-height: 140%;
   letter-spacing: -0.05em;
   text-transform: uppercase;
-  /* add new */
-  margin-bottom: 5rem;
-  /* ./add new */
 }
 
 .hero__title {
@@ -6510,10 +6533,6 @@ html.tender--open .tender-btn .object-body::before {
     color: var(--black);
   }
 
-  .social__title:hover {
-    color: var(--black);
-  }
-
   .social__link:hover i {
     border-color: var(--black);
     color: var(--black);
@@ -6531,6 +6550,19 @@ html.tender--open .tender-btn .object-body::before {
     padding-left: 50rem;
   }
 
+  .cases__slide {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+
+  .cases__slide.swiper-slide-active {
+    opacity: 1;
+    visibility: visible;
+  }
+
   .contacts__head-title:hover {
     color: var(--red);
   }
@@ -6542,6 +6574,29 @@ html.tender--open .tender-btn .object-body::before {
   .contacts__body .social__link:hover i {
     color: var(--red);
     border-color: var(--red);
+  }
+
+  .inform__slide {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+
+  .inform__slide.swiper-slide-active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .inform__slide.swiper-slide-next {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .inform__slide.swiper-slide-next + .swiper-slide {
+    opacity: 1;
+    visibility: visible;
   }
 
   .produce__item:hover {
@@ -7135,6 +7190,14 @@ html.tender--open .tender-btn .object-body::before {
     gap: 1rem;
   }
 
+  .footer__contacts .footer__menu-link {
+    color: var(--black);
+  }
+
+  .footer__contacts .footer__menu-link:hover {
+    color: var(--black);
+  }
+
   .footer__contacts-wrap {
     gap: 1rem;
   }
@@ -7339,6 +7402,10 @@ html.tender--open .tender-btn .object-body::before {
     -webkit-transform: none;
     -ms-transform: none;
     transform: none;
+  }
+
+  .menu__nav-item.item--active {
+    gap: 2rem;
   }
 
   .menu__nav-item:nth-child(2) {
@@ -7848,7 +7915,7 @@ html.tender--open .tender-btn .object-body::before {
     height: 6.4rem;
     background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTEzIiBoZWlnaHQ9IjY1IiB2aWV3Qm94PSIwIDAgMTEzIDY1IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KPHJlY3QgeD0iNzEuNzg0MiIgd2lkdGg9IjEyLjQxNDUiIGhlaWdodD0iOTAuMjM1NiIgdHJhbnNmb3JtPSJyb3RhdGUoNTIuNzA0NiA3MS43ODQyIDApIiBmaWxsPSIjREMxNDNDIi8+DQo8Y2lyY2xlIGN4PSI5NS42Njg4IiBjeT0iMzIuOTM2NyIgcj0iMTMuNzk2NyIgdHJhbnNmb3JtPSJyb3RhdGUoMTIuMzAwMSA5NS42Njg4IDMyLjkzNjcpIiBmaWxsPSIjREMxNDNDIi8+DQo8L3N2Zz4NCg==);
     right: 0;
-    bottom: 2.5rem;
+    bottom: -4.455rem;
   }
 
   .cases__body .btn {
@@ -7857,12 +7924,22 @@ html.tender--open .tender-btn .object-body::before {
     font-size: 1.6rem;
   }
 
-  .cases__slider {
-    overflow: visible;
+  .cases__slide::before {
+    display: none;
   }
 
-  .cases__slide-content {
+  .cases__slide-wrap {
     padding: 3rem 2rem;
+  }
+
+  .cases__slide-wrap::before {
+    display: none;
+  }
+
+  .cases__slide-cover {
+    width: 36.3rem;
+    top: auto;
+    bottom: -5.4rem;
   }
 
   .cases__slide-title {
@@ -8080,8 +8157,8 @@ html.tender--open .tender-btn .object-body::before {
   }
 
   .hero__suptitle {
-    font-size: 2rem;
     margin-bottom: 0;
+    font-size: 2rem;
   }
 
   .hero__title {
