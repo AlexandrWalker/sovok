@@ -324,7 +324,10 @@
       }
 
       &.item--active {
-        gap: 2rem;
+
+        @include sm {
+          gap: 2rem;
+        }
       }
 
       &:nth-child(1) {
@@ -468,6 +471,7 @@
         line-height: 100%;
         text-transform: uppercase;
         color: var(--white);
+        word-break: break-word;
 
         @include sm {
           font-family: var(--font-family);

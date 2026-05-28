@@ -102,7 +102,7 @@
         background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTEzIiBoZWlnaHQ9IjY1IiB2aWV3Qm94PSIwIDAgMTEzIDY1IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KPHJlY3QgeD0iNzEuNzg0MiIgd2lkdGg9IjEyLjQxNDUiIGhlaWdodD0iOTAuMjM1NiIgdHJhbnNmb3JtPSJyb3RhdGUoNTIuNzA0NiA3MS43ODQyIDApIiBmaWxsPSIjREMxNDNDIi8+DQo8Y2lyY2xlIGN4PSI5NS42Njg4IiBjeT0iMzIuOTM2NyIgcj0iMTMuNzk2NyIgdHJhbnNmb3JtPSJyb3RhdGUoMTIuMzAwMSA5NS42Njg4IDMyLjkzNjcpIiBmaWxsPSIjREMxNDNDIi8+DQo8L3N2Zz4NCg==);
 
         right: 0;
-        bottom: 2.5rem;
+        bottom: -4.455rem;
       }
     }
 
@@ -123,44 +123,107 @@
   }
 
   &__slider {
-    overflow: hidden;
+    // overflow: hidden;
 
     @include sm {
-      overflow: visible;
+      // overflow: visible;
     }
   }
 
   &__slide {
     height: 100%;
 
+    @include dosm {
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    &.swiper-slide-active {
+
+      @include dosm {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    &::before {
+      content: "";
+      display: block;
+      width: 20.45rem;
+      height: 0.5rem;
+      background-color: var(--gray-2);
+      transform: rotate(51deg);
+
+      position: absolute;
+      top: 12.67rem;
+      left: -6.32rem;
+      z-index: 3;
+
+      @include sm {
+        display: none;
+      }
+    }
+
     &-wrap {
       width: 100%;
       height: auto;
       min-height: 54rem;
+      padding: 9rem 4rem 9rem 43rem;
+      background-color: var(--black);
+      overflow: hidden;
 
       position: relative;
+
+      @include sm {
+        padding: 3rem 2rem;
+      }
+
+      &::before {
+        content: "";
+        display: block;
+        width: 6.15rem;
+        height: 39.7rem;
+        background-color: var(--white);
+        transform: rotate(51deg);
+
+        position: absolute;
+        top: -11.75rem;
+        left: 4.9rem;
+        z-index: 2;
+
+        @include sm {
+          display: none;
+        }
+      }
     }
 
-    &-bg {
-      width: 100%;
-      height: 100%;
+    &-cover {
+      width: 38.6rem;
+      height: auto;
 
       position: absolute;
-      top: 0;
+      top: 2.1rem;
       left: 0;
       z-index: 1;
 
+      @include sm {
+        width: 36.3rem;
+
+        top: auto;
+        bottom: -5.4rem;
+      }
+
       img {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
+        height: auto;
+        object-fit: contain;
       }
     }
 
     &-content {
       display: flex;
       flex-direction: column;
-      padding: 9rem 4rem 9rem 43rem;
       width: 100%;
       height: 100%;
 
@@ -168,10 +231,6 @@
 
       position: relative;
       z-index: 2;
-
-      @include sm {
-        padding: 3rem 2rem;
-      }
     }
 
     &-title {
@@ -203,7 +262,7 @@
 
     &-link {
       width: fit-content;
-      
+
       font-weight: 400;
       font-size: 2rem;
       line-height: 120%;

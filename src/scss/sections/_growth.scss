@@ -170,7 +170,7 @@
 
     position: absolute;
     top: -6.1rem;
-    right: 4.4rem;
+    right: calc(4.4rem + var(--callback-width));
 
     @include sm {
       width: 26rem;

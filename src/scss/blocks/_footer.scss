@@ -299,6 +299,21 @@
       gap: 1rem;
     }
 
+    .footer__menu-link {
+
+      @include sm {
+        color: var(--black);
+      }
+
+      &:hover {
+        color: var(--white);
+
+        @include sm {
+          color: var(--black);
+        }
+      }
+    }
+
     &-wrap {
       display: flex;
       flex-direction: column;

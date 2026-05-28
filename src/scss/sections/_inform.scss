@@ -107,6 +107,12 @@
     align-items: center;
     gap: 1.3rem;
 
+    @include dosm {
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
     @include sm {
       max-width: 27.3rem;
       width: 100%;
@@ -123,6 +129,11 @@
 
     &.swiper-slide-active {
 
+      @include dosm {
+        opacity: 1;
+        visibility: visible;
+      }
+
       @include sm {
         z-index: 2;
       }
@@ -132,6 +143,22 @@
 
       @include sm {
         z-index: 3;
+      }
+    }
+
+    &.swiper-slide-next {
+
+      @include dosm {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      &+.swiper-slide {
+
+        @include dosm {
+          opacity: 1;
+          visibility: visible;
+        }
       }
     }
   }
