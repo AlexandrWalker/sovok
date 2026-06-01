@@ -9,6 +9,38 @@
     --section-padding-bottom: 0;
   }
 
+  &-test {
+    min-height: calc(100vh - var(--header-height) - 21.6rem);
+    min-height: calc(100dvh - var(--header-height) - 21.6rem);
+    height: 100%;
+
+    .footer {
+      height: 50vh;
+      height: 50dvh;
+      min-height: 50vh;
+      min-height: 50dvh;
+      background-color: var(--black);
+      padding: 0;
+
+      z-index: 1;
+
+      @include sm {
+        display: none;
+      }
+    }
+
+    .contacts__inner {
+      height: 100%;
+
+      position: static;
+    }
+
+    .contacts__cover {
+      right: var(--callback-mini-width);
+      bottom: 0;
+    }
+  }
+
   .container {
 
     @include sm {

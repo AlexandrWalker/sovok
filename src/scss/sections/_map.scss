@@ -25,4 +25,17 @@
       object-fit: cover;
     }
   }
+
+  /* new */
+  &.creeping-block {
+
+    @include dosm {
+      width: 100%;
+
+      position: fixed;
+      left: 0;
+      bottom: -100%;
+    }
+  }
+  /* ./new */
 }

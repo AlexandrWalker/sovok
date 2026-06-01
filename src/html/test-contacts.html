@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru" class="contacts-test contacts-page inner-page">
+@@include('blocks/head.html', {"title": "СОВОК"})
+
+<body>
+  <div class="wrapper">
+    <!-- Прелоадер -->
+    @@include('./blocks/preloader.html')
+    <!-- Шапка -->
+    @@include('./blocks/header.html')
+    <!-- Меню -->
+    @@include('./blocks/menu.html')
+    <!-- callback -->
+    @@include('./blocks/callback.html')
+    <!-- Тендер -->
+    @@include('./blocks/tender.html')
+    <main class="main">
+
+      <section class="template">
+        <div class="container">
+          <div class="template__inner">
+
+            <div class="breadcrumbs">
+              <ul>
+                <li>
+                  <a class="underline" href="/sovok">
+                    Главная
+                  </a>
+                </li>
+                <li>
+                  телеграф
+                </li>
+              </ul>
+            </div>
+
+            <div class="general__head">
+              <div class="general__title">
+                <h1>
+                  телеграф
+                </h1>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="contacts">
+        <div class="container">
+          <div class="contacts__inner">
+
+            <div class="contacts__head">
+              <div class="contacts__head-suptitle">
+                частота для связи
+              </div>
+              <div class="contacts__head-title">
+                <a class="underline" href="tel:+79133777977">
+                  8 913 3 777 9 77
+                </a>
+              </div>
+            </div>
+            <div class="contacts__body">
+              <div class="footer__contacts">
+                <div class="contacts__head-suptitle">
+                  координаты в связь
+                </div>
+                <div class="footer__contacts-wrap">
+                  <p>г. Новосибирск, ул. Кирова, 32, этаж 1</p>
+                  <p>Время работы пн.-пт.: <span>10:00 - 20:00</span></p>
+                  <p>
+                    Почта: <a class="underline" href="mailto:production@sovok.ru">production@sovok.ru</a>
+                  </p>
+                  <p>
+                    Телеграм: <a class="underline" href="https://t.me/@sovok">@sovok</a>
+                  </p>
+                  <p>
+                    Макс: <a class="underline" href="https://web.max.ru/@sovok">@sovok</a>
+                  </p>
+                </div>
+              </div>
+              @@include('blocks/social.html')
+            </div>
+            <div class="contacts__cover">
+              <img src="./../images/temp/contacts-cover.webp" alt="">
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Форма обратной связи -->
+      @@include('./blocks/callback-mini.html', {"suptitle": "готовы", "title": "к запуску?"})
+
+      <section class="map creeping-block" data-animation="creeping" data-creeping-trigger="footer">
+        <div class="container">
+          <div class="map__inner">
+
+            <div class="map__cover">
+              <picture>
+                <source media="(min-width: 601px)" srcset="./../images/temp/contacts-map.jpg">
+                <source media="(max-width: 600px)" srcset="./../images/temp/contacts-map-mob.jpg">
+                <img src="./../images/temp/contacts-map.jpg" alt="">
+              </picture>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+    <!-- Подвал -->
+    @@include('blocks/footer-contacts.html')

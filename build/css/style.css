@@ -4609,6 +4609,32 @@ html.tender--open .tender-btn .object-body::before {
   --section-padding-bottom: 5rem;
 }
 
+.contacts-test {
+  min-height: calc(100vh - var(--header-height) - 21.6rem);
+  min-height: calc(100dvh - var(--header-height) - 21.6rem);
+  height: 100%;
+}
+
+.contacts-test .footer {
+  height: 50vh;
+  height: 50dvh;
+  min-height: 50vh;
+  min-height: 50dvh;
+  background-color: var(--black);
+  padding: 0;
+  z-index: 1;
+}
+
+.contacts-test .contacts__inner {
+  height: 100%;
+  position: static;
+}
+
+.contacts-test .contacts__cover {
+  right: var(--callback-mini-width);
+  bottom: 0;
+}
+
 .contacts__inner {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -5936,6 +5962,14 @@ html.tender--open .tender-btn .object-body::before {
   object-fit: cover;
 }
 
+.map {
+  /* new */
+}
+
+.map {
+  /* ./new */
+}
+
 .notfound {
   --section-padding-top: 4rem;
   --section-padding-bottom: 17rem;
@@ -6597,6 +6631,13 @@ html.tender--open .tender-btn .object-body::before {
   .inform__slide.swiper-slide-next + .swiper-slide {
     opacity: 1;
     visibility: visible;
+  }
+
+  .map.creeping-block {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: -100%;
   }
 
   .produce__item:hover {
@@ -7980,6 +8021,10 @@ html.tender--open .tender-btn .object-body::before {
   .contacts {
     --section-padding-top: 1rem;
     --section-padding-bottom: 0;
+  }
+
+  .contacts-test .footer {
+    display: none;
   }
 
   .contacts .container {

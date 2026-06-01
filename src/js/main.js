@@ -287,6 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.lenis = lenis;
 
     gsap.ticker.add((time) => lenis.raf(time * 1000));
+
     gsap.ticker.lagSmoothing(0);
 
     // Плавный скролл к целевому элементу через Lenis
@@ -2772,6 +2773,64 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
   })();
+
+  /* new */
+  /**
+   * Анимация наслоения
+   */
+  (function () {
+
+    // Находим блок который должен выползать снизу
+    // Атрибут data-animation="creeping" ставится на сам выползающий блок
+    const creepingBlock = document.querySelector('[data-animation="creeping"]');
+
+    if (creepingBlock) {
+      // Если блока нет на странице или ширина экрана меньше 1024px - выходим
+      // На мобилке и планшетах анимация не нужна
+      if (!creepingBlock || window.innerWidth < 600) return;
+
+      // Получаем имя класса триггера из атрибута data-creeping-trigger
+      // Например data-creeping-trigger="hero" будет искать элемент с классом .hero
+      // Триггер это блок при скролле которого блок начинает выползать
+      const triggerClass = creepingBlock.getAttribute('data-creeping-trigger');
+      const trigger = triggerClass ? document.querySelector(`.${triggerClass}`) : null;
+
+      // Если триггер не найден выходим
+      if (!trigger) return;
+
+      // Анимация выползания блока снизу
+      // Блок должен иметь position absolute или fixed и стартовое значение bottom
+      // например bottom 100% или bottom -100% в CSS
+      // GSAP плавно довёдет bottom до 0 пока пользователь скроллит триггер
+      gsap.to(creepingBlock, {
+        bottom: 0,
+        ease: 'none',
+        // immediateRender: false,
+        scrollTrigger: {
+          trigger: trigger,
+          // start top bottom означает начало анимации когда верх триггера
+          // касается низа viewport то есть триггер только появился снизу
+          // start: '5.6% 94.4%',
+          start: 'top bottom',
+          // start: `+=${".footer-null"}`,
+          // end bottom bottom означает конец анимации когда низ триггера
+          // достиг низа viewport то есть триггер полностью прошёл по экрану
+          end: 'bottom bottom',
+          // scrub true привязывает прогресс анимации к прогрессу скролла
+          // блок выползает плавно по мере прокрутки а не одним движением
+          scrub: true,
+          invalidateOnRefresh: true,
+          // markers: true,
+        },
+      });
+
+      window.addEventListener('scroll', () => {
+        ScrollTrigger.refresh();
+      });
+    }
+
+  })();
+  /* ./new */
 
   /**
    * Анимация набора текста
