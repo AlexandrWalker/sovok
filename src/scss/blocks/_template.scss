@@ -4,6 +4,8 @@
   --section-padding-top: 2rem;
   --section-padding-bottom: 2rem;
 
+  overflow: visible;
+
   position: relative;
 
   @include sm {
@@ -28,5 +30,128 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    padding: 7rem 0;
+
+    @include sm {
+      padding: 0 0 45rem 0;
+    }
+  }
+
+  &__title {
+    margin-bottom: 2rem;
+
+    @include sm {
+      margin-bottom: 1.5rem;
+    }
+
+    * {
+      font-family: var(--second-family);
+      font-weight: 900;
+      font-size: 18rem;
+      line-height: 100%;
+      text-transform: uppercase;
+
+      span {
+        color: var(--red);
+      }
+
+      @include dosm {
+        letter-spacing: unset;
+      }
+
+      @include sm {
+        font-size: 6rem;
+
+        span {
+          font-size: 4rem;
+        }
+      }
+    }
+  }
+
+  &__text {
+    max-width: 74.7rem;
+    margin-bottom: 6rem;
+
+    @include sm {
+      margin-bottom: 2rem;
+    }
+
+    * {
+      font-weight: 700;
+      font-size: 4rem;
+      line-height: 120%;
+      text-transform: uppercase;
+
+      @include sm {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  &__btn {
+    --btn-padding-x: 6.5rem;
+
+    @include sm {
+      --btn-padding-x: 2.4rem;
+    }
+  }
+
+  &__cover {
+    max-width: 100%;
+    width: auto;
+    height: 69.9rem;
+    pointer-events: none;
+
+    position: absolute;
+    top: -12.6rem;
+    right: 10.3rem;
+    z-index: 1;
+
+    @include sm {
+      // height: 44.2rem;
+      max-width: unset;
+      width: calc(100% + 4rem);
+      height: auto;
+      transform: rotate(-8.19deg) scale(-1, 1);
+
+      top: 20.5rem;
+      right: unset;
+      left: -2rem;
+    }
+
+    img {
+      width: auto;
+      height: 100%;
+      object-fit: contain;
+
+      @include sm {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  &__mask {
+    width: auto;
+    height: 139rem;
+    pointer-events: none;
+
+    position: absolute;
+    top: -16.8rem;
+    right: 0;
+    z-index: 2;
+
+    @include sm {
+      width: 100%;
+      height: auto;
+
+      top: 44.6rem;
+    }
   }
 }

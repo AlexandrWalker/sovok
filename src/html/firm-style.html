@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ru" class="main-page">
+@@include('blocks/head.html', {"title": "СОВОК"})
+
+<body>
+  <div class="wrapper">
+    <!-- Прелоадер -->
+    @@include('./blocks/preloader.html')
+    <!-- Шапка -->
+    @@include('./blocks/header.html')
+    <!-- Меню -->
+    @@include('./blocks/menu.html')
+    <!-- callback -->
+    @@include('./blocks/callback.html')
+    <!-- Тендер -->
+    @@include('./blocks/tender.html')
+    <main class="main">
+
+      <section class="template">
+        <div class="container">
+          <div class="template__inner">
+
+            <div class="breadcrumbs">
+              <ul>
+                <li>
+                  <a class="underline" href="/sovok">
+                    Главная
+                  </a>
+                </li>
+                <li>
+
+                </li>
+              </ul>
+            </div>
+
+            <div class="template__body">
+              <div class="template__title">
+                <h1>
+                  <span>фирменный</span> <br>
+                  стиль
+                </h1>
+              </div>
+              <div class="template__text">
+                <p>
+                  Обеспечим полную и безоговорочную узнаваемость!
+                </p>
+              </div>
+              <a class="template__btn btn btn--red" href="/">
+                <div class="btn__text">
+                  поехали!
+                </div>
+              </a>
+
+              <div class="template__cover">
+                <img src="./../images/temp/branding-cover.png" alt="">
+              </div>
+
+              <picture class="template__mask">
+                <source media="(min-width: 601px)" srcset="./../images/temp/branding-mask.svg">
+                <source media="(max-width: 600px)" srcset="./../images/temp/branding-mask-mob.svg">
+                <img src="./../images/temp/branding-mask.svg" alt="">
+              </picture>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="cases">
+        <div class="container">
+          <div class="cases__inner">
+
+            <div class="general__head" data-anim="fadeLeft" data-anim-order="2" data-anim-order-mobile="1">
+              <div class="general__title">
+                делом
+              </div>
+              <div class="general__suptitle">
+                А НЕ СЛОВОМ
+              </div>
+            </div>
+
+            <div class="cases__cover" data-anim="fadeUp" data-anim-order="1" data-anim-order-mobile="2">
+              <img src="./../images/temp/cases-cover.webp" alt="">
+            </div>
+
+            <div class="cases__body">
+              <div class="swiper cases__slider">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide cases__slide">
+                    <div class="cases__slide-wrap">
+                      <picture class="cases__slide-cover" data-anim="parallax-slow">
+                        <source media="(min-width: 601px)" srcset="./../images/temp/cases-ga.png">
+                        <source media="(max-width: 600px)" srcset="./../images/temp/cases-ga-mob.png">
+                        <img src="./../images/temp/cases-ga.png" alt="">
+                      </picture>
+                      <div class="cases__slide-content">
+                        <div class="cases__slide-title h1">
+                          отель <br> grand autogroph
+                        </div>
+                        <div class="cases__slide-text">
+                          Единственный пятизвездочный отель в Новосибирске.
+                        </div>
+                        <a class="cases__slide-link" href="/">
+                          Ознакомиться
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide cases__slide">
+                    <div class="cases__slide-wrap">
+                      <picture class="cases__slide-cover" data-anim="parallax-slow">
+                        <source media="(min-width: 601px)" srcset="./../images/temp/cases-ga.png">
+                        <source media="(max-width: 600px)" srcset="./../images/temp/cases-ga-mob.png">
+                        <img src="./../images/temp/cases-ga.png" alt="">
+                      </picture>
+                      <div class="cases__slide-content">
+                        <div class="cases__slide-title h1">
+                          отель <br> grand autogroph
+                        </div>
+                        <div class="cases__slide-text">
+                          Единственный пятизвездочный отель в Новосибирске.
+                        </div>
+                        <a class="cases__slide-link" href="/">
+                          Ознакомиться
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide cases__slide">
+                    <div class="cases__slide-wrap">
+                      <picture class="cases__slide-cover" data-anim="parallax-slow">
+                        <source media="(min-width: 601px)" srcset="./../images/temp/cases-ga.png">
+                        <source media="(max-width: 600px)" srcset="./../images/temp/cases-ga-mob.png">
+                        <img src="./../images/temp/cases-ga.png" alt="">
+                      </picture>
+                      <div class="cases__slide-content">
+                        <div class="cases__slide-title h1">
+                          отель <br> grand autogroph
+                        </div>
+                        <div class="cases__slide-text">
+                          Единственный пятизвездочный отель в Новосибирске.
+                        </div>
+                        <a class="cases__slide-link" href="/">
+                          Ознакомиться
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide cases__slide">
+                    <div class="cases__slide-wrap">
+                      <picture class="cases__slide-cover" data-anim="parallax-slow">
+                        <source media="(min-width: 601px)" srcset="./../images/temp/cases-ga.png">
+                        <source media="(max-width: 600px)" srcset="./../images/temp/cases-ga-mob.png">
+                        <img src="./../images/temp/cases-ga.png" alt="">
+                      </picture>
+                      <div class="cases__slide-content">
+                        <div class="cases__slide-title h1">
+                          отель <br> grand autogroph
+                        </div>
+                        <div class="cases__slide-text">
+                          Единственный пятизвездочный отель в Новосибирске.
+                        </div>
+                        <a class="cases__slide-link" href="/">
+                          Ознакомиться
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-button-prev cases-button-prev icons-mob-change">
+                <i class="icon-arrow-double-rb-right">
+                  <path class="path1"></path>
+                  <path class="path2"></path>
+                  <path class="path3"></path>
+                  <path class="path4"></path>
+                </i>
+              </div>
+              <div class="swiper-button-next cases-button-next icons-mob-change">
+                <i class="icon-arrow-double-rb-right">
+                  <path class="path1"></path>
+                  <path class="path2"></path>
+                  <path class="path3"></path>
+                  <path class="path4"></path>
+                </i>
+              </div>
+              <a class="cases__btn btn btn--red" href="/">
+                <div class="btn__text">
+                  все кейсы
+                </div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="request" data-header-theme="dark">
+        <div class="container">
+          <div class="request__inner">
+
+            <div class="general__head">
+              <div class="general__suptitle" data-anim="fadeLeft">
+                готовы
+              </div>
+              <div class="general__title" data-anim="fadeLeft">
+                к запуску?
+              </div>
+            </div>
+
+            <form class="form" action="">
+              <div class="form-inner">
+                <div class="form-body">
+                  <div class="form-group">
+                    <input id="request_name_input" class="form-input" type="text" name="names" required>
+                    <label class="form-label">
+                      <!-- Имя субъекта -->
+                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07" data-type-variance="0.04"
+                        data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                        data-input="#request_name_input" data-stop-text="Имя субъекта">
+                        <div class="typewriter__line">
+                          <span class="typewriter__word" data-words="Давай знакомиться!|Сюда писать имя"></span>
+                        </div>
+                        <span class="typewriter__cursor">|</span>
+                      </div>
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <input id="request_tel_input" class="form-input" type="tel" name="tel" required>
+                    <label class="form-label">
+                      <!-- КАНАЛ СВЯЗИ -->
+                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07" data-type-variance="0.04"
+                        data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                        data-input="#request_tel_input" data-stop-text="КАНАЛ СВЯЗИ">
+                        <div class="typewriter__line">
+                          <span class="typewriter__word"
+                            data-words="Номер телефона|Можно указать почту|Ждем обращения)"></span>
+                        </div>
+                        <span class="typewriter__cursor">|</span>
+                      </div>
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <input id="request_comments_input" class="form-input" type="text" name="comments" required>
+                    <label class="form-label">
+                      <!-- СУТЬ ОБРАЩЕНИЯ -->
+                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07" data-type-variance="0.04"
+                        data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                        data-input="#request_comments_input" data-stop-text="СУТЬ ОБРАЩЕНИЯ">
+                        <div class="typewriter__line">
+                          <span class="typewriter__word"
+                            data-words="суть нашего разговора|главная идея моего сообщения|основная цель"></span>
+                        </div>
+                        <span class="typewriter__cursor">|</span>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <div class="form-foot">
+                  <button class="form-btn" type="button" data-btn-sound="poehali">
+                    <div class="form-btn__text">
+                      поехали!
+                    </div>
+                  </button>
+                  <div class="form-wrap">
+                    <div class="form-text">
+                      Нажимая на кнопку «Отправить» вы соглашаетесь с <a href="/">Политикой обработки персональных
+                        данных</a>
+                    </div>
+                    <div class="form-group">
+                      <input id="form-checkbox-3" class="form-checkbox" type="checkbox" data-btn-sound="shutdown_sound">
+                      <label for="form-checkbox-3" class="form-checkbox-label">
+                        <div class="form-checkbox--item"></div>
+                        <div class="form-text">
+                          Я согласен на обработку персональных данных
+                        </div>
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <input id="form-checkbox-4" class="form-checkbox" type="checkbox" data-btn-sound="shutdown_sound">
+                      <label for="form-checkbox-4" class="form-checkbox-label">
+                        <div class="form-checkbox--item"></div>
+                        <div class="form-text">
+                          Я согласен на рекламные уведомления
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <div class="request__cover" data-anim="parallax-shadow">
+              <img class="request__cover-img request__cover-img--2" src="./../images/temp/request-cover-2.svg" alt="">
+              <img class="request__cover-img request__cover-img--1" src="./../images/temp/request-cover-1.svg" alt="">
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+    <!-- Подвал -->
+    @@include('blocks/footer.html')

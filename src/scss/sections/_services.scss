@@ -1,0 +1,176 @@
+@use './../mixins' as *;
+
+.services {
+
+  @include dosm {
+    --section-padding-bottom: 9.5rem;
+  }
+
+  .container {
+
+    @include dosm {
+      padding-right: calc(var(--container-padding) + var(--callback-width));
+    }
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+  }
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+
+    @include sm {
+      gap: 2rem;
+    }
+
+    &-head {
+      font-family: var(--second-family);
+      font-weight: 900;
+      font-size: 4rem;
+      line-height: 100%;
+      text-transform: uppercase;
+
+      @include sm {
+        font-size: 2rem;
+      }
+
+      span {
+        color: var(--red);
+      }
+    }
+
+    &-body {}
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    transition: padding 0.3s ease, color 0.5s ease 0.1s;
+    padding: 0 0 2rem 0;
+    border-bottom: 0.1rem solid var(--black-10);
+
+    position: relative;
+
+    @include sm {
+      padding: 0 0 1rem 0;
+    }
+
+    &::before {
+      content: "";
+      display: block;
+      width: 0;
+      height: 100%;
+      background-color: var(--red);
+      transition: width 0.3s ease;
+
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    &:hover {
+
+      @include dosm {
+        padding: 3rem 4.1rem 2rem 4.6rem;
+        transition: padding 0.3s ease, color 0.3s ease;
+
+        color: var(--white);
+
+        &::before {
+          width: 100%;
+          transition: width 0.5s ease;
+        }
+
+        .services__item-title {
+          color: var(--white);
+        }
+
+        .services__item-btn {
+          transition: all 0.3s ease, opacity 0.3s ease 0.2s, margin 0.3s ease 0s;
+          opacity: 1;
+          margin: 0;
+          pointer-events: all;
+        }
+      }
+    }
+
+    &-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      position: relative;
+      z-index: 2;
+
+      @include sm {
+        gap: 1rem;
+      }
+    }
+
+    &-title {
+      width: fit-content;
+      transition: color 0.5s ease;
+
+      font-weight: 700;
+      font-size: 3rem;
+      text-decoration: underline;
+      text-decoration-skip-ink: none;
+      text-transform: uppercase;
+      color: var(--red);
+
+      @include sm {
+        font-size: 1.6rem;
+      }
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    &-text {
+      font-size: 2rem;
+      text-transform: uppercase;
+
+      @include sm {
+        font-size: 1.6rem;
+      }
+    }
+
+    &-btn {
+      display: none;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease, opacity 0.3s ease 0s, margin 0.3s ease 0s;
+      margin: 3rem 4.1rem 0 0;
+
+      z-index: 2;
+
+      @include dosm {
+        display: flex;
+      }
+    }
+  }
+}

@@ -4734,8 +4734,9 @@ document.addEventListener('DOMContentLoaded', () => {
    * Инициализация Fancybox
    */
   Fancybox.bind('[data-fancybox]', {
+    // Закрывать существующие окна при открытии нового
+    closeExisting: true,
     // Отключаем закрытие свайпом вниз
-    // Это главный виновник конфликта со скроллом внутри попапа
     dragToClose: false,
     // Отключаем жесты карусели (свайп влево/вправо)
     Carousel: {

@@ -1,0 +1,176 @@
+@use './../mixins' as *;
+
+.flagship {
+
+  .general__title {
+    font-size: 9rem;
+
+    @include sm {
+      font-size: 4rem;
+      color: var(--white);
+
+      br {
+        display: none;
+      }
+
+      span {
+        color: var(--white);
+      }
+    }
+  }
+
+  .produce__item {
+
+    height: auto;
+
+    &.produce__item--1 {
+
+      .produce__item-cover {
+        height: 18.2rem;
+
+        top: 6rem;
+
+        @include sm {
+          height: 12.4rem;
+
+          top: 3rem;
+        }
+      }
+
+      .object-shadow {
+        transform: rotate(-4.34deg);
+      }
+    }
+
+    &.produce__item--2 {
+
+      .produce__item-cover {
+        height: 20rem;
+
+        top: 5.1rem;
+
+        @include sm {
+          height: 12.8rem;
+
+          top: 2.9rem;
+        }
+      }
+
+      .object-shadow {
+        transform: rotate(-4.42deg);
+      }
+    }
+
+    &.produce__item--3 {
+
+      .produce__item-cover {
+        height: 20rem;
+
+        top: 5.1rem;
+
+        @include sm {
+          height: 13.1rem;
+
+          top: 2.6rem;
+        }
+      }
+
+      .object-shadow {
+        transform: rotate(-3.73deg);
+      }
+    }
+
+    &-content {
+      padding: 30rem 1rem 4rem 4rem;
+      gap: 3rem;
+
+      @include sm {
+        padding: 18.4rem 2rem 3rem 2rem;
+        gap: 2rem;
+      }
+    }
+
+    &-cover {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-width: 100%;
+
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+
+      @include sm {
+        width: fit-content;
+        
+        left: 2rem;
+        transform: translateX(0);
+      }
+
+      .object-shadow {
+        display: flex;
+        justify-content: center;
+        width: auto;
+      }
+
+      .object-body {
+        width: auto;
+      }
+
+      img {
+        max-width: 100%;
+        width: auto;
+        height: 100%;
+        object-fit: contain;
+        flex-shrink: 0;
+      }
+    }
+
+    &-title {
+      font-size: 4rem;
+
+      @include sm {
+        font-size: 2rem;
+      }
+    }
+
+    &-wrapper {
+
+      ul {
+
+        li {
+          margin-bottom: 2rem;
+
+          @include sm {
+            margin-bottom: 1.5rem;
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          a {
+            font-weight: 400;
+            font-size: 2rem;
+            line-height: 100%;
+            text-decoration-line: underline;
+            text-transform: uppercase;
+            color: var(--white);
+
+            @include sm {
+              font-size: 1.6rem;
+            }
+
+            &:hover {
+
+              @include dosm {
+                color: var(--red);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
