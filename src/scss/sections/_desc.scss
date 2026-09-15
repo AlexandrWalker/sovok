@@ -1,0 +1,195 @@
+@use './../mixins' as *;
+
+.desc {
+  overflow-x: clip;
+
+  .firm-style-page & {
+
+    @include dosm {
+      --section-padding-top: 7rem;
+      --section-padding-bottom: 17rem;
+    }
+  }
+
+  &__inner {
+    position: relative;
+
+    @include sm {
+      padding-bottom: 14.4rem;
+    }
+
+    .firm-style-page & {
+
+      @include sm {
+        padding-bottom: 16.7rem;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+    z-index: 2;
+  }
+
+  &__title {
+    margin-bottom: 2rem;
+
+    font-family: var(--second-family);
+    font-weight: 900;
+    font-size: 4rem;
+    line-height: 100%;
+    text-transform: uppercase;
+
+    @include dosm {
+      max-width: 110rem;
+      margin-bottom: 3rem;
+
+      font-size: 9rem;
+      line-height: 110%;
+    }
+
+    @include sm {
+      color: var(--white);
+    }
+
+    .firm-style-page & {
+
+      @include sm {
+        color: var(--black);
+      }
+    }
+  }
+
+  &__text {
+    margin-bottom: 2rem;
+
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 140%;
+
+    @include dosm {
+      max-width: 63rem;
+      margin-bottom: 4rem;
+
+      font-size: 3rem;
+    }
+
+    .firm-style-page & {
+
+      @include sm {
+        margin-bottom: 4.5rem;
+      }
+    }
+  }
+
+  &__subtitle {
+    max-width: 19.7rem;
+
+    font-family: var(--second-family);
+    font-weight: 900;
+    font-size: 2rem;
+    line-height: 120%;
+    color: var(--red);
+
+    @include dosm {
+      max-width: 82.6rem;
+
+      font-size: 4rem;
+    }
+  }
+
+  &__cover {
+    width: 57.2rem;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+
+    @include dosm {
+      width: 114.2rem;
+
+      top: 24.5rem;
+      right: 0;
+      bottom: unset;
+      left: unset;
+    }
+
+    .firm-style-page & {
+      width: 29.5rem;
+      transform: rotate(5.74deg);
+
+      right: -8rem;
+      left: unset;
+
+      @include dosm {
+        width: 77.3rem;
+
+        top: unset;
+        right: 13.3rem;
+        bottom: -4.1rem;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+  }
+}
+
+.ufo {
+  animation: levitate 3s ease-in-out infinite;
+}
+
+.cosmos {
+  animation: cosmos 8s ease-in-out infinite;
+}
+
+@keyframes levitate {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  25% {
+    transform: translateY(-10px) rotate(3deg);
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(0deg);
+  }
+
+  75% {
+    transform: translateY(-10px) rotate(-3deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes cosmos {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(4deg);
+  }
+
+  50% {
+    transform: rotate(-2deg);
+  }
+
+  75% {
+    transform: rotate(3deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}

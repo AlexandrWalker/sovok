@@ -1,0 +1,103 @@
+@use './../mixins' as *;
+
+.features {
+
+  @include dosm {
+    margin-right: var(--callback-width);
+  }
+
+  .general {
+
+    &__head {
+      gap: 1.5rem;
+
+      @include dosm {
+        gap: 3rem;
+      }
+    }
+
+    &__text {
+      max-width: 89.7rem;
+
+      font-weight: 400;
+      font-size: 1.6rem;
+      line-height: 140%;
+      text-transform: none;
+
+      @include dosm {
+        font-size: 3rem;
+      }
+    }
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    @include dosm {
+      gap: 4rem;
+    }
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem 2rem;
+
+    @include dosm {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4rem 6rem;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    @include dosm {
+      gap: 2rem;
+    }
+
+    &-count {
+      font-family: var(--second-family);
+      font-weight: 900;
+      font-size: 4rem;
+      line-height: 100%;
+      color: var(--red);
+
+      @include dosm {
+        font-size: 9rem;
+      }
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    &-title {
+      font-weight: 700;
+      font-size: 1.6rem;
+      line-height: 140%;
+      text-transform: uppercase;
+
+      @include dosm {
+        font-size: 3rem;
+      }
+    }
+
+    &-text {
+      font-weight: 400;
+      font-size: 1.6rem;
+      line-height: 140%;
+      text-transform: uppercase;
+
+      @include dosm {
+        font-size: 3rem;
+      }
+    }
+  }
+}

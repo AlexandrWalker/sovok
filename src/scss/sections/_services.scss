@@ -106,6 +106,10 @@
 
         .services__item-title {
           color: var(--white);
+
+          &::before {
+            width: 0;
+          }
         }
 
         .services__item-btn {
@@ -136,17 +140,28 @@
 
       font-weight: 700;
       font-size: 3rem;
-      text-decoration: underline;
-      text-decoration-skip-ink: none;
+      line-height: 140%;
       text-transform: uppercase;
       color: var(--red);
+
+      position: relative;
 
       @include sm {
         font-size: 1.6rem;
       }
 
-      &:hover {
-        text-decoration: none;
+      &::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 0.15rem;
+        background-color: var(--red);
+        transition: width 0.5s ease;
+
+        position: absolute;
+        top: calc(100% - 0.65rem);
+        right: 0;
+        z-index: 1;
       }
     }
 
@@ -172,5 +187,41 @@
         display: flex;
       }
     }
+  }
+}
+
+/* ==========================================================================
+   ФИКС МОРГАНИЯ КОНТЕНТА (FOUC FIX) ПОД ПРЕЛОАДЕРОМ
+   ========================================================================== */
+
+// Пока прелоадер активен, принудительно прячем все элементы, 
+// которые будут плавно влетать или проявляться через GSAP
+.preloader--active {
+  
+  // 1. Все элементы со сплит-анимацией текста (заголовки и абзацы)
+  [data-split="title"],
+  [data-split="text"] {
+    opacity: 0 !important;
+  }
+
+  // 2. Все элементы со влётами (fadeLeft, fadeRight, fadeUp, fadeDown)
+  [data-anim^="fade"] {
+    opacity: 0 !important;
+  }
+
+  // 3. Элементы с одноразовым появлением масштаба
+  [data-anim="scale"][data-anim-once] {
+    opacity: 0 !important;
+    transform: scale(0) !important;
+  }
+
+  // 4. Элементы с бегущими цифрами
+  .number-roll {
+    opacity: 0 !important;
+  }
+
+  // 5. Блоки с пишущей машинкой (Typewriter)
+  .typewriter {
+    opacity: 0 !important;
   }
 }

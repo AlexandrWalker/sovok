@@ -125,6 +125,34 @@
       left: -2rem;
     }
 
+    .naming-page & {
+
+      @include dosm {
+        height: 99.6rem;
+
+        top: -17rem;
+        right: 11.9rem;
+      }
+
+      @include sm {
+        transform: rotate(-8.19deg);
+      }
+    }
+
+    .firm-style-page & {
+
+      @include dosm {
+        height: 99rem;
+
+        top: -17rem;
+        right: 15.4rem;
+      }
+
+      @include sm {
+        transform: rotate(-8.19deg) scale(-1, 1);
+      }
+    }
+
     img {
       width: auto;
       height: 100%;
@@ -152,6 +180,12 @@
       height: auto;
 
       top: 44.6rem;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
     }
   }
 }

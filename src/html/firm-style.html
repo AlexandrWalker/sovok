@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" class="main-page">
+<html lang="ru" class="firm-style-page">
 @@include('blocks/head.html', {"title": "СОВОК"})
 
 <body>
@@ -28,19 +28,19 @@
                   </a>
                 </li>
                 <li>
-
+                  Фирменный стиль
                 </li>
               </ul>
             </div>
 
+            <!-- новая ветка для шаблона -->
             <div class="template__body">
               <div class="template__title">
                 <h1>
-                  <span>фирменный</span> <br>
-                  стиль
+                  <span>Фирменный</span> <br> стиль
                 </h1>
               </div>
-              <div class="template__text">
+              <div class="template__text" data-split="text">
                 <p>
                   Обеспечим полную и безоговорочную узнаваемость!
                 </p>
@@ -51,11 +51,15 @@
                 </div>
               </a>
 
-              <div class="template__cover">
-                <img src="./../images/temp/branding-cover.png" alt="">
+              <div class="template__cover" data-anim="fadeUp" data-anim-order="2">
+                <picture>
+                  <source media="(min-width: 601px)" srcset="./../images/temp/firm-style-cover.png">
+                  <source media="(max-width: 600px)" srcset="./../images/temp/branding-cover.png">
+                  <img src="./../images/temp/firm-style-cover.png" alt="">
+                </picture>
               </div>
 
-              <picture class="template__mask">
+              <picture class="template__mask" data-anim="fadeRight" data-anim-order="1">
                 <source media="(min-width: 601px)" srcset="./../images/temp/branding-mask.svg">
                 <source media="(max-width: 600px)" srcset="./../images/temp/branding-mask-mob.svg">
                 <img src="./../images/temp/branding-mask.svg" alt="">
@@ -66,129 +70,186 @@
         </div>
       </section>
 
-      <section class="cases">
+      <section class="desc">
         <div class="container">
-          <div class="cases__inner">
+          <div class="desc__inner">
 
-            <div class="general__head" data-anim="fadeLeft" data-anim-order="2" data-anim-order-mobile="1">
-              <div class="general__title">
-                делом
+            <div class="desc__content">
+              <div class="desc__title" data-anim="fadeLeft">
+                Первое впечатление&nbsp;— единственное
               </div>
-              <div class="general__suptitle">
-                А НЕ СЛОВОМ
+              <div class="desc__text" data-anim="fadeLeft">
+                Логотип, цвет и шрифт — в едином строю! Этот стальной манифест выкован на года: он бьёт без промаха,
+                бережёт бюджет по-стахановски и держит подрядчиков в железной дисциплине!
+              </div>
+              <div class="desc__subtitle" data-anim="fadeLeft">
+                Вложения сегодня&nbsp;— <br> экономия завтра
               </div>
             </div>
 
-            <div class="cases__cover" data-anim="fadeUp" data-anim-order="1" data-anim-order-mobile="2">
-              <img src="./../images/temp/cases-cover.webp" alt="">
+            <div class="desc__cover cosmos">
+              <img src="./../images/temp/firm-style-desc-cover.jpg" alt="">
             </div>
 
-            <div class="cases__body">
-              <div class="swiper cases__slider">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide cases__slide">
-                    <div class="cases__slide-wrap">
-                      <picture class="cases__slide-cover" data-anim="parallax-slow">
-                        <source media="(min-width: 601px)" srcset="./../images/temp/cases-ga.png">
-                        <source media="(max-width: 600px)" srcset="./../images/temp/cases-ga-mob.png">
-                        <img src="./../images/temp/cases-ga.png" alt="">
-                      </picture>
-                      <div class="cases__slide-content">
-                        <div class="cases__slide-title h1">
-                          отель <br> grand autogroph
-                        </div>
-                        <div class="cases__slide-text">
-                          Единственный пятизвездочный отель в Новосибирске.
-                        </div>
-                        <a class="cases__slide-link" href="/">
-                          Ознакомиться
-                        </a>
-                      </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="features">
+        <div class="container">
+          <div class="features__inner">
+
+            <div class="general__head">
+              <div class="general__title" data-anim="fadeLeft">
+                комплектация
+              </div>
+              <div class="general__text" data-anim="fadeLeft">
+                <span>
+                  Проверка на регистрацию не является гарантией регистрации, но дает экспертную оценку рисков.
+                  Окончательное решение за Роспатентом, но мы сделаем всё, чтобы шансы были максимальными
+                </span>
+              </div>
+            </div>
+
+            <div class="features__body">
+              <div class="features__items">
+                <div class="features__item">
+                  <div class="features__item-count">
+                    01
+                  </div>
+                  <div class="features__item-content">
+                    <div class="features__item-title">
+                      10 уникальных названий
+                    </div>
+                    <div class="features__item-text">
+                      каждая идея проработана и обоснована
                     </div>
                   </div>
-                  <div class="swiper-slide cases__slide">
-                    <div class="cases__slide-wrap">
-                      <picture class="cases__slide-cover" data-anim="parallax-slow">
-                        <source media="(min-width: 601px)" srcset="./../images/temp/cases-ga.png">
-                        <source media="(max-width: 600px)" srcset="./../images/temp/cases-ga-mob.png">
-                        <img src="./../images/temp/cases-ga.png" alt="">
-                      </picture>
-                      <div class="cases__slide-content">
-                        <div class="cases__slide-title h1">
-                          отель <br> grand autogroph
-                        </div>
-                        <div class="cases__slide-text">
-                          Единственный пятизвездочный отель в Новосибирске.
-                        </div>
-                        <a class="cases__slide-link" href="/">
-                          Ознакомиться
-                        </a>
-                      </div>
+                </div>
+                <div class="features__item">
+                  <div class="features__item-count">
+                    02
+                  </div>
+                  <div class="features__item-content">
+                    <div class="features__item-title">
+                      Детальное описание
+                    </div>
+                    <div class="features__item-text">
+                      смысл, идея, ассоциации, сценарии использования
                     </div>
                   </div>
-                  <div class="swiper-slide cases__slide">
-                    <div class="cases__slide-wrap">
-                      <picture class="cases__slide-cover" data-anim="parallax-slow">
-                        <source media="(min-width: 601px)" srcset="./../images/temp/cases-ga.png">
-                        <source media="(max-width: 600px)" srcset="./../images/temp/cases-ga-mob.png">
-                        <img src="./../images/temp/cases-ga.png" alt="">
-                      </picture>
-                      <div class="cases__slide-content">
-                        <div class="cases__slide-title h1">
-                          отель <br> grand autogroph
-                        </div>
-                        <div class="cases__slide-text">
-                          Единственный пятизвездочный отель в Новосибирске.
-                        </div>
-                        <a class="cases__slide-link" href="/">
-                          Ознакомиться
-                        </a>
-                      </div>
+                </div>
+                <div class="features__item">
+                  <div class="features__item-count">
+                    03
+                  </div>
+                  <div class="features__item-content">
+                    <div class="features__item-title">
+                      Доработка выбранного названия
+                    </div>
+                    <div class="features__item-text">
+                      с учётом пожеланий Заказчика
                     </div>
                   </div>
-                  <div class="swiper-slide cases__slide">
-                    <div class="cases__slide-wrap">
-                      <picture class="cases__slide-cover" data-anim="parallax-slow">
-                        <source media="(min-width: 601px)" srcset="./../images/temp/cases-ga.png">
-                        <source media="(max-width: 600px)" srcset="./../images/temp/cases-ga-mob.png">
-                        <img src="./../images/temp/cases-ga.png" alt="">
-                      </picture>
-                      <div class="cases__slide-content">
-                        <div class="cases__slide-title h1">
-                          отель <br> grand autogroph
-                        </div>
-                        <div class="cases__slide-text">
-                          Единственный пятизвездочный отель в Новосибирске.
-                        </div>
-                        <a class="cases__slide-link" href="/">
-                          Ознакомиться
-                        </a>
-                      </div>
+                </div>
+                <div class="features__item">
+                  <div class="features__item-count">
+                    04
+                  </div>
+                  <div class="features__item-content">
+                    <div class="features__item-title">
+                      Проверка на регистрацию <br> товарного знака
+                    </div>
+                    <div class="features__item-text">
+                      поиск по базам Роспатента, минимизируем риск отказа
+                    </div>
+                  </div>
+                </div>
+                <div class="features__item">
+                  <div class="features__item-count">
+                    05
+                  </div>
+                  <div class="features__item-content">
+                    <div class="features__item-title">
+                      Слоганы
+                    </div>
+                    <div class="features__item-text">
+                      5–7 фраз, созвучных смыслу названия
+                    </div>
+                  </div>
+                </div>
+                <div class="features__item">
+                  <div class="features__item-count">
+                    06
+                  </div>
+                  <div class="features__item-content">
+                    <div class="features__item-title">
+                      Доменное имя
+                    </div>
+                    <div class="features__item-text">
+                      подбор свободного домена в зонах .ru, .com, .рф
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="swiper-button-prev cases-button-prev icons-mob-change">
-                <i class="icon-arrow-double-rb-right">
-                  <path class="path1"></path>
-                  <path class="path2"></path>
-                  <path class="path3"></path>
-                  <path class="path4"></path>
-                </i>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="investment">
+        <div class="container">
+          <div class="investment__inner">
+
+            <div class="general__head">
+              <div class="general__title" data-anim="fadeLeft">
+                <span>Инвестиция</span> в&nbsp;узнаваемость
               </div>
-              <div class="swiper-button-next cases-button-next icons-mob-change">
-                <i class="icon-arrow-double-rb-right">
-                  <path class="path1"></path>
-                  <path class="path2"></path>
-                  <path class="path3"></path>
-                  <path class="path4"></path>
-                </i>
-              </div>
-              <a class="cases__btn btn btn--red" href="/">
-                <div class="btn__text">
-                  все кейсы
+            </div>
+
+            <div class="investment__body">
+              <div class="investment__items">
+                <div class="investment__item">
+                  <div class="investment__item-cover">
+                    <img src="./../images/temp/investment-img-1.png" alt="">
+                  </div>
+                  <div class="investment__item-content">
+                    <div class="investment__item-title">
+                      25–45
+                    </div>
+                    <div class="investment__item-text">
+                      рабочих дней
+                    </div>
+                  </div>
                 </div>
-              </a>
+                <div class="investment__item">
+                  <div class="investment__item-cover">
+                    <img src="./../images/temp/investment-img-4.png" alt="">
+                  </div>
+                  <div class="investment__item-content">
+                    <div class="investment__item-title">
+                      80%
+                    </div>
+                    <div class="investment__item-text">
+                      предоплата
+                    </div>
+                  </div>
+                </div>
+                <div class="investment__item">
+                  <div class="investment__item-cover">
+                    <img src="./../images/temp/investment-img-3.png" alt="">
+                  </div>
+                  <div class="investment__item-content">
+                    <div class="investment__item-title">
+                      Результат
+                    </div>
+                    <div class="investment__item-text">
+                      готовый к использованию фирменный стиль
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
           </div>
