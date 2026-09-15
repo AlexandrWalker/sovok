@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   gsap.registerPlugin(ScrollTrigger, SplitText);
 
+  window.initQueue = [];
+
   /**
    * Инициализация Lenis
    */
@@ -389,6 +391,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (preloaderEl.style.display !== 'none') {
         preloaderEl.style.display = 'none';
         restoreScroll();
+        if (window.initQueue && window.initQueue.length) {
+          window.initQueue.forEach(initFunc => {
+            try { initFunc(); } catch (err) { console.error(err); }
+          });
+        }
       }
     }, PRELOADER_CONFIG.safetyTimeoutMs);
 
@@ -433,6 +440,13 @@ document.addEventListener('DOMContentLoaded', () => {
           restoreScroll();
           clearSafety();
           document.documentElement.classList.remove('preloader--active');
+
+          // ЗАПУСК ВСЕХ АНИМАЦИЙ ПОСЛЕ ИСЧЕЗНОВЕНИЯ ПРЕЛОАДЕРА
+          if (window.initQueue && window.initQueue.length) {
+            window.initQueue.forEach(initFunc => {
+              try { initFunc(); } catch (err) { console.error(err); }
+            });
+          }
         },
       });
 
@@ -2250,7 +2264,7 @@ document.addEventListener('DOMContentLoaded', () => {
    * задержка берётся автоматически из duration родителя
    */
 
-  (function () {
+  window.initQueue.push(function () {
     // Брейкпоинт уже есть ниже, выносим наверх чтобы использовать везде
     const MOBILE_BREAKPOINT = 600;
     const isMobile = () => window.innerWidth < MOBILE_BREAKPOINT;
@@ -2772,7 +2786,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-  })();
+  });
 
   /* new */
   /**
@@ -2835,7 +2849,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Анимация набора текста
    */
-  (function () {
+  window.initQueue.push(function () {
 
     // Возвращает Promise который резолвится только когда одновременно:
     // 1. #welcome отсутствует в DOM
@@ -3390,12 +3404,12 @@ document.addEventListener('DOMContentLoaded', () => {
       };
     }
 
-  })();
+  });
 
   /**
    * Анимация одноразового набора текста
    */
-  (function () {
+  window.initQueue.push(function () {
 
     const TYPE_SPEED = 0.07;
     const TYPE_VARIANCE = 0.04;
@@ -3563,12 +3577,12 @@ document.addEventListener('DOMContentLoaded', () => {
       typeOnce(el);
     });
 
-  })();
+  });
 
   /**
    * Анимация чисел
    */
-  (function initNumberRolls(selector = ".number-roll") {
+  window.initQueue.push(function initNumberRolls(selector = ".number-roll") {
 
     document.querySelectorAll(selector).forEach(el => {
       const digits = el.dataset.number.split("");
@@ -3594,7 +3608,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-  })();
+  });
 
   /**
    * Функция для блока produce
