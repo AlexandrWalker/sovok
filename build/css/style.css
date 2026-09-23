@@ -1802,6 +1802,16 @@ p {
   transition: 0s !important;
 }
 
+.typewriter-once-cursor {
+  font-size: inherit !important;
+  line-height: inherit !important;
+  font-weight: inherit !important;
+  color: inherit !important;
+  vertical-align: middle;
+  display: inline-block;
+  margin-left: 0.3rem;
+}
+
 /* Modules */
 
 .burger-btn {
@@ -3836,8 +3846,10 @@ canvas {
 
 .template__title {
   margin-bottom: 2rem;
+  min-height: 36rem;
 }
 
+.template__title h1,
 .template__title * {
   font-family: var(--second-family);
   font-weight: 900;
@@ -3846,6 +3858,7 @@ canvas {
   text-transform: uppercase;
 }
 
+.template__title h1 span,
 .template__title * span {
   color: var(--red);
 }
@@ -3895,8 +3908,8 @@ canvas {
 }
 
 .template__mask img {
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 100%;
   -o-object-fit: contain;
   object-fit: contain;
 }
@@ -4843,6 +4856,17 @@ html.tender--open .tender-btn .object-body::before {
   overflow-x: clip;
 }
 
+.desc::before {
+  content: "";
+  display: none;
+  width: 16rem;
+  height: 1.2rem;
+  background-color: var(--red);
+  position: absolute;
+  bottom: 5.5rem;
+  left: -5.4rem;
+}
+
 .desc__inner {
   position: relative;
 }
@@ -4906,11 +4930,25 @@ html.tender--open .tender-btn .object-body::before {
   height: auto;
   -o-object-fit: contain;
   object-fit: contain;
+  position: relative;
+  z-index: 2;
+}
+
+.desc__cover img.desc__cover-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 .ufo {
-  -webkit-animation: levitate 3s ease-in-out infinite;
-  animation: levitate 3s ease-in-out infinite;
+  -webkit-animation: levitate 3s linear infinite;
+  animation: levitate 3s linear infinite;
+}
+
+.ufo .desc__cover-shadow {
+  -webkit-animation: levitateShadow 3s linear infinite;
+  animation: levitateShadow 3s linear infinite;
 }
 
 .cosmos {
@@ -4964,6 +5002,60 @@ html.tender--open .tender-btn .object-body::before {
   75% {
     -webkit-transform: translateY(-10px) rotate(-3deg);
     transform: translateY(-10px) rotate(-3deg);
+  }
+
+  100% {
+    -webkit-transform: translateY(0) rotate(0deg);
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@-webkit-keyframes levitateShadow {
+  0% {
+    -webkit-transform: translateY(0) rotate(0deg);
+    transform: translateY(0) rotate(0deg);
+  }
+
+  25% {
+    -webkit-transform: translateY(-5px) rotate(1.5deg);
+    transform: translateY(-5px) rotate(1.5deg);
+  }
+
+  50% {
+    -webkit-transform: translateY(-10px) rotate(0deg);
+    transform: translateY(-10px) rotate(0deg);
+  }
+
+  75% {
+    -webkit-transform: translateY(-5px) rotate(-1.5deg);
+    transform: translateY(-5px) rotate(-1.5deg);
+  }
+
+  100% {
+    -webkit-transform: translateY(0) rotate(0deg);
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes levitateShadow {
+  0% {
+    -webkit-transform: translateY(0) rotate(0deg);
+    transform: translateY(0) rotate(0deg);
+  }
+
+  25% {
+    -webkit-transform: translateY(-5px) rotate(1.5deg);
+    transform: translateY(-5px) rotate(1.5deg);
+  }
+
+  50% {
+    -webkit-transform: translateY(-10px) rotate(0deg);
+    transform: translateY(-10px) rotate(0deg);
+  }
+
+  75% {
+    -webkit-transform: translateY(-5px) rotate(-1.5deg);
+    transform: translateY(-5px) rotate(-1.5deg);
   }
 
   100% {
@@ -6422,6 +6514,9 @@ html.tender--open .tender-btn .object-body::before {
   gap: 4rem;
   padding: 3rem 4rem 4rem 4rem;
   background-color: var(--black);
+  -webkit-transition: background-color 0.3s ease;
+  -o-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
   color: var(--white);
 }
 
@@ -7162,6 +7257,10 @@ html.tender--open .tender-btn .object-body::before {
   opacity: 0 !important;
 }
 
+.preloader--active [data-type=once] {
+  opacity: 0 !important;
+}
+
 @media (min-width: 601px) {
   .underline:hover::after {
     width: 100%;
@@ -7296,6 +7395,7 @@ html.tender--open .tender-btn .object-body::before {
     color: var(--black);
   }
 
+  .template__title h1,
   .template__title * {
     letter-spacing: unset;
   }
@@ -7355,6 +7455,14 @@ html.tender--open .tender-btn .object-body::before {
     --section-padding-bottom: 17rem;
   }
 
+  .naming-page .desc {
+    --section-padding-bottom: 12rem;
+  }
+
+  .desc::before {
+    display: block;
+  }
+
   .desc__title {
     max-width: 110rem;
     margin-bottom: 3rem;
@@ -7374,7 +7482,7 @@ html.tender--open .tender-btn .object-body::before {
   }
 
   .desc__cover {
-    width: 114.2rem;
+    width: 115.7rem;
     top: 24.5rem;
     right: 0;
     bottom: unset;
@@ -7456,6 +7564,10 @@ html.tender--open .tender-btn .object-body::before {
   .investment {
     --section-padding-bottom: 11.6rem;
     margin-right: var(--callback-width);
+  }
+
+  .investment__item:hover {
+    background-color: var(--red);
   }
 
   .map.creeping-block {
@@ -8589,14 +8701,19 @@ html.tender--open .tender-btn .object-body::before {
 
   .template__title {
     margin-bottom: 1.5rem;
+    min-height: 11rem;
   }
 
+  .template__title h1,
   .template__title * {
     font-size: 6rem;
+    line-height: 5rem;
   }
 
+  .template__title h1 span,
   .template__title * span {
     font-size: 4rem;
+    line-height: 4rem;
   }
 
   .template__text {

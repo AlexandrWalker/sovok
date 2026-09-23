@@ -2,7 +2,7 @@
 
 .investment {
   --section-padding-bottom: 5rem;
-  
+
   @include dosm {
     --section-padding-bottom: 11.6rem;
 
@@ -35,12 +35,20 @@
     gap: 4rem;
     padding: 3rem 4rem 4rem 4rem;
     background-color: var(--black);
+    transition: background-color 0.3s ease;
 
     color: var(--white);
 
     @include sm {
       gap: 0;
       padding: 2.6rem 2rem 4rem 2rem;
+    }
+
+    &:hover {
+
+      @include dosm {
+        background-color: var(--red);
+      }
     }
 
     &-cover {

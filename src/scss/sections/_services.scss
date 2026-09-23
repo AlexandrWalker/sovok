@@ -224,4 +224,8 @@
   .typewriter {
     opacity: 0 !important;
   }
+
+  [data-type="once"] {
+    opacity: 0 !important;
+  }
 }

@@ -11,6 +11,29 @@
     }
   }
 
+  .naming-page & {
+
+    @include dosm {
+      --section-padding-bottom: 12rem;
+    }
+  }
+
+  &::before {
+    content: "";
+    display: none;
+    width: 16rem;
+    height: 1.2rem;
+    background-color: var(--red);
+
+    position: absolute;
+    bottom: 5.5rem;
+    left: -5.4rem;
+
+    @include dosm {
+      display: block;
+    }
+  }
+
   &__inner {
     position: relative;
 
@@ -110,7 +133,7 @@
     z-index: 1;
 
     @include dosm {
-      width: 114.2rem;
+      width: 115.7rem;
 
       top: 24.5rem;
       right: 0;
@@ -138,12 +161,26 @@
       width: 100%;
       height: auto;
       object-fit: contain;
+
+      position: relative;
+      z-index: 2;
+
+      &.desc__cover-shadow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
     }
   }
 }
 
 .ufo {
-  animation: levitate 3s ease-in-out infinite;
+  animation: levitate 3s linear infinite;
+
+  .desc__cover-shadow {
+    animation: levitateShadow 3s linear infinite;
+  }
 }
 
 .cosmos {
@@ -165,6 +202,28 @@
 
   75% {
     transform: translateY(-10px) rotate(-3deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes levitateShadow {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  25% {
+    transform: translateY(-5px) rotate(1.5deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(0deg);
+  }
+
+  75% {
+    transform: translateY(-5px) rotate(-1.5deg);
   }
 
   100% {

@@ -44,11 +44,14 @@
 
   &__title {
     margin-bottom: 2rem;
+    min-height: 36rem;
 
     @include sm {
       margin-bottom: 1.5rem;
+      min-height: 11rem;
     }
 
+    h1,
     * {
       font-family: var(--second-family);
       font-weight: 900;
@@ -66,9 +69,11 @@
 
       @include sm {
         font-size: 6rem;
+        line-height: 5rem;
 
         span {
           font-size: 4rem;
+          line-height: 4rem;
         }
       }
     }
@@ -183,8 +188,8 @@
     }
 
     img {
-      width: 100%;
-      height: auto;
+      width: auto;
+      height: 100%;
       object-fit: contain;
     }
   }
