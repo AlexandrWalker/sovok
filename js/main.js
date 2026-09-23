@@ -2786,6 +2786,32 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
+    (function () {
+      const isMobile = window.innerWidth < 600;
+
+      if (!isMobile) {
+        const animItems = document.querySelectorAll('.anim-items')
+        animItems.forEach(items => {
+          const item = items.querySelectorAll('.anim-item')
+          gsap.from(item, {
+            scale: 0.8,
+            opacity: 0,
+            stagger: {
+              each: 0.2,
+              from: "start"
+            },
+            duration: 0.8,
+            ease: "back.out(1.2)",
+            scrollTrigger: {
+              trigger: items,
+              start: "top 95%",
+              onEnter: () => items.classList.add('anim-animated'),
+            }
+          });
+        });
+      }
+    })();
+
   });
 
   /* new */
@@ -3410,7 +3436,6 @@ document.addEventListener('DOMContentLoaded', () => {
    * Анимация одноразового набора текста
    */
   window.initQueue.push(function () {
-
     const TYPE_SPEED = 0.07;
     const TYPE_VARIANCE = 0.04;
 
@@ -3422,54 +3447,59 @@ document.addEventListener('DOMContentLoaded', () => {
       return new Promise(resolve => setTimeout(resolve, seconds * 1000));
     }
 
-    /**
-     * Ждём пока триггер войдёт в viewport.
-     * triggerEl - элемент с data-type="once", он же и есть триггер.
-     */
-    function waitForVisible(triggerEl) {
-      return new Promise(resolve => {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            if (entries[0].isIntersecting) {
-              observer.disconnect();
-              resolve();
-            }
-          },
-          { threshold: 0 }
-        );
-
-        observer.observe(triggerEl);
-      });
-    }
-
-    function parseChildNodes(el) {
-      const segments = [];
-
-      el.childNodes.forEach(node => {
-        if (node.nodeType === Node.TEXT_NODE) {
-          const value = node.textContent.replace(/\s+/g, ' ');
-          if (value.trim() === '') return;
-          segments.push({ type: 'text', value });
-        }
-
-        if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'BR') {
-          segments.push({ type: 'br' });
-        }
-
-        if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'BR') {
-          segments.push({ type: 'element', el: node, text: node.textContent });
+    function parseNodesRecursively(node) {
+      let segments = [];
+      node.childNodes.forEach(child => {
+        if (child.nodeType === Node.TEXT_NODE) {
+          let value = child.textContent.replace(/[\r\n\t]+/g, ' ').replace(/\s+/g, ' ');
+          if (value === ' ' || value === '') return;
+          segments.push({ type: 'text', value: value });
+        } else if (child.nodeType === Node.ELEMENT_NODE) {
+          if (child.tagName === 'BR') {
+            segments.push({ type: 'br' });
+          } else {
+            const clone = child.cloneNode(false);
+            const innerSegments = parseNodesRecursively(child);
+            segments.push({ type: 'element', el: clone, children: innerSegments });
+          }
         }
       });
-
       return segments;
     }
 
+    async function typeSegments(container, segments, cursor) {
+      for (const segment of segments) {
+        if (segment.type === 'br') {
+          container.insertBefore(document.createElement('br'), cursor);
+          continue;
+        }
+
+        if (segment.type === 'element') {
+          const wrapEl = segment.el;
+          container.insertBefore(wrapEl, cursor);
+          const subCursor = document.createElement('span');
+          subCursor.style.display = 'none';
+          wrapEl.appendChild(subCursor);
+          await typeSegments(wrapEl, segment.children, subCursor);
+          subCursor.remove();
+          continue;
+        }
+
+        for (let i = 0; i < segment.value.length; i++) {
+          const char = segment.value[i];
+          if (char === ' ' && i === 0 && container.textContent.trim() === '') {
+            continue;
+          }
+          const textNode = document.createTextNode(char);
+          container.insertBefore(textNode, cursor);
+          await sleep(getTypeDelay());
+        }
+      }
+    }
+
     async function typeChild(childEl, cursor) {
-      const segments = parseChildNodes(childEl);
-
+      const segments = parseNodesRecursively(childEl);
       childEl.innerHTML = '';
-
-      // Каждый дочерний тег получает свой курсор
       childEl.appendChild(cursor);
 
       const localCursorTween = gsap.to(cursor, {
@@ -3481,35 +3511,8 @@ document.addEventListener('DOMContentLoaded', () => {
         paused: true,
       });
 
-      for (const segment of segments) {
-        if (segment.type === 'br') {
-          childEl.insertBefore(document.createElement('br'), cursor);
-          continue;
-        }
+      await typeSegments(childEl, segments, cursor);
 
-        if (segment.type === 'element') {
-          const wrapEl = segment.el;
-          wrapEl.textContent = '';
-          childEl.insertBefore(wrapEl, cursor);
-
-          for (const char of segment.text) {
-            const span = document.createElement('span');
-            span.innerHTML = char === ' ' ? '&nbsp;' : char;
-            wrapEl.appendChild(span);
-            await sleep(getTypeDelay());
-          }
-          continue;
-        }
-
-        for (const char of segment.value) {
-          const span = document.createElement('span');
-          span.innerHTML = char === ' ' ? '&nbsp;' : char;
-          childEl.insertBefore(span, cursor);
-          await sleep(getTypeDelay());
-        }
-      }
-
-      // Каждый курсор убирает себя сам после печати
       localCursorTween.resume();
       await sleep(1.5);
       await new Promise(resolve => {
@@ -3524,16 +3527,19 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    async function typeOnce(el) {
+    async function startTypeOnce(el) {
       const children = Array.from(el.children);
       if (children.length === 0) return;
 
-      // Скрываем все дочерние теги до старта
       children.forEach(child => {
         child.style.visibility = 'hidden';
       });
 
       const cursor = document.createElement('span');
+
+      // ДОБАВЛЕН КАСТОМНЫЙ КЛАСС ДЛЯ КУРСОРA:
+      cursor.className = 'typewriter-once-cursor';
+
       Object.assign(cursor.style, {
         display: 'inline-block',
         fontWeight: '300',
@@ -3551,17 +3557,13 @@ document.addEventListener('DOMContentLoaded', () => {
         paused: true,
       });
 
-      await waitForVisible(el);
-
       localCursorTween.pause();
       gsap.set(cursor, { opacity: 1 });
 
-      // Показываем все дочерние теги сразу и запускаем анимацию параллельно
       children.forEach(child => {
         child.style.visibility = 'visible';
       });
 
-      // Promise.all - все дочерние теги печатаются одновременно
       await Promise.all(children.map(child => typeChild(child, cursor.cloneNode(true))));
 
       localCursorTween.resume();
@@ -3574,9 +3576,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.querySelectorAll('[data-type="once"]').forEach(el => {
-      typeOnce(el);
+      if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 95%',
+          once: true,
+          onEnter: () => {
+            startTypeOnce(el);
+          }
+        });
+      } else {
+        startTypeOnce(el);
+      }
     });
-
   });
 
   /**
