@@ -44,7 +44,8 @@
 
   &__title {
     margin-bottom: 2rem;
-    min-height: 36rem;
+    // min-height: 36rem;
+    min-height: 36.5rem;
 
     @include sm {
       margin-bottom: 1.5rem;

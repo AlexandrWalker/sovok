@@ -20,7 +20,6 @@
   }
 
   .produce__item {
-
     height: auto;
 
     &.produce__item--1 {
@@ -84,6 +83,8 @@
       padding: 30rem 1rem 4rem 4rem;
       gap: 3rem;
 
+      cursor: default;
+
       @include sm {
         padding: 18.4rem 2rem 3rem 2rem;
         gap: 2rem;
@@ -103,7 +104,7 @@
 
       @include sm {
         width: fit-content;
-        
+
         left: 2rem;
         transform: translateX(0);
       }
@@ -142,32 +143,21 @@
         li {
           margin-bottom: 2rem;
 
+          font-weight: 400;
+          font-size: 2rem;
+          line-height: 100%;
+          text-decoration-line: underline;
+          text-transform: uppercase;
+          color: var(--white);
+
           @include sm {
             margin-bottom: 1.5rem;
+
+            font-size: 1.6rem;
           }
 
           &:last-child {
             margin-bottom: 0;
-          }
-
-          a {
-            font-weight: 400;
-            font-size: 2rem;
-            line-height: 100%;
-            text-decoration-line: underline;
-            text-transform: uppercase;
-            color: var(--white);
-
-            @include sm {
-              font-size: 1.6rem;
-            }
-
-            &:hover {
-
-              @include dosm {
-                color: var(--red);
-              }
-            }
           }
         }
       }

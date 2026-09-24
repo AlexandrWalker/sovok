@@ -56,7 +56,6 @@
   &__items {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
   }
 
   &__item {
@@ -67,7 +66,7 @@
     width: 100%;
     padding: 0;
     transition: padding 0.3s ease, color 0.5s ease 0.1s;
-    padding: 0 0 2rem 0;
+    padding: 3rem 0 2rem 0;
     border-bottom: 0.1rem solid var(--black-10);
 
     position: relative;
@@ -115,7 +114,7 @@
         .services__item-btn {
           transition: all 0.3s ease, opacity 0.3s ease 0.2s, margin 0.3s ease 0s;
           opacity: 1;
-          margin: 0;
+          // margin: 0;
           pointer-events: all;
         }
       }
@@ -179,7 +178,7 @@
       opacity: 0;
       pointer-events: none;
       transition: all 0.3s ease, opacity 0.3s ease 0s, margin 0.3s ease 0s;
-      margin: 3rem 4.1rem 0 0;
+      // margin: 3rem 4.1rem 0 0;
 
       z-index: 2;
 
