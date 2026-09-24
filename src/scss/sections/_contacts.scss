@@ -9,6 +9,17 @@
     --section-padding-bottom: 0;
   }
 
+  &-page {
+
+    .general__title {
+      height: 3.5rem;
+
+      @include dosm {
+        height: 13.6rem;
+      }
+    }
+  }
+
   &-test {
     min-height: calc(100vh - var(--header-height) - 21.6rem);
     min-height: calc(100dvh - var(--header-height) - 21.6rem);

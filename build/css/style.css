@@ -194,14 +194,6 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
   src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
   font-weight: 800;
   font-style: normal;
@@ -210,16 +202,24 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
-  font-weight: 200;
+  src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
-  font-weight: 300;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
+  font-weight: 200;
   font-style: normal;
 }
 
@@ -4701,6 +4701,10 @@ html.tender--open .tender-btn .object-body::before {
   --section-padding-bottom: 5rem;
 }
 
+.contacts-page .general__title {
+  height: 3.5rem;
+}
+
 .contacts-test {
   min-height: calc(100vh - var(--header-height) - 21.6rem);
   min-height: calc(100dvh - var(--header-height) - 21.6rem);
@@ -7437,6 +7441,10 @@ html.tender--open .tender-btn .object-body::before {
     visibility: visible;
   }
 
+  .contacts-page .general__title {
+    height: 13.6rem;
+  }
+
   .contacts__head-title:hover {
     color: var(--red);
   }
@@ -8696,7 +8704,7 @@ html.tender--open .tender-btn .object-body::before {
   }
 
   .template__body {
-    padding: 0 0 45rem 0;
+    padding: 0 0 41rem 0;
   }
 
   .template__title {
@@ -8761,6 +8769,11 @@ html.tender--open .tender-btn .object-body::before {
     width: 100%;
     height: auto;
     top: 44.6rem;
+  }
+
+  .template__mask img {
+    width: 100%;
+    height: auto;
   }
 
   .tender {

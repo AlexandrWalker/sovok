@@ -38,7 +38,7 @@
     padding: 7rem 0;
 
     @include sm {
-      padding: 0 0 45rem 0;
+      padding: 0 0 41rem 0;
     }
   }
 
@@ -191,6 +191,11 @@
       width: auto;
       height: 100%;
       object-fit: contain;
+
+      @include sm {
+        width: 100%;
+        height: auto;
+      }
     }
   }
 }
