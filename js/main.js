@@ -4660,6 +4660,79 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /**
+   * Функция аккордиона
+   */
+  (function accordionFunc() {
+    const accordionContainers = document.querySelectorAll('.accordion-items');
+    if (!accordionContainers.length) return;
+
+    const activeClass = 'accordion-item--active';
+
+    // 1. Клик на элементы аккордеона
+    document.addEventListener('click', (e) => {
+      // Находим ближайшую кнопку/шапку аккордеона, по которой кликнули
+      const head = e.target.closest('.accordion-head');
+      if (!head) return;
+
+      const currentItem = head.closest('.accordion-item');
+      const currentContainer = currentItem.closest('.accordion-items');
+
+      // Находим только элементы этого же уровня (не трогаем вложенные внутрь)
+      const siblingItems = Array.from(currentContainer.children).filter(child =>
+        child.classList.contains('accordion-item')
+      );
+
+      // Закрываем соседей на этом же уровне
+      siblingItems.forEach(i => {
+        if (i !== currentItem) i.classList.remove(activeClass);
+      });
+
+      // Переключаем текущий элемент
+      currentItem.classList.toggle(activeClass);
+
+      // Управляем классом activated для текущего контейнера
+      const hasActiveChild = siblingItems.some(i => i.classList.contains(activeClass));
+      if (hasActiveChild) {
+        currentContainer.classList.add('activated');
+      } else {
+        currentContainer.classList.remove('activated');
+      }
+
+      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.update();
+    });
+
+    // 2. Глобальный обработчик для закрытия при клике ВНЕ аккордеона
+    document.addEventListener('click', (e) => {
+      // Если кликнули внутрь какого-то аккордеона, эту логику пропускаем
+      if (e.target.closest('.accordion-items')) return;
+
+      document.querySelectorAll('.accordion-item').forEach(item => {
+        item.classList.remove(activeClass);
+      });
+      accordionContainers.forEach(container => {
+        container.classList.remove('activated');
+      });
+
+      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.update();
+    });
+
+    // 3. Глобальный обработчик Escape
+    window.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+
+      document.querySelectorAll('.accordion-item').forEach(item => {
+        item.classList.remove(activeClass);
+      });
+      accordionContainers.forEach(container => {
+        container.classList.remove('activated');
+      });
+
+      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.update();
+    });
+
+  })();
+
+  /**
    * Функция для добавления активного класса при наведении на пункты меню
    */
   (function () {
