@@ -1,0 +1,115 @@
+@use './../mixins' as *;
+
+.faq {
+
+  .general {
+
+    &__title {
+
+      @include dosm {
+        font-size: 9rem;
+      }
+    }
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__item {
+    border: 0.1rem solid var(--black-10);
+
+    &:hover {
+
+      @include dosm {
+        border-color: var(--red);
+
+        .faq__item-title {
+          color: var(--red);
+        }
+      }
+    }
+
+    &.accordion-item--active {
+      border-color: var(--red);
+    }
+
+    &-head {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      padding: 2rem;
+      transition: padding 0.3s ease;
+
+      @include dosm {
+        padding: 2.6rem 5rem 2.6rem 5rem;
+      }
+
+      .accordion-item--active & {
+        padding: 2rem;
+
+        @include dosm {
+          padding: 2.6rem 5rem 3rem 5rem;
+        }
+      }
+    }
+
+    &-title {
+      transition: color 0.3s ease;
+
+      font-weight: 700;
+      font-size: 2rem;
+      line-height: 140%;
+      text-transform: uppercase;
+
+      @include dosm {
+        font-size: 3rem;
+      }
+
+      .accordion-item--active & {
+        color: var(--red);
+      }
+    }
+
+    &-arrow {
+      transform: rotate(90deg);
+    }
+
+    &-body {
+      padding: 0 2rem 0 2rem;
+
+      @include dosm {
+        padding: 0 5rem 0 5rem;
+      }
+
+      .accordion-item--active & {
+        padding: 0 2rem 2rem 2rem;
+
+        @include dosm {
+          padding: 0 5rem 5rem 5rem;
+        }
+      }
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 153.5rem;
+
+      p {
+        font-weight: 400;
+        font-size: 2rem;
+        line-height: 140%;
+
+        @include dosm {
+          font-size: 3rem;
+        }
+      }
+    }
+  }
+}

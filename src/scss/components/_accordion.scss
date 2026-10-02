@@ -1,0 +1,44 @@
+@use './../mixins' as *;
+
+.accordion {
+
+  &-items {}
+
+  &-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    transition: gap 0.3s ease, border-color 0.3s ease;
+
+    &--active {
+
+      &>.accordion-body {
+        grid-template-rows: 1fr;
+      }
+
+      &>.accordion-head>.accordion-icon {
+        transform: rotate(90deg) scale(-1, 1);
+      }
+    }
+  }
+
+  &-icon {
+    transition: all 0.3s ease;
+  }
+
+  &-head {
+    cursor: pointer;
+  }
+
+  &-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  &-content {
+    overflow: hidden;
+    min-height: 0;
+  }
+}

@@ -801,6 +801,57 @@ body {
 
 /* Components */
 
+.accordion-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 0;
+  -webkit-transition: gap 0.3s ease, border-color 0.3s ease;
+  -o-transition: gap 0.3s ease, border-color 0.3s ease;
+  transition: gap 0.3s ease, border-color 0.3s ease;
+}
+
+.accordion-item--active > .accordion-body {
+  -ms-grid-rows: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.accordion-item--active > .accordion-head > .accordion-icon {
+  -webkit-transform: rotate(90deg) scale(-1, 1);
+  -ms-transform: rotate(90deg) scale(-1, 1);
+  transform: rotate(90deg) scale(-1, 1);
+}
+
+.accordion-icon {
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.accordion-head {
+  cursor: pointer;
+}
+
+.accordion-body {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 0fr;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.accordion-content {
+  overflow: hidden;
+  min-height: 0;
+}
+
 /* Хлебные крошки */
 
 .breadcrumbs {
@@ -5682,6 +5733,96 @@ html.tender--open .tender-btn .object-body::before {
   color: var(--red);
 }
 
+.faq__items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.faq__item {
+  border: 0.1rem solid var(--black-10);
+}
+
+.faq__item.accordion-item--active {
+  border-color: var(--red);
+}
+
+.faq__item-head {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  -webkit-transition: padding 0.3s ease;
+  -o-transition: padding 0.3s ease;
+  transition: padding 0.3s ease;
+}
+
+.accordion-item--active .faq__item-head {
+  padding: 2rem;
+}
+
+.faq__item-title {
+  -webkit-transition: color 0.3s ease;
+  -o-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 140%;
+  text-transform: uppercase;
+}
+
+.accordion-item--active .faq__item-title {
+  color: var(--red);
+}
+
+.faq__item-arrow {
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.faq__item-body {
+  padding: 0 2rem 0 2rem;
+}
+
+.accordion-item--active .faq__item-body {
+  padding: 0 2rem 2rem 2rem;
+}
+
+.faq__item-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 153.5rem;
+}
+
+.faq__item-content p {
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 140%;
+}
+
 .features .general__head {
   gap: 1.5rem;
 }
@@ -5981,6 +6122,12 @@ html.tender--open .tender-btn .object-body::before {
   position: absolute;
   top: -6.1rem;
   right: calc(4.4rem + var(--callback-width));
+}
+
+.branding-page .growth__cover {
+  height: 88.1rem;
+  top: 30.7rem;
+  right: -14.6rem;
 }
 
 .growth__cover img {
@@ -7500,6 +7647,42 @@ html.tender--open .tender-btn .object-body::before {
     bottom: -4.1rem;
   }
 
+  .faq .general__title {
+    font-size: 9rem;
+  }
+
+  .faq__item:hover {
+    border-color: var(--red);
+  }
+
+  .faq__item:hover .faq__item-title {
+    color: var(--red);
+  }
+
+  .faq__item-head {
+    padding: 2.6rem 5rem 2.6rem 5rem;
+  }
+
+  .accordion-item--active .faq__item-head {
+    padding: 2.6rem 5rem 3rem 5rem;
+  }
+
+  .faq__item-title {
+    font-size: 3rem;
+  }
+
+  .faq__item-body {
+    padding: 0 5rem 0 5rem;
+  }
+
+  .accordion-item--active .faq__item-body {
+    padding: 0 5rem 5rem 5rem;
+  }
+
+  .faq__item-content p {
+    font-size: 3rem;
+  }
+
   .features {
     margin-right: var(--callback-width);
   }
@@ -7536,6 +7719,10 @@ html.tender--open .tender-btn .object-body::before {
 
   .features__item-text {
     font-size: 3rem;
+  }
+
+  .branding-page .growth {
+    --section-padding-bottom: 6.5rem;
   }
 
   .inform__slide {
