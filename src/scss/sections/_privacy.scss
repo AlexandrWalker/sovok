@@ -1,0 +1,98 @@
+@use './../mixins' as *;
+
+.privacy {
+
+  &-page {
+
+    .template {
+
+      h1 {
+        font-size: 2.5rem;
+
+        @include dosm {
+          font-size: 6rem;
+        }
+      }
+
+      &__inner {
+        gap: 4rem;
+      }
+    }
+  }
+
+  &__inner {}
+
+  &__content {
+    max-width: 166.5rem;
+
+    h2 {
+      padding-top: 0.5rem;
+      margin-bottom: 1.5rem;
+
+      font-weight: 700;
+      font-size: 1.6rem;
+      line-height: 120%;
+      color: var(--red);
+
+      @include dosm {
+        padding-top: 1rem;
+        margin-bottom: 2rem;
+
+        font-size: 4rem;
+      }
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+
+      font-family: var(--third-family);
+      font-weight: 400;
+      font-size: 1.4rem;
+      line-height: 140%;
+
+      @include dosm {
+        margin-bottom: 2rem;
+
+        font-size: 1.6rem;
+      }
+
+      &:has(+ol) {
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      text-decoration: underline;
+
+      &:hover {
+
+        @include dosm {
+          color: var(--red);
+        }
+      }
+    }
+
+    ol {
+      padding-left: 2rem;
+      margin-bottom: 2rem;
+      list-style: russian-with-yo;
+
+      li {
+        font-family: var(--third-family);
+        font-weight: 400;
+        font-size: 1.4rem;
+        line-height: 140%;
+
+        @include dosm {
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+}
+
+@counter-style russian-with-yo {
+  system: alphabetic;
+  symbols: 'а' 'б' 'в' 'г' 'д' 'е' 'ё' 'ж' 'з' 'и' 'й' 'к' 'л' 'м' 'н' 'о' 'п' 'р' 'с' 'т' 'у' 'ф' 'х' 'ц' 'ч' 'ш' 'щ' 'ъ' 'ы' 'ь' 'э' 'ю' 'я';
+  suffix: ") ";
+}

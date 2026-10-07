@@ -132,4 +132,10 @@
       padding: 0 var(--btn-padding-x);
     }
   }
+
+  &--black {
+    --btn-background: var(--black);
+    --btn-hover-background: var(--red);
+    --btn-color: var(--white);
+  }
 }

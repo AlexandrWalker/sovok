@@ -50,7 +50,7 @@
       }
 
       .accordion-item--active & {
-        padding: 2rem;
+        padding: 2rem 2rem 1rem 2rem;
 
         @include dosm {
           padding: 2.6rem 5rem 3rem 5rem;
@@ -62,7 +62,7 @@
       transition: color 0.3s ease;
 
       font-weight: 700;
-      font-size: 2rem;
+      font-size: 1.6rem;
       line-height: 140%;
       text-transform: uppercase;
 
@@ -77,6 +77,10 @@
 
     &-arrow {
       transform: rotate(90deg);
+
+      i {
+        --font-size: 3rem;
+      }
     }
 
     &-body {
@@ -103,7 +107,7 @@
 
       p {
         font-weight: 400;
-        font-size: 2rem;
+        font-size: 1.6rem;
         line-height: 140%;
 
         @include dosm {

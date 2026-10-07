@@ -170,16 +170,16 @@ img {
 @font-face {
   font-family: Redoctober;
   font-display: swap;
-  src: url("../fonts/Redoctober-Fat.woff2") format("woff2"), url("../fonts/Redoctober-Fat.woff") format("woff");
-  font-weight: 900;
+  src: url("../fonts/Redoctober-Regular.woff2") format("woff2"), url("../fonts/Redoctober-Regular.woff") format("woff");
+  font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: Redoctober;
   font-display: swap;
-  src: url("../fonts/Redoctober-Regular.woff2") format("woff2"), url("../fonts/Redoctober-Regular.woff") format("woff");
-  font-weight: 400;
+  src: url("../fonts/Redoctober-Fat.woff2") format("woff2"), url("../fonts/Redoctober-Fat.woff") format("woff");
+  font-weight: 900;
   font-style: normal;
 }
 
@@ -204,14 +204,6 @@ img {
   font-display: swap;
   src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
   font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
-  font-weight: 200;
   font-style: normal;
 }
 
@@ -250,16 +242,8 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Thin.woff2") format("woff2"), url("../fonts/Roboto-Thin.woff") format("woff");
-  font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: RobotoCondensed;
-  font-display: swap;
-  src: url("../fonts/RobotoCondensed-Black.woff2") format("woff2"), url("../fonts/RobotoCondensed-Black.woff") format("woff");
-  font-weight: 900;
+  src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
+  font-weight: 200;
   font-style: normal;
 }
 
@@ -274,8 +258,24 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
+  src: url("../fonts/RobotoCondensed-Black.woff2") format("woff2"), url("../fonts/RobotoCondensed-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoCondensed;
+  font-display: swap;
   src: url("../fonts/RobotoCondensed-ExtraBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraBold.woff") format("woff");
   font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-Thin.woff2") format("woff2"), url("../fonts/Roboto-Thin.woff") format("woff");
+  font-weight: 100;
   font-style: normal;
 }
 
@@ -306,6 +306,14 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
+  src: url("../fonts/RobotoCondensed-Thin.woff2") format("woff2"), url("../fonts/RobotoCondensed-Thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoCondensed;
+  font-display: swap;
   src: url("../fonts/RobotoCondensed-Regular.woff2") format("woff2"), url("../fonts/RobotoCondensed-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
@@ -316,14 +324,6 @@ img {
   font-display: swap;
   src: url("../fonts/RobotoCondensed-SemiBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-SemiBold.woff") format("woff");
   font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: RobotoCondensed;
-  font-display: swap;
-  src: url("../fonts/RobotoCondensed-Thin.woff2") format("woff2"), url("../fonts/RobotoCondensed-Thin.woff") format("woff");
-  font-weight: 100;
   font-style: normal;
 }
 
@@ -1033,6 +1033,12 @@ body {
   align-items: center;
   background-color: var(--red);
   padding: 0 var(--btn-padding-x);
+}
+
+.btn--black {
+  --btn-background: var(--black);
+  --btn-hover-background: var(--red);
+  --btn-color: var(--white);
 }
 
 .coordinates {
@@ -3919,6 +3925,10 @@ canvas {
   margin-bottom: 6rem;
 }
 
+.services-page .template__text {
+  z-index: 2;
+}
+
 .template__text * {
   font-weight: 700;
   font-size: 4rem;
@@ -3930,6 +3940,10 @@ canvas {
   --btn-padding-x: 6.5rem;
 }
 
+.services-page .template__btn {
+  z-index: 2;
+}
+
 .template__cover {
   max-width: 100%;
   width: auto;
@@ -3938,6 +3952,10 @@ canvas {
   position: absolute;
   top: -12.6rem;
   right: 10.3rem;
+  z-index: 1;
+}
+
+.services-page .template__cover {
   z-index: 1;
 }
 
@@ -4745,6 +4763,94 @@ html.tender--open .tender-btn .object-body::before {
 
 .cases .swiper-button-next {
   right: -15.7rem;
+}
+
+.coming-soon {
+  --section-padding-top: 4rem;
+  --section-padding-bottom: 39.6rem;
+  overflow: visible;
+}
+
+.coming-soon__head {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.coming-soon__head-title {
+  margin-bottom: 2rem;
+  font-family: var(--second-family);
+  font-weight: 900;
+  font-size: 6.5rem;
+  line-height: 90%;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.coming-soon__head-title span {
+  font-weight: 900;
+  font-size: 16rem;
+  line-height: 90%;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.coming-soon__head-text {
+  max-width: 74.6rem;
+  margin-bottom: 5rem;
+  font-weight: 700;
+  font-size: 4rem;
+  line-height: 120%;
+  text-transform: uppercase;
+}
+
+.coming-soon__cover {
+  width: auto;
+  height: 103.9rem;
+  position: absolute;
+  bottom: 0;
+  right: calc(var(--callback-mini-width) + 7.1rem);
+  z-index: 2;
+}
+
+.coming-soon__cover img {
+  width: auto;
+  height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+
+.coming-soon__frame {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  width: calc(100% - var(--callback-mini-width));
+  height: 33.8rem;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.coming-soon__frame-img {
+  width: auto;
+  height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
 }
 
 .contacts {
@@ -5774,7 +5880,7 @@ html.tender--open .tender-btn .object-body::before {
 }
 
 .accordion-item--active .faq__item-head {
-  padding: 2rem;
+  padding: 2rem 2rem 1rem 2rem;
 }
 
 .faq__item-title {
@@ -5782,7 +5888,7 @@ html.tender--open .tender-btn .object-body::before {
   -o-transition: color 0.3s ease;
   transition: color 0.3s ease;
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 1.6rem;
   line-height: 140%;
   text-transform: uppercase;
 }
@@ -5795,6 +5901,10 @@ html.tender--open .tender-btn .object-body::before {
   -webkit-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
   transform: rotate(90deg);
+}
+
+.faq__item-arrow i {
+  --font-size: 3rem;
 }
 
 .faq__item-body {
@@ -5819,7 +5929,7 @@ html.tender--open .tender-btn .object-body::before {
 
 .faq__item-content p {
   font-weight: 400;
-  font-size: 2rem;
+  font-size: 1.6rem;
   line-height: 140%;
 }
 
@@ -6812,6 +6922,62 @@ html.tender--open .tender-btn .object-body::before {
   z-index: 1;
 }
 
+.privacy-page .template h1 {
+  font-size: 2.5rem;
+}
+
+.privacy-page .template__inner {
+  gap: 4rem;
+}
+
+.privacy__content {
+  max-width: 166.5rem;
+}
+
+.privacy__content h2 {
+  padding-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 120%;
+  color: var(--red);
+}
+
+.privacy__content p {
+  margin-bottom: 1.5rem;
+  font-family: var(--third-family);
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 140%;
+}
+
+.privacy__content p:has(+ ol) {
+  margin-bottom: 0;
+}
+
+.privacy__content a {
+  text-decoration: underline;
+}
+
+.privacy__content ol {
+  padding-left: 2rem;
+  margin-bottom: 2rem;
+  list-style: russian-with-yo;
+}
+
+.privacy__content ol li {
+  font-family: var(--third-family);
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 140%;
+}
+
+@counter-style russian-with-yo {
+  system: alphabetic;
+  symbols: "а" "б" "в" "г" "д" "е" "ё" "ж" "з" "и" "й" "к" "л" "м" "н" "о" "п" "р" "с" "т" "у" "ф" "х" "ц" "ч" "ш" "щ" "ъ" "ы" "ь" "э" "ю" "я";
+  suffix: ") ";
+}
+
 .produce {
   --section-padding-bottom: 10rem;
   margin-right: var(--callback-width);
@@ -6899,6 +7065,10 @@ html.tender--open .tender-btn .object-body::before {
   transition: all 0.3s ease;
 }
 
+.services-page .produce__item-wrap {
+  max-width: 45.3rem;
+}
+
 .produce__item-title {
   font-family: var(--second-family);
   font-weight: 900;
@@ -6938,6 +7108,11 @@ html.tender--open .tender-btn .object-body::before {
   position: relative;
   display: inline-block;
   overflow: visible;
+}
+
+.services-page .flagship .produce__item.produce__item--1 .produce__item-cover {
+  height: 21.9rem;
+  top: 4rem;
 }
 
 .produce__item-cover img {
@@ -7547,6 +7722,11 @@ html.tender--open .tender-btn .object-body::before {
     letter-spacing: unset;
   }
 
+  .services-page .template__cover {
+    height: 75.3rem;
+    right: 19.6rem;
+  }
+
   .naming-page .template__cover {
     height: 99.6rem;
     top: -17rem;
@@ -7762,6 +7942,29 @@ html.tender--open .tender-btn .object-body::before {
     position: fixed;
     left: 0;
     bottom: -100%;
+  }
+
+  .privacy-page .template h1 {
+    font-size: 6rem;
+  }
+
+  .privacy__content h2 {
+    padding-top: 1rem;
+    margin-bottom: 2rem;
+    font-size: 4rem;
+  }
+
+  .privacy__content p {
+    margin-bottom: 2rem;
+    font-size: 1.6rem;
+  }
+
+  .privacy__content a:hover {
+    color: var(--red);
+  }
+
+  .privacy__content ol li {
+    font-size: 1.6rem;
   }
 
   .produce__item:hover {
@@ -8896,10 +9099,20 @@ html.tender--open .tender-btn .object-body::before {
     line-height: 5rem;
   }
 
+  .services-page .template__title h1,
+  .services-page .template__title * {
+    font-size: 4rem;
+  }
+
   .template__title h1 span,
   .template__title * span {
     font-size: 4rem;
     line-height: 4rem;
+  }
+
+  .services-page .template__title h1 span,
+  .services-page .template__title * span {
+    font-size: 6rem;
   }
 
   .template__text {
@@ -8924,6 +9137,14 @@ html.tender--open .tender-btn .object-body::before {
     top: 20.5rem;
     right: unset;
     left: -2rem;
+  }
+
+  .services-page .template__cover {
+    width: auto;
+    height: 38rem;
+    -webkit-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
   }
 
   .naming-page .template__cover {
@@ -9166,6 +9387,10 @@ html.tender--open .tender-btn .object-body::before {
     --section-padding-bottom: 10rem;
   }
 
+  .branding-page .cases {
+    --section-padding-bottom: 4rem;
+  }
+
   .cases .general__head {
     gap: 1rem;
     margin-bottom: 3rem;
@@ -9199,6 +9424,10 @@ html.tender--open .tender-btn .object-body::before {
     background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTEzIiBoZWlnaHQ9IjY1IiB2aWV3Qm94PSIwIDAgMTEzIDY1IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KPHJlY3QgeD0iNzEuNzg0MiIgd2lkdGg9IjEyLjQxNDUiIGhlaWdodD0iOTAuMjM1NiIgdHJhbnNmb3JtPSJyb3RhdGUoNTIuNzA0NiA3MS43ODQyIDApIiBmaWxsPSIjREMxNDNDIi8+DQo8Y2lyY2xlIGN4PSI5NS42Njg4IiBjeT0iMzIuOTM2NyIgcj0iMTMuNzk2NyIgdHJhbnNmb3JtPSJyb3RhdGUoMTIuMzAwMSA5NS42Njg4IDMyLjkzNjcpIiBmaWxsPSIjREMxNDNDIi8+DQo8L3N2Zz4NCg==);
     right: 0;
     bottom: -4.455rem;
+  }
+
+  .branding-page .cases__body::after {
+    display: none;
   }
 
   .cases__body .btn {
@@ -9257,6 +9486,57 @@ html.tender--open .tender-btn .object-body::before {
   }
 
   .cases__btn {
+    display: none;
+  }
+
+  .branding-page .cases__btn {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+  }
+
+  .coming-soon {
+    --section-padding-top: 0;
+    --section-padding-bottom: 45.5rem;
+    overflow: hidden;
+  }
+
+  .coming-soon__head-title {
+    margin-bottom: 3rem;
+    font-size: 4rem;
+    line-height: 100%;
+    letter-spacing: -0.05em;
+  }
+
+  .coming-soon__head-title span {
+    font-size: 4rem;
+    line-height: 100%;
+    letter-spacing: -0.05em;
+  }
+
+  .coming-soon__head-text {
+    display: none;
+  }
+
+  .coming-soon__head-btn {
+    --btn-height: 7rem;
+    --btn-padding-x: 5.2rem;
+    font-size: 2rem;
+  }
+
+  .coming-soon__cover {
+    height: 58.1rem;
+    right: 3rem;
+    left: -1.9rem;
+  }
+
+  .coming-soon__frame {
+    width: 100%;
+    height: 16.4rem;
+  }
+
+  .coming-soon__frame-img--2 {
     display: none;
   }
 
@@ -9424,6 +9704,10 @@ html.tender--open .tender-btn .object-body::before {
     font-size: 1.6rem;
   }
 
+  .branding-page .growth {
+    --section-padding-top: 25.2rem;
+  }
+
   .growth .general__head::before {
     width: calc(100% + var(--container-padding) * 2);
     height: calc(100% + 2rem);
@@ -9480,6 +9764,14 @@ html.tender--open .tender-btn .object-body::before {
     font-size: 1.6rem;
   }
 
+  .branding-page .growth__cover {
+    width: auto;
+    height: 35.5rem;
+    top: 0;
+    right: unset;
+    left: calc((var(--container-padding) + 1rem) * -1);
+  }
+
   .growth__cover {
     width: 26rem;
     height: auto;
@@ -9491,6 +9783,13 @@ html.tender--open .tender-btn .object-body::before {
   .growth__cover img {
     width: 100%;
     height: auto;
+  }
+
+  .branding-page .growth__cover img {
+    width: auto;
+    height: 100%;
+    -o-object-fit: contain;
+    object-fit: contain;
   }
 
   .hero {

@@ -9,6 +9,10 @@
     @include dosm {
       --section-padding-bottom: 6.5rem;
     }
+
+    @include sm {
+      --section-padding-top: 25.2rem;
+    }
   }
 
   @include sm {}
@@ -184,6 +188,15 @@
 
       top: 30.7rem;
       right: -14.6rem;
+
+      @include sm {
+        width: auto;
+        height: 35.5rem;
+
+        top: 0;
+        right: unset;
+        left: calc((var(--container-padding) + 1rem) * -1);
+      }
     }
 
     @include sm {
@@ -203,6 +216,15 @@
       @include sm {
         width: 100%;
         height: auto;
+      }
+
+      .branding-page & {
+
+        @include sm {
+          width: auto;
+          height: 100%;
+          object-fit: contain;
+        }
       }
     }
 

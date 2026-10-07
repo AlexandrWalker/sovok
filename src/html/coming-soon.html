@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru" class="inner-page">
+@@include('blocks/head.html', {"title": "СОВОК"})
+
+<body>
+  <div class="wrapper">
+    <!-- Прелоадер -->
+    @@include('./blocks/preloader.html')
+    <!-- Шапка -->
+    @@include('./blocks/header.html')
+    <!-- Меню -->
+    @@include('./blocks/menu.html')
+    <!-- callback -->
+    @@include('./blocks/callback.html')
+    <!-- Тендер -->
+    @@include('./blocks/tender.html')
+    <main class="main">
+
+      <section class="coming-soon">
+        <div class="container">
+          <div class="coming-soon__inner">
+
+            <div class="coming-soon__head">
+              <div class="coming-soon__head-title">
+                страница <br>
+                <span>в разработке</span>
+              </div>
+              <div class="coming-soon__head-text">
+                посетите главную страницу пока бригада работает
+              </div>
+              <a class="coming-soon__head-btn btn btn--black" href="/sovok">
+                <div class="btn__text">
+                  на главную
+                </div>
+              </a>
+            </div>
+
+            <!-- <div class="coming-soon__cover" data-anim="parallax"> -->
+            <div class="coming-soon__cover">
+              <img src="./../images/temp/coming-soon-cover.webp" alt="">
+            </div>
+
+            <div class="coming-soon__frame">
+              <img class="coming-soon__frame-img coming-soon__frame-img--1" src="./../images/temp/coming-soon-frame-1.png" alt="">
+              <img class="coming-soon__frame-img coming-soon__frame-img--2" src="./../images/temp/coming-soon-frame-2.png" alt="">
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Форма обратной связи -->
+      @@include('./blocks/callback-mini.html', {"suptitle": "напишите", "title": "нам"})
+
+    </main>
+    <!-- Подвал -->
+    @@include('blocks/footer.html')

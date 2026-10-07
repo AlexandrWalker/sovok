@@ -11,6 +11,13 @@
     --section-padding-bottom: 10rem;
   }
 
+  .branding-page & {
+
+    @include sm {
+      --section-padding-bottom: 4rem;
+    }
+  }
+
   .general {
 
     &__head {
@@ -103,6 +110,13 @@
 
         right: 0;
         bottom: -4.455rem;
+      }
+
+      .branding-page & {
+
+        @include sm {
+          display: none;
+        }
       }
     }
 
@@ -308,6 +322,14 @@
 
     @include sm {
       display: none;
+    }
+
+    .branding-page & {
+
+      @include sm {
+        display: flex;
+        width: 100%;
+      }
     }
   }
 }
