@@ -12,6 +12,13 @@
     min-height: auto;
   }
 
+  .branding-page & {
+
+    @include dosm {
+      margin-top: 4.5rem;
+    }
+  }
+
   .general {
 
     &__head {
@@ -58,7 +65,7 @@
       z-index: 3;
 
       @include sm {
-        margin: 0!important;
+        margin: 0 !important;
         // transform: translateY(16.8rem);
 
         position: absolute;
@@ -83,6 +90,10 @@
 
     @include sm {
       display: none;
+    }
+
+    .branding-page & {
+      top: calc(-100vw/(1920/10));
     }
 
     img {
@@ -161,7 +172,7 @@
 
       @include sm {
         margin-bottom: 0;
-        
+
         font-size: 2rem;
       }
     }

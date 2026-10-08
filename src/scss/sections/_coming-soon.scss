@@ -21,34 +21,41 @@
     flex-direction: column;
 
     &-title {
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
 
-      font-family: var(--second-family);
-      font-weight: 900;
-      font-size: 6.5rem;
-      line-height: 90%;
-      text-transform: uppercase;
-      white-space: nowrap;
+      min-height: 8rem;
 
-      @include sm {
-        margin-bottom: 3rem;
-
-        font-size: 4rem;
-        line-height: 100%;
-        letter-spacing: -0.05em;
+      @include dosm {
+        margin-bottom: 2rem;
+        min-height: 20.3rem;
       }
 
-      span {
+      h1 {
+        font-family: var(--second-family);
         font-weight: 900;
-        font-size: 16rem;
+        font-size: 6.5rem;
         line-height: 90%;
         text-transform: uppercase;
-        color: var(--red);
+        white-space: nowrap;
 
         @include sm {
           font-size: 4rem;
           line-height: 100%;
           letter-spacing: -0.05em;
+        }
+
+        span {
+          font-weight: 900;
+          font-size: 16rem;
+          line-height: 90%;
+          text-transform: uppercase;
+          color: var(--red);
+
+          @include sm {
+            font-size: 4rem;
+            line-height: 100%;
+            letter-spacing: -0.05em;
+          }
         }
       }
     }
@@ -68,10 +75,10 @@
     }
 
     &-btn {
+      --btn-padding-x: 5.2rem;
 
       @include sm {
         --btn-height: 7rem;
-        --btn-padding-x: 5.2rem;
 
         font-size: 2rem;
       }

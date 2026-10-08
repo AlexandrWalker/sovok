@@ -292,6 +292,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     gsap.ticker.lagSmoothing(0);
 
+    /**
+     * Отлов перехода по истории
+     */
+    /**
+     * Отлов перехода по истории
+     */
+    window.addEventListener('pageshow', (e) => {
+      if (e.persisted) {
+        if (typeof ScrollTrigger !== 'undefined') {
+          ScrollTrigger.clearScrollMemory();
+          ScrollTrigger.getAll().forEach(t => {
+            if (t.animation) t.animation.progress(0).kill();
+            t.refresh();
+          });
+        }
+        window.location.reload();
+      }
+    });
+
     // Плавный скролл к целевому элементу через Lenis
     function scrollToTarget(target) {
       lenis.scrollTo(target, {

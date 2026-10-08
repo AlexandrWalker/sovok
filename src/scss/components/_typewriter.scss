@@ -11,11 +11,12 @@
 }
 
 .typewriter-once-cursor {
+  display: inline-block;
+  margin-left: 0.3rem;
+
   font-size: inherit !important;
-  line-height: 100% !important;
+  line-height: 85% !important;
   font-weight: inherit !important;
   color: inherit !important;
   vertical-align: middle;
-  display: inline-block;
-  margin-left: 0.3rem;
 }

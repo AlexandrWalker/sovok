@@ -11,6 +11,13 @@
     --section-padding-bottom: 10rem;
   }
 
+  .services-page & {
+
+    @include dosm {
+      --section-padding-bottom: 17.5rem;
+    }
+  }
+
   .branding-page & {
 
     @include sm {

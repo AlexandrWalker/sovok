@@ -88,6 +88,23 @@
         }
       }
     }
+
+    ul {
+      padding-left: 2rem;
+      margin-bottom: 2rem;
+      list-style: disc;
+
+      li {
+        font-family: var(--third-family);
+        font-weight: 400;
+        font-size: 1.4rem;
+        line-height: 140%;
+
+        @include dosm {
+          font-size: 1.6rem;
+        }
+      }
+    }
   }
 }
 

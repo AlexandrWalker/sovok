@@ -183,10 +183,13 @@
         display: none;
       }
 
-      .services-page .flagship .produce__item.produce__item--1 & {
-        height: 21.9rem;
+      .services-page .flagship & {
 
-        top: 4rem;
+        @include dosm {
+          height: 21.9rem !important;
+
+          top: 4rem !important;
+        }
       }
 
       img {

@@ -2,6 +2,13 @@
 
 .faq {
 
+  .services-page & {
+
+    @include dosm {
+      --section-padding-bottom: 9rem;
+    }
+  }
+
   .general {
 
     &__title {

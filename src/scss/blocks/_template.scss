@@ -153,6 +153,7 @@
       @include dosm {
         height: 75.3rem;
 
+        top: -9rem;
         right: 19.6rem;
       }
 
@@ -161,6 +162,11 @@
         height: 38rem;
 
         transform: scale(1, 1);
+
+        top: unset;
+        right: 3rem;
+        bottom: 5rem;
+        left: unset;
       }
     }
 
@@ -200,6 +206,14 @@
       @include sm {
         width: 100%;
         height: auto;
+      }
+
+      .services-page & {
+
+        @include sm {
+          width: auto;
+          height: 100%;
+        }
       }
     }
   }
