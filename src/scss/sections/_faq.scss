@@ -9,6 +9,13 @@
     }
   }
 
+  .container {
+
+    @include dosm {
+      padding-right: calc(var(--container-padding) + var(--callback-width));
+    }
+  }
+
   .general {
 
     &__title {
