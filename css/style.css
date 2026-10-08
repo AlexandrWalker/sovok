@@ -314,16 +314,16 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-SemiBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-SemiBold.woff") format("woff");
-  font-weight: 600;
+  src: url("../fonts/RobotoCondensed-Thin.woff2") format("woff2"), url("../fonts/RobotoCondensed-Thin.woff") format("woff");
+  font-weight: 100;
   font-style: normal;
 }
 
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Thin.woff2") format("woff2"), url("../fonts/RobotoCondensed-Thin.woff") format("woff");
-  font-weight: 100;
+  src: url("../fonts/RobotoCondensed-SemiBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-SemiBold.woff") format("woff");
+  font-weight: 600;
   font-style: normal;
 }
 
@@ -6968,29 +6968,37 @@ html.tender--open .tender-btn .object-body::before {
 }
 
 .privacy__content a {
+  white-space: nowrap;
   text-decoration: underline;
+  -webkit-text-decoration-skip-ink: none;
+  text-decoration-skip-ink: none;
 }
 
 .privacy__content ol {
-  padding-left: 2rem;
   margin-bottom: 2rem;
-  list-style: russian-with-yo;
+  list-style: none;
 }
 
 .privacy__content ol li {
+  list-style: none;
   font-family: var(--third-family);
   font-weight: 400;
   font-size: 1.4rem;
   line-height: 140%;
 }
 
+.privacy__content ol ul {
+  margin-bottom: 0;
+}
+
 .privacy__content ul {
-  padding-left: 2rem;
+  padding-left: 2.4rem;
   margin-bottom: 2rem;
   list-style: disc;
 }
 
 .privacy__content ul li {
+  list-style: disc;
   font-family: var(--third-family);
   font-weight: 400;
   font-size: 1.4rem;
@@ -7863,6 +7871,10 @@ html.tender--open .tender-btn .object-body::before {
 
   .services-page .faq {
     --section-padding-bottom: 9rem;
+  }
+
+  .faq .container {
+    padding-right: calc(var(--container-padding) + var(--callback-width));
   }
 
   .faq .general__title {
