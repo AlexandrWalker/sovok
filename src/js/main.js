@@ -1583,8 +1583,22 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Закрытие по клику вне попапа
+    // Универсальный обработчик кликов (для клика вне попапа и кнопок закрытия)
     document.addEventListener('click', (e) => {
+      // 1. Проверяем, не кликнули ли мы по кнопке закрытия с атрибутом [data-popup-close]
+      const closeBtn = e.target.closest('[data-popup-close]');
+      if (closeBtn) {
+        e.preventDefault();
+        // Находим родительский попап, в котором лежит эта кнопка
+        const parentPopupBlock = closeBtn.closest('[data-popup]');
+        if (parentPopupBlock) {
+          const name = parentPopupBlock.dataset.popup;
+          closePopup(name);
+        }
+        return; // Прерываем дальнейшие проверки клика, так как попап уже закрывается
+      }
+
+      // 2. Стандартная проверка клика вне попапа
       Object.keys(popups).forEach(name => {
         const popup = popups[name];
         const isOpen = document.documentElement.classList.contains(`${name}--open`);
@@ -4849,6 +4863,91 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /**
+   * Функция для снятия disabled у кнопок форм при отутствии required
+   */
+  (function () {
+    // Находим все формы на странице
+    const forms = document.querySelectorAll('form');
+
+    forms.forEach(form => {
+      // Находим кнопку отправки внутри подвала конкретной формы
+      const formFoot = form.querySelector('.form-foot');
+      const submitBtn = form.querySelector('.form-foot button');
+
+      // Если кнопки или обязательных полей в форме нет — пропускаем её
+      if (!submitBtn) return;
+
+      // Функция проверки всех обязательных полей в текущей форме
+      const checkRequiredFields = () => {
+        // Находим ВСЕ обязательные поля в этой форме
+        const requiredInputs = formFoot.querySelectorAll('[required]');
+
+        // Если обязательных полей нет, кнопка всегда активна
+        if (requiredInputs.length === 0) {
+          submitBtn.removeAttribute('disabled');
+          return;
+        }
+
+        // Проверяем, есть ли хотя бы одно незаполненное обязательное поле.
+        // Метод checkValidity() встроен в браузер и идеально проверяет заполненность,
+        // тип email, состояние чекбоксов required и т.д.
+        const hasInvalidField = Array.from(requiredInputs).some(input => !input.checkValidity());
+
+        if (hasInvalidField) {
+          submitBtn.setAttribute('disabled', 'disabled');
+        } else {
+          submitBtn.removeAttribute('disabled');
+        }
+      };
+
+      // Запускаем проверку один раз при загрузке страницы, 
+      // чтобы сразу заблокировать кнопку, если поля пустые
+      checkRequiredFields();
+
+      // Следим за вводом данных во всей форме (событие всплывает от инпутов к форме)
+      form.addEventListener('input', checkRequiredFields);
+
+      // Дополнительно следим за изменением (полезно для селектов, радиокнопок и чекбоксов)
+      form.addEventListener('change', checkRequiredFields);
+    });
+  })();
+
+  (function () {
+    const html = document.documentElement;
+
+    // 1. Логика для кнопки внутри попапа .tender
+    const tenderBtn = document.querySelector('.tender .form-btn');
+
+    if (tenderBtn) {
+      tenderBtn.addEventListener('click', () => {
+        if (html.classList.contains('tender--open')) {
+          html.classList.add('tender--change');
+        }
+      });
+    }
+
+    // 2. Безопасная логика авто-удаления через MutationObserver
+    const observer = new MutationObserver((mutations) => {
+      // Используем простой цикл for для максимальной производительности
+      for (let i = 0; i < mutations.length; i++) {
+        if (mutations[i].attributeName === 'class') {
+
+          // Главное условие: если попап закрыт (НЕТ tender--open) 
+          // И при этом в разметке всё еще ЕСТЬ класс tender--change
+          if (!html.classList.contains('tender--open') && html.classList.contains('tender--change')) {
+            html.classList.remove('tender--change'); // Изменяет DOM всего 1 раз и останавливает рекурсию
+            break; // Выходим из цикла, так как цель достигнута
+          }
+
+        }
+      }
+    });
+
+    // Запускаем слежку за атрибутом class у тега <html>
+    observer.observe(html, { attributes: true, attributeFilter: ['class'] });
+  })();
+
+  /**
    * Инициализация Fancybox
    */
   Fancybox.bind('[data-fancybox]', {
@@ -4920,4 +5019,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })();
 
+  /**
+   * УВЕДОМЛЕНИЕ О COOKIE                     
+   *    
+   * Показывает плашку если cookie COOKIE_ACCEPT ≠ '1'.            
+   * checkCookies() вызывается из HTML при клике на кнопку.         
+   */
+  const cookieAccepted =
+    ('; ' + document.cookie).split(`; COOKIE_ACCEPT=`).pop().split(';')[0] === '1';
+
+  if (!cookieAccepted) {
+    const cookiesNotify = document.getElementById('plate_cookie');
+    if (cookiesNotify) {
+      setTimeout(() => {
+        cookiesNotify.classList.add('cookie--active');
+      }, 500);
+    }
+  }
+
 });
+
+/**
+ * Принимает cookie и скрывает плашку уведомления.
+ *
+ * Устанавливает COOKIE_ACCEPT=1 сроком на 1 год.
+ */
+function checkCookies() {
+  const expires = new Date(Date.now() + 86400e3 * 365).toUTCString();
+  document.cookie = `COOKIE_ACCEPT=1;path=/;expires=${expires}`;
+
+  const plate = document.getElementById('plate_cookie');
+  if (!plate) return;
+  plate.classList.remove('cookie--active');
+
+  setTimeout(() => plate.remove(), 5000);
+}

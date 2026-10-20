@@ -70,7 +70,6 @@ section {
 a {
   color: inherit;
   -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
@@ -90,7 +89,6 @@ img {
   width: 30rem;
   height: 15rem;
   margin: 20rem auto;
-  background: -o-linear-gradient(315deg, #667eea 0%, #764ba2 100%);
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 12px;
   display: -webkit-box;
@@ -116,17 +114,14 @@ img {
 }
 
 .box .box-1 {
-  background: -o-linear-gradient(315deg, #667eea 0%, #764ba2 100%);
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .box .box-2 {
-  background: -o-linear-gradient(315deg, #f093fb 0%, #f5576c 100%);
   background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
 }
 
 .box .box-3 {
-  background: -o-linear-gradient(315deg, #4facfe 0%, #00f2fe 100%);
   background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
 }
 
@@ -186,16 +181,16 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
-  font-weight: 900;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
+  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
+  font-weight: 900;
   font-style: normal;
 }
 
@@ -314,16 +309,16 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Thin.woff2") format("woff2"), url("../fonts/RobotoCondensed-Thin.woff") format("woff");
-  font-weight: 100;
+  src: url("../fonts/RobotoCondensed-SemiBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-SemiBold.woff") format("woff");
+  font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-SemiBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-SemiBold.woff") format("woff");
-  font-weight: 600;
+  src: url("../fonts/RobotoCondensed-Thin.woff2") format("woff2"), url("../fonts/RobotoCondensed-Thin.woff") format("woff");
+  font-weight: 100;
   font-style: normal;
 }
 
@@ -413,7 +408,6 @@ img {
   -ms-flex-negative: 0;
   flex-shrink: 0;
   -webkit-transition: background-color 0.5s ease;
-  -o-transition: background-color 0.5s ease;
   transition: background-color 0.5s ease;
 }
 
@@ -445,7 +439,6 @@ img {
   height: 0.1rem;
   background-color: var(--black);
   -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   pointer-events: none;
   position: absolute;
@@ -462,7 +455,6 @@ img {
 .swiper-slide {
   height: auto;
   -webkit-transition: opacity 0.5s ease;
-  -o-transition: opacity 0.5s ease;
   transition: opacity 0.5s ease;
 }
 
@@ -535,7 +527,6 @@ img {
   border-radius: 50%;
   margin: 0;
   -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   position: absolute;
   top: 50%;
@@ -756,7 +747,7 @@ body {
   padding: 0;
   white-space: nowrap;
   -webkit-clip-path: inset(100%);
-          clip-path: inset(100%);
+  clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
@@ -811,7 +802,6 @@ body {
   flex-direction: column;
   gap: 0;
   -webkit-transition: gap 0.3s ease, border-color 0.3s ease;
-  -o-transition: gap 0.3s ease, border-color 0.3s ease;
   transition: gap 0.3s ease, border-color 0.3s ease;
 }
 
@@ -828,7 +818,6 @@ body {
 
 .accordion-icon {
   -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
@@ -843,7 +832,6 @@ body {
   grid-template-rows: 0fr;
   overflow: hidden;
   -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
@@ -940,7 +928,6 @@ body {
   padding: 0 var(--btn-padding-x);
   background-color: transparent;
   -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   pointer-events: all;
   cursor: pointer;
@@ -978,7 +965,6 @@ body {
   height: 100%;
   background-color: var(--btn-hover-background);
   -webkit-transition: width 0.3s ease;
-  -o-transition: width 0.3s ease;
   transition: width 0.3s ease;
   position: absolute;
   inset: 0;
@@ -1103,7 +1089,6 @@ body {
   height: 7rem;
   background-color: transparent;
   -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   cursor: pointer;
   position: relative;
@@ -1146,7 +1131,6 @@ body {
   height: 0.2rem;
   background-color: var(--white);
   -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   position: absolute;
   left: 0;
@@ -1238,7 +1222,6 @@ body {
   will-change: transform;
   -webkit-transition: -webkit-transform 0.3s ease;
   transition: -webkit-transform 0.3s ease;
-  -o-transition: transform 0.3s ease;
   transition: transform 0.3s ease;
   transition: transform 0.3s ease, -webkit-transform 0.3s ease;
 }
@@ -1335,7 +1318,6 @@ body {
   width: 100%;
   height: 100%;
   -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   font-weight: 400;
   font-size: 3rem;
@@ -1368,7 +1350,6 @@ body {
   height: 0.2rem;
   background-color: var(--white);
   -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   position: absolute;
   left: 0;
@@ -1452,7 +1433,6 @@ body {
   flex-shrink: 0;
   -webkit-transition: -webkit-transform 0.15s ease;
   transition: -webkit-transform 0.15s ease;
-  -o-transition: transform 0.15s ease;
   transition: transform 0.15s ease;
   transition: transform 0.15s ease, -webkit-transform 0.15s ease;
   position: absolute;
@@ -1522,7 +1502,6 @@ body {
   height: var(--btn-height);
   padding: 0 var(--btn-padding-x);
   -webkit-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
   color: var(--btn-color);
   position: relative;
@@ -1546,7 +1525,6 @@ body {
   height: 100%;
   background-color: var(--btn-hover-background);
   -webkit-transition: width 0.3s ease;
-  -o-transition: width 0.3s ease;
   transition: width 0.3s ease;
   position: absolute;
   inset: 0;
@@ -1559,6 +1537,11 @@ body {
 
 .form-btn:hover::after {
   width: 100%;
+}
+
+.form-btn:disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .form-btn__text {
@@ -1702,7 +1685,6 @@ body {
   height: var(--font-size);
   border-radius: 50%;
   -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   font-size: var(--font-size);
   color: inherit;
@@ -1855,7 +1837,6 @@ p {
 
 .typewriter__cursor {
   -webkit-transition: 0s !important;
-  -o-transition: 0s !important;
   transition: 0s !important;
 }
 
@@ -1892,7 +1873,6 @@ p {
   -ms-flex-negative: 0;
   flex-shrink: 0;
   -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   pointer-events: all;
   position: relative;
@@ -1908,7 +1888,6 @@ p {
 
 .burger-btn * {
   -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
@@ -1961,7 +1940,6 @@ p {
   height: 100vh;
   height: 100dvh;
   -webkit-transition: all 0.5s ease, opacity 0.3s ease;
-  -o-transition: all 0.5s ease, opacity 0.3s ease;
   transition: all 0.5s ease, opacity 0.3s ease;
   position: fixed;
   top: 0;
@@ -2093,7 +2071,6 @@ p {
   height: 100%;
   padding: 4.5rem 0;
   -webkit-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
   overflow: hidden;
 }
@@ -2118,7 +2095,6 @@ p {
   background-color: var(--black);
   -webkit-transition: -webkit-transform 0.3s ease;
   transition: -webkit-transform 0.3s ease;
-  -o-transition: transform 0.3s ease;
   transition: transform 0.3s ease;
   transition: transform 0.3s ease, -webkit-transform 0.3s ease;
   cursor: pointer;
@@ -2225,7 +2201,6 @@ p {
 .callback__cover-img {
   width: auto;
   -webkit-transition: none;
-  -o-transition: none;
   transition: none;
   position: absolute;
   will-change: transform;
@@ -2275,7 +2250,6 @@ p {
   height: auto;
   -webkit-transition: -webkit-transform 0.5s ease 0.5s;
   transition: -webkit-transform 0.5s ease 0.5s;
-  -o-transition: transform 0.5s ease 0.5s;
   transition: transform 0.5s ease 0.5s;
   transition: transform 0.5s ease 0.5s, -webkit-transform 0.5s ease 0.5s;
   position: absolute;
@@ -2380,11 +2354,9 @@ p {
   background-color: var(--white);
   opacity: 1;
   -webkit-transition: opacity 0.2s ease;
-  -o-transition: opacity 0.2s ease;
   transition: opacity 0.2s ease;
   -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   transition: -webkit-transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  -o-transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), -webkit-transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   position: absolute;
@@ -2624,10 +2596,8 @@ p {
   will-change: transform;
   padding-top: env(safe-area-inset-top, 20px);
   -webkit-transition: background-color 0.5s ease;
-  -o-transition: background-color 0.5s ease;
   transition: background-color 0.5s ease;
   pointer-events: none;
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   right: 0;
@@ -2662,7 +2632,6 @@ p {
   gap: 4rem;
   height: 100%;
   -webkit-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
   pointer-events: all;
   position: relative;
@@ -2725,7 +2694,6 @@ p {
 
 .header__left .btn--accent .object-body {
   -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   width: 26.2rem;
 }
@@ -2747,7 +2715,6 @@ p {
   transform: translateX(150%);
   -webkit-transition: -webkit-transform 0.3s linear;
   transition: -webkit-transform 0.3s linear;
-  -o-transition: transform 0.3s linear;
   transition: transform 0.3s linear;
   transition: transform 0.3s linear, -webkit-transform 0.3s linear;
 }
@@ -2768,7 +2735,6 @@ p {
   transform: translateX(0%);
   -webkit-transition: -webkit-transform 0.3s linear 0.5s;
   transition: -webkit-transform 0.3s linear 0.5s;
-  -o-transition: transform 0.3s linear 0.5s;
   transition: transform 0.3s linear 0.5s;
   transition: transform 0.3s linear 0.5s, -webkit-transform 0.3s linear 0.5s;
 }
@@ -2810,7 +2776,6 @@ p {
 
 .logo path {
   -webkit-transition: fill 0.3s ease;
-  -o-transition: fill 0.3s ease;
   transition: fill 0.3s ease;
 }
 
@@ -2832,7 +2797,6 @@ p {
   height: 100dvh;
   background-color: var(--red);
   -webkit-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
   -webkit-transform: translateY(-100%);
   -ms-transform: translateY(-100%);
@@ -2946,7 +2910,6 @@ p {
   gap: 3rem;
   -webkit-transition: opacity 0.3s ease, -webkit-transform 0.3s ease;
   transition: opacity 0.3s ease, -webkit-transform 0.3s ease;
-  -o-transition: transform 0.3s ease, opacity 0.3s ease;
   transition: transform 0.3s ease, opacity 0.3s ease;
   transition: transform 0.3s ease, opacity 0.3s ease, -webkit-transform 0.3s ease;
   -webkit-transform: translateY(0);
@@ -2995,7 +2958,6 @@ p {
   visibility: hidden;
   pointer-events: none;
   -webkit-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
   position: relative;
   z-index: 1;
@@ -3047,27 +3009,23 @@ p {
   transform: translateY(-150%);
   -webkit-transition: -webkit-transform 0.3s ease;
   transition: -webkit-transform 0.3s ease;
-  -o-transition: transform 0.3s ease;
   transition: transform 0.3s ease;
   transition: transform 0.3s ease, -webkit-transform 0.3s ease;
 }
 
 .menu__nav-item:nth-child(1) {
   -webkit-transition-delay: 0s;
-  -o-transition-delay: 0s;
-     transition-delay: 0s;
+  transition-delay: 0s;
 }
 
 .menu__nav-item:nth-child(2) {
   -webkit-transition-delay: 0.1s;
-  -o-transition-delay: 0.1s;
-     transition-delay: 0.1s;
+  transition-delay: 0.1s;
 }
 
 .menu__nav-item:nth-child(3) {
   -webkit-transition-delay: 0.2s;
-  -o-transition-delay: 0.2s;
-     transition-delay: 0.2s;
+  transition-delay: 0.2s;
 }
 
 .menu__nav-head {
@@ -3079,7 +3037,6 @@ p {
   height: 8rem;
   -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   transition: -webkit-transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  -o-transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), -webkit-transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   position: absolute;
@@ -3097,7 +3054,6 @@ p {
 .menu__nav-head a,
 .menu__nav-head span {
   -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   font-family: var(--second-family);
   font-weight: 900;
@@ -3128,7 +3084,6 @@ p {
   -ms-flex-direction: column;
   flex-direction: column;
   -webkit-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
   gap: 3rem;
 }
@@ -3174,7 +3129,6 @@ p {
   width: fit-content;
   padding: 2rem 0;
   -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   pointer-events: all;
   font-family: var(--second-family);
@@ -3215,7 +3169,6 @@ p {
   -ms-transform: scale(0);
   transform: scale(0);
   -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   pointer-events: none;
   position: absolute;
@@ -3295,7 +3248,6 @@ p {
   height: 94.1rem;
   -webkit-transition: opacity 0.3s ease, -webkit-transform 0.3s ease;
   transition: opacity 0.3s ease, -webkit-transform 0.3s ease;
-  -o-transition: transform 0.3s ease, opacity 0.3s ease;
   transition: transform 0.3s ease, opacity 0.3s ease;
   transition: transform 0.3s ease, opacity 0.3s ease, -webkit-transform 0.3s ease;
   -webkit-transform: translateY(0%);
@@ -3371,7 +3323,6 @@ p {
   opacity: 0;
   visibility: hidden;
   -webkit-transition: opacity 0.3s ease, visibility 0.3s ease;
-  -o-transition: opacity 0.3s ease, visibility 0.3s ease;
   transition: opacity 0.3s ease, visibility 0.3s ease;
   pointer-events: none;
   position: fixed;
@@ -3459,7 +3410,6 @@ p {
   width: -moz-max-content;
   width: max-content;
   -webkit-transition: grid-template-rows 0.3s ease;
-  -o-transition: grid-template-rows 0.3s ease;
   transition: grid-template-rows 0.3s ease;
   transition: grid-template-rows 0.3s ease, -ms-grid-rows 0.3s ease;
   position: absolute;
@@ -3480,7 +3430,6 @@ p {
   padding: 0;
   background-color: var(--black);
   -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   overflow: hidden;
 }
@@ -3505,7 +3454,6 @@ p {
   align-items: center;
   gap: 3rem;
   -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   color: var(--white);
   cursor: pointer;
@@ -3535,7 +3483,6 @@ p {
   background-color: var(--red);
   overflow: hidden;
   -webkit-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
   width: -webkit-max-content;
   width: -moz-max-content;
@@ -3563,7 +3510,6 @@ p {
   gap: 3rem;
   padding: 4rem 0 5rem 0;
   -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   overflow: hidden;
   width: -webkit-fit-content;
@@ -3601,12 +3547,11 @@ p {
   height: 100%;
   pointer-events: none;
   -webkit-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
   padding-bottom: env(safe-area-inset-bottom, 20px);
-  position: -webkit-sticky;
   position: sticky;
   bottom: 0;
+  left: 0;
   z-index: 700;
 }
 
@@ -3628,6 +3573,95 @@ p {
   width: 100%;
   font-family: var(--second-family);
   font-size: 1.6rem;
+}
+
+.cookie {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  width: 100%;
+  height: 0;
+  pointer-events: none;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  padding-bottom: env(safe-area-inset-bottom, 20px);
+  position: sticky;
+  right: 0;
+  bottom: 0;
+  z-index: 700;
+}
+
+.cookie.cookie--active .cookie__inner {
+  -webkit-transform: translateX(0%);
+  -ms-transform: translateX(0%);
+  transform: translateX(0%);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.cookie__wrap {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 8rem;
+  margin-left: auto;
+}
+
+.cookie__inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 2.5rem;
+  max-width: 47rem;
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 1rem 1rem 1rem 2rem;
+  background-color: var(--red);
+  -webkit-transform: translateX(150%);
+  -ms-transform: translateX(150%);
+  transform: translateX(150%);
+  -webkit-transition: opacity 0s ease 0.8s, -webkit-transform 0.5s ease;
+  transition: opacity 0s ease 0.8s, -webkit-transform 0.5s ease;
+  transition: transform 0.5s ease, opacity 0s ease 0.8s;
+  transition: transform 0.5s ease, opacity 0s ease 0.8s, -webkit-transform 0.5s ease;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.cookie__text p {
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 140%;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.cookie__text a {
+  text-decoration: underline;
+}
+
+.cookie__btn {
+  --btn-height: 6rem;
+  --btn-padding-x: 2.5rem;
+  font-family: var(--second-family);
+  font-size: 2rem;
 }
 
 .popup {
@@ -3690,6 +3724,12 @@ p {
   font-size: 10rem;
   line-height: 120%;
   text-transform: uppercase;
+}
+
+#popup-thanks .popup__title {
+  padding-right: 0;
+  font-size: 6rem;
+  color: var(--white);
 }
 
 .popup__body {
@@ -3797,7 +3837,6 @@ canvas {
   -ms-flex-negative: 0;
   flex-shrink: 0;
   -webkit-transition: opacity 0.3s ease, visibility 0.3s ease;
-  -o-transition: opacity 0.3s ease, visibility 0.3s ease;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
@@ -3993,7 +4032,6 @@ canvas {
   height: 100vh;
   height: 100dvh;
   -webkit-transition: all 0.5s ease, opacity 0.3s ease;
-  -o-transition: all 0.5s ease, opacity 0.3s ease;
   transition: all 0.5s ease, opacity 0.3s ease;
   pointer-events: none;
   position: fixed;
@@ -4032,7 +4070,6 @@ canvas {
 
 .tender * {
   -webkit-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 
@@ -4094,6 +4131,73 @@ canvas {
   color: var(--red);
 }
 
+.tender__change {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 5rem;
+  max-width: 118rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
+  -webkit-transition: opacity 0.8s ease, visibility 0.8s ease, -webkit-transform 0.8s ease;
+  transition: opacity 0.8s ease, visibility 0.8s ease, -webkit-transform 0.8s ease;
+  transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease;
+  transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease, -webkit-transform 0.8s ease;
+  position: absolute;
+  top: 7.7rem;
+  left: 9rem;
+}
+
+.tender--change .tender__change {
+  -webkit-transform: translateX(0%);
+  -ms-transform: translateX(0%);
+  transform: translateX(0%);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+.tender__change .btn {
+  --btn-hover-background: var(--red);
+  max-width: 51rem;
+  width: 100%;
+}
+
+.tender__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 5rem;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  -webkit-transition: opacity 0.8s ease, visibility 0.8s ease, -webkit-transform 0.8s ease;
+  transition: opacity 0.8s ease, visibility 0.8s ease, -webkit-transform 0.8s ease;
+  transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease;
+  transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease, -webkit-transform 0.8s ease;
+}
+
+.tender--change .tender__wrapper {
+  -webkit-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  transform: translateX(-100%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .tender__inner {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -4111,7 +4215,6 @@ canvas {
   width: 100%;
   height: 100%;
   -webkit-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 
@@ -4161,7 +4264,6 @@ html.tender--open .tender-btn .object-body::before {
   height: 100%;
   padding: 4.5rem 0;
   -webkit-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
   overflow: hidden;
 }
@@ -4186,7 +4288,6 @@ html.tender--open .tender-btn .object-body::before {
   background-color: var(--red);
   -webkit-transition: -webkit-transform 0.3s ease;
   transition: -webkit-transform 0.3s ease;
-  -o-transition: transform 0.3s ease;
   transition: transform 0.3s ease;
   transition: transform 0.3s ease, -webkit-transform 0.3s ease;
   pointer-events: none;
@@ -4278,7 +4379,6 @@ html.tender--open .tender-btn .object-body::before {
   -ms-transform: rotate(18.48deg);
   transform: rotate(18.48deg);
   -webkit-transition: none;
-  -o-transition: none;
   transition: none;
 }
 
@@ -4527,7 +4627,6 @@ html.tender--open .tender-btn .object-body::before {
   opacity: 0;
   visibility: hidden;
   -webkit-transition: opacity 0.3s ease, visibility 0.3s ease;
-  -o-transition: opacity 0.3s ease, visibility 0.3s ease;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
@@ -5309,7 +5408,6 @@ html.tender--open .tender-btn .object-body::before {
 .dynamite {
   width: 60px;
   height: 120px;
-  background: -o-linear-gradient(315deg, #c0392b, #922b21);
   background: linear-gradient(135deg, #c0392b, #922b21);
   border-radius: 6px 6px 4px 4px;
   position: relative;
@@ -5323,7 +5421,6 @@ html.tender--open .tender-btn .object-body::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: -o-repeating-linear-gradient(top, transparent 0px, transparent 18px, rgba(0, 0, 0, 0.15) 18px, rgba(0, 0, 0, 0.15) 20px);
   background: repeating-linear-gradient(180deg, transparent 0px, transparent 18px, rgba(0, 0, 0, 0.15) 18px, rgba(0, 0, 0, 0.15) 20px);
   border-radius: inherit;
 }
@@ -5444,7 +5541,6 @@ html.tender--open .tender-btn .object-body::before {
   --speed: 0.08s;
   width: 14px;
   height: 20px;
-  background: -o-radial-gradient(50% 80%, ellipse, #ff6600, #ff4400 60%, transparent 100%);
   background: radial-gradient(ellipse at 50% 80%, #ff6600, #ff4400 60%, transparent 100%);
   -webkit-filter: blur(0.5px);
   filter: blur(0.5px);
@@ -5456,7 +5552,6 @@ html.tender--open .tender-btn .object-body::before {
   --speed: 0.06s;
   width: 8px;
   height: 14px;
-  background: -o-radial-gradient(50% 80%, ellipse, #ffee00, #ffaa00 70%, transparent 100%);
   background: radial-gradient(ellipse at 50% 80%, #ffee00, #ffaa00 70%, transparent 100%);
   -webkit-filter: blur(0.3px);
   filter: blur(0.3px);
@@ -5468,7 +5563,6 @@ html.tender--open .tender-btn .object-body::before {
   --speed: 0.05s;
   width: 4px;
   height: 7px;
-  background: -o-radial-gradient(50% 80%, ellipse, #ffffff, #ffffaa 80%, transparent 100%);
   background: radial-gradient(ellipse at 50% 80%, #ffffff, #ffffaa 80%, transparent 100%);
 }
 
@@ -5497,7 +5591,6 @@ html.tender--open .tender-btn .object-body::before {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: -o-radial-gradient(circle, rgba(255, 150, 0, 0.5) 0%, transparent 70%);
   background: radial-gradient(circle, rgba(255, 150, 0, 0.5) 0%, transparent 70%);
   -webkit-animation: glow-pulse 0.1s ease-in-out infinite alternate;
   animation: glow-pulse 0.1s ease-in-out infinite alternate;
@@ -5527,7 +5620,6 @@ html.tender--open .tender-btn .object-body::before {
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background: -o-radial-gradient(circle, #fff 0%, #ffee00 20%, #ff6600 50%, #ff2200 70%, transparent 100%);
   background: radial-gradient(circle, #fff 0%, #ffee00 20%, #ff6600 50%, #ff2200 70%, transparent 100%);
   opacity: 0;
   pointer-events: none;
@@ -5887,7 +5979,6 @@ html.tender--open .tender-btn .object-body::before {
   gap: 2rem;
   padding: 2rem;
   -webkit-transition: padding 0.3s ease;
-  -o-transition: padding 0.3s ease;
   transition: padding 0.3s ease;
 }
 
@@ -5897,7 +5988,6 @@ html.tender--open .tender-btn .object-body::before {
 
 .faq__item-title {
   -webkit-transition: color 0.3s ease;
-  -o-transition: color 0.3s ease;
   transition: color 0.3s ease;
   font-weight: 700;
   font-size: 1.6rem;
@@ -6119,8 +6209,7 @@ html.tender--open .tender-btn .object-body::before {
   font-weight: 400;
   font-size: 2rem;
   line-height: 100%;
-  -webkit-text-decoration-line: underline;
-          text-decoration-line: underline;
+  text-decoration-line: underline;
   text-transform: uppercase;
   color: var(--white);
 }
@@ -6736,7 +6825,6 @@ html.tender--open .tender-btn .object-body::before {
   cursor: -webkit-grab;
   cursor: grab;
   -webkit-transition: x 0.3s ease;
-  -o-transition: x 0.3s ease;
   transition: x 0.3s ease;
   will-change: x;
   -webkit-transform: unset !important;
@@ -6786,7 +6874,6 @@ html.tender--open .tender-btn .object-body::before {
   padding: 3rem 4rem 4rem 4rem;
   background-color: var(--black);
   -webkit-transition: background-color 0.3s ease;
-  -o-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
   color: var(--white);
 }
@@ -7058,7 +7145,6 @@ html.tender--open .tender-btn .object-body::before {
   background-color: var(--black);
   -webkit-transition: -webkit-transform 0.3s linear;
   transition: -webkit-transform 0.3s linear;
-  -o-transition: transform 0.3s linear;
   transition: transform 0.3s linear;
   transition: transform 0.3s linear, -webkit-transform 0.3s linear;
   position: absolute;
@@ -7094,7 +7180,6 @@ html.tender--open .tender-btn .object-body::before {
   color: var(--white);
   overflow: hidden;
   -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
@@ -7148,7 +7233,6 @@ html.tender--open .tender-btn .object-body::before {
   width: 100%;
   -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   transition: -webkit-transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  -o-transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), -webkit-transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -7241,7 +7325,6 @@ html.tender--open .tender-btn .object-body::before {
   padding: 0 3rem;
   background-color: var(--red);
   -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   overflow: visible;
   position: absolute;
@@ -7301,8 +7384,7 @@ html.tender--open .tender-btn .object-body::before {
   font-size: 3rem;
   line-height: 120%;
   letter-spacing: -0.04em;
-  -webkit-text-decoration-line: underline;
-          text-decoration-line: underline;
+  text-decoration-line: underline;
   text-transform: uppercase;
   color: var(--white);
 }
@@ -7325,7 +7407,6 @@ html.tender--open .tender-btn .object-body::before {
   transform: scale(0);
   -webkit-transition: top 0.25s cubic-bezier(0.4, 0, 0.2, 1), margin-top 0.25s cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 0.2s ease;
   transition: top 0.25s cubic-bezier(0.4, 0, 0.2, 1), margin-top 0.25s cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 0.2s ease;
-  -o-transition: top 0.25s cubic-bezier(0.4, 0, 0.2, 1), margin-top 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s ease;
   transition: top 0.25s cubic-bezier(0.4, 0, 0.2, 1), margin-top 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s ease;
   transition: top 0.25s cubic-bezier(0.4, 0, 0.2, 1), margin-top 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s ease, -webkit-transform 0.2s ease;
   pointer-events: none;
@@ -7351,6 +7432,7 @@ html.tender--open .tender-btn .object-body::before {
 
 .request .general__suptitle {
   color: var(--white);
+  letter-spacing: 0;
 }
 
 .request .general__title {
@@ -7498,7 +7580,6 @@ html.tender--open .tender-btn .object-body::before {
   width: 100%;
   padding: 0;
   -webkit-transition: padding 0.3s ease, color 0.5s ease 0.1s;
-  -o-transition: padding 0.3s ease, color 0.5s ease 0.1s;
   transition: padding 0.3s ease, color 0.5s ease 0.1s;
   padding: 3rem 0 2rem 0;
   border-bottom: 0.1rem solid var(--black-10);
@@ -7512,7 +7593,6 @@ html.tender--open .tender-btn .object-body::before {
   height: 100%;
   background-color: var(--red);
   -webkit-transition: width 0.3s ease;
-  -o-transition: width 0.3s ease;
   transition: width 0.3s ease;
   position: absolute;
   top: 0;
@@ -7539,7 +7619,6 @@ html.tender--open .tender-btn .object-body::before {
   width: -moz-fit-content;
   width: fit-content;
   -webkit-transition: color 0.5s ease;
-  -o-transition: color 0.5s ease;
   transition: color 0.5s ease;
   font-weight: 700;
   font-size: 3rem;
@@ -7556,7 +7635,6 @@ html.tender--open .tender-btn .object-body::before {
   height: 0.15rem;
   background-color: var(--red);
   -webkit-transition: width 0.5s ease;
-  -o-transition: width 0.5s ease;
   transition: width 0.5s ease;
   position: absolute;
   top: calc(100% - 0.65rem);
@@ -7574,7 +7652,6 @@ html.tender--open .tender-btn .object-body::before {
   opacity: 0;
   pointer-events: none;
   -webkit-transition: all 0.3s ease, opacity 0.3s ease 0s, margin 0.3s ease 0s;
-  -o-transition: all 0.3s ease, opacity 0.3s ease 0s, margin 0.3s ease 0s;
   transition: all 0.3s ease, opacity 0.3s ease 0s, margin 0.3s ease 0s;
   z-index: 2;
 }
@@ -7736,6 +7813,26 @@ html.tender--open .tender-btn .object-body::before {
     left: 0;
   }
 
+  .cookie .container {
+    padding: 0 calc(var(--container-padding) + var(--callback-width)) 0 var(--container-padding);
+  }
+
+  .cookie__wrap {
+    margin-bottom: 4rem;
+  }
+
+  .cookie__inner {
+    padding: 1rem 2rem;
+  }
+
+  .cookie__text a:hover {
+    color: var(--black);
+  }
+
+  #popup-thanks .popup__wrap {
+    width: 100rem;
+  }
+
   .popup__list a:hover {
     color: var(--black);
   }
@@ -7792,7 +7889,6 @@ html.tender--open .tender-btn .object-body::before {
     opacity: 0;
     visibility: hidden;
     -webkit-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
   }
 
@@ -7959,7 +8055,6 @@ html.tender--open .tender-btn .object-body::before {
     opacity: 0;
     visibility: hidden;
     -webkit-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
   }
 
@@ -8067,7 +8162,6 @@ html.tender--open .tender-btn .object-body::before {
   .services__item:hover {
     padding: 3rem 4.1rem 2rem 4.6rem;
     -webkit-transition: padding 0.3s ease, color 0.3s ease;
-    -o-transition: padding 0.3s ease, color 0.3s ease;
     transition: padding 0.3s ease, color 0.3s ease;
     color: var(--white);
   }
@@ -8075,7 +8169,6 @@ html.tender--open .tender-btn .object-body::before {
   .services__item:hover::before {
     width: 100%;
     -webkit-transition: width 0.5s ease;
-    -o-transition: width 0.5s ease;
     transition: width 0.5s ease;
   }
 
@@ -8089,7 +8182,6 @@ html.tender--open .tender-btn .object-body::before {
 
   .services__item:hover .services__item-btn {
     -webkit-transition: all 0.3s ease, opacity 0.3s ease 0.2s, margin 0.3s ease 0s;
-    -o-transition: all 0.3s ease, opacity 0.3s ease 0.2s, margin 0.3s ease 0s;
     transition: all 0.3s ease, opacity 0.3s ease 0.2s, margin 0.3s ease 0s;
     opacity: 1;
     pointer-events: all;
@@ -8188,6 +8280,13 @@ html.tender--open .tender-btn .object-body::before {
     --f-button-svg-stroke-width: 0.2rem;
     top: 2rem;
     right: 2rem;
+  }
+
+  .fancybox__slide:has(#popup-thanks) {
+    padding: 0 1.5rem !important;
+    -webkit-box-align: end !important;
+    -ms-flex-align: end !important;
+    align-items: flex-end !important;
   }
 
   :root {
@@ -8474,7 +8573,6 @@ html.tender--open .tender-btn .object-body::before {
 
   .callback .form:not(.callback.callback-mini .form) {
     -webkit-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
     -webkit-transform: translateY(-20rem);
     -ms-transform: translateY(-20rem);
@@ -8484,7 +8582,6 @@ html.tender--open .tender-btn .object-body::before {
 
   .callback--open .callback .form:not(.callback.callback-mini .form) {
     -webkit-transition: all 0.5s ease 0.5s;
-    -o-transition: all 0.5s ease 0.5s;
     transition: all 0.5s ease 0.5s;
     -webkit-transform: translateY(0);
     -ms-transform: translateY(0);
@@ -8502,7 +8599,6 @@ html.tender--open .tender-btn .object-body::before {
 
   .callback .general__head:not(.callback.callback-mini .general__head) {
     -webkit-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
     -webkit-transform: translateY(-20rem);
     -ms-transform: translateY(-20rem);
@@ -8512,7 +8608,6 @@ html.tender--open .tender-btn .object-body::before {
 
   .callback--open .callback .general__head:not(.callback.callback-mini .general__head) {
     -webkit-transition: all 0.5s ease 0.2s;
-    -o-transition: all 0.5s ease 0.2s;
     transition: all 0.5s ease 0.2s;
     -webkit-transform: translateY(0);
     -ms-transform: translateY(0);
@@ -8543,6 +8638,7 @@ html.tender--open .tender-btn .object-body::before {
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
+    min-height: 100%;
     overflow: unset;
     position: relative;
   }
@@ -8566,7 +8662,6 @@ html.tender--open .tender-btn .object-body::before {
 
   .callback--open .callback__cover-img--second {
     -webkit-transition: opacity 0.3s ease 0.5s;
-    -o-transition: opacity 0.3s ease 0.5s;
     transition: opacity 0.3s ease 0.5s;
     opacity: 1;
   }
@@ -8843,7 +8938,6 @@ html.tender--open .tender-btn .object-body::before {
     -ms-grid-rows: 0fr;
     grid-template-rows: 0fr;
     -webkit-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
     overflow: hidden;
     opacity: 1;
@@ -8868,7 +8962,6 @@ html.tender--open .tender-btn .object-body::before {
   .menu__nav-item {
     gap: 0;
     -webkit-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
     overflow: hidden;
     -webkit-transform: none;
@@ -8882,14 +8975,12 @@ html.tender--open .tender-btn .object-body::before {
 
   .menu__nav-item:nth-child(2) {
     -webkit-transition-delay: 0s;
-    -o-transition-delay: 0s;
-       transition-delay: 0s;
+    transition-delay: 0s;
   }
 
   .menu__nav-item:nth-child(3) {
     -webkit-transition-delay: 0s;
-    -o-transition-delay: 0s;
-       transition-delay: 0s;
+    transition-delay: 0s;
   }
 
   .menu__nav-head {
@@ -8941,7 +9032,6 @@ html.tender--open .tender-btn .object-body::before {
     -ms-grid-rows: 0fr;
     grid-template-rows: 0fr;
     -webkit-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
     overflow: hidden;
   }
@@ -8949,7 +9039,6 @@ html.tender--open .tender-btn .object-body::before {
   .menu__nav-list {
     overflow: hidden;
     -webkit-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
   }
 
@@ -8972,7 +9061,6 @@ html.tender--open .tender-btn .object-body::before {
     flex-direction: column;
     gap: 0;
     -webkit-transition: all 0.5s linear;
-    -o-transition: all 0.5s linear;
     transition: all 0.5s linear;
   }
 
@@ -9057,6 +9145,22 @@ html.tender--open .tender-btn .object-body::before {
     --btn-height: 5rem;
   }
 
+  .cookie.cookie--active .cookie__inner {
+    -webkit-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    transform: translateY(0%);
+  }
+
+  .cookie__text p {
+    font-size: 1.2rem;
+  }
+
+  .cookie__btn {
+    --btn-height: 4rem;
+    --btn-padding-x: 1rem;
+    font-size: 1.6rem;
+  }
+
   .popup__wrap {
     width: 100%;
     max-height: calc(100vh - 42px);
@@ -9074,12 +9178,35 @@ html.tender--open .tender-btn .object-body::before {
     display: none;
   }
 
+  #popup-thanks .popup__wrap::before {
+    display: block;
+    width: 36.3rem;
+    height: 20.1rem;
+    top: -1.3rem;
+    right: unset;
+    bottom: unset;
+    left: -2.2rem;
+  }
+
+  #popup-thanks .popup__wrap {
+    max-width: 35rem;
+    overflow: visible;
+  }
+
   .popup__content {
     gap: 2rem;
     padding: 2rem;
   }
 
+  #popup-thanks .popup__content {
+    padding: 4rem 5.4rem 3.5rem 2rem;
+  }
+
   .popup__title {
+    font-size: 3rem;
+  }
+
+  #popup-thanks .popup__title {
     font-size: 3rem;
   }
 
@@ -9291,6 +9418,17 @@ html.tender--open .tender-btn .object-body::before {
 
   .tender .general__title {
     font-size: 6.5rem;
+  }
+
+  .tender__change {
+    gap: 3.6rem;
+    top: 11rem;
+    right: 1.5rem;
+    left: 1.5rem;
+  }
+
+  .tender__wrapper {
+    gap: 3.6rem;
   }
 
   .tender__inner {

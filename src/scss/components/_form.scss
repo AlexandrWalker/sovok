@@ -249,7 +249,7 @@
       &:hover {
 
         @include dosm {
-          
+
           &::before {
             transform: translateY(-50%) scale(1.1);
           }
@@ -369,6 +369,11 @@
       &::after {
         width: 100%;
       }
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      pointer-events: none;
     }
 
     &__text {

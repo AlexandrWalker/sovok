@@ -22,6 +22,7 @@
 
     &__suptitle {
       color: var(--white);
+      letter-spacing: 0;
 
       @include sm {
         font-size: 6.7rem;

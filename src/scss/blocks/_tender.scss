@@ -176,6 +176,65 @@
     }
   }
 
+  &__change {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    max-width: 118rem;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(100%);
+    transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease;
+
+    position: absolute;
+    top: 7.7rem;
+    left: 9rem;
+
+    @include sm {
+      gap: 3.6rem;
+
+      top: 11rem;
+      right: 1.5rem;
+      left: 1.5rem;
+    }
+
+    .tender--change & {
+      transform: translateX(0%);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+    }
+
+    .btn {
+      --btn-hover-background: var(--red);
+
+      max-width: 51rem;
+      width: 100%;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease;
+
+    @include sm {
+      gap: 3.6rem;
+    }
+
+    .tender--change & {
+      transform: translateX(-100%);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+  }
+
   &__inner {
     display: flex;
     flex-direction: column;

@@ -228,6 +228,13 @@
   touch-action: pan-y;
 }
 
+.fancybox__slide:has(#popup-thanks) {
+  @include sm {
+    padding: 0 1.5rem !important;
+    align-items: flex-end !important;
+  }
+}
+
 .f-button svg {
   stroke-linecap: square;
   stroke-linejoin: square;

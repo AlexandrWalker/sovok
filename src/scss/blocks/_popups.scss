@@ -44,6 +44,33 @@
       @include sm {
         display: none;
       }
+
+      #popup-thanks & {
+
+        @include sm {
+          display: block;
+          width: 36.3rem;
+          height: 20.1rem;
+
+          top: -1.3rem;
+          right: unset;
+          bottom: unset;
+          left: -2.2rem;
+        }
+      }
+    }
+
+    #popup-thanks & {
+
+      @include dosm {
+        width: 100rem;
+      }
+
+      @include sm {
+        max-width: 35rem;
+        overflow: visible;
+        // transform: translateX(1rem);
+      }
     }
   }
 
@@ -61,6 +88,13 @@
     @include sm {
       gap: 2rem;
       padding: 2rem;
+    }
+
+    #popup-thanks & {
+
+      @include sm {
+        padding: 4rem 5.4rem 3.5rem 2rem;
+      }
     }
   }
 
@@ -80,6 +114,17 @@
 
     @include sm {
       font-size: 3rem;
+    }
+
+    #popup-thanks & {
+      padding-right: 0;
+
+      font-size: 6rem;
+      color: var(--white);
+
+      @include sm {
+        font-size: 3rem;
+      }
     }
   }
 
