@@ -709,7 +709,7 @@
           </div> -->
         </div>
         <div class="form-foot">
-          <button class="form-btn" type="button" data-btn-sound="poehali">
+          <button class="form-btn" type="button" data-btn-sound="poehali" disabled data-popup-close data-fancybox href="#popup-thanks">
             <div class="form-btn__text">
               поехали!
             </div>
@@ -719,7 +719,7 @@
               Нажимая на кнопку «Отправить» вы соглашаетесь с <a href="/sovok/privacy.html">Политикой обработки персональных данных</a>
             </div>
             <div class="form-group">
-              <input id="form-checkbox-1" class="form-checkbox" type="checkbox" data-btn-sound="shutdown_sound">
+              <input id="form-checkbox-1" class="form-checkbox" type="checkbox" data-btn-sound="shutdown_sound" required>
               <label for="form-checkbox-1" class="form-checkbox-label">
                 <div class="form-checkbox--item"></div>
                 <div class="form-text">
@@ -728,7 +728,7 @@
               </label>
             </div>
             <div class="form-group">
-              <input id="form-checkbox-2" class="form-checkbox" type="checkbox" data-btn-sound="shutdown_sound">
+              <input id="form-checkbox-2" class="form-checkbox" type="checkbox" data-btn-sound="shutdown_sound" required>
               <label for="form-checkbox-2" class="form-checkbox-label">
                 <div class="form-checkbox--item"></div>
                 <div class="form-text">
@@ -767,188 +767,199 @@
     <div class="tender lenis" data-popup="tender" data-lenis-prevent>
   <div class="tender__inner">
 
-    <div class="general__head">
-      <div class="general__suptitle">
-        пригласить
+    <div class="tender__wrapper">
+      <div class="general__head">
+        <div class="general__suptitle">
+          пригласить
+        </div>
+        <div class="general__title">
+          в тендер
+        </div>
       </div>
-      <div class="general__title">
-        в тендер
-      </div>
-    </div>
 
-    <form class="form" action="">
-      <div class="form-inner">
-        <div class="form-body form-col-2">
-          <div class="form-group">
-            <input id="tender_organization_input" class="form-input" type="text" name="tender_organization" required>
-            <label class="form-label">
-              <!-- организация -->
+      <form class="form" action="">
+        <div class="form-inner">
+          <div class="form-body form-col-2">
+            <div class="form-group">
+              <input id="tender_organization_input" class="form-input" type="text" name="tender_organization" required>
+              <label class="form-label">
+                <!-- организация -->
 
-              <div class="typewriter" data-sync-group="tender" data-type-speed="0.07" data-type-variance="0.04"
-                data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
-                data-input="#tender_organization_input" data-stop-text="Имя субъекта">
-                <div class="typewriter__line">
-                  <span class="typewriter__word" data-words="Давай знакомиться!|Сюда писать имя"></span>
+                <div class="typewriter" data-sync-group="tender" data-type-speed="0.07" data-type-variance="0.04"
+                  data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                  data-input="#tender_organization_input" data-stop-text="Имя субъекта">
+                  <div class="typewriter__line">
+                    <span class="typewriter__word" data-words="Давай знакомиться!|Сюда писать имя"></span>
+                  </div>
+                  <span class="typewriter__cursor">|</span>
                 </div>
-                <span class="typewriter__cursor">|</span>
-              </div>
 
-            </label>
-          </div>
-          <!-- <div class="form-group">
-            <input id="tender_gorod_input" class="form-input" type="text" name="tender_gorod" required>
-            <label class="form-label">
-              <div class="typewriter" data-sync-group="tender" data-type-speed="0.07" data-type-variance="0.04"
-                data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
-                data-input="#tender_gorod_input" data-stop-text="Город субъекта">
-                <div class="typewriter__line">
-                  <span class="typewriter__word" data-words="Откуда вы?|Сюда писать город"></span>
-                </div>
-                <span class="typewriter__cursor">|</span>
-              </div>
-            </label>
-          </div> -->
+              </label>
+            </div>
 
-          <div class="form-group">
-            <div class="dropdown dropdown--js">
-              <div class="dropdown__selected dropdown__selected--js">
-                <input id="tender_gorod_input" class="form-input dropdown__input dropdown__selected-input--js" type="text"
-                  name="tender_gorod" value="" required>
-                <label class="form-label">
-                  <div class="typewriter" data-sync-group="tender" data-type-speed="0.07" data-type-variance="0.04"
-                    data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
-                    data-input="#tender_gorod_input" data-stop-text="Город субъекта">
-                    <div class="typewriter__line">
-                      <span class="typewriter__word" data-words="Откуда вы?|Сюда писать город"></span>
+            <div class="form-group">
+              <div class="dropdown dropdown--js">
+                <div class="dropdown__selected dropdown__selected--js">
+                  <input id="tender_gorod_input" class="form-input dropdown__input dropdown__selected-input--js"
+                    type="text" name="tender_gorod" value="" required>
+                  <label for="tender_gorod_input" class="form-label">
+                    <div class="typewriter" data-sync-group="tender" data-type-speed="0.07" data-type-variance="0.04"
+                      data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                      data-input="#tender_gorod_input" data-stop-text="Город субъекта">
+                      <div class="typewriter__line">
+                        <span class="typewriter__word" data-words="Откуда вы?|Сюда писать город"></span>
+                      </div>
+                      <span class="typewriter__cursor">|</span>
                     </div>
-                    <span class="typewriter__cursor">|</span>
+                  </label>
+                  <!-- <label class="dropdown__label dropdown__selected-label--js"></label> -->
+                  <i class="icon-chevron-right"></i>
+                </div>
+                <div class="dropdown__container">
+                  <div class="dropdown__content">
+                    <div class="dropdown__option">
+                      <input id="place_1" class="dropdown__radio" name="place_name" type="radio" value="Новосибирск">
+                      <label for="place_1" class="dropdown__label">Новосибирск</label>
+                    </div>
+                    <div class="dropdown__option">
+                      <input id="place_2" class="dropdown__radio" name="place_name" type="radio" value="Москва">
+                      <label for="place_2" class="dropdown__label">Москва</label>
+                    </div>
+                    <div class="dropdown__option">
+                      <input id="place_3" class="dropdown__radio" name="place_name" type="radio"
+                        value="Санкт-Петербург">
+                      <label for="place_3" class="dropdown__label">Санкт-Петербург</label>
+                    </div>
+                  </div>
+                </div>
+                <input class="dropdown__value" type="hidden">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <input id="tender_tel_input" class="form-input" type="tel" name="tender_tel" required>
+              <label class="form-label">
+                <!-- Телефон  -->
+
+                <div class="typewriter" data-sync-group="tender" data-type-speed="0.07" data-type-variance="0.04"
+                  data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                  data-input="#tender_tel_input" data-stop-text="КАНАЛ СВЯЗИ">
+                  <div class="typewriter__line">
+                    <span class="typewriter__word"
+                      data-words="Номер телефона|Можно указать почту|Ждем обращения)"></span>
+                  </div>
+                  <span class="typewriter__cursor">|</span>
+                </div>
+
+              </label>
+            </div>
+            <div class="form-group">
+              <input id="tender_email_input" class="form-input" type="email" name="tender_email" required>
+              <label class="form-label">
+                <!-- Электронная почта  -->
+
+                <div class="typewriter" data-sync-group="tender" data-type-speed="0.07" data-type-variance="0.04"
+                  data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                  data-input="#tender_email_input" data-stop-text="Электронная почта">
+                  <div class="typewriter__line">
+                    <span class="typewriter__word"
+                      data-words="Электронная почта|Можно указать почту|Ждем обращения)"></span>
+                  </div>
+                  <span class="typewriter__cursor">|</span>
+                </div>
+
+              </label>
+            </div>
+            <div class="form-group">
+              <input id="tender_comments_input" class="form-input" type="text" name="tender_comments" required>
+              <label class="form-label">
+                <!-- ссылка на тендер или комментарий -->
+
+                <div class="typewriter" data-sync-group="tender" data-type-speed="0.07" data-type-variance="0.04"
+                  data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                  data-input="#tender_comments_input" data-stop-text="СУТЬ ОБРАЩЕНИЯ">
+                  <div class="typewriter__line">
+                    <span class="typewriter__word"
+                      data-words="суть нашего разговора|главная идея моего сообщения|основная цель"></span>
+                  </div>
+                  <span class="typewriter__cursor">|</span>
+                </div>
+
+              </label>
+            </div>
+          </div>
+          <div class="form-mid">
+            <div class="form-group">
+              <div class="form-file">
+                <label class="form-file-label">
+                  <input class="form-file-input" type="file" name="file_name">
+                  <div class="form-file-wrap">
+                    <i class="icon-add-doc"></i>
+                    <span>
+                      Вложить документ (не более 50 мб)
+                    </span>
                   </div>
                 </label>
-                <!-- <label class="dropdown__label dropdown__selected-label--js"></label> -->
-                <i class="icon-chevron-right"></i>
-              </div>
-              <div class="dropdown__container">
-                <div class="dropdown__content">
-                  <div class="dropdown__option">
-                    <input id="place_1" class="dropdown__radio" name="place_name" type="radio" value="Новосибирск">
-                    <label for="place_1" class="dropdown__label">Новосибирск</label>
-                  </div>
-                  <div class="dropdown__option">
-                    <input id="place_2" class="dropdown__radio" name="place_name" type="radio" value="Москва">
-                    <label for="place_2" class="dropdown__label">Москва</label>
-                  </div>
-                  <div class="dropdown__option">
-                    <input id="place_3" class="dropdown__radio" name="place_name" type="radio" value="Санкт-Петербург">
-                    <label for="place_3" class="dropdown__label">Санкт-Петербург</label>
-                  </div>
+                <div class="form-file-clear">
+                  <i class="icon-close"></i>
+                  Удалить
                 </div>
               </div>
-              <input class="dropdown__value" type="hidden">
             </div>
           </div>
-
-          <div class="form-group">
-            <input id="tender_tel_input" class="form-input" type="tel" name="tender_tel" required>
-            <label class="form-label">
-              <!-- Телефон  -->
-
-              <div class="typewriter" data-sync-group="tender" data-type-speed="0.07" data-type-variance="0.04"
-                data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
-                data-input="#tender_tel_input" data-stop-text="КАНАЛ СВЯЗИ">
-                <div class="typewriter__line">
-                  <span class="typewriter__word" data-words="Номер телефона|Можно указать почту|Ждем обращения)"></span>
-                </div>
-                <span class="typewriter__cursor">|</span>
+          <div class="form-foot">
+            <button id="rocket-btn" class="form-btn" type="button" data-btn-sound="poehali" disabled>
+              <div class="form-btn__text">
+                поехали!
               </div>
-
-            </label>
-          </div>
-          <div class="form-group">
-            <input id="tender_email_input" class="form-input" type="email" name="tender_email" required>
-            <label class="form-label">
-              <!-- Электронная почта  -->
-
-              <div class="typewriter" data-sync-group="tender" data-type-speed="0.07" data-type-variance="0.04"
-                data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
-                data-input="#tender_email_input" data-stop-text="Электронная почта">
-                <div class="typewriter__line">
-                  <span class="typewriter__word"
-                    data-words="Электронная почта|Можно указать почту|Ждем обращения)"></span>
-                </div>
-                <span class="typewriter__cursor">|</span>
+            </button>
+            <div class="form-wrap">
+              <div class="form-text">
+                Нажимая на кнопку «Отправить» вы соглашаетесь с <a href="/sovok/privacy.html">Политикой обработки
+                  персональных данных</a>
               </div>
-
-            </label>
-          </div>
-          <div class="form-group">
-            <input id="tender_comments_input" class="form-input" type="text" name="tender_comments" required>
-            <label class="form-label">
-              <!-- ссылка на тендер или комментарий -->
-
-              <div class="typewriter" data-sync-group="tender" data-type-speed="0.07" data-type-variance="0.04"
-                data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
-                data-input="#tender_comments_input" data-stop-text="СУТЬ ОБРАЩЕНИЯ">
-                <div class="typewriter__line">
-                  <span class="typewriter__word"
-                    data-words="суть нашего разговора|главная идея моего сообщения|основная цель"></span>
-                </div>
-                <span class="typewriter__cursor">|</span>
+              <div class="form-group">
+                <input id="tender-form-checkbox-1" class="form-checkbox" type="checkbox" data-btn-sound="shutdown_sound"
+                  required>
+                <label for="tender-form-checkbox-1" class="form-checkbox-label">
+                  <div class="form-checkbox--item"></div>
+                  <div class="form-text">
+                    Я согласен на обработку персональных данных
+                  </div>
+                </label>
               </div>
-
-            </label>
-          </div>
-        </div>
-        <div class="form-mid">
-          <div class="form-group">
-            <div class="form-file">
-              <label class="form-file-label">
-                <input class="form-file-input" type="file" name="file_name">
-                <div class="form-file-wrap">
-                  <i class="icon-add-doc"></i>
-                  <span>
-                    Вложить документ (не более 50 мб)
-                  </span>
-                </div>
-              </label>
-              <div class="form-file-clear">
-                <i class="icon-close"></i>
-                Удалить
+              <div class="form-group">
+                <input id="tender-form-checkbox-2" class="form-checkbox" type="checkbox" data-btn-sound="shutdown_sound"
+                  required>
+                <label for="tender-form-checkbox-2" class="form-checkbox-label">
+                  <div class="form-checkbox--item"></div>
+                  <div class="form-text">
+                    Я согласен на рекламные уведомления
+                  </div>
+                </label>
               </div>
             </div>
           </div>
         </div>
-        <div class="form-foot">
-          <button id="rocket-btn" class="form-btn" type="button" data-btn-sound="poehali">
-            <div class="form-btn__text">
-              поехали!
-            </div>
-          </button>
-          <div class="form-wrap">
-            <div class="form-text">
-              Нажимая на кнопку «Отправить» вы соглашаетесь с <a href="/sovok/privacy.html">Политикой обработки персональных данных</a>
-            </div>
-            <div class="form-group">
-              <input id="tender-form-checkbox-1" class="form-checkbox" type="checkbox" data-btn-sound="shutdown_sound">
-              <label for="tender-form-checkbox-1" class="form-checkbox-label">
-                <div class="form-checkbox--item"></div>
-                <div class="form-text">
-                  Я согласен на обработку персональных данных
-                </div>
-              </label>
-            </div>
-            <div class="form-group">
-              <input id="tender-form-checkbox-2" class="form-checkbox" type="checkbox" data-btn-sound="shutdown_sound">
-              <label for="tender-form-checkbox-2" class="form-checkbox-label">
-                <div class="form-checkbox--item"></div>
-                <div class="form-text">
-                  Я согласен на рекламные уведомления
-                </div>
-              </label>
-            </div>
-          </div>
+      </form>
+    </div>
+
+    <div class="tender__change">
+      <div class="general__head">
+        <div class="general__suptitle">
+          отправлено
+        </div>
+        <div class="general__title">
+          скоро свяжемся с&nbsp;вами
         </div>
       </div>
-    </form>
+
+      <button class="btn" data-popup-close>
+        <div class="btn__text">
+          на главную
+        </div>
+      </button>
+    </div>
 
     <div class="tender__cover">
       <div class="tender__cover-img">
@@ -2050,7 +2061,7 @@
                   </div>
                 </div>
                 <div class="form-foot">
-                  <button class="form-btn" type="button" data-btn-sound="poehali">
+                  <button class="form-btn" type="button" data-btn-sound="poehali" disabled>
                     <div class="form-btn__text">
                       поехали!
                     </div>
@@ -2062,7 +2073,7 @@
                         данных</a>
                     </div>
                     <div class="form-group">
-                      <input id="form-checkbox-3" class="form-checkbox" type="checkbox" data-btn-sound="shutdown_sound">
+                      <input id="form-checkbox-3" class="form-checkbox" type="checkbox" data-btn-sound="shutdown_sound" required>
                       <label for="form-checkbox-3" class="form-checkbox-label">
                         <div class="form-checkbox--item"></div>
                         <div class="form-text">
@@ -2071,7 +2082,7 @@
                       </label>
                     </div>
                     <div class="form-group">
-                      <input id="form-checkbox-4" class="form-checkbox" type="checkbox" data-btn-sound="shutdown_sound">
+                      <input id="form-checkbox-4" class="form-checkbox" type="checkbox" data-btn-sound="shutdown_sound" required>
                       <label for="form-checkbox-4" class="form-checkbox-label">
                         <div class="form-checkbox--item"></div>
                         <div class="form-text">
@@ -2226,6 +2237,28 @@
         <button class="plate__btn btn btn--red" data-popup-btn="callback">
           <div class="btn__text">
             Давайте дружить
+          </div>
+        </button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="plate_cookie" class="cookie cookie--active">
+  <div class="cookie__wrap">
+    <div class="container">
+      <div class="cookie__inner">
+
+        <div class="cookie__text">
+          <p>
+            Используя сайт, вы соглашаетесь <a href="/">на обработку куки и метрик</a>
+          </p>
+        </div>
+
+        <button class="cookie__btn btn" onclick="checkCookies()">
+          <div class="btn__text">
+            принято
           </div>
         </button>
 
@@ -2431,6 +2464,18 @@
       </div>
       <div class="popup__cover">
         <img src="./images/temp/popup-cover-3.svg" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="popup" id="popup-thanks">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content">
+      <div class="popup__head">
+        <div class="popup__title">
+          Спасибо! <br>
+          форма отправлена
+        </div>
       </div>
     </div>
   </div>
