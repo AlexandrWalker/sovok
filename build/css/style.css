@@ -181,16 +181,16 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
+  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
+  font-weight: 900;
   font-style: normal;
 }
 
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
-  font-weight: 900;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -4033,12 +4033,15 @@ canvas {
   height: 100dvh;
   -webkit-transition: all 0.5s ease, opacity 0.3s ease;
   transition: all 0.5s ease, opacity 0.3s ease;
-  pointer-events: none;
   position: fixed;
   top: 0;
   right: 0;
   left: 120%;
   z-index: 601;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  isolation: isolate;
+  will-change: transform;
 }
 
 .tender::-webkit-scrollbar {
@@ -4183,10 +4186,10 @@ canvas {
   opacity: 1;
   visibility: visible;
   pointer-events: all;
-  -webkit-transition: opacity 0.8s ease, visibility 0.8s ease, -webkit-transform 0.8s ease;
-  transition: opacity 0.8s ease, visibility 0.8s ease, -webkit-transform 0.8s ease;
-  transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease;
-  transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease, -webkit-transform 0.8s ease;
+  -webkit-transition: opacity 0.8s ease, visibility 0.8s ease, margin 1.5s ease, -webkit-transform 0.8s ease;
+  transition: opacity 0.8s ease, visibility 0.8s ease, margin 1.5s ease, -webkit-transform 0.8s ease;
+  transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease, margin 1.5s ease;
+  transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease, margin 1.5s ease, -webkit-transform 0.8s ease;
 }
 
 .tender--change .tender__wrapper {
@@ -4196,6 +4199,7 @@ canvas {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  margin-top: -30vh;
 }
 
 .tender__inner {
@@ -4209,7 +4213,6 @@ canvas {
   gap: 5rem;
   padding: 7.7rem 0 7rem 0;
   background-color: var(--black);
-  pointer-events: none;
   overflow-y: auto;
   overflow-x: hidden;
   width: 100%;
@@ -4220,7 +4223,6 @@ canvas {
 
 .tender--open .tender__inner {
   padding: 7.7rem 9rem 7rem 9rem;
-  pointer-events: all;
 }
 
 .tender__inner::-webkit-scrollbar {
@@ -9376,6 +9378,7 @@ html.tender--open .tender-btn .object-body::before {
     top: -100%;
     left: 0;
     opacity: 0;
+    background-color: var(--black);
     overflow-y: auto;
     overflow-x: hidden;
   }

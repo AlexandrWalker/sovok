@@ -8,7 +8,7 @@
   height: 100vh;
   height: 100dvh;
   transition: all 0.5s ease, opacity 0.3s ease;
-  pointer-events: none;
+  // pointer-events: none;
 
   position: fixed;
   top: 0;
@@ -16,11 +16,17 @@
   left: 120%;
   z-index: 601;
 
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  isolation: isolate;
+  will-change: transform;
+
   @include sm {
     grid-template-columns: 1fr;
     top: -100%;
     left: 0;
     opacity: 0;
+    background-color: var(--black);
 
     overflow-y: auto;
     overflow-x: hidden;
@@ -221,7 +227,7 @@
     opacity: 1;
     visibility: visible;
     pointer-events: all;
-    transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease;
+    transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease, margin 1.5s ease;
 
     @include sm {
       gap: 3.6rem;
@@ -232,6 +238,7 @@
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
+      margin-top: -30vh;
     }
   }
 
@@ -241,7 +248,7 @@
     gap: 5rem;
     padding: 7.7rem 0 7rem 0;
     background-color: var(--black);
-    pointer-events: none;
+    // pointer-events: none;
     overflow-y: auto;
     overflow-x: hidden;
 
@@ -260,7 +267,7 @@
 
     .tender--open & {
       padding: 7.7rem 9rem 7rem 9rem;
-      pointer-events: all;
+      // pointer-events: all;
 
       @include sm {
         padding: 11rem 1.5rem 13.7rem 1.5rem;
