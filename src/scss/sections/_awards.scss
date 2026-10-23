@@ -79,12 +79,12 @@
 
   &__img {
     height: 87.8rem;
-    height: calc(100vw/(1920/878));
+    height: calc(100vw/(var(--refRes)/878));
     pointer-events: none;
 
     position: absolute;
     top: -5.3rem;
-    top: calc(-100vw/(1920/53));
+    top: calc(-100vw/(var(--refRes)/53));
     right: 0;
     z-index: 3;
 
@@ -106,13 +106,13 @@
   &__cover {
     width: auto;
     height: 63.8rem;
-    height: calc(100vw/(1920/638));
+    height: calc(100vw/(var(--refRes)/638));
 
     position: absolute;
-    top: -11.8rem;
-    top: calc(-100vw/(1920/118));
-    left: -3.8rem;
-    left: calc(-100vw/(1920/38));
+    // top: -11.8rem;
+    top: calc(-100vw/(var(--refRes)/118));
+    // left: -3.8rem;
+    left: calc(-100vw/(var(--refRes)/38));
     z-index: 2;
 
     @include sm {

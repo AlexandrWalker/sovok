@@ -132,15 +132,15 @@
   &__cover {
     width: auto;
     // height: 119.8rem;
-    height: calc(100vw/(1920/1198));
+    height: calc(100vw/(var(--refRes)/1198));
     pointer-events: none;
 
     position: absolute;
     // bottom: -25.1rem;
-    bottom: clamp(calc(-100vw/(1920/360)), calc(-100vw/(1920/500)), calc(-100vw/(1920/500)));
+    bottom: clamp(calc(-100vw/(var(--refRes)/360)), calc(-100vw/(var(--refRes)/500)), calc(-100vw/(var(--refRes)/500)));
     // top: calc(100vw/(1920/90));
     left: -19.7rem;
-    left: calc(-100vw/(1920/197));
+    left: calc(-100vw/(var(--refRes)/197));
     z-index: 2;
 
     @include sm {
@@ -197,8 +197,8 @@
     height: 100%;
 
     padding: 32.8rem 0 0 83rem;
-    padding: calc(100vw/(1920/328)) 0 0 calc(100vw/(1920/830));
-    padding: 0 0 0 calc(100vw/(1920/830));
+    padding: calc(100vw/(var(--refRes)/328)) 0 0 calc(100vw/(var(--refRes)/830));
+    padding: 0 0 0 calc(100vw/(var(--refRes)/830));
 
     @include sm {
       padding: 0;

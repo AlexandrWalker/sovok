@@ -357,6 +357,13 @@
       right: 2.9rem;
     }
 
+    .test-page & {
+
+      @include dosm {
+        right: 39.9rem;
+      }
+    }
+
     img {
       width: auto;
       height: 100%;

@@ -88,6 +88,13 @@
       position: relative;
       z-index: 2;
     }
+
+    .test-page & {
+
+      @include dosm {
+        overflow: visible;
+      }
+    }
   }
 
   &__slider {
@@ -272,6 +279,13 @@
       top: 2.7rem;
       right: 0.4rem;
       left: unset;
+    }
+
+    .test-page & {
+
+      @include dosm {
+        left: -3.3rem;
+      }
     }
 
     &-shadow {

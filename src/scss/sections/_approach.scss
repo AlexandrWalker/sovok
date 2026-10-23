@@ -131,6 +131,13 @@
       right: -15.5rem;
     }
 
+    .test-page & {
+
+      @include dosm {
+        right: -8.5rem;
+      }
+    }
+
     .general__head {
       position: relative;
       z-index: 2;
@@ -186,6 +193,19 @@
       top: 0.5rem;
       right: 0;
       left: unset;
+    }
+
+    .test-page & {
+
+      @include dosm {
+        left: -9rem;
+        height: 115.8rem;
+
+        &::before,
+        &::after {
+          display: none;
+        }
+      }
     }
 
     &::before {
