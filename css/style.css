@@ -3,7 +3,7 @@
 /* Base */
 
 html {
-  --refRes: 1920;
+  --refRes: 2304;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
   font-size: calc(100vw / var(--refRes) * 10);
@@ -129,7 +129,6 @@ img {
 .box.html,
 .box body {
   overflow-x: hidden;
-  /* Убирает горизонтальный скролл */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -137,7 +136,6 @@ img {
 .box .slide-box {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  /* Улучшает рендеринг на GPU */
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
@@ -182,6 +180,14 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
+  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
   src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
@@ -208,14 +214,6 @@ img {
   font-display: swap;
   src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
   font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
-  font-weight: 900;
   font-style: normal;
 }
 
@@ -294,16 +292,16 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Regular.woff2") format("woff2"), url("../fonts/RobotoCondensed-Regular.woff") format("woff");
-  font-weight: 400;
+  src: url("../fonts/RobotoCondensed-Medium.woff2") format("woff2"), url("../fonts/RobotoCondensed-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Medium.woff2") format("woff2"), url("../fonts/RobotoCondensed-Medium.woff") format("woff");
-  font-weight: 500;
+  src: url("../fonts/RobotoCondensed-Regular.woff2") format("woff2"), url("../fonts/RobotoCondensed-Regular.woff") format("woff");
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -1980,7 +1978,7 @@ p {
   -ms-grid-columns: 1fr;
   grid-template-columns: 1fr;
   background-color: var(--black);
-  width: var(--callback-mini-width);
+  width: calc(var(--callback-mini-width) + 19.2rem);
   height: 100%;
   position: absolute;
   right: 0;
@@ -2028,11 +2026,11 @@ p {
 
 .callback.callback-mini .callback__inner {
   gap: 4rem;
-  padding: 21rem 4rem 8rem 4rem;
+  padding: 21rem 23.2rem 8rem 4rem;
 }
 
 .contacts-page .callback.callback-mini .callback__inner {
-  padding: 23rem 4rem 8rem 4rem;
+  padding: 23rem 23.2rem 8rem 4rem;
 }
 
 .callback.callback-mini .request__cover {
@@ -2838,11 +2836,6 @@ p {
   max-height: 100dvh;
 }
 
-.menu .container {
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
 .menu .container::-webkit-scrollbar {
   display: none;
   width: 0;
@@ -2857,7 +2850,6 @@ p {
   height: fit-content;
   min-height: 100%;
   padding: 3.5rem 0;
-  overflow: hidden;
   position: relative;
 }
 
@@ -3994,6 +3986,7 @@ canvas {
 
 .template__btn {
   --btn-padding-x: 6.5rem;
+  --btn-height: 8rem;
 }
 
 .services-page .template__btn {
@@ -4006,8 +3999,8 @@ canvas {
   height: 69.9rem;
   pointer-events: none;
   position: absolute;
-  top: -12.6rem;
-  right: 10.3rem;
+  top: -11rem;
+  right: 29.5rem;
   z-index: 1;
 }
 
@@ -4028,7 +4021,7 @@ canvas {
   pointer-events: none;
   position: absolute;
   top: -16.8rem;
-  right: 0;
+  right: -1.2rem;
   z-index: 2;
 }
 
@@ -4477,7 +4470,7 @@ html.tender--open .tender-btn .object-body::before {
   text-align: right;
   position: absolute;
   top: -25rem;
-  right: -26.5rem;
+  right: -8.5rem;
   z-index: -1;
 }
 
@@ -4492,10 +4485,10 @@ html.tender--open .tender-btn .object-body::before {
 }
 
 .approach__cover {
-  height: 90.6rem;
+  height: 115.8rem;
   position: absolute;
   top: 25.2rem;
-  left: 0;
+  left: -9rem;
   z-index: 1;
 }
 
@@ -4601,14 +4594,13 @@ html.tender--open .tender-btn .object-body::before {
   height: calc(100vw / (var(--refRes) / 878));
   pointer-events: none;
   position: absolute;
-  top: -5.3rem;
   top: calc(-100vw / (var(--refRes) / 53));
-  right: 0;
+  right: 9.7rem;
   z-index: 3;
 }
 
 .branding-page .awards__img {
-  top: -0.5208333333vw;
+  top: calc(-100vw / (var(--refRes) / 10));
 }
 
 .awards__img img {
@@ -4891,6 +4883,10 @@ html.tender--open .tender-btn .object-body::before {
   overflow: visible;
 }
 
+.coming-soon__inner {
+  width: calc(100% - var(--callback-mini-width) + var(--container-padding));
+}
+
 .coming-soon__head {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -4941,7 +4937,7 @@ html.tender--open .tender-btn .object-body::before {
   height: 103.9rem;
   position: absolute;
   bottom: 0;
-  right: calc(var(--callback-mini-width) + 7.1rem);
+  right: calc(var(--callback-mini-width) + 7.1rem + 19.2rem);
   z-index: 2;
 }
 
@@ -4966,7 +4962,7 @@ html.tender--open .tender-btn .object-body::before {
   -webkit-box-align: end;
   -ms-flex-align: end;
   align-items: flex-end;
-  width: calc(100% - var(--callback-mini-width));
+  width: calc(100% - var(--callback-mini-width) - 19.2rem);
   height: 33.8rem;
   position: absolute;
   left: 0;
@@ -6355,7 +6351,7 @@ html.tender--open .tender-btn .object-body::before {
 .branding-page .growth__cover {
   height: 88.1rem;
   top: 30.7rem;
-  right: -14.6rem;
+  right: 4.6rem;
 }
 
 .growth__cover img {
@@ -6593,7 +6589,6 @@ html.tender--open .tender-btn .object-body::before {
 
 .hero__cover {
   z-index: 2;
-  /* add new */
   -ms-grid-column: 3;
   -ms-grid-column-span: 2;
   grid-column: 3/5;
@@ -6601,7 +6596,6 @@ html.tender--open .tender-btn .object-body::before {
   -ms-grid-row-span: 3;
   grid-row: 1/4;
   position: relative;
-  /* ./add new */
 }
 
 .hero__cover-img {
@@ -6641,7 +6635,7 @@ html.tender--open .tender-btn .object-body::before {
   height: 73.1rem;
   position: absolute;
   top: calc(((var(--header-height)) + 20.2rem) * -1);
-  right: 21.9rem;
+  right: 41.1rem;
   z-index: 1;
 }
 
@@ -6784,7 +6778,7 @@ html.tender--open .tender-btn .object-body::before {
   height: 78rem;
   position: absolute;
   top: 18.5rem;
-  left: -21.3rem;
+  left: -2.1rem;
   z-index: 1;
 }
 
@@ -7034,7 +7028,7 @@ html.tender--open .tender-btn .object-body::before {
   height: 112.4rem;
   position: absolute;
   top: -2.5rem;
-  right: var(--callback-mini-width);
+  right: calc(var(--callback-mini-width) + 19.2rem);
   z-index: 1;
 }
 
@@ -7706,10 +7700,6 @@ html.tender--open .tender-btn .object-body::before {
 }
 
 @media (min-width: 601px) {
-  html.test-page {
-    --refRes: 2304;
-  }
-
   .overlay {
     display: none;
   }
@@ -7875,36 +7865,35 @@ html.tender--open .tender-btn .object-body::before {
   .services-page .template__cover {
     height: 75.3rem;
     top: -9rem;
-    right: 19.6rem;
+    right: 38.8rem;
   }
 
   .naming-page .template__cover {
     height: 99.6rem;
     top: -17rem;
-    right: 11.9rem;
+    right: 35.1rem;
   }
 
   .firm-style-page .template__cover {
     height: 99rem;
-    top: -17rem;
-    right: 15.4rem;
+    top: -15.5rem;
+    right: 34.6rem;
+  }
+
+  .firm-style-page .template__mask {
+    top: -15.8rem;
+    right: -2.2rem;
   }
 
   .tender .typewriter__word::after {
     background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNiAxNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik03LjYwODQgMEw5LjQwNDUxIDUuNTI3ODZIMTUuMjE2OUwxMC41MTQ2IDguOTQ0MjdMMTIuMzEwNyAxNC40NzIxTDcuNjA4NCAxMS4wNTU3TDIuOTA2MTIgMTQuNDcyMUw0LjcwMjIzIDguOTQ0MjdMLTUuMzg4MjZlLTA1IDUuNTI3ODZINS44MTIyOUw3LjYwODQgMFoiIGZpbGw9IiNGQUY0RUQiLz4NCjwvc3ZnPg0K) !important;
   }
 
-  .test-page .approach__block {
-    right: -8.5rem;
+  .approach__cover::before {
+    display: none;
   }
 
-  .test-page .approach__cover {
-    left: -9rem;
-    height: 115.8rem;
-  }
-
-  .test-page .approach__cover::before,
-  .test-page .approach__cover::after {
+  .approach__cover::after {
     display: none;
   }
 
@@ -7939,6 +7928,10 @@ html.tender--open .tender-btn .object-body::before {
   .coming-soon__head-title {
     margin-bottom: 2rem;
     min-height: 20.3rem;
+  }
+
+  .coming-soon__frame {
+    padding: 0 0 0 18.2rem;
   }
 
   .contacts-page .general__title {
@@ -8000,7 +7993,7 @@ html.tender--open .tender-btn .object-body::before {
   .firm-style-page .desc__cover {
     width: 77.3rem;
     top: unset;
-    right: 13.3rem;
+    right: 2.9rem;
     bottom: -4.1rem;
   }
 
@@ -8090,11 +8083,7 @@ html.tender--open .tender-btn .object-body::before {
     --section-padding-bottom: 6.5rem;
   }
 
-  .test-page .hero__mask {
-    right: 39.9rem;
-  }
-
-  .test-page .inform__body {
+  .inform__body {
     overflow: visible;
   }
 
@@ -8118,10 +8107,6 @@ html.tender--open .tender-btn .object-body::before {
   .inform__slide.swiper-slide-next + .swiper-slide {
     opacity: 1;
     visibility: visible;
-  }
-
-  .test-page .inform__cover {
-    left: -3.3rem;
   }
 
   .investment {
@@ -8949,6 +8934,11 @@ html.tender--open .tender-btn .object-body::before {
     pointer-events: none;
   }
 
+  .menu .container {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
   .menu__inner {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -8960,7 +8950,6 @@ html.tender--open .tender-btn .object-body::before {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    overflow: unset;
     padding: 2.5rem 0 0;
   }
 
@@ -9421,6 +9410,7 @@ html.tender--open .tender-btn .object-body::before {
     width: 100%;
     height: auto;
     top: 44.6rem;
+    right: 0;
   }
 
   .template__mask img {
@@ -9572,14 +9562,6 @@ html.tender--open .tender-btn .object-body::before {
     top: 0.5rem;
     right: 0;
     left: unset;
-  }
-
-  .approach__cover::before {
-    display: none;
-  }
-
-  .approach__cover::after {
-    display: none;
   }
 
   .approach__satellite-wrap {
