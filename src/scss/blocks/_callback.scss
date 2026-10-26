@@ -22,13 +22,7 @@
 
   &:not(.callback-mini) {
 
-    .callback__inner {
-
-      @include sm {}
-    }
-
     @include sm {
-      // top: -100%;
       transform: translateY(-100%);
       left: 0;
       opacity: 0;
@@ -65,7 +59,6 @@
       left: calc(100% + var(--callback-width));
 
       @include sm {
-        // top: -100%;
         transform: translateY(-100%);
         left: 0;
       }
@@ -75,7 +68,7 @@
   &.callback-mini {
     grid-template-columns: 1fr;
     background-color: var(--black);
-    width: var(--callback-mini-width);
+    width: calc(var(--callback-mini-width) + 19.2rem);
     height: 100%;
 
     position: absolute;
@@ -142,7 +135,8 @@
 
       &__inner {
         gap: 4rem;
-        padding: 21rem 4rem 8rem 4rem;
+        // padding: 21rem 4rem 8rem 4rem;
+        padding: 21rem 23.2rem 8rem 4rem;
 
         @include sm {
           // height: 100%;
@@ -153,7 +147,8 @@
         }
 
         .contacts-page & {
-          padding: 23rem 4rem 8rem 4rem;
+          // padding: 23rem 4rem 8rem 4rem;
+          padding: 23rem 23.2rem 8rem 4rem;
 
           @include sm {
             padding: 5rem 1.5rem 31rem;

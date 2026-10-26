@@ -44,7 +44,6 @@
 
   &__title {
     margin-bottom: 2rem;
-    // min-height: 36rem;
     min-height: 36.5rem;
 
     @include sm {
@@ -114,6 +113,7 @@
 
   &__btn {
     --btn-padding-x: 6.5rem;
+    --btn-height: 8rem;
 
     @include sm {
       --btn-padding-x: 2.4rem;
@@ -131,12 +131,13 @@
     pointer-events: none;
 
     position: absolute;
-    top: -12.6rem;
-    right: 10.3rem;
+    // top: -12.6rem;
+    top: -11rem;
+    // right: 10.3rem;
+    right: 29.5rem;
     z-index: 1;
 
     @include sm {
-      // height: 44.2rem;
       max-width: unset;
       width: calc(100% + 4rem);
       height: auto;
@@ -154,7 +155,8 @@
         height: 75.3rem;
 
         top: -9rem;
-        right: 19.6rem;
+        // right: 19.6rem;
+        right: 38.8rem;
       }
 
       @include sm {
@@ -176,7 +178,9 @@
         height: 99.6rem;
 
         top: -17rem;
-        right: 11.9rem;
+        // right: 11.9rem;
+        // right: 31.1rem;
+        right: 35.1rem;
       }
 
       @include sm {
@@ -189,8 +193,10 @@
       @include dosm {
         height: 99rem;
 
-        top: -17rem;
-        right: 15.4rem;
+        // top: -17rem;
+        top: -15.5rem;
+        // right: 15.4rem;
+        right: 34.6rem;
       }
 
       @include sm {
@@ -225,7 +231,8 @@
 
     position: absolute;
     top: -16.8rem;
-    right: 0;
+    right: -1.2rem;
+    // right: 19.2rem;
     z-index: 2;
 
     @include sm {
@@ -233,6 +240,15 @@
       height: auto;
 
       top: 44.6rem;
+      right: 0;
+    }
+
+    .firm-style-page & {
+
+      @include dosm {
+        top: -15.8rem;
+        right: -2.2rem;
+      }
     }
 
     img {

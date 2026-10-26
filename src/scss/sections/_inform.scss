@@ -1,4 +1,4 @@
-@use './../mixins' as *;
+@use "./../mixins" as *;
 
 .inform {
   // min-height: 100vh;
@@ -48,9 +48,7 @@
   // }
 
   .general {
-
     &__title {
-
       @include sm {
         max-width: 27.5rem;
         word-break: break-word;
@@ -61,7 +59,6 @@
   }
 
   &__inner {
-
     @include sm {
       display: flex;
       flex-direction: column;
@@ -79,21 +76,17 @@
     padding: 0 var(--container-padding) 0 calc(var(--container-padding) + 61rem);
     overflow: hidden;
 
+    @include dosm {
+      overflow: visible;
+    }
+
     @include sm {
       margin-top: 0;
       padding: 0 var(--container-padding);
-      // margin-bottom: 2rem;
       margin-bottom: 0;
 
       position: relative;
       z-index: 2;
-    }
-
-    .test-page & {
-
-      @include dosm {
-        overflow: visible;
-      }
     }
   }
 
@@ -128,14 +121,12 @@
     }
 
     &:last-child {
-
       .inform__item-arrow {
         display: none;
       }
     }
 
     &.swiper-slide-active {
-
       @include dosm {
         opacity: 1;
         visibility: visible;
@@ -147,21 +138,18 @@
     }
 
     &.swiper-slide-prev {
-
       @include sm {
         z-index: 3;
       }
     }
 
     &.swiper-slide-next {
-
       @include dosm {
         opacity: 1;
         visibility: visible;
       }
 
-      &+.swiper-slide {
-
+      & + .swiper-slide {
         @include dosm {
           opacity: 1;
           visibility: visible;
@@ -270,7 +258,8 @@
 
     position: absolute;
     top: 18.5rem;
-    left: -21.3rem;
+    // left: -21.3rem;
+    left: -2.1rem;
     z-index: 1;
 
     @include sm {
@@ -279,13 +268,6 @@
       top: 2.7rem;
       right: 0.4rem;
       left: unset;
-    }
-
-    .test-page & {
-
-      @include dosm {
-        left: -3.3rem;
-      }
     }
 
     &-shadow {
@@ -344,7 +326,6 @@
     display: none;
   }
 }
-
 
 #inform__rect {
   cursor: grab;

@@ -15,8 +15,6 @@
     }
   }
 
-  @include sm {}
-
   .general {
 
     &__head {
@@ -187,7 +185,8 @@
       height: 88.1rem;
 
       top: 30.7rem;
-      right: -14.6rem;
+      // right: -14.6rem;
+      right: 4.6rem;
 
       @include sm {
         width: auto;

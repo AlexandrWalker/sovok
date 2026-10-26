@@ -1,4 +1,4 @@
-@use './../mixins' as *;
+@use "./../mixins" as *;
 
 .menu {
   width: 100%;
@@ -19,7 +19,6 @@
   }
 
   &--open {
-
     body {
       overflow: hidden !important;
       overscroll-behavior-y: none;
@@ -29,8 +28,11 @@
   }
 
   .container {
-    overflow-y: auto;
-    overflow-x: hidden;
+    
+    @include sm {
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
 
     &::-webkit-scrollbar {
       display: none;
@@ -42,9 +44,7 @@
   }
 
   &.list-dropdown-active {
-
     .hero__cover {
-
       @include dosm {
         transform: translateY(100%);
         opacity: 0;
@@ -53,13 +53,10 @@
   }
 
   &__inner {
-    // display: grid;
-    // grid-template-columns: repeat(4, 1fr);
-    // gap: 8rem;
     height: fit-content;
     min-height: 100%;
     padding: 3.5rem 0;
-    overflow: hidden;
+    // overflow: hidden;
 
     position: relative;
 
@@ -67,7 +64,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      overflow: unset;
+      // overflow: unset;
 
       padding: 2.5rem 0 0;
     }
@@ -78,7 +75,7 @@
 
     font-family: var(--second-family);
     font-weight: 900;
-    font-size: calc(100vw/(402/40));
+    font-size: calc(100vw / (402 / 40));
     line-height: 100%;
     color: var(--white);
 
@@ -94,7 +91,6 @@
     flex-direction: column;
     justify-content: space-between;
     gap: 5rem;
-    // overflow: hidden;
     height: 100%;
 
     position: relative;
@@ -147,41 +143,15 @@
         position: static;
       }
     }
-
-    // &::after {
-    //   content: "";
-    //   display: block;
-    //   width: 52.2rem;
-    //   height: 30.6rem;
-    //   background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTIyIiBoZWlnaHQ9IjMwNiIgdmlld0JveD0iMCAwIDUyMiAzMDYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8cGF0aCBkPSJNNDM2Ljk3IDYuOTA5NjlMMjkxLjEyOCAxOTkuMjk5TDUxNy40MTUgOTYuOTA4MUw0MzYuOTcgNi45MDk2OVoiIGZpbGw9IiMxNzE3MUEiLz4NCjxlbGxpcHNlIGN4PSIxODMuNDIzIiBjeT0iMjkyLjI2IiByeD0iMTgzLjQyMyIgcnk9IjE3NS43NCIgdHJhbnNmb3JtPSJyb3RhdGUoLTE4MCAxODMuNDIzIDI5Mi4yNikiIGZpbGw9IiNGQUY0RUQiLz4NCjxwYXRoIGQ9Ik0zMTUuMDA0IDE2OS40MkwyOTMuMDEzIDE5OC40MjlMMzI3LjEzNCAxODIuOTlMMzE1LjAwNCAxNjkuNDJaIiBmaWxsPSIjREMxNDNDIi8+DQo8L3N2Zz4NCg==);
-    //   background-repeat: no-repeat;
-    //   background-size: 100%;
-    //   background-position: center center;
-
-    //   position: absolute;
-    //   // bottom: -16.2rem;
-    //   bottom: -3.5rem;
-    //   left: 64rem;
-    //   z-index: 1;
-
-    //   @include sm {
-    //     width: 35rem;
-    //     height: 22.3rem;
-    //     background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjIyMyIgdmlld0JveD0iMCAwIDM1MCAyMjMiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8cGF0aCBkPSJNMjkwLjAyNCA0Ljg4NjVMMTg2Ljg4NSAxNDAuOTQ0TDM0Ni45MTUgNjguNTMzM0wyOTAuMDI0IDQuODg2NVoiIGZpbGw9IiMxNzE3MUEiLz4NCjxlbGxpcHNlIGN4PSIxMTAuNzE2IiBjeT0iMjA2LjY4NiIgcng9IjEyOS43MTYiIHJ5PSIxMjQuMjgzIiB0cmFuc2Zvcm09InJvdGF0ZSgtMTgwIDExMC43MTYgMjA2LjY4NikiIGZpbGw9IiNGQUY0RUQiLz4NCjxwYXRoIGQ9Ik0yMDMuNzcgMTE5LjgxM0wxODguMjE4IDE0MC4zMjlMMjEyLjM0OCAxMjkuNDFMMjAzLjc3IDExOS44MTNaIiBmaWxsPSIjREMxNDNDIi8+DQo8L3N2Zz4NCg==);
-
-    //     margin-top: -2.5rem;
-    //     margin-left: calc(var(--container-padding) * -1);
-
-    //     position: static;
-    //   }
-    // }
   }
 
   &__content {
     display: flex;
     flex-direction: column;
     gap: 3rem;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
     transform: translateY(0);
     opacity: 1;
 
@@ -195,7 +165,6 @@
 
     .list-dropdown-active &,
     .menu-item-hover & {
-
       @include dosm {
         transform: translateY(100%);
         opacity: 0;
@@ -236,7 +205,6 @@
   }
 
   &__nav {
-
     &-wrap {
       grid-column: 2/5;
 
@@ -314,9 +282,7 @@
       }
 
       &:hover {
-
         @include dosm {
-
           .menu__nav-head--img {
             transform: rotate(4.5deg);
           }
@@ -324,7 +290,6 @@
       }
 
       &.item--active {
-
         @include sm {
           gap: 2rem;
         }
@@ -398,7 +363,6 @@
         }
 
         .item--active & {
-
           @include sm {
             color: var(--black);
           }
@@ -418,14 +382,12 @@
         }
 
         .item--active & {
-
           @include sm {
             color: var(--black);
           }
         }
 
         .menu__nav-item.item--active & {
-
           @include sm {
             transform: rotate(-180deg);
           }
@@ -434,7 +396,6 @@
     }
 
     &-body {
-
       @include sm {
         display: grid;
         grid-template-rows: 0fr;
@@ -448,7 +409,6 @@
     }
 
     &-list {
-
       @include sm {
         overflow: hidden;
         transition: all 0.5s ease;
@@ -479,7 +439,6 @@
         }
 
         &:hover {
-
           @include dosm {
             color: var(--black);
           }
@@ -512,23 +471,19 @@
       }
 
       &--dropdown {
-
         @include dosm {
           pointer-events: none;
         }
       }
 
       &:first-child {
-
         .menu__list-link {
           padding-top: 0;
         }
       }
 
       &:last-child {
-
         .menu__list-link {
-
           @include sm {
             padding-bottom: 0;
           }
@@ -537,16 +492,13 @@
 
       .list-dropdown-active &,
       &:hover {
-
         @include dosm {
-
           .menu__nav-wrap {
             opacity: 1;
             visibility: visible;
             pointer-events: all;
 
             .menu__nav-item {
-
               &:nth-child(1) {
                 transform: translateY(0);
               }
@@ -593,26 +545,20 @@
       }
 
       &:not(.list--active .menu__list-link) {
-
         html.menu-list--active & {
-
           @include sm {
             opacity: 0.5;
-
           }
         }
       }
 
       html.menu-nav--active & {
-
         @include sm {
           opacity: 0.5;
-
         }
       }
 
       .menu__list-item--dropdown.list--active & {
-
         @include sm {
           color: var(--black);
         }
@@ -636,7 +582,6 @@
       }
 
       .list-dropdown-active .menu__list-item--dropdown & {
-
         @include dosm {
           padding-left: 4.5rem;
 
@@ -681,7 +626,6 @@
         }
 
         .menu__list-item--dropdown.list--active & {
-
           @include sm {
             transform: rotate(-180deg);
           }
@@ -704,16 +648,13 @@
     }
 
     .footer__download {
-
       i {
-
         @include sm {
           --font-size: 1.6rem;
         }
       }
 
       a {
-
         @include sm {
           gap: 0.7rem;
 
@@ -724,7 +665,6 @@
   }
 
   .social {
-
     &__title {
       font-size: 2rem;
     }
@@ -747,16 +687,12 @@
   }
 
   .hero {
-
     &__title {
       min-height: 44rem;
 
       .typewriter {
-
         &__line {
-
           &:nth-child(2) {
-
             .typewriter__cursor,
             .typewriter__word {
               color: var(--black);
@@ -764,7 +700,6 @@
           }
 
           &:last-child {
-
             .typewriter__cursor,
             .typewriter__word {
               color: var(--white);
@@ -776,7 +711,6 @@
           font-size: 20rem;
         }
 
-
         &__cursor {
           font-size: 20rem;
         }
@@ -786,17 +720,16 @@
     &__cover {
       width: 98.4rem;
       height: 94.1rem;
-      // height: calc(100vw/(1920/941));
-      transition: transform 0.3s ease, opacity 0.3s ease;
+      transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
       transform: translateY(0%);
       opacity: 1;
 
       position: absolute;
       top: unset;
       right: -19rem;
-      // right: calc(-100vw/(1920/190));
       bottom: -8rem;
-      // bottom: calc(-100vw/(1920/80));
 
       .menu-item-hover & {
         transform: translateY(100%);
@@ -809,20 +742,15 @@
 
       &-el {
         width: 14rem;
-        // width: calc(100vw/(1920/140));
         height: 14rem;
-        // height: calc(100vw/(1920/140));
 
         top: 17.5rem;
-        // top: calc(100vw/(1920/175));
         left: 36rem;
-        // left: calc(100vw/(1920/360));
       }
     }
   }
 
   .nav {
-
     &__wrap {
       grid-template-columns: 1fr;
       width: 100%;

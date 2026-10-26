@@ -1,7 +1,7 @@
-@use './../mixins' as *;
+@use "./../mixins" as *;
 
 html {
-  --refRes: 1920;
+  --refRes: 2304;
 
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
@@ -20,13 +20,6 @@ html {
     height: 0;
     padding: 0;
     margin: 0;
-  }
-
-  &.test-page {
-
-    @include dosm {
-      --refRes: 2304;
-    }
   }
 }
 
@@ -51,8 +44,6 @@ body {
   height: 100%;
   min-height: 100vh;
   overflow: clip;
-  // padding-top: var(--header-height);
-  // padding-top: max(var(--header-height), env(safe-area-inset-top, 20px));
   padding-top: env(safe-area-inset-top, 20px);
   padding-bottom: env(safe-area-inset-bottom, 20px);
 
@@ -73,10 +64,7 @@ section {
   padding: var(--section-padding-top) 0 var(--section-padding-bottom);
   overflow-x: hidden;
   overflow-y: visible;
-  // min-height: 100vh;
-  // min-height: 100dvh;
   will-change: transform;
-  // background-color: var(--white);
 }
 
 a {
@@ -90,7 +78,6 @@ img {
   object-fit: contain;
 }
 
-
 @media (prefers-reduced-motion: reduce) {
   section {
     animation: none !important;
@@ -98,7 +85,6 @@ img {
 }
 
 .box {
-
   .container {
     min-height: 100vh;
     padding: 20rem 0;
@@ -135,18 +121,15 @@ img {
     background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
   }
 
-
   &.html,
   body {
     overflow-x: hidden;
-    /* Убирает горизонтальный скролл */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   .slide-box {
     backface-visibility: hidden;
-    /* Улучшает рендеринг на GPU */
     transform-style: preserve-3d;
   }
 }

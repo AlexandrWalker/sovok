@@ -29,7 +29,7 @@ const sass = gulpsass(dartsass);
 
 //IMAGES
 import imagemin, { gifsicle, mozjpeg, optipng, svgo } from 'gulp-imagemin';
-import avif from 'gulp-avif';
+// import avif from 'gulp-avif';
 import webp from 'gulp-webp';
 import imageminWebp from 'imagemin-webp';
 import svgsprite from 'gulp-svg-sprite';
@@ -146,10 +146,10 @@ gulp.task('images', function () {
   return gulp
     .src(imgSrc)
 
-    .pipe(gulpIf(imgAvif, newer(`${destFolder}images`)))
-    .pipe(gulpIf(imgAvif, avif({ quality: 85 }))) // 75
-    .pipe(gulpIf(imgAvif, gulp.dest(`${destFolder}images`)))
-    .pipe(gulpIf(imgAvif, gulp.src(imgSrc)))
+    // .pipe(gulpIf(imgAvif, newer(`${destFolder}images`)))
+    // .pipe(gulpIf(imgAvif, avif({ quality: 85 }))) // 75
+    // .pipe(gulpIf(imgAvif, gulp.dest(`${destFolder}images`)))
+    // .pipe(gulpIf(imgAvif, gulp.src(imgSrc)))
 
     .pipe(gulpIf(imgWebp, newer(`${destFolder}images`)))
     .pipe(gulpIf(imgWebp, webp()))

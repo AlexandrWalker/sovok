@@ -1,7 +1,6 @@
-@use './../mixins' as *;
+@use "./../mixins" as *;
 
 .coming-soon {
-
   --section-padding-top: 4rem;
   --section-padding-bottom: 39.6rem;
 
@@ -14,7 +13,9 @@
     overflow: hidden;
   }
 
-  &__inner {}
+  &__inner {
+    width: calc(100% - var(--callback-mini-width) + var(--container-padding));
+  }
 
   &__head {
     display: flex;
@@ -92,7 +93,7 @@
     position: absolute;
     // bottom: -15%;
     bottom: 0;
-    right: calc(var(--callback-mini-width) + 7.1rem);
+    right: calc(var(--callback-mini-width) + 7.1rem + 19.2rem);
     z-index: 2;
 
     @include sm {
@@ -114,13 +115,17 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
-    width: calc(100% - var(--callback-mini-width));
+    width: calc(100% - var(--callback-mini-width) - 19.2rem);
     height: 33.8rem;
 
     position: absolute;
     left: 0;
     bottom: 0;
     z-index: 1;
+
+    @include dosm {
+      padding: 0 0 0 18.2rem;
+    }
 
     @include sm {
       width: 100%;
@@ -132,10 +137,10 @@
       height: 100%;
       object-fit: contain;
 
-      &--1 {}
+      &--1 {
+      }
 
       &--2 {
-
         @include sm {
           display: none;
         }

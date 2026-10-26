@@ -83,9 +83,10 @@
     pointer-events: none;
 
     position: absolute;
-    top: -5.3rem;
+    // top: -5.3rem;
     top: calc(-100vw/(var(--refRes)/53));
-    right: 0;
+    // right: 0;
+    right: 9.7rem;
     z-index: 3;
 
     @include sm {
@@ -93,7 +94,7 @@
     }
 
     .branding-page & {
-      top: calc(-100vw/(1920/10));
+      top: calc(-100vw/(var(--refRes)/10));
     }
 
     img {
@@ -109,9 +110,7 @@
     height: calc(100vw/(var(--refRes)/638));
 
     position: absolute;
-    // top: -11.8rem;
     top: calc(-100vw/(var(--refRes)/118));
-    // left: -3.8rem;
     left: calc(-100vw/(var(--refRes)/38));
     z-index: 2;
 

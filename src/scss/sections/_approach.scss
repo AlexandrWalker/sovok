@@ -1,4 +1,4 @@
-@use './../mixins' as *;
+@use "./../mixins" as *;
 
 .approach {
   --section-padding-bottom: 10rem;
@@ -12,16 +12,13 @@
   }
 
   .general {
-
     &__title {
-
       .general__suptitle {
         display: block;
       }
     }
 
     &__suptitle {
-      // font-size: calc(100vw/(1920/100));
 
       @include sm {
         font-size: 4rem;
@@ -40,13 +37,9 @@
   }
 
   &__head {
-
     .general {
-
       &__text {
         margin-left: 54rem;
-
-        // font-size: calc(100vw/(1920/40));
 
         @include sm {
           margin-left: 0;
@@ -60,9 +53,7 @@
   &__body {
 
     .general {
-
       &__title {
-        // font-size: calc(100vw/(1920/180));
         color: var(--black);
 
         @include sm {
@@ -90,17 +81,9 @@
   &__block {
     display: flex;
     align-items: center;
-    // border-radius: 50%;
-    // background-color: var(--black);
-    // padding: 0 15.5rem 0 7.5rem;
     padding: 0 42rem 0 7.5rem;
-    // padding: 0 calc(100vw/(1920/420)) 0 calc(100vw/(1920/75));
-    // width: calc(112.5rem - 25.75rem);
     width: 112.5rem;
-    // width: calc(100vw/(1920/1125));
     height: 111.1rem;
-    // height: calc(100vw/(1920/1111));
-    // background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODY5IiBoZWlnaHQ9IjExMTciIHZpZXdCb3g9IjAgMCA4NjkgMTExNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik0xMDcuMzA0IDIyNC4wN0MyODkuNDM3IC0yMi45MDcyIDY0MC4wNCAtNzMuNDUzMyA4OTAuMzk4IDExMS4xNzJDMTE0MC43NiAyOTUuNzk4IDExOTYuMDYgNjQ1LjY4MiAxMDEzLjkzIDg5Mi42NTlDODMxLjggMTEzOS42NCA0ODEuMTk3IDExOTAuMTggMjMwLjgzOCAxMDA1LjU2Qy0xOS41MjAzIDgyMC45MzIgLTc0LjgyODQgNDcxLjA0OCAxMDcuMzA0IDIyNC4wN1oiIGZpbGw9IiMxNzE3MUEiLz4NCjwvc3ZnPg0K);
     background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTEyMiIgaGVpZ2h0PSIxMTE3IiB2aWV3Qm94PSIwIDAgMTEyMiAxMTE3IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KPHBhdGggZD0iTTEwNy4zMDQgMjI0LjA3QzI4OS40MzcgLTIyLjkwNzYgNjQwLjA0IC03My40NTM3IDg5MC4zOTggMTExLjE3MkMxMTQwLjc2IDI5NS43OTggMTE5Ni4wNyA2NDUuNjgyIDEwMTMuOTMgODkyLjY1OUM4MzEuOCAxMTM5LjY0IDQ4MS4xOTcgMTE5MC4xOCAyMzAuODM4IDEwMDUuNTZDLTE5LjUyMDMgODIwLjkzMSAtNzQuODI4NCA0NzEuMDQ4IDEwNy4zMDQgMjI0LjA3WiIgZmlsbD0iIzE3MTcxQSIvPg0KPC9zdmc+DQo=);
     background-repeat: no-repeat;
     background-size: contain;
@@ -111,31 +94,19 @@
 
     position: absolute;
     top: -25rem;
-    // top: calc(-100vw/(1920/250));
-    right: -26.5rem;
-    // right: calc(-100vw/(1920/265));
+    // right: -26.5rem;
+    right: -8.5rem;
     z-index: -1;
 
     @include sm {
       align-items: flex-start;
-      // background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAzIiBoZWlnaHQ9IjQ3MyIgdmlld0JveD0iMCAwIDUwMyA0NzMiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8cGF0aCBkPSJNMTIxLjU3MyA3NS4yMTc0QzI0MC4zODQgLTIwLjMwMTcgMzk0LjczNSAtMjUuNTQ3MiA0NjYuMzI3IDYzLjUwMTNDNTM3LjkxOCAxNTIuNTUgNDk5LjYzOSAzMDIuMTcyIDM4MC44MjggMzk3LjY5MUMyNjIuMDE3IDQ5My4yMSAxMDcuNjY1IDQ5OC40NTUgMzYuMDczNyA0MDkuNDA3Qy0zNS41MTc2IDMyMC4zNTggMi43NjE2IDE3MC43MzcgMTIxLjU3MyA3NS4yMTc0WiIgZmlsbD0iIzE3MTcxQSIvPg0KPC9zdmc+DQo=);
       background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTM1IiBoZWlnaHQ9IjQ3NCIgdmlld0JveD0iMCAwIDUzNSA0NzQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcDBfMjA0Nl81OCkiPg0KPHBhdGggZD0iTTE1NC4xMTggNzUuOTUyOEMyNzIuOTI5IC0xOS41NjY0IDQyNy4yOCAtMjQuODExOSA0OTguODcyIDY0LjIzNjdDNTcwLjQ2MyAxNTMuMjg1IDUzMi4xODQgMzAyLjkwNyA0MTMuMzczIDM5OC40MjZDMjk0LjU2MiA0OTMuOTQ1IDE0MC4yMSA0OTkuMTkxIDY4LjYxODUgNDEwLjE0MkMtMi45NzI4IDMyMS4wOTQgMzUuMzA2NCAxNzEuNDcyIDE1NC4xMTggNzUuOTUyOFoiIGZpbGw9IiMxNzE3MUEiLz4NCjxyZWN0IHg9IjIyMS45OTIiIHk9IjM0NS45OTgiIHdpZHRoPSIyNjciIGhlaWdodD0iMTEiIGZpbGw9IiNEQzE0M0MiLz4NCjxyZWN0IHg9IjYuMjI2NTYiIHk9IjE1MC45OTkiIHdpZHRoPSI4My4yMDcyIiBoZWlnaHQ9IjQ3LjA3ODYiIHRyYW5zZm9ybT0icm90YXRlKDcuNjEwNjYgNi4yMjY1NiAxNTAuOTk5KSIgZmlsbD0iI0RDMTQzQyIvPg0KPC9nPg0KPGRlZnM+DQo8Y2xpcFBhdGggaWQ9ImNsaXAwXzIwNDZfNTgiPg0KPHJlY3Qgd2lkdGg9IjUzNSIgaGVpZ2h0PSI0NzQiIGZpbGw9IndoaXRlIi8+DQo8L2NsaXBQYXRoPg0KPC9kZWZzPg0KPC9zdmc+DQo=);
-      // width: 50.4rem;
       width: 53.5rem;
-      // height: 47.4rem;
       height: 47.4rem;
       padding: 8.4rem 17rem 8.4rem 6rem;
 
       top: 28rem;
-      // right: calc((12.6rem + (var(--container-padding))) * -1);
       right: -15.5rem;
-    }
-
-    .test-page & {
-
-      @include dosm {
-        right: -8.5rem;
-      }
     }
 
     .general__head {
@@ -149,42 +120,26 @@
     }
 
     .general__text {
-      // font-size: calc(100vw/(1920/40));
 
       @include sm {
         font-size: 2rem;
       }
 
       br:last-child {
-
         @include sm {
           display: none;
         }
       }
     }
-
-    // &-round {
-    //   display: block;
-    //   width: 100%;
-    //   height: 100%;
-    //   background-color: var(--black);
-    //   border-radius: 50%;
-    //   overflow: hidden;
-
-    //   position: absolute;
-    //   inset: 0;
-    //   z-index: 1;
-    // }
   }
 
   &__cover {
-    height: 90.6rem;
-    // height: calc(100vw/(1920/906));
+    height: 115.8rem;
 
     position: absolute;
     top: 25.2rem;
-    // top: calc(100vw/(1920/252));
-    left: 0;
+    // left: 0;
+    left: -9rem;
     z-index: 1;
 
     @include sm {
@@ -193,19 +148,6 @@
       top: 0.5rem;
       right: 0;
       left: unset;
-    }
-
-    .test-page & {
-
-      @include dosm {
-        left: -9rem;
-        height: 115.8rem;
-
-        &::before,
-        &::after {
-          display: none;
-        }
-      }
     }
 
     &::before {
@@ -221,7 +163,7 @@
       left: -5.4rem;
       z-index: 3;
 
-      @include sm {
+      @include dosm {
         display: none;
       }
     }
@@ -239,7 +181,7 @@
       bottom: -25.1rem;
       z-index: 1;
 
-      @include sm {
+      @include dosm {
         display: none;
       }
     }

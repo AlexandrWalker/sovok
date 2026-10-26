@@ -1,6 +1,5 @@
-document.addEventListener('DOMContentLoaded', () => {
-
-  const checkEditMode = document.querySelector('.bx-panel-toggle-on') ?? null;
+document.addEventListener("DOMContentLoaded", () => {
+  const checkEditMode = document.querySelector(".bx-panel-toggle-on") ?? null;
 
   /**
    * Подключение ScrollTrigger
@@ -260,23 +259,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Блокируем браузерное восстановление скролла до того как браузер успеет прыгнуть к якорю
   if (history.scrollRestoration) {
-    history.scrollRestoration = 'manual';
+    history.scrollRestoration = "manual";
   }
 
   /**
    * Прелоадер + якорь + инициализация Lenis
    */
   (function () {
-
     // Длительность анимации закрытия мобильного меню в миллисекундах
     const MENU_CLOSE_DURATION = 400;
 
     // Конфигурация прелоадера
     const PRELOADER_CONFIG = {
-      mode: 'overlay',
+      mode: "overlay",
       assets: {
-        logoWhiteSrc: './images/logo/logo-bez-podpisi.svg',
-        logoCyanSrc: './images/logo/logo-bez-podpisi-2.svg',
+        logoWhiteSrc: "./images/logo/logo-bez-podpisi.svg",
+        logoCyanSrc: "./images/logo/logo-bez-podpisi-2.svg",
       },
       logoWidth: 71,
       logoHeight: 70,
@@ -298,11 +296,11 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      * Отлов перехода по истории
      */
-    window.addEventListener('pageshow', (e) => {
+    window.addEventListener("pageshow", (e) => {
       if (e.persisted) {
-        if (typeof ScrollTrigger !== 'undefined') {
+        if (typeof ScrollTrigger !== "undefined") {
           ScrollTrigger.clearScrollMemory();
-          ScrollTrigger.getAll().forEach(t => {
+          ScrollTrigger.getAll().forEach((t) => {
             if (t.animation) t.animation.progress(0).kill();
             t.refresh();
           });
@@ -323,13 +321,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Используем MutationObserver чтобы отследить удаление класса preloader--active
     function waitForPreloader() {
       return new Promise((resolve) => {
-        if (!document.documentElement.classList.contains('preloader--active')) {
+        if (!document.documentElement.classList.contains("preloader--active")) {
           resolve();
           return;
         }
 
         const observer = new MutationObserver(() => {
-          if (!document.documentElement.classList.contains('preloader--active')) {
+          if (
+            !document.documentElement.classList.contains("preloader--active")
+          ) {
             observer.disconnect();
             resolve();
           }
@@ -337,54 +337,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
         observer.observe(document.documentElement, {
           attributes: true,
-          attributeFilter: ['class'],
+          attributeFilter: ["class"],
         });
       });
     }
 
     // Обработчик кликов по якорным ссылкам
     // capture: true позволяет перехватить событие раньше stopPropagation в меню
-    document.addEventListener('click', (e) => {
-      const link = e.target.closest('a[href]');
-      if (!link) return;
+    document.addEventListener(
+      "click",
+      (e) => {
+        const link = e.target.closest("a[href]");
+        if (!link) return;
 
-      // Не мешаем Fancybox - пропускаем ссылки с data-fancybox
-      if (link.hasAttribute('data-fancybox')) return;
+        // Не мешаем Fancybox - пропускаем ссылки с data-fancybox
+        if (link.hasAttribute("data-fancybox")) return;
 
-      const href = link.getAttribute('href');
-      if (!href || !href.includes('#')) return;
+        const href = link.getAttribute("href");
+        if (!href || !href.includes("#")) return;
 
-      const hash = href.split('#')[1];
-      if (!hash) return;
+        const hash = href.split("#")[1];
+        if (!hash) return;
 
-      // Ищем элемент на текущей странице
-      // Если его нет - браузер сам перейдёт на нужную страницу
-      // После загрузки сработает обработчик load ниже
-      const target = document.getElementById(hash);
-      if (!target) return;
+        // Ищем элемент на текущей странице
+        // Если его нет - браузер сам перейдёт на нужную страницу
+        // После загрузки сработает обработчик load ниже
+        const target = document.getElementById(hash);
+        if (!target) return;
 
-      e.preventDefault();
-      history.pushState(null, null, `#${hash}`);
+        e.preventDefault();
+        history.pushState(null, null, `#${hash}`);
 
-      const isMenuOpen = document.documentElement.classList.contains('menu--open');
+        const isMenuOpen =
+          document.documentElement.classList.contains("menu--open");
 
-      if (isMenuOpen) {
-        // Останавливаем Lenis пока меню закрывается анимацией
-        lenis.stop();
-        setTimeout(() => {
-          lenis.start();
+        if (isMenuOpen) {
+          // Останавливаем Lenis пока меню закрывается анимацией
+          lenis.stop();
+          setTimeout(() => {
+            lenis.start();
+            scrollToTarget(target);
+          }, MENU_CLOSE_DURATION);
+        } else {
           scrollToTarget(target);
-        }, MENU_CLOSE_DURATION);
-      } else {
-        scrollToTarget(target);
-      }
-
-    }, true);
+        }
+      },
+      true,
+    );
 
     // При загрузке страницы с якорем в URL
     // Сначала сбрасываем позицию чтобы браузер не прыгал сам
     // Потом ждём конца прелоадера и плавно скроллим
-    window.addEventListener('load', () => {
+    window.addEventListener("load", () => {
       const hash = window.location.hash.slice(1);
       if (!hash) return;
 
@@ -397,38 +401,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Инициализация прелоадера
-    const preloaderEl = document.querySelector('.preloader');
+    const preloaderEl = document.querySelector(".preloader");
     if (!preloaderEl) return;
 
     // Блокируем скролл страницы пока прелоадер активен
-    document.body.classList.add('no-scroll');
-    document.documentElement.classList.add('preloader--active');
+    document.body.classList.add("no-scroll");
+    document.documentElement.classList.add("preloader--active");
 
     // Страховочный таймер на случай если что-то пошло не так
     // Принудительно скрывает прелоадер через safetyTimeoutMs миллисекунд
     const safetyTimer = setTimeout(() => {
-      if (preloaderEl.style.display !== 'none') {
-        preloaderEl.style.display = 'none';
+      if (preloaderEl.style.display !== "none") {
+        preloaderEl.style.display = "none";
         restoreScroll();
         if (window.initQueue && window.initQueue.length) {
-          window.initQueue.forEach(initFunc => {
-            try { initFunc(); } catch (err) { console.error(err); }
+          window.initQueue.forEach((initFunc) => {
+            try {
+              initFunc();
+            } catch (err) {
+              console.error(err);
+            }
           });
         }
       }
     }, PRELOADER_CONFIG.safetyTimeoutMs);
 
     function restoreScroll() {
-      document.body.classList.remove('no-scroll');
+      document.body.classList.remove("no-scroll");
     }
 
     function clearSafety() {
-      try { clearTimeout(safetyTimer); } catch (e) { }
+      try {
+        clearTimeout(safetyTimer);
+      } catch (e) {}
     }
 
-    const canvas = document.getElementById('logo-canvas');
+    const canvas = document.getElementById("logo-canvas");
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
 
     // Настраиваем canvas с учётом плотности пикселей экрана
     function initCanvas() {
@@ -452,18 +462,22 @@ document.addEventListener('DOMContentLoaded', () => {
       gsap.to(preloaderEl, {
         scaleY: 0,
         duration: 0.7,
-        ease: 'power2.inOut',
-        transformOrigin: 'top center',
+        ease: "power2.inOut",
+        transformOrigin: "top center",
         onComplete() {
-          preloaderEl.style.display = 'none';
+          preloaderEl.style.display = "none";
           restoreScroll();
           clearSafety();
-          document.documentElement.classList.remove('preloader--active');
+          document.documentElement.classList.remove("preloader--active");
 
           // ЗАПУСК ВСЕХ АНИМАЦИЙ ПОСЛЕ ИСЧЕЗНОВЕНИЯ ПРЕЛОАДЕРА
           if (window.initQueue && window.initQueue.length) {
-            window.initQueue.forEach(initFunc => {
-              try { initFunc(); } catch (err) { console.error(err); }
+            window.initQueue.forEach((initFunc) => {
+              try {
+                initFunc();
+              } catch (err) {
+                console.error(err);
+              }
             });
           }
         },
@@ -472,8 +486,8 @@ document.addEventListener('DOMContentLoaded', () => {
       gsap.to(canvas, {
         scaleY: 2,
         duration: 0.7,
-        ease: 'power2.inOut',
-        transformOrigin: 'bottom center',
+        ease: "power2.inOut",
+        transformOrigin: "bottom center",
       });
     }
 
@@ -488,12 +502,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       function draw() {
         ctx.clearRect(0, 0, logoWidth, logoHeight);
-        ctx.globalCompositeOperation = 'source-over';
+        ctx.globalCompositeOperation = "source-over";
         ctx.drawImage(logoWhite, 0, 0, logoWidth, logoHeight);
-        ctx.globalCompositeOperation = 'source-atop';
-        ctx.fillStyle = '#FFFFFF';
+        ctx.globalCompositeOperation = "source-atop";
+        ctx.fillStyle = "#FFFFFF";
         ctx.fillRect(0, logoHeight - fillHeight, logoWidth, fillHeight);
-        ctx.globalCompositeOperation = 'source-over';
+        ctx.globalCompositeOperation = "source-over";
       }
 
       function onImageLoaded() {
@@ -515,7 +529,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.to(progress, {
           val: 30,
           duration: 0.4,
-          ease: 'power2.out',
+          ease: "power2.out",
           onUpdate() {
             fillHeight = (progress.val / 100) * logoHeight;
             draw();
@@ -526,7 +540,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.to(progress, {
           val: 85,
           duration: 2.5,
-          ease: 'power1.out',
+          ease: "power1.out",
           delay: 0.4,
           onUpdate() {
             fillHeight = (progress.val / 100) * logoHeight;
@@ -535,14 +549,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // После полной загрузки страницы добиваем до 100% и скрываем
-        window.addEventListener('load', function onLoad() {
-          window.removeEventListener('load', onLoad);
+        window.addEventListener("load", function onLoad() {
+          window.removeEventListener("load", onLoad);
           gsap.killTweensOf(progress);
 
           gsap.to(progress, {
             val: 100,
             duration: 0.4,
-            ease: 'power2.out',
+            ease: "power2.out",
             onUpdate() {
               fillHeight = (progress.val / 100) * logoHeight;
               draw();
@@ -561,20 +575,21 @@ document.addEventListener('DOMContentLoaded', () => {
       const logo = new Image();
 
       function showAndWait() {
-        window.addEventListener('load', function onLoad() {
-          window.removeEventListener('load', onLoad);
+        window.addEventListener("load", function onLoad() {
+          window.removeEventListener("load", onLoad);
           hidePreloader();
         });
       }
 
       logo.onload = () => {
         ctx.clearRect(0, 0, logoWidth, logoHeight);
-        ctx.globalCompositeOperation = 'source-over';
+        ctx.globalCompositeOperation = "source-over";
         ctx.drawImage(logo, 0, 0, logoWidth, logoHeight);
 
-        gsap.fromTo(canvas,
+        gsap.fromTo(
+          canvas,
           { opacity: 0.2, scaleY: 0.98 },
-          { opacity: 1, scaleY: 1, duration: 0.4, ease: 'power2.out' }
+          { opacity: 1, scaleY: 1, duration: 0.4, ease: "power2.out" },
         );
 
         showAndWait();
@@ -585,12 +600,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Запускаем нужный режим прелоадера
-    if (PRELOADER_CONFIG.mode === 'singleLogo') {
+    if (PRELOADER_CONFIG.mode === "singleLogo") {
       startSingleLogoPreloader();
     } else {
       startOverlayPreloader();
     }
-
   })();
 
   /**
@@ -599,15 +613,15 @@ document.addEventListener('DOMContentLoaded', () => {
   (function () {
     // Конфиг: название звука - путь до файла
     const SOUND_MAP = {
-      poehali: './sound/poehali.mp3',
-      shutdown_sound: './sound/shutdown-sound.mp3',
+      poehali: "./sound/poehali.mp3",
+      shutdown_sound: "./sound/shutdown-sound.mp3",
     };
 
     // Кэш AudioBuffer'ов (Web Audio API)
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const bufferCache = {};          // { soundName: AudioBuffer }
-    const loadingSet = new Set();    // звуки в процессе загрузки
-    const playingSet = new Set();    // звуки сейчас воспроизводятся (защита от спама)
+    const bufferCache = {}; // { soundName: AudioBuffer }
+    const loadingSet = new Set(); // звуки в процессе загрузки
+    const playingSet = new Set(); // звуки сейчас воспроизводятся (защита от спама)
 
     // Предзагрузка всех звуков
     async function preloadSound(name) {
@@ -644,7 +658,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (playingSet.has(name)) return;
 
       // iOS/Android: разблокировка AudioContext требует user gesture
-      if (audioCtx.state === 'suspended') {
+      if (audioCtx.state === "suspended") {
         await audioCtx.resume();
       }
 
@@ -667,7 +681,7 @@ document.addEventListener('DOMContentLoaded', () => {
       playingSet.add(name);
 
       source.onended = () => {
-        playingSet.delete(name);  // снимаем блокировку после окончания
+        playingSet.delete(name); // снимаем блокировку после окончания
         source.disconnect();
       };
 
@@ -675,8 +689,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Вешаем обработчики на все кнопки с атрибутом data-btn-sound
-    document.querySelectorAll('[data-btn-sound]').forEach(btn => {
-      btn.addEventListener('click', () => {
+    document.querySelectorAll("[data-btn-sound]").forEach((btn) => {
+      btn.addEventListener("click", () => {
         const soundName = btn.dataset.btnSound;
         playSound(soundName);
       });
@@ -685,13 +699,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fallback для старых браузеров без Web Audio API
     // (очень редкий кейс, но на всякий случай)
     if (!window.AudioContext && !window.webkitAudioContext) {
-      console.warn('[Sound] Web Audio API не поддерживается. Используем <audio>.');
+      console.warn(
+        "[Sound] Web Audio API не поддерживается. Используем <audio>.",
+      );
 
       const htmlAudioCache = {};
       const htmlPlayingSet = new Set();
 
-      document.querySelectorAll('[data-btn-sound]').forEach(btn => {
-        btn.addEventListener('click', () => {
+      document.querySelectorAll("[data-btn-sound]").forEach((btn) => {
+        btn.addEventListener("click", () => {
           const name = btn.dataset.btnSound;
           const path = SOUND_MAP[name];
           if (!path || htmlPlayingSet.has(name)) return;
@@ -704,7 +720,7 @@ document.addEventListener('DOMContentLoaded', () => {
           audio.currentTime = 0;
           htmlPlayingSet.add(name);
 
-          audio.play().catch(err => console.error('[Sound Fallback]', err));
+          audio.play().catch((err) => console.error("[Sound Fallback]", err));
 
           audio.onended = () => htmlPlayingSet.delete(name);
         });
@@ -718,7 +734,7 @@ document.addEventListener('DOMContentLoaded', () => {
   (function () {
     // Конфиг звуков
     const SCROLL_SOUND_MAP = {
-      levitan: './sound/vnimanie_govorit_moskva.mp3',
+      levitan: "./sound/vnimanie_govorit_moskva.mp3",
     };
 
     //Громкость:
@@ -726,7 +742,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1.0 (полная)
     // выше (усиление)
     const SOUND_VOLUME = {
-      levitan: 0.7,   // меняем здесь громкость для каждого звука
+      levitan: 0.7, // меняем здесь громкость для каждого звука
     };
 
     // Глобальная громкость поверх индивидуальной (множитель)
@@ -761,22 +777,22 @@ document.addEventListener('DOMContentLoaded', () => {
       if (audioUnlocked) return;
       audioUnlocked = true;
 
-      if (audioCtx.state === 'suspended') {
+      if (audioCtx.state === "suspended") {
         audioCtx.resume();
       }
 
       Object.keys(SCROLL_SOUND_MAP).forEach(preloadSound);
     }
 
-    document.addEventListener('touchstart', unlockAudio, { once: true });
-    document.addEventListener('click', unlockAudio, { once: true });
-    document.addEventListener('scroll', unlockAudio, { once: true });
+    document.addEventListener("touchstart", unlockAudio, { once: true });
+    document.addEventListener("click", unlockAudio, { once: true });
+    document.addEventListener("scroll", unlockAudio, { once: true });
 
     // Воспроизведение звука
     async function playScrollSound(name) {
       if (playingSet.has(name)) return;
 
-      if (audioCtx.state === 'suspended') {
+      if (audioCtx.state === "suspended") {
         await audioCtx.resume();
       }
 
@@ -789,7 +805,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Итоговая громкость = индивидуальная × глобальная
       const individualVolume = SOUND_VOLUME[name] ?? 1.0;
-      const finalVolume = Math.min(2.0, Math.max(0, individualVolume * globalVolume));
+      const finalVolume = Math.min(
+        2.0,
+        Math.max(0, individualVolume * globalVolume),
+      );
 
       // GainNode - узел громкости
       // Граф: source -> gainNode -> destination
@@ -844,13 +863,13 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // ScrollTrigger для каждой секции
-    document.querySelectorAll('[data-scroll-sound]').forEach(section => {
+    document.querySelectorAll("[data-scroll-sound]").forEach((section) => {
       const soundName = section.dataset.scrollSound;
-      const image = section.querySelector('.sound-image');
+      const image = section.querySelector(".sound-image");
 
       ScrollTrigger.create({
         trigger: section,
-        start: 'top 50%',
+        start: "top 50%",
 
         onEnter: async () => {
           if (firedSections.has(section)) return;
@@ -862,7 +881,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
           const showDuration = 0.6;
           const hideDuration = 0.1;
-          const holdTime = Math.max(0.2, duration - showDuration - hideDuration);
+          const holdTime = Math.max(
+            0.2,
+            duration - showDuration - hideDuration,
+          );
 
           const tl = gsap.timeline();
 
@@ -870,7 +892,7 @@ document.addEventListener('DOMContentLoaded', () => {
             opacity: 1,
             scale: 1,
             duration: showDuration,
-            ease: 'back.out(1.5)',
+            ease: "back.out(1.5)",
           });
 
           tl.to(image, {
@@ -880,7 +902,7 @@ document.addEventListener('DOMContentLoaded', () => {
           tl.to(image, {
             opacity: 0,
             duration: hideDuration,
-            ease: 'power2.in',
+            ease: "power2.in",
             // onComplete: () => {
             //   gsap.set(image, { scale: 0.5 });
             // },
@@ -894,68 +916,66 @@ document.addEventListener('DOMContentLoaded', () => {
    * Функция для поведения шапки
    */
   (function () {
-
-    // 
+    //
     // НАСТРОЙКИ
-    // 
+    //
     const CONFIG = {
-
-      // 
+      //
       // СЕЛЕКТОРЫ
-      // 
-      headerSelector: '.header',
-      sectionsSelector: 'section',
-      firstSectionSelector: null,      // null = используем высоту хедера
-      footerSelector: '.request',
+      //
+      headerSelector: ".header",
+      sectionsSelector: "section",
+      firstSectionSelector: null, // null = используем высоту хедера
+      footerSelector: ".request",
 
-      // 
+      //
       // ТЕМА (светлая / тёмная секция под хедером)
       // Атрибут на секции: data-header-theme="dark" или "light"
       // Добавляет класс на <html>: header-theme-dark / header-theme-light
-      // 
-      themeAttribute: 'data-header-theme',
-      classThemeDark: 'header-theme-dark',
-      classThemeLight: 'header-theme-light',
+      //
+      themeAttribute: "data-header-theme",
+      classThemeDark: "header-theme-dark",
+      classThemeLight: "header-theme-light",
 
-      // 
+      //
       // КЛАССЫ НА <html> ДЛЯ СОСТОЯНИЙ СКРОЛЛА
-      // 
-      classFixed: 'header-fixed',         // прошли 1px скролла
-      classOffTop: 'header-off-top',      // прошли первую секцию
-      classAtFooter: 'header-at-footer',  // хедер у футера
-      classHidden: 'header-hidden',       // хедер скрыт
+      //
+      classFixed: "header-fixed", // прошли 1px скролла
+      classOffTop: "header-off-top", // прошли первую секцию
+      classAtFooter: "header-at-footer", // хедер у футера
+      classHidden: "header-hidden", // хедер скрыт
 
-      // 
+      //
       // СКРЫТИЕ ХЕДЕРА ПРИ СКРОЛЛЕ ВНИЗ
-      // 
-      hideOnScroll: true,                // true = скрывать, false = всегда видим
+      //
+      hideOnScroll: true, // true = скрывать, false = всегда видим
 
       // Настройки скрытия (работают только если hideOnScroll: true)
       hideDuration: 0.4,
       showDuration: 0.4,
-      hideEase: 'power2.in',
-      showEase: 'power2.out',
-      scrollThreshold: 5,                 // минимальный скролл для реакции (px)
+      hideEase: "power2.in",
+      showEase: "power2.out",
+      scrollThreshold: 5, // минимальный скролл для реакции (px)
 
-      // 
+      //
       // АНИМАЦИЯ ФОНА ХЕДЕРА ПРИ СКРОЛЛЕ
-      // 
-      animateBg: false,                    // true = менять фон, false = не менять
-      bgInitial: 'rgba(255, 255, 255, 0)',
-      bgScrolled: 'rgba(220, 20, 60, 1)',
+      //
+      animateBg: false, // true = менять фон, false = не менять
+      bgInitial: "rgba(255, 255, 255, 0)",
+      bgScrolled: "rgba(220, 20, 60, 1)",
 
-      // 
+      //
       // АНИМАЦИЯ ТЕНИ ХЕДЕРА ПРИ СКРОЛЛЕ
-      // 
-      animateShadow: false,                // true = менять тень, false = не менять
-      shadowInitial: '0px 0px 0px rgba(0, 0, 0, 0)',
-      shadowScrolled: '0px 0px 20px rgba(0, 0, 0, 0.3)',
+      //
+      animateShadow: false, // true = менять тень, false = не менять
+      shadowInitial: "0px 0px 0px rgba(0, 0, 0, 0)",
+      shadowScrolled: "0px 0px 20px rgba(0, 0, 0, 0.3)",
 
-      // 
+      //
       // АНИМАЦИЯ ВЫСОТЫ ХЕДЕРА ПРИ СКРОЛЛЕ
-      // 
-      animateHeight: true,                // true = менять высоту, false = не менять
-      heightMultiplier: 0.645,              // во сколько раз уменьшить (0.7 = 63.53%)
+      //
+      animateHeight: true, // true = менять высоту, false = не менять
+      heightMultiplier: 0.645, // во сколько раз уменьшить (0.7 = 63.53%)
 
       // Множитель высоты для мобильной версии
       // Используется когда ширина окна меньше mobileBreakpoint
@@ -970,12 +990,12 @@ document.addEventListener('DOMContentLoaded', () => {
       // Если шапка скрыта (header-hidden) и появляется один из этих классов -
       // шапка опускается обратно чтобы пользователь мог по ней кликнуть
       // (например закрыть попап через кнопку в шапке)
-      forceShowOnClasses: ['callback--open', 'tender--open'],
+      forceShowOnClasses: ["callback--open", "tender--open"],
     };
 
-    // 
+    //
     // ЭЛЕМЕНТЫ
-    // 
+    //
     const header = document.querySelector(CONFIG.headerSelector);
     if (!header) return;
 
@@ -1002,15 +1022,13 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Зона скролла для scrub-анимации
-    const scrollZone = firstSection
-      ? firstSection.offsetHeight
-      : headerHeight;
+    const scrollZone = firstSection ? firstSection.offsetHeight : headerHeight;
 
-    // 
+    //
     // ОПРЕДЕЛЕНИЕ ТЕМЫ ПОД ХЕДЕРОМ
     // Проходим по секциям, находим ту что пересекается с хедером,
     // берём её data-header-theme и ставим класс на <html>
-    // 
+    //
     const updateTheme = () => {
       const sections = document.querySelectorAll(CONFIG.sectionsSelector);
       const headerBottom = header.getBoundingClientRect().bottom;
@@ -1035,17 +1053,17 @@ document.addEventListener('DOMContentLoaded', () => {
       // Сбрасываем оба класса и ставим нужный
       htmlEl.classList.remove(CONFIG.classThemeDark, CONFIG.classThemeLight);
 
-      if (foundTheme === 'dark') {
+      if (foundTheme === "dark") {
         htmlEl.classList.add(CONFIG.classThemeDark);
-      } else if (foundTheme === 'light') {
+      } else if (foundTheme === "light") {
         htmlEl.classList.add(CONFIG.classThemeLight);
       }
     };
 
-    // 
+    //
     // НАЧАЛЬНЫЕ СТИЛИ ХЕДЕРА
     // Устанавливаем только те свойства которые включены в CONFIG
-    // 
+    //
     const initialStyles = {
       yPercent: 0,
       // Высоту всегда устанавливаем чтобы GSAP знал начальное значение
@@ -1062,14 +1080,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     gsap.set(header, initialStyles);
 
-    // 
+    //
     // GSAP SCRUB - анимация хедера при скролле
     // Собираем объект анимации только из включённых свойств
-    // 
+    //
 
     // Объект с целевыми значениями для scrub-анимации
     const animateTo = {
-      ease: 'none',
+      ease: "none",
       duration: 1,
     };
 
@@ -1087,13 +1105,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Запускаем scrub только если есть хотя бы одно включённое свойство
-    const hasScrubAnimation = CONFIG.animateBg || CONFIG.animateShadow || CONFIG.animateHeight;
+    const hasScrubAnimation =
+      CONFIG.animateBg || CONFIG.animateShadow || CONFIG.animateHeight;
 
     if (hasScrubAnimation) {
       const tlScrub = gsap.timeline({
         scrollTrigger: {
           trigger: document.documentElement,
-          start: 'top top',
+          start: "top top",
           end: `+=${scrollZone}`,
           scrub: true,
           onEnter: () => htmlEl.classList.add(CONFIG.classFixed),
@@ -1101,15 +1120,15 @@ document.addEventListener('DOMContentLoaded', () => {
             htmlEl.classList.remove(CONFIG.classFixed);
             htmlEl.classList.remove(CONFIG.classOffTop);
           },
-        }
+        },
       });
 
       tlScrub.to(header, animateTo);
     }
 
-    // 
+    //
     // КЛАСС header-off-top - прошли зону анимации
-    // 
+    //
     ScrollTrigger.create({
       trigger: document.documentElement,
       start: `top+=${scrollZone} top`,
@@ -1117,22 +1136,22 @@ document.addEventListener('DOMContentLoaded', () => {
       onLeaveBack: () => htmlEl.classList.remove(CONFIG.classOffTop),
     });
 
-    // 
+    //
     // КЛАСС header-at-footer - хедер достиг футера
-    // 
+    //
     if (footer) {
       ScrollTrigger.create({
         trigger: footer,
-        start: 'top bottom',
+        start: "top bottom",
         onEnter: () => htmlEl.classList.add(CONFIG.classAtFooter),
         onLeaveBack: () => htmlEl.classList.remove(CONFIG.classAtFooter),
       });
     }
 
-    // 
+    //
     // HIDE / SHOW ХЕДЕРА
     // Работает только если CONFIG.hideOnScroll: true
-    // 
+    //
     let lastScrollY = window.scrollY || window.pageYOffset;
     let isHidden = false;
     let ticking = false;
@@ -1151,7 +1170,7 @@ document.addEventListener('DOMContentLoaded', () => {
         yPercent: -100,
         duration: CONFIG.hideDuration,
         ease: CONFIG.hideEase,
-        overwrite: 'auto',
+        overwrite: "auto",
       });
     };
 
@@ -1163,13 +1182,13 @@ document.addEventListener('DOMContentLoaded', () => {
         yPercent: 0,
         duration: CONFIG.showDuration,
         ease: CONFIG.showEase,
-        overwrite: 'auto',
+        overwrite: "auto",
       });
     };
 
-    // 
+    //
     // ОСНОВНОЙ ОБРАБОТЧИК СКРОЛЛА
-    // 
+    //
     const handleScroll = () => {
       const currentScrollY = window.scrollY || window.pageYOffset;
       const delta = currentScrollY - lastScrollY;
@@ -1180,7 +1199,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Дальше - только если включено скрытие хедера
       if (CONFIG.hideOnScroll) {
-
         // Микро-скроллы игнорируем
         if (absDelta >= CONFIG.scrollThreshold) {
           const scrollingDown = delta > 0;
@@ -1220,12 +1238,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
 
     // iOS Safari
     if (window.visualViewport) {
-      window.visualViewport.addEventListener('scroll', onScroll, { passive: true });
-      window.visualViewport.addEventListener('resize', () => {
+      window.visualViewport.addEventListener("scroll", onScroll, {
+        passive: true,
+      });
+      window.visualViewport.addEventListener("resize", () => {
         lastScrollY = window.scrollY || window.pageYOffset;
       });
     }
@@ -1238,53 +1258,58 @@ document.addEventListener('DOMContentLoaded', () => {
       let resizeTimer = null;
       let lastIsMobile = isMobile();
 
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
+      window.addEventListener(
+        "resize",
+        () => {
+          clearTimeout(resizeTimer);
 
-        resizeTimer = setTimeout(() => {
-          const currentIsMobile = isMobile();
+          resizeTimer = setTimeout(() => {
+            const currentIsMobile = isMobile();
 
-          // Реагируем только если реально пересекли брейкпоинт
-          // Иначе при каждом мини-ресайзе будем без нужды пересобирать анимацию
-          if (currentIsMobile === lastIsMobile) return;
-          lastIsMobile = currentIsMobile;
+            // Реагируем только если реально пересекли брейкпоинт
+            // Иначе при каждом мини-ресайзе будем без нужды пересобирать анимацию
+            if (currentIsMobile === lastIsMobile) return;
+            lastIsMobile = currentIsMobile;
 
-          // Находим scrub-таймлайн нашего хедера и обновляем целевую высоту
-          // ScrollTrigger.getAll() возвращает все триггеры на странице -
-          // фильтруем по trigger === document.documentElement
-          const newHeight = headerHeight * getHeightMultiplier();
+            // Находим scrub-таймлайн нашего хедера и обновляем целевую высоту
+            // ScrollTrigger.getAll() возвращает все триггеры на странице -
+            // фильтруем по trigger === document.documentElement
+            const newHeight = headerHeight * getHeightMultiplier();
 
-          ScrollTrigger.getAll().forEach(st => {
-            // Ищем именно scrub-триггер хедера
-            if (st.trigger === document.documentElement && st.animation) {
-              // Меняем целевое значение height в текущем твине
-              const tween = st.animation.getChildren()[0];
-              if (tween && tween.vars) {
-                tween.vars.height = newHeight;
-                // Инвалидируем чтобы GSAP перечитал from/to значения
-                tween.invalidate();
-                st.refresh();
+            ScrollTrigger.getAll().forEach((st) => {
+              // Ищем именно scrub-триггер хедера
+              if (st.trigger === document.documentElement && st.animation) {
+                // Меняем целевое значение height в текущем твине
+                const tween = st.animation.getChildren()[0];
+                if (tween && tween.vars) {
+                  tween.vars.height = newHeight;
+                  // Инвалидируем чтобы GSAP перечитал from/to значения
+                  tween.invalidate();
+                  st.refresh();
+                }
               }
-            }
-          });
-        }, 200);
-      }, { passive: true });
+            });
+          }, 200);
+        },
+        { passive: true },
+      );
     }
 
-    // 
+    //
     // ПРИНУДИТЕЛЬНЫЙ ПОКАЗ ШАПКИ ПРИ ОТКРЫТИИ ПОПАПОВ
-    // 
+    //
     // Когда на <html> появляется класс из forceShowOnClasses (callback--open,
     // tender--open и т.д.) - принудительно показываем шапку если она скрыта
     // Это нужно чтобы пользователь мог взаимодействовать с шапкой при открытом попапе
     // Используем MutationObserver - он реагирует только на изменения класса
     // и не дёргается при скролле, в отличие от глобальных слушателей
-    // 
+    //
     if (CONFIG.forceShowOnClasses && CONFIG.forceShowOnClasses.length > 0) {
-
       // Проверяет есть ли на <html> хотя бы один из "форсирующих" классов
       const hasForceClass = () => {
-        return CONFIG.forceShowOnClasses.some(cls => htmlEl.classList.contains(cls));
+        return CONFIG.forceShowOnClasses.some((cls) =>
+          htmlEl.classList.contains(cls),
+        );
       };
 
       // Запоминаем предыдущее состояние - чтобы реагировать только на переход
@@ -1315,74 +1340,87 @@ document.addEventListener('DOMContentLoaded', () => {
 
       popupObserver.observe(htmlEl, {
         attributes: true,
-        attributeFilter: ['class'],
+        attributeFilter: ["class"],
       });
     }
 
-    // 
+    //
     // ИНИЦИАЛИЗАЦИЯ - определяем тему сразу при загрузке страницы
-    // 
+    //
     updateTheme();
-
   })();
 
   /**
    * Функция управления поведением меню-бургера.
    */
   (function () {
-    const burgerBtn = document.getElementById('burger-btn');
-    const burgerMenu = document.getElementById('burger-menu');
-    const menuNav = document.querySelector('#burger-menu .menu__nav');
+    const burgerBtn = document.getElementById("burger-btn");
+    const burgerMenu = document.getElementById("burger-menu");
+    const menuNav = document.querySelector("#burger-menu .menu__nav");
 
     const openMenu = () => {
-      burgerBtn.classList.add('burger--open');
-      document.documentElement.classList.add('menu--open');
-      document.documentElement.classList.remove('tender--open');
+      burgerBtn.classList.add("burger--open");
+      document.documentElement.classList.add("menu--open");
+      document.documentElement.classList.remove("tender--open");
       lenis.stop();
     };
 
     const closeMenu = () => {
-      burgerBtn.classList.remove('burger--open');
-      document.documentElement.classList.remove('menu--open');
+      burgerBtn.classList.remove("burger--open");
+      document.documentElement.classList.remove("menu--open");
       lenis.start();
-      document.dispatchEvent(new CustomEvent('menu:close'));
+      document.dispatchEvent(new CustomEvent("menu:close"));
     };
 
     const toggleMenu = (e) => {
       e.preventDefault();
-      const isMenuOpen = document.documentElement.classList.contains('menu--open');
-      const isTenderOpen = document.documentElement.classList.contains('tender--open');
-      const isCallbackOpen = document.documentElement.classList.contains('callback--open');
+      const isMenuOpen =
+        document.documentElement.classList.contains("menu--open");
+      const isTenderOpen =
+        document.documentElement.classList.contains("tender--open");
+      const isCallbackOpen =
+        document.documentElement.classList.contains("callback--open");
 
       if (isMenuOpen) {
         closeMenu();
       } else if (isTenderOpen || isCallbackOpen) {
         if (isTenderOpen) {
-          document.dispatchEvent(new CustomEvent('popup:close', { detail: { name: 'tender' } }));
+          document.dispatchEvent(
+            new CustomEvent("popup:close", { detail: { name: "tender" } }),
+          );
         }
         if (isCallbackOpen) {
-          document.dispatchEvent(new CustomEvent('popup:close', { detail: { name: 'callback' } }));
+          document.dispatchEvent(
+            new CustomEvent("popup:close", { detail: { name: "callback" } }),
+          );
         }
       } else {
         openMenu();
       }
     };
 
-    burgerBtn.addEventListener('click', toggleMenu);
+    burgerBtn.addEventListener("click", toggleMenu);
 
-    window.addEventListener('keydown', (e) => {
-      if (e.key === "Escape" && document.documentElement.classList.contains('menu--open')) {
+    window.addEventListener("keydown", (e) => {
+      if (
+        e.key === "Escape" &&
+        document.documentElement.classList.contains("menu--open")
+      ) {
         closeMenu();
       }
     });
 
-    document.addEventListener('click', (event) => {
-      const isMenuOpen = document.documentElement.classList.contains('menu--open');
+    document.addEventListener("click", (event) => {
+      const isMenuOpen =
+        document.documentElement.classList.contains("menu--open");
       const clickInsideMenu = burgerMenu.contains(event.target);
       const clickOnButton = burgerBtn.contains(event.target);
 
       // Проверяем, кликнули ли по ссылке внутри menu__list
-      const clickOnMenuLink = menuNav && menuNav.contains(event.target) && event.target.tagName === 'A';
+      const clickOnMenuLink =
+        menuNav &&
+        menuNav.contains(event.target) &&
+        event.target.tagName === "A";
 
       if (isMenuOpen && !clickInsideMenu && !clickOnButton) {
         closeMenu();
@@ -1399,38 +1437,44 @@ document.addEventListener('DOMContentLoaded', () => {
    * Функция для попапов
    */
   (function () {
-
     // Конфигурация каждого попапа - анимации и хуки задаются здесь
     const popupConfigs = {
-
       callback: {
         // onOpen вызывается при открытии попапа
         onOpen: (popup) => {
           const openTl = gsap.timeline();
 
           // Сбрасываем стили оставшиеся от анимации закрытия
-          popup.fadeUpItems.forEach(el => {
-            gsap.set(el, { clearProps: 'all' });
+          popup.fadeUpItems.forEach((el) => {
+            gsap.set(el, { clearProps: "all" });
           });
-          popup.fadeDownItems.forEach(el => {
-            gsap.set(el, { clearProps: 'all' });
-          });
-
-          popup.fadeUpItems.forEach(el => {
-            openTl.from(el, {
-              duration: 0.8,
-              y: 350,
-              ease: 'none',
-            }, 0);
+          popup.fadeDownItems.forEach((el) => {
+            gsap.set(el, { clearProps: "all" });
           });
 
-          popup.fadeDownItems.forEach(el => {
-            openTl.from(el, {
-              duration: 0.8,
-              rotate: -20,
-              y: -500,
-              ease: 'none',
-            }, 0);
+          popup.fadeUpItems.forEach((el) => {
+            openTl.from(
+              el,
+              {
+                duration: 0.8,
+                y: 350,
+                ease: "none",
+              },
+              0,
+            );
+          });
+
+          popup.fadeDownItems.forEach((el) => {
+            openTl.from(
+              el,
+              {
+                duration: 0.8,
+                rotate: -20,
+                y: -500,
+                ease: "none",
+              },
+              0,
+            );
           });
 
           popup.currentOpenTl = openTl;
@@ -1444,21 +1488,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
           const closeTl = gsap.timeline({ onComplete });
 
-          popup.fadeUpItems.forEach(el => {
-            closeTl.to(el, {
-              duration: 0.2,
-              y: 1000,
-              ease: 'none',
-            }, 0);
+          popup.fadeUpItems.forEach((el) => {
+            closeTl.to(
+              el,
+              {
+                duration: 0.2,
+                y: 1000,
+                ease: "none",
+              },
+              0,
+            );
           });
 
-          popup.fadeDownItems.forEach(el => {
-            closeTl.to(el, {
-              duration: 0.2,
-              rotate: 10,
-              y: 50,
-              ease: 'none',
-            }, 0);
+          popup.fadeDownItems.forEach((el) => {
+            closeTl.to(
+              el,
+              {
+                duration: 0.2,
+                rotate: 10,
+                y: 50,
+                ease: "none",
+              },
+              0,
+            );
           });
         },
       },
@@ -1476,22 +1528,21 @@ document.addEventListener('DOMContentLoaded', () => {
         // onAfterClose вызывается после полного закрытия попапа
         onAfterClose: (popup) => {
           // Сбрасываем ракету при закрытии тендера
-          const rocket = document.getElementById('rocket');
+          const rocket = document.getElementById("rocket");
           if (rocket && popup.isLaunched) {
             gsap.killTweensOf(rocket);
-            gsap.set(rocket, { clearProps: 'all' });
+            gsap.set(rocket, { clearProps: "all" });
             popup.isLaunched = false;
           }
         },
       },
-
     };
 
     // Хранилище состояний для каждого попапа
     const popups = {};
 
     // Инициализация попапов
-    document.querySelectorAll('[data-popup]').forEach(popupBlock => {
+    document.querySelectorAll("[data-popup]").forEach((popupBlock) => {
       const name = popupBlock.dataset.popup;
 
       popups[name] = {
@@ -1504,10 +1555,10 @@ document.addEventListener('DOMContentLoaded', () => {
         isLaunched: false,
         // Собираем fadeUp и fadeDown элементы внутри попапа
         fadeUpItems: gsap.utils.toArray(
-          `[data-popup="${name}"] [data-popup-anim="fadeUp"]`
+          `[data-popup="${name}"] [data-popup-anim="fadeUp"]`,
         ),
         fadeDownItems: gsap.utils.toArray(
-          `[data-popup="${name}"] [data-popup-anim="fadeDown"]`
+          `[data-popup="${name}"] [data-popup-anim="fadeDown"]`,
         ),
       };
     });
@@ -1559,13 +1610,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function togglePopup(name) {
-      const isOpen = document.documentElement.classList.contains(`${name}--open`);
+      const isOpen = document.documentElement.classList.contains(
+        `${name}--open`,
+      );
       isOpen ? closePopup(name) : openPopup(name);
     }
 
     // Кнопки вызова попапов
-    document.querySelectorAll('[data-popup-btn]').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+    document.querySelectorAll("[data-popup-btn]").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
         e.preventDefault();
         const name = btn.dataset.popupBtn;
         togglePopup(name);
@@ -1573,10 +1626,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Закрытие по Escape
-    window.addEventListener('keydown', (e) => {
-      if (e.key !== 'Escape') return;
+    window.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
 
-      Object.keys(popups).forEach(name => {
+      Object.keys(popups).forEach((name) => {
         if (document.documentElement.classList.contains(`${name}--open`)) {
           closePopup(name);
         }
@@ -1584,13 +1637,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Универсальный обработчик кликов (для клика вне попапа и кнопок закрытия)
-    document.addEventListener('click', (e) => {
+    document.addEventListener("click", (e) => {
       // 1. Проверяем, не кликнули ли мы по кнопке закрытия с атрибутом [data-popup-close]
-      const closeBtn = e.target.closest('[data-popup-close]');
+      const closeBtn = e.target.closest("[data-popup-close]");
       if (closeBtn) {
         e.preventDefault();
         // Находим родительский попап, в котором лежит эта кнопка
-        const parentPopupBlock = closeBtn.closest('[data-popup]');
+        const parentPopupBlock = closeBtn.closest("[data-popup]");
         if (parentPopupBlock) {
           const name = parentPopupBlock.dataset.popup;
           closePopup(name);
@@ -1599,9 +1652,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // 2. Стандартная проверка клика вне попапа
-      Object.keys(popups).forEach(name => {
+      Object.keys(popups).forEach((name) => {
         const popup = popups[name];
-        const isOpen = document.documentElement.classList.contains(`${name}--open`);
+        const isOpen = document.documentElement.classList.contains(
+          `${name}--open`,
+        );
 
         if (!isOpen) return;
 
@@ -1616,42 +1671,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Ракета для тендера
     (function () {
-      const rocket = document.getElementById('rocket');
-      const formBtn = document.getElementById('rocket-btn');
+      const rocket = document.getElementById("rocket");
+      const formBtn = document.getElementById("rocket-btn");
 
       if (!rocket || !formBtn) return;
 
       function launchRocket() {
-        const tenderPopup = popups['tender'];
+        const tenderPopup = popups["tender"];
         if (tenderPopup) tenderPopup.isLaunched = true;
 
         const tl = gsap.timeline();
 
-        tl
-          .to(rocket, {
-            x: -3,
-            duration: 0.05,
-            repeat: 6,
-            yoyo: true,
-            ease: 'none',
-          })
-          .to(rocket, {
-            x: 200,
-            y: -2500,
-            opacity: 0,
-            duration: 3,
-            ease: 'power4.in',
-          });
+        tl.to(rocket, {
+          x: -3,
+          duration: 0.05,
+          repeat: 6,
+          yoyo: true,
+          ease: "none",
+        }).to(rocket, {
+          x: 200,
+          y: -2500,
+          opacity: 0,
+          duration: 3,
+          ease: "power4.in",
+        });
       }
 
-      formBtn.addEventListener('click', launchRocket);
+      formBtn.addEventListener("click", launchRocket);
     })();
 
     // Слушаем событие закрытия попапа от бургер-кнопки
-    document.addEventListener('popup:close', (e) => {
+    document.addEventListener("popup:close", (e) => {
       closePopup(e.detail.name);
     });
-
   })();
 
   /**
@@ -1663,7 +1715,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // data-magnet-lerp="0.12"
   // data-magnet-return-lerp="0.08">
   (function () {
-
     // Настройки магнетизма
     const MAGNET_CONFIG = {
       // Расстояние от края элемента в px при котором начинается притяжение
@@ -1678,7 +1729,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Режим работы:
       // 'magnet'  - притяжение только в зоне triggerDistance (текущее поведение)
       // 'follow'  - глаз следует за курсором по всему сайту
-      mode: 'follow',
+      mode: "follow",
       // Сила следования в режиме follow: насколько далеко глаз уходит за курсором
       // followStrength: 0.08,
       followStrength: 0.06,
@@ -1733,7 +1784,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Вызывается каждый раз при попытке запустить сценарий чтобы реагировать
     // на ресайз окна без перезагрузки страницы
     function isAutoAnimEnabled() {
-      return isMobile() ? AUTO_ANIM_CONFIG.enabledMobile : AUTO_ANIM_CONFIG.enabled;
+      return isMobile()
+        ? AUTO_ANIM_CONFIG.enabledMobile
+        : AUTO_ANIM_CONFIG.enabled;
     }
 
     function lerp(a, b, t) {
@@ -1751,25 +1804,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function initMagnet(el) {
-
       // Находим блок-границу - ищем ближайший hero__cover-blind
       // const boundaryEl = el.closest('.hero__cover-blind') ?? document.querySelector('.hero__cover-blind');
 
       // Ищем соседний hero__cover-blind - элемент на том же уровне вложенности
-      const boundaryEl = el.parentElement?.querySelector('.hero__cover-blind')
-        ?? el.closest('.hero__cover-blind');
+      const boundaryEl =
+        el.parentElement?.querySelector(".hero__cover-blind") ??
+        el.closest(".hero__cover-blind");
 
       const triggerDistance = parseFloat(
-        el.dataset.magnetDistance ?? MAGNET_CONFIG.triggerDistance
+        el.dataset.magnetDistance ?? MAGNET_CONFIG.triggerDistance,
       );
       const strength = parseFloat(
-        el.dataset.magnetStrength ?? MAGNET_CONFIG.strength
+        el.dataset.magnetStrength ?? MAGNET_CONFIG.strength,
       );
       const lerpFactor = parseFloat(
-        el.dataset.magnetLerp ?? MAGNET_CONFIG.lerpFactor
+        el.dataset.magnetLerp ?? MAGNET_CONFIG.lerpFactor,
       );
       const returnLerpFactor = parseFloat(
-        el.dataset.magnetReturnLerp ?? MAGNET_CONFIG.returnLerpFactor
+        el.dataset.magnetReturnLerp ?? MAGNET_CONFIG.returnLerpFactor,
       );
 
       // Текущее отрисованное смещение
@@ -1813,7 +1866,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Список сценариев - drift дублируем чтобы выпадал чаще
       // const scenarios = ['float', 'drift', 'drift', 'pulse', 'shake'];
-      const scenarios = ['drift', 'drift', 'pulse'];
+      const scenarios = ["drift", "drift", "pulse"];
 
       // Сценарий float: плавная восьмёрка через последовательные tweens
       function playFloat() {
@@ -1848,7 +1901,7 @@ document.addEventListener('DOMContentLoaded', () => {
             x: point.x,
             y: point.y,
             duration: stepDuration,
-            ease: 'sine.inOut',
+            ease: "sine.inOut",
             onUpdate: () => {
               autoX = proxy.x;
               autoY = proxy.y;
@@ -1880,7 +1933,7 @@ document.addEventListener('DOMContentLoaded', () => {
           x: toX,
           y: toY,
           duration: randomBetween(1.2, 2.2),
-          ease: 'power2.inOut',
+          ease: "power2.inOut",
           onUpdate: () => {
             autoX = proxy.x;
             autoY = proxy.y;
@@ -1891,7 +1944,7 @@ document.addEventListener('DOMContentLoaded', () => {
               x: 0,
               y: 0,
               duration: randomBetween(1.0, 1.8),
-              ease: 'power2.inOut',
+              ease: "power2.inOut",
               onUpdate: () => {
                 autoX = proxy.x;
                 autoY = proxy.y;
@@ -1922,7 +1975,7 @@ document.addEventListener('DOMContentLoaded', () => {
           x: toX,
           y: toY,
           duration: cfg.pulseDuration,
-          ease: 'power3.out',
+          ease: "power3.out",
           onUpdate: () => {
             autoX = proxy.x;
             autoY = proxy.y;
@@ -1933,7 +1986,7 @@ document.addEventListener('DOMContentLoaded', () => {
               x: 0,
               y: 0,
               duration: cfg.pulseDuration,
-              ease: 'power3.inOut',
+              ease: "power3.inOut",
               onUpdate: () => {
                 autoX = proxy.x;
                 autoY = proxy.y;
@@ -1964,7 +2017,7 @@ document.addEventListener('DOMContentLoaded', () => {
               x: 0,
               y: 0,
               duration: cfg.shakeDuration * 3,
-              ease: 'power2.out',
+              ease: "power2.out",
               onUpdate: () => {
                 autoX = proxy.x;
                 autoY = proxy.y;
@@ -1987,7 +2040,7 @@ document.addEventListener('DOMContentLoaded', () => {
             x: tx,
             y: ty,
             duration: cfg.shakeDuration,
-            ease: 'none',
+            ease: "none",
             onUpdate: () => {
               autoX = proxy.x;
               autoY = proxy.y;
@@ -2006,10 +2059,10 @@ document.addEventListener('DOMContentLoaded', () => {
       function playRandomScenario() {
         if (isActive) return;
         const name = scenarios[Math.floor(Math.random() * scenarios.length)];
-        if (name === 'float') playFloat();
-        else if (name === 'drift') playDrift();
-        else if (name === 'pulse') playPulse();
-        else if (name === 'shake') playShake();
+        if (name === "float") playFloat();
+        else if (name === "drift") playDrift();
+        else if (name === "pulse") playPulse();
+        else if (name === "shake") playShake();
       }
 
       function schedulNext() {
@@ -2020,10 +2073,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isAutoAnimEnabled()) return;
 
         clearTimeout(pauseTimer);
-        const delay = randomBetween(
-          AUTO_ANIM_CONFIG.pauseMin,
-          AUTO_ANIM_CONFIG.pauseMax
-        ) * 1000;
+        const delay =
+          randomBetween(AUTO_ANIM_CONFIG.pauseMin, AUTO_ANIM_CONFIG.pauseMax) *
+          1000;
         pauseTimer = setTimeout(playRandomScenario, delay);
       }
 
@@ -2048,9 +2100,10 @@ document.addEventListener('DOMContentLoaded', () => {
           const deltaY = mouseY - centerY;
 
           // В режиме follow используем followStrength - элемент уходит дальше за курсором
-          const activeStrength = MAGNET_CONFIG.mode === 'follow'
-            ? MAGNET_CONFIG.followStrength
-            : strength;
+          const activeStrength =
+            MAGNET_CONFIG.mode === "follow"
+              ? MAGNET_CONFIG.followStrength
+              : strength;
 
           // Курсор тянет элемент + плавно гасим оставшееся авто-смещение
           // targetX = deltaX * strength + autoX;
@@ -2093,7 +2146,8 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.transform = `translate(${currentX}px, ${currentY}px)`;
 
         // Считаем суммарное расстояние до цели
-        const distToTarget = Math.abs(currentX - targetX) + Math.abs(currentY - targetY);
+        const distToTarget =
+          Math.abs(currentX - targetX) + Math.abs(currentY - targetY);
 
         // Останавливаем петлю только если курсор не активен,
         // автоанимация не играет и элемент дошёл до цели
@@ -2102,7 +2156,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isSettled) {
           currentX = 0;
           currentY = 0;
-          el.style.transform = 'translate(0px, 0px)';
+          el.style.transform = "translate(0px, 0px)";
           rafId = null;
           return;
         }
@@ -2119,13 +2173,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
       function onMouseMove(e) {
         // На тач-устройствах магнетизм не нужен - нет курсора
-        if (window.matchMedia('(hover: none)').matches) return;
+        if (window.matchMedia("(hover: none)").matches) return;
 
         mouseX = e.clientX;
         mouseY = e.clientY;
 
         // Режим follow - следим за курсором по всему сайту
-        if (MAGNET_CONFIG.mode === 'follow') {
+        if (MAGNET_CONFIG.mode === "follow") {
           // Проверяем реальное движение курсора
           // Если координаты не изменились - событие шумовое, игнорируем
           // Это защищает от ложных срабатываний при скролле и ресайзе
@@ -2138,7 +2192,7 @@ document.addEventListener('DOMContentLoaded', () => {
           // Курсор реально двигается - активируем слежение
           if (!isActive) {
             isActive = true;
-            el.classList.add('is-magnet-active');
+            el.classList.add("is-magnet-active");
             stopAuto();
           }
           startLoop();
@@ -2151,7 +2205,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Глаз плавно вернётся к autoX/autoY (или к 0,0 если автоанимация выключена)
             if (isActive) {
               isActive = false;
-              el.classList.remove('is-magnet-active');
+              el.classList.remove("is-magnet-active");
               startLoop();
               schedulNext();
             }
@@ -2166,14 +2220,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (dist <= triggerDistance) {
           if (!isActive) {
             isActive = true;
-            el.classList.add('is-magnet-active');
+            el.classList.add("is-magnet-active");
             stopAuto();
           }
           startLoop();
         } else {
           if (isActive) {
             isActive = false;
-            el.classList.remove('is-magnet-active');
+            el.classList.remove("is-magnet-active");
             startLoop();
             schedulNext();
           }
@@ -2182,7 +2236,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       function onMouseLeave() {
         // На тач-устройствах магнетизм не нужен - нет курсора
-        if (window.matchMedia('(hover: none)').matches) return;
+        if (window.matchMedia("(hover: none)").matches) return;
 
         // Чистим таймер бездействия - курсор ушёл за пределы окна,
         // ждать его остановки уже не нужно
@@ -2190,15 +2244,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (isActive) {
           isActive = false;
-          el.classList.remove('is-magnet-active');
+          el.classList.remove("is-magnet-active");
           startLoop();
           // В режиме follow запускаем автоанимацию когда курсор ушёл за пределы окна
           schedulNext();
         }
       }
 
-      window.addEventListener('mousemove', onMouseMove, { passive: true });
-      document.addEventListener('mouseleave', onMouseLeave, { passive: true });
+      window.addEventListener("mousemove", onMouseMove, { passive: true });
+      document.addEventListener("mouseleave", onMouseLeave, { passive: true });
 
       // Запускаем первый сценарий после паузы
       schedulNext();
@@ -2223,7 +2277,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // автоанимацию на всех глазах сразу
     const instances = [];
 
-    document.querySelectorAll('.hero__cover-eye').forEach(el => {
+    document.querySelectorAll(".hero__cover-eye").forEach((el) => {
       const instance = initMagnet(el);
       if (instance) instances.push(instance);
     });
@@ -2233,21 +2287,24 @@ document.addEventListener('DOMContentLoaded', () => {
     let resizeTimer = null;
     let lastIsMobile = isMobile();
 
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
+    window.addEventListener(
+      "resize",
+      () => {
+        clearTimeout(resizeTimer);
 
-      resizeTimer = setTimeout(() => {
-        const currentIsMobile = isMobile();
+        resizeTimer = setTimeout(() => {
+          const currentIsMobile = isMobile();
 
-        // Реагируем только если реально пересекли брейкпоинт
-        if (currentIsMobile === lastIsMobile) return;
-        lastIsMobile = currentIsMobile;
+          // Реагируем только если реально пересекли брейкпоинт
+          if (currentIsMobile === lastIsMobile) return;
+          lastIsMobile = currentIsMobile;
 
-        // Применяем новое состояние ко всем инстансам
-        instances.forEach(inst => inst.refreshAutoAnim());
-      }, 200);
-    }, { passive: true });
-
+          // Применяем новое состояние ко всем инстансам
+          instances.forEach((inst) => inst.refreshAutoAnim());
+        }, 200);
+      },
+      { passive: true },
+    );
   })();
 
   /**
@@ -2306,10 +2363,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const MOBILE_CONFIG = {
       // fadeDuration: 0.3,
       fadeDuration: 0.5,
-      fadeStart: 'top 100%',
+      fadeStart: "top 100%",
       splitDurationTitle: 0.5,
       splitDurationText: 0.5,
-      splitStart: 'top 100%',
+      splitStart: "top 100%",
       splitStaggerTitle: 0.06,
       splitStaggerText: 0.03,
     };
@@ -2379,8 +2436,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // Очищаем карту перед пересчётом - иначе элементы задвоятся при ресайзе
       orderMap.clear();
 
-      gsap.utils.toArray('[data-anim-order]').forEach(el => {
-        const orderParent = el.parentElement?.closest('[data-anim-order]') ?? el.parentElement;
+      gsap.utils.toArray("[data-anim-order]").forEach((el) => {
+        const orderParent =
+          el.parentElement?.closest("[data-anim-order]") ?? el.parentElement;
         if (!orderMap.has(orderParent)) orderMap.set(orderParent, []);
         orderMap.get(orderParent).push(el);
       });
@@ -2390,8 +2448,16 @@ document.addEventListener('DOMContentLoaded', () => {
         .forEach(([parent, els]) => {
           // На мобильном берём data-anim-order-mobile если задан
           els.sort((a, b) => {
-            const aOrder = parseInt(isMobile() && a.dataset.animOrderMobile ? a.dataset.animOrderMobile : a.dataset.animOrder);
-            const bOrder = parseInt(isMobile() && b.dataset.animOrderMobile ? b.dataset.animOrderMobile : b.dataset.animOrder);
+            const aOrder = parseInt(
+              isMobile() && a.dataset.animOrderMobile
+                ? a.dataset.animOrderMobile
+                : a.dataset.animOrder,
+            );
+            const bOrder = parseInt(
+              isMobile() && b.dataset.animOrderMobile
+                ? b.dataset.animOrderMobile
+                : b.dataset.animOrder,
+            );
             return aOrder - bOrder;
           });
 
@@ -2400,15 +2466,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
           // parentDuration добавляем только если родитель сам анимируется
           // иначе первый дочерний элемент получает лишнюю задержку 0.5
-          const parentHasAnim = parent.hasAttribute('data-anim') || parent.hasAttribute('data-split');
-          const parentDuration = parentHasAnim ? parseFloat(parent.dataset.animDuration ?? FADE_DURATION) : 0;
+          const parentHasAnim =
+            parent.hasAttribute("data-anim") ||
+            parent.hasAttribute("data-split");
+          const parentDuration = parentHasAnim
+            ? parseFloat(parent.dataset.animDuration ?? FADE_DURATION)
+            : 0;
 
           const parentOrderDelay = parentStartDelay + parentDuration;
           let accumulated = 0;
 
-          els.forEach(el => {
+          els.forEach((el) => {
             el.dataset.animDelay = (accumulated + parentOrderDelay).toFixed(3);
-            const duration = parseFloat(el.dataset.animDuration ?? FADE_DURATION);
+            const duration = parseFloat(
+              el.dataset.animDuration ?? FADE_DURATION,
+            );
             accumulated += duration;
           });
         });
@@ -2419,7 +2491,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Пересчёт при ресайзе через дебаунс - не спамим пересчётами
     let resizeTimer;
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(recalcAnimOrder, 150);
     });
@@ -2457,8 +2529,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //   });
     // });
 
-    gsap.utils.toArray('[data-animate]').forEach(section => {
-
+    gsap.utils.toArray("[data-animate]").forEach((section) => {
       const prev = section.previousElementSibling;
       // const prev = document.querySelector('.main');
 
@@ -2468,7 +2539,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // пока data-animate поднимается поверх него
       ScrollTrigger.create({
         trigger: prev,
-        start: 'bottom bottom',
+        start: "bottom bottom",
         // Держим пин ровно на высоту data-animate блока
         end: () => `+=${section.offsetHeight}`,
         pin: true,
@@ -2478,23 +2549,24 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       // data-animate едет снизу вверх поверх предыдущего блока
-      gsap.fromTo(section,
+      gsap.fromTo(
+        section,
         {
           y: () => section.offsetHeight,
         },
         {
           y: 0,
-          ease: 'none',
+          ease: "none",
           scrollTrigger: {
             trigger: prev,
             // Начинаем когда верх предыдущего блока прибит к верху экрана
-            start: 'top top',
+            start: "top top",
             // Заканчиваем когда data-animate полностью перекрыл предыдущий
             end: () => `+=${section.offsetHeight}`,
             scrub: true,
             invalidateOnRefresh: true,
           },
-        }
+        },
       );
     });
 
@@ -2502,17 +2574,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // PARALLAX - одиночный блок
     //
 
-    gsap.utils.toArray('[data-anim="parallax"]').forEach(el => {
-      const y = el.dataset.animY ?? '10%';
-      const start = el.dataset.animStart ?? 'top 90%';
-      const end = el.dataset.animEnd ?? 'bottom top';
+    gsap.utils.toArray('[data-anim="parallax"]').forEach((el) => {
+      const y = el.dataset.animY ?? "10%";
+      const start = el.dataset.animStart ?? "top 90%";
+      const end = el.dataset.animEnd ?? "bottom top";
 
-      gsap.fromTo(el,
+      gsap.fromTo(
+        el,
         { y: y },
         {
           y: `-${y}`,
           scrollTrigger: { trigger: el, start, end, scrub: true },
-        }
+        },
       );
     });
 
@@ -2520,17 +2593,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // PARALLAX - одиночный блок, медленный
     //
 
-    gsap.utils.toArray('[data-anim="parallax-slow"]').forEach(el => {
-      const y = el.dataset.animY ?? '5%';
-      const start = el.dataset.animStart ?? 'top 90%';
-      const end = el.dataset.animEnd ?? 'bottom top';
+    gsap.utils.toArray('[data-anim="parallax-slow"]').forEach((el) => {
+      const y = el.dataset.animY ?? "5%";
+      const start = el.dataset.animStart ?? "top 90%";
+      const end = el.dataset.animEnd ?? "bottom top";
 
-      gsap.fromTo(el,
+      gsap.fromTo(
+        el,
         { y: y },
         {
           y: `-${y}`,
           scrollTrigger: { trigger: el, start, end, scrub: true },
-        }
+        },
       );
     });
 
@@ -2538,21 +2612,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // PARALLAX SHADOW - параллакс дочерних слоёв
     //
 
-    const defaultYValues = ['5%', '7%', '10%', '12%', '15%'];
+    const defaultYValues = ["5%", "7%", "10%", "12%", "15%"];
 
-    gsap.utils.toArray('[data-anim="parallax-shadow"]').forEach(wrapper => {
-      const start = wrapper.dataset.animStart ?? 'top 90%';
-      const end = wrapper.dataset.animEnd ?? 'bottom top';
+    gsap.utils.toArray('[data-anim="parallax-shadow"]').forEach((wrapper) => {
+      const start = wrapper.dataset.animStart ?? "top 90%";
+      const end = wrapper.dataset.animEnd ?? "bottom top";
 
       Array.from(wrapper.children).forEach((layer, i) => {
-        const y = layer.dataset.animY ?? defaultYValues[i] ?? '10%';
+        const y = layer.dataset.animY ?? defaultYValues[i] ?? "10%";
 
-        gsap.fromTo(layer,
+        gsap.fromTo(
+          layer,
           { y: y },
           {
             y: `-${y}`,
             scrollTrigger: { trigger: wrapper, start, end, scrub: true },
-          }
+          },
         );
       });
     });
@@ -2575,8 +2650,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // const isMobile = () => window.innerWidth < MOBILE_BREAKPOINT;
 
     Object.entries(fadeDirections).forEach(([name, from]) => {
-      gsap.utils.toArray(`[data-anim="${name}"]`).forEach(el => {
-
+      gsap.utils.toArray(`[data-anim="${name}"]`).forEach((el) => {
         const hasOrder = el.dataset.animOrder !== undefined;
         const trigger = hasOrder ? el.parentElement : el;
 
@@ -2595,21 +2669,27 @@ document.addEventListener('DOMContentLoaded', () => {
         const mobileDirection = fadeDirections[mobileName] ?? from;
 
         // Функция возвращает нужный from в зависимости от ширины экрана
-        const getFrom = () => isMobile() ? mobileDirection : from;
+        const getFrom = () => (isMobile() ? mobileDirection : from);
 
         // Устанавливаем начальное состояние с учётом текущего устройства
-        gsap.set(el, { xPercent: getFrom().xPercent, yPercent: getFrom().yPercent, opacity: 0 });
+        gsap.set(el, {
+          xPercent: getFrom().xPercent,
+          yPercent: getFrom().yPercent,
+          opacity: 0,
+        });
 
         ScrollTrigger.create({
           trigger,
           // start: 'top 85%',
-          start: isMobile() ? MOBILE_CONFIG.fadeStart : 'top 90%',
+          start: isMobile() ? MOBILE_CONFIG.fadeStart : "top 90%",
           once: true,
           onEnter: () => {
             // Читаем delay в момент срабатывания - учитывает пересчитанный order для мобильного
             const manualDelay = parseFloat(el.dataset.animDelay ?? 0);
             const parentDelay = (() => {
-              const parent = el.closest('[data-anim]:not([data-anim="' + name + '"])');
+              const parent = el.closest(
+                '[data-anim]:not([data-anim="' + name + '"])',
+              );
               if (!parent) return 0;
               return parseFloat(parent.dataset.animDuration ?? FADE_DURATION);
             })();
@@ -2617,7 +2697,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // В момент срабатывания триггера пересчитываем направление
             // Это важно если пользователь изменил размер окна до скролла
-            gsap.set(el, { xPercent: getFrom().xPercent, yPercent: getFrom().yPercent, opacity: 0 });
+            gsap.set(el, {
+              xPercent: getFrom().xPercent,
+              yPercent: getFrom().yPercent,
+              opacity: 0,
+            });
 
             gsap.to(el, {
               xPercent: 0,
@@ -2626,7 +2710,7 @@ document.addEventListener('DOMContentLoaded', () => {
               // duration: FADE_DURATION,
               duration: isMobile() ? MOBILE_CONFIG.fadeDuration : FADE_DURATION,
               delay,
-              ease: 'power2.out',
+              ease: "power2.out",
               overwrite: true,
             });
           },
@@ -2638,51 +2722,67 @@ document.addEventListener('DOMContentLoaded', () => {
     // СЦЕНЫ - satellite и fly-through
     //
 
-    gsap.utils.toArray('[data-anim-scene]').forEach(scene => {
-
+    gsap.utils.toArray("[data-anim-scene]").forEach((scene) => {
       // SATELLITE - параллакс по диагонали 45 градусов
-      gsap.utils.toArray('[data-anim="satellite"]', scene).forEach(el => {
+      gsap.utils.toArray('[data-anim="satellite"]', scene).forEach((el) => {
         const strength = parseFloat(el.dataset.animStrength ?? 300);
 
-        gsap.fromTo(el,
+        gsap.fromTo(
+          el,
           { x: -strength, y: strength },
           {
             x: strength,
             y: -strength,
-            ease: 'none',
+            ease: "none",
             scrollTrigger: {
               trigger: scene,
-              start: 'top bottom',
-              end: 'bottom top',
+              start: "top bottom",
+              end: "bottom top",
               scrub: 1,
             },
-          }
+          },
         );
       });
 
       // FLY-THROUGH - влёт -> зависание -> вылет
-      gsap.utils.toArray('[data-anim="fly-through"]', scene).forEach(el => {
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: scene,
-            start: 'top bottom',
-            end: '50% top',
-            scrub: 1,
-          },
-        })
+      gsap.utils.toArray('[data-anim="fly-through"]', scene).forEach((el) => {
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: scene,
+              start: "top bottom",
+              end: "50% top",
+              scrub: 1,
+            },
+          })
           // Фаза 1 - влёт снизу
-          .fromTo(el,
-            { y: '80%', opacity: 1, scale: 1 },
-            { y: '0%', opacity: 1, scale: 1, ease: 'power2.out', duration: 0.35 }
+          .fromTo(
+            el,
+            { y: "80%", opacity: 1, scale: 1 },
+            {
+              y: "0%",
+              opacity: 1,
+              scale: 1,
+              ease: "power2.out",
+              duration: 0.35,
+            },
           )
           // Фаза 2 - зависание
-          .to(el,
-            { y: '0%', opacity: 1, scale: 1, ease: 'none', duration: 0.05 }
-          )
+          .to(el, {
+            y: "0%",
+            opacity: 1,
+            scale: 1,
+            ease: "none",
+            duration: 0.05,
+          })
           // Фаза 3 - вылет вверх
-          .to(el,
-            { y: '-100%', opacity: 0, scale: 0.85, ease: 'power2.in', duration: 0.25 }
-          );
+          .to(el, {
+            y: "-100%",
+            opacity: 0,
+            scale: 0.85,
+            ease: "power2.in",
+            duration: 0.25,
+          });
       });
     });
 
@@ -2690,10 +2790,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // BOUNCE - бесконечное покачивание
     //
 
-    gsap.utils.toArray('[data-anim="bounce"]').forEach(el => {
+    gsap.utils.toArray('[data-anim="bounce"]').forEach((el) => {
       const y = parseFloat(el.dataset.animY ?? 20);
       const duration = parseFloat(el.dataset.animDuration ?? 1.5);
-      const ease = el.dataset.animEase ?? 'power1.inOut';
+      const ease = el.dataset.animEase ?? "power1.inOut";
 
       animRegistry.set(el, duration);
 
@@ -2704,16 +2804,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // SCALE - пульсация или одноразовое появление
     //
 
-    gsap.utils.toArray('[data-anim="scale"]').forEach(el => {
+    gsap.utils.toArray('[data-anim="scale"]').forEach((el) => {
       const scale = parseFloat(el.dataset.animScale ?? 1.1);
       const duration = parseFloat(el.dataset.animDuration ?? 1);
-      const ease = el.dataset.animEase ?? 'power1.inOut';
+      const ease = el.dataset.animEase ?? "power1.inOut";
       const once = el.dataset.animOnce !== undefined;
 
       animRegistry.set(el, duration);
 
       if (once) {
-        gsap.fromTo(el,
+        gsap.fromTo(
+          el,
           { scale: 0 },
           {
             scale: 1,
@@ -2721,10 +2822,10 @@ document.addEventListener('DOMContentLoaded', () => {
             ease,
             scrollTrigger: {
               trigger: el,
-              start: 'top 90%',
+              start: "top 90%",
               // start: isMobile() ? MOBILE_CONFIG.fadeStart : 'top 90%',
             },
-          }
+          },
         );
       } else {
         gsap.to(el, { scale, duration, ease, repeat: -1, yoyo: true });
@@ -2735,29 +2836,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // SPLIT - общая функция для title и text
     //
 
-    function initSplitAnim(container, { opacity, rotation, stagger, duration, start }) {
-
+    function initSplitAnim(
+      container,
+      { opacity, rotation, stagger, duration, start },
+    ) {
       // Переопределяем параметры для мобильной версии
-      const activeDuration = isMobile() ? (
-        stagger === 0.1
+      const activeDuration = isMobile()
+        ? stagger === 0.1
           ? MOBILE_CONFIG.splitDurationTitle
           : MOBILE_CONFIG.splitDurationText
-      ) : duration;
+        : duration;
 
-      const activeStagger = isMobile() ? (
-        stagger === 0.1
+      const activeStagger = isMobile()
+        ? stagger === 0.1
           ? MOBILE_CONFIG.splitStaggerTitle
           : MOBILE_CONFIG.splitStaggerText
-      ) : stagger;
+        : stagger;
 
       const activeStart = isMobile() ? MOBILE_CONFIG.splitStart : start;
 
-      const textSplits = container.querySelectorAll('*');
+      const textSplits = container.querySelectorAll("*");
 
-      const validTargets = Array.from(textSplits).filter(el =>
-        el.tagName !== 'BR' &&
-        el.tagName !== 'IMG' &&
-        el.tagName !== 'SVG'
+      const validTargets = Array.from(textSplits).filter(
+        (el) =>
+          el.tagName !== "BR" && el.tagName !== "IMG" && el.tagName !== "SVG",
       );
 
       const targets = validTargets.length > 0 ? validTargets : [container];
@@ -2767,16 +2869,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const parentDelay = getParentDelay(container);
       const delay = manualDelay || parentDelay;
 
-      targets.forEach(textSplit => {
+      targets.forEach((textSplit) => {
         SplitText.create(textSplit, {
-          type: 'words,lines',
-          mask: 'lines',
-          linesClass: 'line',
+          type: "words,lines",
+          mask: "lines",
+          linesClass: "line",
           autoSplit: true,
-          onSplit: inst => {
+          onSplit: (inst) => {
             const lineHeight = inst.lines[0]?.offsetHeight ?? 50;
             gsap.from(inst.lines, {
-              y: lineHeight / 10 + 'rem',
+              y: lineHeight / 10 + "rem",
               opacity,
               rotation,
               // stagger,
@@ -2784,12 +2886,12 @@ document.addEventListener('DOMContentLoaded', () => {
               stagger: activeStagger,
               duration: activeDuration,
               delay,
-              ease: 'power3.out',
+              ease: "power3.out",
               scrollTrigger: {
                 trigger: container,
                 // start,
                 start: activeStart,
-                end: 'bottom top',
+                end: "bottom top",
               },
             });
           },
@@ -2798,24 +2900,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Split - заголовок
-    gsap.utils.toArray('[data-split="title"]').forEach(container => {
+    gsap.utils.toArray('[data-split="title"]').forEach((container) => {
       initSplitAnim(container, {
         opacity: 0,
         rotation: 0,
         stagger: 0.1,
         duration: 0.6,
-        start: 'top 90%',
+        start: "top 90%",
       });
     });
 
     // Split - текст
-    gsap.utils.toArray('[data-split="text"]').forEach(container => {
+    gsap.utils.toArray('[data-split="text"]').forEach((container) => {
       initSplitAnim(container, {
         opacity: 0,
         rotation: 2.5,
         stagger: 0.05,
         duration: 0.8,
-        start: 'top 90%',
+        start: "top 90%",
       });
     });
 
@@ -2823,28 +2925,27 @@ document.addEventListener('DOMContentLoaded', () => {
       const isMobile = window.innerWidth < 600;
 
       if (!isMobile) {
-        const animItems = document.querySelectorAll('.anim-items')
-        animItems.forEach(items => {
-          const item = items.querySelectorAll('.anim-item')
+        const animItems = document.querySelectorAll(".anim-items");
+        animItems.forEach((items) => {
+          const item = items.querySelectorAll(".anim-item");
           gsap.from(item, {
             scale: 0.8,
             opacity: 0,
             stagger: {
               each: 0.2,
-              from: "start"
+              from: "start",
             },
             duration: 0.8,
             ease: "back.out(1.2)",
             scrollTrigger: {
               trigger: items,
               start: "top 95%",
-              onEnter: () => items.classList.add('anim-animated'),
-            }
+              onEnter: () => items.classList.add("anim-animated"),
+            },
           });
         });
       }
     })();
-
   });
 
   /* new */
@@ -2852,7 +2953,6 @@ document.addEventListener('DOMContentLoaded', () => {
    * Анимация наслоения
    */
   (function () {
-
     // Находим блок который должен выползать снизу
     // Атрибут data-animation="creeping" ставится на сам выползающий блок
     const creepingBlock = document.querySelector('[data-animation="creeping"]');
@@ -2865,8 +2965,10 @@ document.addEventListener('DOMContentLoaded', () => {
       // Получаем имя класса триггера из атрибута data-creeping-trigger
       // Например data-creeping-trigger="hero" будет искать элемент с классом .hero
       // Триггер это блок при скролле которого блок начинает выползать
-      const triggerClass = creepingBlock.getAttribute('data-creeping-trigger');
-      const trigger = triggerClass ? document.querySelector(`.${triggerClass}`) : null;
+      const triggerClass = creepingBlock.getAttribute("data-creeping-trigger");
+      const trigger = triggerClass
+        ? document.querySelector(`.${triggerClass}`)
+        : null;
 
       // Если триггер не найден выходим
       if (!trigger) return;
@@ -2877,18 +2979,18 @@ document.addEventListener('DOMContentLoaded', () => {
       // GSAP плавно довёдет bottom до 0 пока пользователь скроллит триггер
       gsap.to(creepingBlock, {
         bottom: 0,
-        ease: 'none',
+        ease: "none",
         // immediateRender: false,
         scrollTrigger: {
           trigger: trigger,
           // start top bottom означает начало анимации когда верх триггера
           // касается низа viewport то есть триггер только появился снизу
           // start: '5.6% 94.4%',
-          start: 'top bottom',
+          start: "top bottom",
           // start: `+=${".footer-null"}`,
           // end bottom bottom означает конец анимации когда низ триггера
           // достиг низа viewport то есть триггер полностью прошёл по экрану
-          end: 'bottom bottom',
+          end: "bottom bottom",
           // scrub true привязывает прогресс анимации к прогрессу скролла
           // блок выползает плавно по мере прокрутки а не одним движением
           scrub: true,
@@ -2897,11 +2999,10 @@ document.addEventListener('DOMContentLoaded', () => {
         },
       });
 
-      window.addEventListener('scroll', () => {
+      window.addEventListener("scroll", () => {
         ScrollTrigger.refresh();
       });
     }
-
   })();
   /* ./new */
 
@@ -2909,16 +3010,15 @@ document.addEventListener('DOMContentLoaded', () => {
    * Анимация набора текста
    */
   window.initQueue.push(function () {
-
     // Возвращает Promise который резолвится только когда одновременно:
     // 1. #welcome отсутствует в DOM
     // 2. <html> не имеет класса popup-open
     function waitForReadyToType() {
-      return new Promise(resolve => {
-
+      return new Promise((resolve) => {
         function isReady() {
-          const noWelcome = !document.getElementById('welcome');
-          const noPopup = !document.documentElement.classList.contains('popup-open');
+          const noWelcome = !document.getElementById("welcome");
+          const noPopup =
+            !document.documentElement.classList.contains("popup-open");
           return noWelcome && noPopup;
         }
 
@@ -2941,7 +3041,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         observer.observe(document.documentElement, {
           attributes: true,
-          attributeFilter: ['class'],
+          attributeFilter: ["class"],
         });
       });
     }
@@ -2949,7 +3049,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Возвращает Promise который резолвится когда указанный элемент
     // получает указанный класс
     function waitForClass(selector, className) {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         const el = document.querySelector(selector);
         if (!el) return;
 
@@ -2967,14 +3067,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         observer.observe(el, {
           attributes: true,
-          attributeFilter: ['class'],
+          attributeFilter: ["class"],
         });
       });
     }
 
     const groupMap = new Map();
 
-    document.querySelectorAll('.typewriter').forEach(container => {
+    document.querySelectorAll(".typewriter").forEach((container) => {
       const group = container.dataset.syncGroup;
 
       if (group) {
@@ -2985,12 +3085,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    groupMap.forEach(containers => {
+    groupMap.forEach((containers) => {
       initSyncGroup(containers);
     });
 
     function initSyncGroup(containers) {
-
       const first = containers[0];
       const TYPE_SPEED = parseFloat(first.dataset.typeSpeed ?? 0.07);
       const TYPE_VARIANCE = parseFloat(first.dataset.typeVariance ?? 0.04);
@@ -3006,7 +3105,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let abortSignal = false;
       let stoppedCount = 0;
 
-      const instances = containers.map(container =>
+      const instances = containers.map((container) =>
         initTypewriter(container, {
           externalControl: true,
 
@@ -3020,10 +3119,10 @@ document.addEventListener('DOMContentLoaded', () => {
             stoppedCount = Math.max(0, stoppedCount - 1);
             isStopped = stoppedCount > 0;
           },
-        })
+        }),
       );
 
-      if (instances.some(inst => !inst)) return;
+      if (instances.some((inst) => !inst)) return;
 
       const phraseCount = instances[0].phraseCount;
       if (phraseCount === 0) return;
@@ -3033,11 +3132,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       function sleep(seconds) {
-        return new Promise(resolve => setTimeout(resolve, seconds * 1000));
+        return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
       }
 
       function sleepAbortable(seconds) {
-        return new Promise(resolve => {
+        return new Promise((resolve) => {
           const ms = seconds * 1000;
           const start = performance.now();
 
@@ -3080,51 +3179,65 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Финальный stop-text набирается параллельно во всех экземплярах
       async function typeStopAll() {
-        await Promise.all(instances.map(inst => inst.typeStopText()));
+        await Promise.all(instances.map((inst) => inst.typeStopText()));
       }
 
       // Вспомогательная функция обработки abortSignal во время итерации
       async function handleAbort() {
         abortSignal = false;
-        instances.forEach(inst => inst.clearSlots());
+        instances.forEach((inst) => inst.clearSlots());
         await typeStopAll();
         isStopped = true;
       }
 
       async function runLoop() {
-
-        instances.forEach(inst => inst.clearSlots());
+        instances.forEach((inst) => inst.clearSlots());
 
         let phraseIndex = 0;
 
         while (true) {
-
-          if (isStopped) { await sleep(0.1); continue; }
+          if (isStopped) {
+            await sleep(0.1);
+            continue;
+          }
 
           // Последовательно набираем текст у каждого экземпляра
           for (const inst of instances) {
-
             if (isStopped) break;
 
             inst.clearSlots();
             inst.applyPhrase(phraseIndex);
 
             await typeOne(inst, phraseIndex);
-            if (abortSignal) { await handleAbort(); break; }
+            if (abortSignal) {
+              await handleAbort();
+              break;
+            }
           }
 
           if (isStopped) continue;
 
           // Пауза пока все экземпляры показывают набранный текст
           await sleepAbortable(PAUSE_AFTER_TYPE);
-          if (abortSignal) { await handleAbort(); continue; }
+          if (abortSignal) {
+            await handleAbort();
+            continue;
+          }
 
           // Стираем все экземпляры одновременно
-          await Promise.all(instances.map(inst => deleteOne(inst, phraseIndex)));
-          if (abortSignal) { await handleAbort(); continue; }
+          await Promise.all(
+            instances.map((inst) => deleteOne(inst, phraseIndex)),
+          );
+          if (abortSignal) {
+            await handleAbort();
+            continue;
+          }
 
           await sleepAbortable(PAUSE_AFTER_DEL);
-          if (abortSignal) { await handleAbort(); continue; }
+          if (abortSignal) {
+            await handleAbort();
+            continue;
+          }
 
           // Переходим к следующей фразе
           phraseIndex = (phraseIndex + 1) % phraseCount;
@@ -3132,12 +3245,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Показываем stop-text сразу при инициализации
-      instances.forEach(inst => inst.typeStopText());
+      instances.forEach((inst) => inst.typeStopText());
 
       // Ждём триггера и запускаем
-      const readyPromise = (trigger && triggerEl)
-        ? waitForClass(triggerEl, trigger)
-        : waitForReadyToType();
+      const readyPromise =
+        trigger && triggerEl
+          ? waitForClass(triggerEl, trigger)
+          : waitForReadyToType();
 
       readyPromise.then(() => {
         setTimeout(() => {
@@ -3147,22 +3261,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function initTypewriter(container, options = {}) {
-
       const TYPE_SPEED = parseFloat(container.dataset.typeSpeed ?? 0.07);
       const TYPE_VARIANCE = parseFloat(container.dataset.typeVariance ?? 0.04);
       const DELETE_SPEED = parseFloat(container.dataset.deleteSpeed ?? 0.04);
-      const PAUSE_AFTER_TYPE = parseFloat(container.dataset.pauseAfterType ?? 2.0);
-      const PAUSE_AFTER_DEL = parseFloat(container.dataset.pauseAfterDelete ?? 0.5);
+      const PAUSE_AFTER_TYPE = parseFloat(
+        container.dataset.pauseAfterType ?? 2.0,
+      );
+      const PAUSE_AFTER_DEL = parseFloat(
+        container.dataset.pauseAfterDelete ?? 0.5,
+      );
 
       const STOP_TEXT = container.dataset.stopText ?? null;
       const inputSelector = container.dataset.input ?? null;
 
-      const inputEl = inputSelector ? document.querySelector(inputSelector) : null;
-      const cursorEl = container.querySelector('.typewriter__cursor');
+      const inputEl = inputSelector
+        ? document.querySelector(inputSelector)
+        : null;
+      const cursorEl = container.querySelector(".typewriter__cursor");
 
-      const slots = Array.from(container.querySelectorAll('.typewriter__word')).map(el => ({
+      const slots = Array.from(
+        container.querySelectorAll(".typewriter__word"),
+      ).map((el) => ({
         el,
-        words: el.dataset.words.split('|'),
+        words: el.dataset.words.split("|"),
       }));
 
       const phraseCount = slots[0]?.words.length ?? 0;
@@ -3179,7 +3300,7 @@ document.addEventListener('DOMContentLoaded', () => {
         duration: 0.5,
         repeat: -1,
         yoyo: true,
-        ease: 'none',
+        ease: "none",
       });
 
       function getTypeDelay() {
@@ -3187,11 +3308,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       function sleep(seconds) {
-        return new Promise(resolve => setTimeout(resolve, seconds * 1000));
+        return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
       }
 
       function sleepAbortable(seconds) {
-        return new Promise(resolve => {
+        return new Promise((resolve) => {
           const ms = seconds * 1000;
           const start = performance.now();
 
@@ -3209,23 +3330,29 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       function clearSlots() {
-        slots.forEach(slot => {
-          slot.el.querySelectorAll('span:not(.typewriter__cursor)').forEach(s => s.remove());
+        slots.forEach((slot) => {
+          slot.el
+            .querySelectorAll("span:not(.typewriter__cursor)")
+            .forEach((s) => s.remove());
         });
       }
 
       function applyPhrase(phraseIndex) {
-        slots.forEach(slot => {
-          slot.el.dataset.word = slot.words[phraseIndex] ?? '';
+        slots.forEach((slot) => {
+          slot.el.dataset.word = slot.words[phraseIndex] ?? "";
         });
       }
 
       function getStepCount(phraseIndex) {
-        return Math.max(...slots.map(slot => (slot.words[phraseIndex] ?? '').length));
+        return Math.max(
+          ...slots.map((slot) => (slot.words[phraseIndex] ?? "").length),
+        );
       }
 
       function prepareCursor(phraseIndex) {
-        const lastActive = [...slots].reverse().find(slot => slot.words[phraseIndex ?? 0]);
+        const lastActive = [...slots]
+          .reverse()
+          .find((slot) => slot.words[phraseIndex ?? 0]);
         if (lastActive) moveCursorTo(lastActive.el);
       }
 
@@ -3233,13 +3360,13 @@ document.addEventListener('DOMContentLoaded', () => {
         cursorTween.pause();
         gsap.set(cursorEl, { opacity: 1 });
 
-        slots.forEach(slot => {
-          const word = slot.words[phraseIndex] ?? '';
+        slots.forEach((slot) => {
+          const word = slot.words[phraseIndex] ?? "";
           if (i >= word.length) return;
 
           const char = word[i];
-          const span = document.createElement('span');
-          span.innerHTML = char === ' ' ? '&nbsp;' : char;
+          const span = document.createElement("span");
+          span.innerHTML = char === " " ? "&nbsp;" : char;
 
           if (cursorEl.parentElement === slot.el) {
             slot.el.insertBefore(span, cursorEl);
@@ -3253,8 +3380,10 @@ document.addEventListener('DOMContentLoaded', () => {
         cursorTween.pause();
         gsap.set(cursorEl, { opacity: 1 });
 
-        slots.forEach(slot => {
-          const spans = slot.el.querySelectorAll('span:not(.typewriter__cursor)');
+        slots.forEach((slot) => {
+          const spans = slot.el.querySelectorAll(
+            "span:not(.typewriter__cursor)",
+          );
           if (spans.length === 0) return;
           spans[spans.length - 1].remove();
         });
@@ -3271,7 +3400,7 @@ document.addEventListener('DOMContentLoaded', () => {
           duration: 0.5,
           repeat: -1,
           yoyo: true,
-          ease: 'none',
+          ease: "none",
         });
       }
 
@@ -3285,8 +3414,8 @@ document.addEventListener('DOMContentLoaded', () => {
           cursorTween.pause();
           gsap.set(cursorEl, { opacity: 1 });
 
-          const span = document.createElement('span');
-          span.innerHTML = char === ' ' ? '&nbsp;' : char;
+          const span = document.createElement("span");
+          span.innerHTML = char === " " ? "&nbsp;" : char;
           slots[0].el.insertBefore(span, cursorEl);
 
           await sleep(getTypeDelay());
@@ -3297,10 +3426,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (!options.externalControl) {
-
         async function typePhrase(phraseIndex) {
           for (const slot of slots) {
-            const word = slot.words[phraseIndex] ?? '';
+            const word = slot.words[phraseIndex] ?? "";
             if (!word) continue;
 
             moveCursorTo(slot.el);
@@ -3312,8 +3440,8 @@ document.addEventListener('DOMContentLoaded', () => {
               gsap.set(cursorEl, { opacity: 1 });
 
               const char = word[i];
-              const span = document.createElement('span');
-              span.innerHTML = char === ' ' ? '&nbsp;' : char;
+              const span = document.createElement("span");
+              span.innerHTML = char === " " ? "&nbsp;" : char;
               slot.el.insertBefore(span, cursorEl);
 
               await sleepAbortable(getTypeDelay());
@@ -3325,13 +3453,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         async function deletePhrase(phraseIndex) {
           for (const slot of [...slots].reverse()) {
-            const word = slot.words[phraseIndex] ?? '';
+            const word = slot.words[phraseIndex] ?? "";
             if (!word) continue;
 
             moveCursorTo(slot.el);
 
             const spans = Array.from(
-              slot.el.querySelectorAll('span:not(.typewriter__cursor)')
+              slot.el.querySelectorAll("span:not(.typewriter__cursor)"),
             ).reverse();
 
             for (const span of spans) {
@@ -3353,7 +3481,10 @@ document.addEventListener('DOMContentLoaded', () => {
           let index = 0;
 
           while (true) {
-            if (isStopped) { await sleep(0.1); continue; }
+            if (isStopped) {
+              await sleep(0.1);
+              continue;
+            }
 
             const phraseIndex = index % phraseCount;
 
@@ -3361,16 +3492,36 @@ document.addEventListener('DOMContentLoaded', () => {
             applyPhrase(phraseIndex);
 
             await typePhrase(phraseIndex);
-            if (abortSignal) { abortSignal = false; await typeStopText(); isStopped = true; continue; }
+            if (abortSignal) {
+              abortSignal = false;
+              await typeStopText();
+              isStopped = true;
+              continue;
+            }
 
             await sleepAbortable(PAUSE_AFTER_TYPE);
-            if (abortSignal) { abortSignal = false; await typeStopText(); isStopped = true; continue; }
+            if (abortSignal) {
+              abortSignal = false;
+              await typeStopText();
+              isStopped = true;
+              continue;
+            }
 
             await deletePhrase(phraseIndex);
-            if (abortSignal) { abortSignal = false; await typeStopText(); isStopped = true; continue; }
+            if (abortSignal) {
+              abortSignal = false;
+              await typeStopText();
+              isStopped = true;
+              continue;
+            }
 
             await sleepAbortable(PAUSE_AFTER_DEL);
-            if (abortSignal) { abortSignal = false; await typeStopText(); isStopped = true; continue; }
+            if (abortSignal) {
+              abortSignal = false;
+              await typeStopText();
+              isStopped = true;
+              continue;
+            }
 
             index++;
           }
@@ -3388,25 +3539,29 @@ document.addEventListener('DOMContentLoaded', () => {
             clearTimeout(deactivateTimer);
             deactivateTimer = setTimeout(() => {
               if (!isStopped) return;
-              if (inputEl.classList.contains('filled') || inputEl.value?.trim()) return;
+              if (inputEl.classList.contains("filled") || inputEl.value?.trim())
+                return;
               isStopped = false;
               restoreCursor();
             }, 50);
           };
 
-          inputEl.addEventListener('focus', activate);
-          inputEl.addEventListener('blur', deactivate);
+          inputEl.addEventListener("focus", activate);
+          inputEl.addEventListener("blur", deactivate);
 
           const observer = new MutationObserver(() => {
-            if (inputEl.classList.contains('filled')) {
+            if (inputEl.classList.contains("filled")) {
               clearTimeout(deactivateTimer);
               if (!isStopped) abortSignal = true;
             } else {
-              if (!inputEl.matches(':focus')) deactivate();
+              if (!inputEl.matches(":focus")) deactivate();
             }
           });
 
-          observer.observe(inputEl, { attributes: true, attributeFilter: ['class'] });
+          observer.observe(inputEl, {
+            attributes: true,
+            attributeFilter: ["class"],
+          });
         }
 
         runLoop();
@@ -3427,26 +3582,30 @@ document.addEventListener('DOMContentLoaded', () => {
           clearTimeout(deactivateTimer);
           deactivateTimer = setTimeout(() => {
             if (!selfStopped) return;
-            if (inputEl.classList.contains('filled') || inputEl.value?.trim()) return;
+            if (inputEl.classList.contains("filled") || inputEl.value?.trim())
+              return;
             selfStopped = false;
             restoreCursor();
             onResume?.();
           }, 50);
         };
 
-        inputEl.addEventListener('focus', activate);
-        inputEl.addEventListener('blur', deactivate);
+        inputEl.addEventListener("focus", activate);
+        inputEl.addEventListener("blur", deactivate);
 
         const observer = new MutationObserver(() => {
-          if (inputEl.classList.contains('filled')) {
+          if (inputEl.classList.contains("filled")) {
             clearTimeout(deactivateTimer);
             activate();
           } else {
-            if (!inputEl.matches(':focus')) deactivate();
+            if (!inputEl.matches(":focus")) deactivate();
           }
         });
 
-        observer.observe(inputEl, { attributes: true, attributeFilter: ['class'] });
+        observer.observe(inputEl, {
+          attributes: true,
+          attributeFilter: ["class"],
+        });
       }
 
       return {
@@ -3462,7 +3621,6 @@ document.addEventListener('DOMContentLoaded', () => {
         restoreCursor,
       };
     }
-
   });
 
   /**
@@ -3477,23 +3635,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function sleep(seconds) {
-      return new Promise(resolve => setTimeout(resolve, seconds * 1000));
+      return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
     }
 
     function parseNodesRecursively(node) {
       let segments = [];
-      node.childNodes.forEach(child => {
+      node.childNodes.forEach((child) => {
         if (child.nodeType === Node.TEXT_NODE) {
-          let value = child.textContent.replace(/[\r\n\t]+/g, ' ').replace(/\s+/g, ' ');
-          if (value === ' ' || value === '') return;
-          segments.push({ type: 'text', value: value });
+          let value = child.textContent
+            .replace(/[\r\n\t]+/g, " ")
+            .replace(/\s+/g, " ");
+          if (value === " " || value === "") return;
+          segments.push({ type: "text", value: value });
         } else if (child.nodeType === Node.ELEMENT_NODE) {
-          if (child.tagName === 'BR') {
-            segments.push({ type: 'br' });
+          if (child.tagName === "BR") {
+            segments.push({ type: "br" });
           } else {
             const clone = child.cloneNode(false);
             const innerSegments = parseNodesRecursively(child);
-            segments.push({ type: 'element', el: clone, children: innerSegments });
+            segments.push({
+              type: "element",
+              el: clone,
+              children: innerSegments,
+            });
           }
         }
       });
@@ -3502,16 +3666,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function typeSegments(container, segments, cursor) {
       for (const segment of segments) {
-        if (segment.type === 'br') {
-          container.insertBefore(document.createElement('br'), cursor);
+        if (segment.type === "br") {
+          container.insertBefore(document.createElement("br"), cursor);
           continue;
         }
 
-        if (segment.type === 'element') {
+        if (segment.type === "element") {
           const wrapEl = segment.el;
           container.insertBefore(wrapEl, cursor);
-          const subCursor = document.createElement('span');
-          subCursor.style.display = 'none';
+          const subCursor = document.createElement("span");
+          subCursor.style.display = "none";
           wrapEl.appendChild(subCursor);
           await typeSegments(wrapEl, segment.children, subCursor);
           subCursor.remove();
@@ -3520,7 +3684,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         for (let i = 0; i < segment.value.length; i++) {
           const char = segment.value[i];
-          if (char === ' ' && i === 0 && container.textContent.trim() === '') {
+          if (char === " " && i === 0 && container.textContent.trim() === "") {
             continue;
           }
           const textNode = document.createTextNode(char);
@@ -3532,7 +3696,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function typeChild(childEl, cursor) {
       const segments = parseNodesRecursively(childEl);
-      childEl.innerHTML = '';
+      childEl.innerHTML = "";
       childEl.appendChild(cursor);
 
       const localCursorTween = gsap.to(cursor, {
@@ -3540,7 +3704,7 @@ document.addEventListener('DOMContentLoaded', () => {
         duration: 0.5,
         repeat: -1,
         yoyo: true,
-        ease: 'none',
+        ease: "none",
         paused: true,
       });
 
@@ -3548,7 +3712,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       localCursorTween.resume();
       await sleep(1.5);
-      await new Promise(resolve => {
+      await new Promise((resolve) => {
         gsap.to(cursor, {
           opacity: 0,
           duration: 0.3,
@@ -3564,40 +3728,42 @@ document.addEventListener('DOMContentLoaded', () => {
       const children = Array.from(el.children);
       if (children.length === 0) return;
 
-      children.forEach(child => {
-        child.style.visibility = 'hidden';
+      children.forEach((child) => {
+        child.style.visibility = "hidden";
       });
 
-      const cursor = document.createElement('span');
+      const cursor = document.createElement("span");
 
       // ДОБАВЛЕН КАСТОМНЫЙ КЛАСС ДЛЯ КУРСОРA:
-      cursor.className = 'typewriter-once-cursor';
+      cursor.className = "typewriter-once-cursor";
 
       Object.assign(cursor.style, {
-        display: 'inline-block',
-        fontWeight: '300',
-        marginLeft: '0.2rem',
-        opacity: '1',
+        display: "inline-block",
+        fontWeight: "300",
+        marginLeft: "0.2rem",
+        opacity: "1",
       });
-      cursor.textContent = '|';
+      cursor.textContent = "|";
 
       const localCursorTween = gsap.to(cursor, {
         opacity: 0,
         duration: 0.5,
         repeat: -1,
         yoyo: true,
-        ease: 'none',
+        ease: "none",
         paused: true,
       });
 
       localCursorTween.pause();
       gsap.set(cursor, { opacity: 1 });
 
-      children.forEach(child => {
-        child.style.visibility = 'visible';
+      children.forEach((child) => {
+        child.style.visibility = "visible";
       });
 
-      await Promise.all(children.map(child => typeChild(child, cursor.cloneNode(true))));
+      await Promise.all(
+        children.map((child) => typeChild(child, cursor.cloneNode(true))),
+      );
 
       localCursorTween.resume();
       await sleep(1.5);
@@ -3608,15 +3774,15 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    document.querySelectorAll('[data-type="once"]').forEach(el => {
-      if (typeof ScrollTrigger !== 'undefined') {
+    document.querySelectorAll('[data-type="once"]').forEach((el) => {
+      if (typeof ScrollTrigger !== "undefined") {
         ScrollTrigger.create({
           trigger: el,
-          start: 'top 95%',
+          start: "top 95%",
           once: true,
           onEnter: () => {
             startTypeOnce(el);
-          }
+          },
         });
       } else {
         startTypeOnce(el);
@@ -3628,31 +3794,47 @@ document.addEventListener('DOMContentLoaded', () => {
    * Анимация чисел
    */
   window.initQueue.push(function initNumberRolls(selector = ".number-roll") {
-
-    document.querySelectorAll(selector).forEach(el => {
+    document.querySelectorAll(selector).forEach((el) => {
       const digits = el.dataset.number.split("");
-      el.innerHTML = digits.map(ch => {
-        if (ch === ".") return `<span class="digit-container"><span class="digit"><span>.</span></span></span>`;
-        let numSpan = "";
-        for (let j = 0; j < 2; j++) for (let i = 0; i <= 9; i++) numSpan += `<span>${i}</span>`;
-        return `<span class="digit-container"><span class="digit">${numSpan}</span></span>`;
-      }).join("");
+      el.innerHTML = digits
+        .map((ch) => {
+          if (ch === ".")
+            return `<span class="digit-container"><span class="digit"><span>.</span></span></span>`;
+          let numSpan = "";
+          for (let j = 0; j < 2; j++)
+            for (let i = 0; i <= 9; i++) numSpan += `<span>${i}</span>`;
+          return `<span class="digit-container"><span class="digit">${numSpan}</span></span>`;
+        })
+        .join("");
 
       ScrollTrigger.create({
-        trigger: el, start: "top 100%", once: true,
-        onEnter: () => el.querySelectorAll(".digit-container").forEach((container, i) => {
-          const target = digits[i]; if (target === ".") return;
-          const digitEl = container.querySelector(".digit");
-          const t = gsap.to(digitEl, { y: "-10em", duration: 0.2 + Math.random() * 0.4, ease: "linear", repeat: -1 });
-          gsap.delayedCall(1 + i * 0.3, () => {
-            t.kill();
-            const loops = Math.floor(digitEl.querySelectorAll("span").length / 10) - 1;
-            gsap.to(digitEl, { y: -(loops * 10 + parseInt(target)) + "em", duration: 0.2 + i * 0.2, ease: "power3.out" });
-          });
-        })
+        trigger: el,
+        start: "top 100%",
+        once: true,
+        onEnter: () =>
+          el.querySelectorAll(".digit-container").forEach((container, i) => {
+            const target = digits[i];
+            if (target === ".") return;
+            const digitEl = container.querySelector(".digit");
+            const t = gsap.to(digitEl, {
+              y: "-10em",
+              duration: 0.2 + Math.random() * 0.4,
+              ease: "linear",
+              repeat: -1,
+            });
+            gsap.delayedCall(1 + i * 0.3, () => {
+              t.kill();
+              const loops =
+                Math.floor(digitEl.querySelectorAll("span").length / 10) - 1;
+              gsap.to(digitEl, {
+                y: -(loops * 10 + parseInt(target)) + "em",
+                duration: 0.2 + i * 0.2,
+                ease: "power3.out",
+              });
+            });
+          }),
       });
     });
-
   });
 
   /**
@@ -3661,7 +3843,6 @@ document.addEventListener('DOMContentLoaded', () => {
    * Метод обработки клика produce__item для присвоения активного класса в моб версии
    */
   (function () {
-
     // брейкпоинт для моб. версии
     const MOBILE_BREAKPOINT = 600;
 
@@ -3673,18 +3854,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // ИНДИКАТОР - только для десктопа
 
     // document.querySelectorAll('.produce__item-list>ul').forEach(nav => {
-    document.querySelectorAll('.popup__list').forEach(nav => {
-      const indicator = document.createElement('div');
-      indicator.className = 'produce__indicator';
+    document.querySelectorAll(".popup__list").forEach((nav) => {
+      const indicator = document.createElement("div");
+      indicator.className = "produce__indicator";
       nav.appendChild(indicator);
 
-      const links = nav.querySelectorAll('a');
+      const links = nav.querySelectorAll("a");
 
-      links.forEach(link => {
-        link.addEventListener('mouseenter', () => {
+      links.forEach((link) => {
+        link.addEventListener("mouseenter", () => {
           if (isMobile()) return;
 
-          const li = link.closest('li');
+          const li = link.closest("li");
           if (!li) return;
           const navRect = nav.getBoundingClientRect();
           const liRect = li.getBoundingClientRect();
@@ -3694,66 +3875,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
           indicator.style.top = `${top}px`;
           indicator.style.marginTop = `${height}px`;
-          indicator.classList.add('is-visible');
+          indicator.classList.add("is-visible");
         });
       });
 
-      nav.addEventListener('mouseleave', () => {
+      nav.addEventListener("mouseleave", () => {
         if (isMobile()) return;
-        indicator.classList.remove('is-visible');
+        indicator.classList.remove("is-visible");
       });
     });
 
     // АКТИВНЫЙ КЛАСС - только для мобильных
 
-    document.querySelectorAll('.produce__item').forEach(item => {
-      item.addEventListener('click', (e) => {
+    document.querySelectorAll(".produce__item").forEach((item) => {
+      item.addEventListener("click", (e) => {
         if (!isMobile()) return;
 
-        const isActive = item.classList.contains('produce__item--active');
+        const isActive = item.classList.contains("produce__item--active");
 
         // Снимаем активный класс со всех
-        document.querySelectorAll('.produce__item').forEach(el => {
-          el.classList.remove('produce__item--active');
+        document.querySelectorAll(".produce__item").forEach((el) => {
+          el.classList.remove("produce__item--active");
         });
 
         // Если клик по ссылке - не переключаем активный класс
-        if (e.target.closest('a')) return;
+        if (e.target.closest("a")) return;
 
         // Если айтем не был активен - делаем активным, иначе оставляем снятым
         if (!isActive) {
-          item.classList.add('produce__item--active');
+          item.classList.add("produce__item--active");
         }
       });
     });
 
     // Клик вне айтема - снимаем со всех
-    document.addEventListener('click', (e) => {
+    document.addEventListener("click", (e) => {
       if (!isMobile()) return;
-      if (e.target.closest('.produce__item')) return;
+      if (e.target.closest(".produce__item")) return;
 
-      document.querySelectorAll('.produce__item').forEach(el => {
-        el.classList.remove('produce__item--active');
+      document.querySelectorAll(".produce__item").forEach((el) => {
+        el.classList.remove("produce__item--active");
       });
     });
-
   })();
 
   /**
    * Функция для присвоения класса filled для заполненных форм
    */
   (function () {
-
-    const form = document.querySelector('form');
+    const form = document.querySelector("form");
 
     if (form) {
-      const inputElements = document.querySelectorAll('.form-input');
-      const textareaElements = document.querySelectorAll('.form-textarea');
-      const className = 'filled';
+      const inputElements = document.querySelectorAll(".form-input");
+      const textareaElements = document.querySelectorAll(".form-textarea");
+      const className = "filled";
 
-      inputElements.forEach(element => {
-        element.addEventListener('input', function () {
-          if (this.value.trim() !== '') {
+      inputElements.forEach((element) => {
+        element.addEventListener("input", function () {
+          if (this.value.trim() !== "") {
             element.classList.add(className);
           } else {
             element.classList.remove(className);
@@ -3761,9 +3940,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
 
-      textareaElements.forEach(element => {
-        element.addEventListener('input', function () {
-          if (this.value.trim() !== '') {
+      textareaElements.forEach((element) => {
+        element.addEventListener("input", function () {
+          if (this.value.trim() !== "") {
             element.classList.add(className);
           } else {
             element.classList.remove(className);
@@ -3771,15 +3950,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
     }
-
   })();
 
   /**
    * Инициализация слайдера
    */
   (function swiperWrapper() {
-
-    if (!document.querySelector('.swiper')) return;
+    if (!document.querySelector(".swiper")) return;
 
     const globalImpulseOptions = {
       // Максимальный интервал между кликами в мс который считается быстрым
@@ -3856,9 +4033,9 @@ document.addEventListener('DOMContentLoaded', () => {
       //   },
       // },
       {
-        sliderSelector: '.cases__slider',
-        prevSelector: '.cases-button-prev',
-        nextSelector: '.cases-button-next',
+        sliderSelector: ".cases__slider",
+        prevSelector: ".cases-button-prev",
+        nextSelector: ".cases-button-next",
         highlight: false,
         swiperOptions: {
           slidesPerGroup: 1,
@@ -3873,7 +4050,7 @@ document.addEventListener('DOMContentLoaded', () => {
           centeredSlides: false,
           centeredSlidesBounds: true,
           simulateTouch: true,
-          direction: 'horizontal',
+          direction: "horizontal",
           touchStartPreventDefault: true,
           touchMoveStopPropagation: true,
           threshold: 8,
@@ -3896,13 +4073,13 @@ document.addEventListener('DOMContentLoaded', () => {
         },
       },
       {
-        sliderSelector: '.inform__slider',
-        nextSelector: '.inform-button-next',
+        sliderSelector: ".inform__slider",
+        nextSelector: ".inform-button-next",
         highlight: false,
         edgeTracker: true,
         swiperOptions: {
           slidesPerGroup: 1,
-          slidesPerView: 'auto',
+          slidesPerView: "auto",
           spaceBetween: 20,
           speed: 500,
           grabCursor: true,
@@ -3913,7 +4090,7 @@ document.addEventListener('DOMContentLoaded', () => {
           centeredSlides: false,
           centeredSlidesBounds: false,
           simulateTouch: true,
-          direction: 'horizontal',
+          direction: "horizontal",
 
           // touchStartPreventDefault: true,
           touchStartPreventDefault: false,
@@ -3939,7 +4116,7 @@ document.addEventListener('DOMContentLoaded', () => {
           breakpoints: {
             0: {
               slidesPerGroup: 1,
-              slidesPerView: 'auto',
+              slidesPerView: "auto",
               spaceBetween: 20,
             },
             601: {
@@ -3961,8 +4138,8 @@ document.addEventListener('DOMContentLoaded', () => {
         },
       },
       {
-        sliderSelector: '.awards__slider',
-        nextSelector: '.awards-button-next',
+        sliderSelector: ".awards__slider",
+        nextSelector: ".awards-button-next",
         highlight: false,
         edgeTracker: false,
         swiperOptions: {
@@ -3978,7 +4155,7 @@ document.addEventListener('DOMContentLoaded', () => {
           centeredSlides: false,
           centeredSlidesBounds: false,
           simulateTouch: true,
-          direction: 'horizontal',
+          direction: "horizontal",
           touchStartPreventDefault: true,
           touchMoveStopPropagation: true,
           threshold: 8,
@@ -3995,58 +4172,76 @@ document.addEventListener('DOMContentLoaded', () => {
       },
     ];
 
-
     // Инициализируем каждый слайдер из конфига
-    slidersConfig.forEach(({ sliderSelector, prevSelector, nextSelector, highlight, swiperOptions }) => {
+    slidersConfig.forEach(
+      ({
+        sliderSelector,
+        prevSelector,
+        nextSelector,
+        highlight,
+        swiperOptions,
+      }) => {
+        if (!document.querySelector(sliderSelector)) return;
 
-      if (!document.querySelector(sliderSelector)) return;
+        // Ищем кнопки только если селекторы заданы в конфиге
+        // Если prevSelector/nextSelector не указаны - слайдер без кнопок навигации
+        const prevEl = prevSelector
+          ? document.querySelector(prevSelector)
+          : null;
+        const nextEl = nextSelector
+          ? document.querySelector(nextSelector)
+          : null;
 
-      // Ищем кнопки только если селекторы заданы в конфиге
-      // Если prevSelector/nextSelector не указаны - слайдер без кнопок навигации
-      const prevEl = prevSelector ? document.querySelector(prevSelector) : null;
-      const nextEl = nextSelector ? document.querySelector(nextSelector) : null;
+        // ищем highlight-элементы только если в конфиге явно указано highlight: true
+        // если false или не указано - передаём null и createHighlight вернёт заглушку
+        const fromEl = highlight
+          ? document.querySelector(`${sliderSelector} .slider-highlight--from`)
+          : null;
+        const toEl = highlight
+          ? document.querySelector(`${sliderSelector} .slider-highlight--to`)
+          : null;
 
-      // ищем highlight-элементы только если в конфиге явно указано highlight: true
-      // если false или не указано - передаём null и createHighlight вернёт заглушку
-      const fromEl = highlight ? document.querySelector(`${sliderSelector} .slider-highlight--from`) : null;
-      const toEl = highlight ? document.querySelector(`${sliderSelector} .slider-highlight--to`) : null;
+        const swiper = new Swiper(sliderSelector, swiperOptions);
 
-      const swiper = new Swiper(sliderSelector, swiperOptions);
+        // Управление пагинацией через кастомный флаг hidePagination в брейкпоинтах
+        initPaginationBreakpoint(swiper);
 
-      // Управление пагинацией через кастомный флаг hidePagination в брейкпоинтах
-      initPaginationBreakpoint(swiper);
+        // highlight создаём всегда - если элементов нет, вернётся заглушка
+        // edgeTracker и navigation получат корректный объект в любом случае
+        const highlightInstance = createHighlight(swiper, fromEl, toEl);
 
-      // highlight создаём всегда - если элементов нет, вернётся заглушка
-      // edgeTracker и navigation получат корректный объект в любом случае
-      const highlightInstance = createHighlight(swiper, fromEl, toEl);
+        // EdgeTracker подключаем только если slidesPerView больше 1 хотя бы
+        // в одном брейкпоинте или в базовых настройках - иначе смысла нет
+        const needsEdgeTracker = shouldUseEdgeTracker(swiperOptions);
+        const edgeTracker = needsEdgeTracker
+          ? createEdgeTracker(swiper, highlightInstance)
+          : createEdgeTrackerStub();
 
-      // EdgeTracker подключаем только если slidesPerView больше 1 хотя бы
-      // в одном брейкпоинте или в базовых настройках - иначе смысла нет
-      const needsEdgeTracker = shouldUseEdgeTracker(swiperOptions);
-      const edgeTracker = needsEdgeTracker
-        ? createEdgeTracker(swiper, highlightInstance)
-        : createEdgeTrackerStub();
-
-      // Навигацию подключаем только если обе кнопки реально найдены в DOM
-      if (prevEl || nextEl) {
-        createNavigation(swiper, prevEl, nextEl, highlightInstance, edgeTracker);
-      }
-    });
-
+        // Навигацию подключаем только если обе кнопки реально найдены в DOM
+        if (prevEl || nextEl) {
+          createNavigation(
+            swiper,
+            prevEl,
+            nextEl,
+            highlightInstance,
+            edgeTracker,
+          );
+        }
+      },
+    );
 
     // Проверяет нужен ли edgeTracker для данного слайдера.
     // Смотрим на базовый slidesPerView и на все брейкпоинты -
     // если хоть где-то больше 1 (и не 'auto') то tracker нужен
     function shouldUseEdgeTracker(swiperOptions) {
       const base = swiperOptions.slidesPerView;
-      if (typeof base === 'number' && base > 1) return true;
+      if (typeof base === "number" && base > 1) return true;
 
       const breakpoints = swiperOptions.breakpoints ?? {};
-      return Object.values(breakpoints).some(bp => {
-        return typeof bp.slidesPerView === 'number' && bp.slidesPerView > 1;
+      return Object.values(breakpoints).some((bp) => {
+        return typeof bp.slidesPerView === "number" && bp.slidesPerView > 1;
       });
     }
-
 
     // Заглушка edgeTracker для слайдеров где он не нужен (slidesPerView = 1).
     // Возвращает тот же API что и настоящий edgeTracker - navigation не знает разницы
@@ -4054,11 +4249,10 @@ document.addEventListener('DOMContentLoaded', () => {
       return {
         handleEdgeNext: () => false,
         handleEdgePrev: () => false,
-        clearVirtual: () => { },
+        clearVirtual: () => {},
         getVirtualIndex: () => null,
       };
     }
-
 
     // Управление видимостью пагинации через кастомный флаг hidePagination.
     // Swiper не умеет включать/выключать пагинацию через breakpoints нативно,
@@ -4070,27 +4264,26 @@ document.addEventListener('DOMContentLoaded', () => {
       function applyVisibility() {
         // currentBreakpointParams содержит параметры активного брейкпоинта
         const params = swiper.currentBreakpointParams ?? {};
-        paginationEl.style.display = params.hidePagination === true ? 'none' : '';
+        paginationEl.style.display =
+          params.hidePagination === true ? "none" : "";
       }
 
-      swiper.on('breakpoint', applyVisibility);
+      swiper.on("breakpoint", applyVisibility);
 
       // Проверяем сразу после инициализации - брейкпоинт уже мог сработать
       applyVisibility();
     }
 
-
     // Highlight - анимированный фон резинка между слайдами.
     // Если элементов --from и --to нет в DOM - возвращаем заглушку.
     // Заглушка имеет тот же API поэтому edgeTracker работает без изменений
     function createHighlight(swiper, fromEl, toEl) {
-
       // Нет элементов - возвращаем заглушку с рабочим getGeometry
       // edgeTracker использует getGeometry для расчётов даже без визуала
       if (!fromEl || !toEl) {
         return {
-          animateTo: () => { },
-          snapInstant: () => { },
+          animateTo: () => {},
+          snapInstant: () => {},
           getGeometry: (index) => {
             const slide = swiper.slides[index];
             if (!slide) return null;
@@ -4105,8 +4298,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const DURATION = 320;
-      const EASE_OUT = 'cubic-bezier(0.4, 0, 0.2, 1)';
-      const EASE_SNAP = 'cubic-bezier(0.34, 1.4, 0.64, 1)';
+      const EASE_OUT = "cubic-bezier(0.4, 0, 0.2, 1)";
+      const EASE_SNAP = "cubic-bezier(0.34, 1.4, 0.64, 1)";
 
       let currentX = 0;
       let currentWidth = 0;
@@ -4122,10 +4315,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       function setInstant(el, x, width, visible) {
-        el.style.transition = 'none';
+        el.style.transition = "none";
         el.style.transform = `translateX(${x}px)`;
         el.style.width = `${width}px`;
-        el.classList.toggle('is-visible', visible);
+        el.classList.toggle("is-visible", visible);
       }
 
       function setAnimated(el, x, width, duration, easing, visible) {
@@ -4133,10 +4326,10 @@ document.addEventListener('DOMContentLoaded', () => {
           `transform ${duration}ms ${easing}`,
           `width ${duration}ms ${easing}`,
           `opacity ${duration * 0.6}ms ease`,
-        ].join(', ');
+        ].join(", ");
         el.style.transform = `translateX(${x}px)`;
         el.style.width = `${width}px`;
-        el.classList.toggle('is-visible', visible);
+        el.classList.toggle("is-visible", visible);
       }
 
       function animateTo(toX, toWidth, dir) {
@@ -4144,8 +4337,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const fromX = currentX;
         const fromWidth = currentWidth;
-        const collapseX = dir === 'next' ? fromX + fromWidth : fromX;
-        const startX = dir === 'next' ? toX : toX + toWidth;
+        const collapseX = dir === "next" ? fromX + fromWidth : fromX;
+        const startX = dir === "next" ? toX : toX + toWidth;
 
         setInstant(fromEl, fromX, fromWidth, true);
         setInstant(toEl, startX, 0, true);
@@ -4166,7 +4359,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       function snapInstant(index) {
-        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
         const geo = getGeometry(index);
         if (!geo) return;
         setInstant(fromEl, geo.x, geo.width, true);
@@ -4175,31 +4371,34 @@ document.addEventListener('DOMContentLoaded', () => {
         currentWidth = geo.width;
       }
 
-      swiper.on('slideChange', () => {
+      swiper.on("slideChange", () => {
         const curr = swiper.activeIndex;
         const prev = swiper.previousIndex ?? curr;
-        const dir = curr >= prev ? 'next' : 'prev';
+        const dir = curr >= prev ? "next" : "prev";
         const geo = getGeometry(curr);
         if (geo) animateTo(geo.x, geo.width, dir);
       });
 
-      swiper.on('transitionEnd', () => {
+      swiper.on("transitionEnd", () => {
         setInstant(fromEl, currentX, currentWidth, true);
         setInstant(toEl, currentX, 0, false);
       });
 
-      swiper.on('setTranslate', () => {
+      swiper.on("setTranslate", () => {
         if (swiper.animating) return;
         const geo = getGeometry(swiper.activeIndex);
         if (!geo) return;
-        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
         setInstant(fromEl, geo.x, geo.width, true);
         setInstant(toEl, geo.x, 0, false);
         currentX = geo.x;
         currentWidth = geo.width;
       });
 
-      swiper.on('resize', () => snapInstant(swiper.activeIndex));
+      swiper.on("resize", () => snapInstant(swiper.activeIndex));
 
       snapInstant(swiper.activeIndex ?? 0);
 
@@ -4212,15 +4411,13 @@ document.addEventListener('DOMContentLoaded', () => {
       };
     }
 
-
     // EdgeTracker - виртуальный активный слайд когда wrapper упёрся в край.
     // Проблема: при slidesPerView > 1 последние слайды никогда не получают
     // swiper-slide-active потому что wrapper уже не может сдвинуться.
     // Решение: вручную двигаем виртуальный активный по оставшимся слайдам
     function createEdgeTracker(swiper, highlight) {
-
-      const VIRTUAL_CLASS = 'is-virtual-active';
-      const BEFORE_EDGE_CLASS = 'is-before-edge';
+      const VIRTUAL_CLASS = "is-virtual-active";
+      const BEFORE_EDGE_CLASS = "is-before-edge";
 
       let virtualIndex = null;
 
@@ -4237,27 +4434,27 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       function clearBeforeEdge() {
-        swiper.slides.forEach(s => s.classList.remove(BEFORE_EDGE_CLASS));
+        swiper.slides.forEach((s) => s.classList.remove(BEFORE_EDGE_CLASS));
       }
 
       function markBeforeEdge() {
         clearBeforeEdge();
-        swiper.slides.forEach(s => {
-          if (s.classList.contains('swiper-slide-active')) {
+        swiper.slides.forEach((s) => {
+          if (s.classList.contains("swiper-slide-active")) {
             s.classList.add(BEFORE_EDGE_CLASS);
           }
         });
       }
 
       function clearVirtual() {
-        swiper.slides.forEach(s => s.classList.remove(VIRTUAL_CLASS));
+        swiper.slides.forEach((s) => s.classList.remove(VIRTUAL_CLASS));
         clearBeforeEdge();
         virtualIndex = null;
       }
 
       function setVirtualActive(index, dir) {
         if (virtualIndex === null) markBeforeEdge();
-        swiper.slides.forEach(s => s.classList.remove(VIRTUAL_CLASS));
+        swiper.slides.forEach((s) => s.classList.remove(VIRTUAL_CLASS));
         virtualIndex = index;
         swiper.slides[index]?.classList.add(VIRTUAL_CLASS);
 
@@ -4273,7 +4470,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const lastVisible = visible[visible.length - 1];
         const current = virtualIndex ?? swiper.activeIndex;
         if (current >= lastVisible) return true;
-        setVirtualActive(current + 1, 'next');
+        setVirtualActive(current + 1, "next");
         return true;
       }
 
@@ -4286,15 +4483,15 @@ document.addEventListener('DOMContentLoaded', () => {
           highlight.snapInstant(realActive);
           return false;
         }
-        setVirtualActive(current - 1, 'prev');
+        setVirtualActive(current - 1, "prev");
         return true;
       }
 
-      swiper.on('slideChange', () => {
+      swiper.on("slideChange", () => {
         if (virtualIndex !== null) clearVirtual();
       });
 
-      swiper.on('fromEdge', () => {
+      swiper.on("fromEdge", () => {
         clearVirtual();
       });
 
@@ -4306,12 +4503,10 @@ document.addEventListener('DOMContentLoaded', () => {
       };
     }
 
-
     // Navigation - кнопки + импульс + disabled состояние.
     // Вызывается только если у слайдера есть обе кнопки навигации.
     // Получает edgeTracker который может быть настоящим или заглушкой
     function createNavigation(swiper, prevEl, nextEl, highlight, edgeTracker) {
-
       const {
         fastClickDelay = 200,
         accelerationFactor = 0.23,
@@ -4340,9 +4535,13 @@ document.addEventListener('DOMContentLoaded', () => {
           extraImpulse = 0;
         }
 
-        extraImpulse = delta < fastClickDelay
-          ? Math.min(extraImpulse + (fastClickDelay - delta) * accelerationFactor, maxExtraSteps)
-          : 0;
+        extraImpulse =
+          delta < fastClickDelay
+            ? Math.min(
+                extraImpulse + (fastClickDelay - delta) * accelerationFactor,
+                maxExtraSteps,
+              )
+            : 0;
 
         lastClickTime = now;
         lastDirection = direction;
@@ -4373,28 +4572,36 @@ document.addEventListener('DOMContentLoaded', () => {
       function updateDisabled() {
         if (swiper.params.loop) return;
 
-        const isStart = swiper.isBeginning && edgeTracker.getVirtualIndex() === null;
+        const isStart =
+          swiper.isBeginning && edgeTracker.getVirtualIndex() === null;
 
         let nextBlocked = false;
         if (swiper.isEnd) {
           const visible = getVisibleIndicesForNav();
           const lastVisible = visible[visible.length - 1] ?? swiper.activeIndex;
-          const currentVirt = edgeTracker.getVirtualIndex() ?? swiper.activeIndex;
+          const currentVirt =
+            edgeTracker.getVirtualIndex() ?? swiper.activeIndex;
           nextBlocked = currentVirt >= lastVisible;
         }
 
         // disabled как свойство а не атрибут - клик всё равно доходит
         // до нашего обработчика даже когда кнопка визуально заблокирована
-        if (prevEl) { prevEl.classList.toggle('swiper-button-disabled', isStart); prevEl.disabled = isStart; }
-        if (nextEl) { nextEl.classList.toggle('swiper-button-disabled', nextBlocked); nextEl.disabled = nextBlocked; }
+        if (prevEl) {
+          prevEl.classList.toggle("swiper-button-disabled", isStart);
+          prevEl.disabled = isStart;
+        }
+        if (nextEl) {
+          nextEl.classList.toggle("swiper-button-disabled", nextBlocked);
+          nextEl.disabled = nextBlocked;
+        }
       }
 
       function handle(direction) {
-        if (direction === 'next' && edgeTracker.handleEdgeNext()) {
+        if (direction === "next" && edgeTracker.handleEdgeNext()) {
           updateDisabled();
           return;
         }
-        if (direction === 'prev' && edgeTracker.handleEdgePrev()) {
+        if (direction === "prev" && edgeTracker.handleEdgePrev()) {
           updateDisabled();
           return;
         }
@@ -4411,7 +4618,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //   swiper.slideToLoop(target);
         // }
         if (swiper.params.loop) {
-          if (direction === 'next') {
+          if (direction === "next") {
             swiper.slideNext();
           } else {
             swiper.slidePrev();
@@ -4419,9 +4626,10 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         } else {
           const base = swiper.activeIndex;
-          const target = direction === 'next'
-            ? Math.min(base + steps, swiper.slides.length - 1)
-            : Math.max(base - steps, 0);
+          const target =
+            direction === "next"
+              ? Math.min(base + steps, swiper.slides.length - 1)
+              : Math.max(base - steps, 0);
           swiper.slideTo(target);
         }
 
@@ -4437,20 +4645,28 @@ document.addEventListener('DOMContentLoaded', () => {
         updateDisabled();
       }
 
-      if (nextEl) nextEl.addEventListener('click', (e) => { e.preventDefault(); handle('next'); });
-      if (prevEl) prevEl.addEventListener('click', (e) => { e.preventDefault(); handle('prev'); });
+      if (nextEl)
+        nextEl.addEventListener("click", (e) => {
+          e.preventDefault();
+          handle("next");
+        });
+      if (prevEl)
+        prevEl.addEventListener("click", (e) => {
+          e.preventDefault();
+          handle("prev");
+        });
 
-      swiper.on('touchStart', resetImpulse);
-      swiper.on('slideChange', updateDisabled);
-      swiper.on('resize', updateDisabled);
-      swiper.on('touchEnd', () => {
+      swiper.on("touchStart", resetImpulse);
+      swiper.on("slideChange", updateDisabled);
+      swiper.on("resize", updateDisabled);
+      swiper.on("touchEnd", () => {
         const dir = swiper.swipeDirection;
-        if (dir === 'next') edgeTracker.handleEdgeNext();
-        else if (dir === 'prev') edgeTracker.handleEdgePrev();
+        if (dir === "next") edgeTracker.handleEdgeNext();
+        else if (dir === "prev") edgeTracker.handleEdgePrev();
         updateDisabled();
       });
 
-      swiper.on('destroy', () => {
+      swiper.on("destroy", () => {
         if (decayTimer) clearInterval(decayTimer);
         decayTimer = null;
       });
@@ -4487,26 +4703,26 @@ document.addEventListener('DOMContentLoaded', () => {
     //   });
     // }
     function updateRect(swiper) {
-      const scrollbarRect = document.getElementById('inform__rect');
+      const scrollbarRect = document.getElementById("inform__rect");
 
       // Координаты трека на основе SVG
       const rectTrackStartX = 61.5645; // Начало красной линии
-      const rectTrackEndX = 600.339;   // Конец красной линии с учётом ширины rect
+      const rectTrackEndX = 600.339; // Конец красной линии с учётом ширины rect
       const trackLength = rectTrackEndX - rectTrackStartX; // 812.474
 
       // Синхронизация позиции rect с прогрессом слайдера
-      swiper.on('progress', function () {
+      swiper.on("progress", function () {
         if (isDragging) return;
         const progress = swiper.progress; // 0–1
         const newX = rectTrackStartX + progress * trackLength;
-        scrollbarRect.setAttribute('x', newX.toFixed(3));
+        scrollbarRect.setAttribute("x", newX.toFixed(3));
       });
 
       // Инициализация при загрузке
-      swiper.on('init', function () {
+      swiper.on("init", function () {
         swiper.update();
         const initialX = rectTrackStartX;
-        scrollbarRect.setAttribute('x', initialX.toFixed(3));
+        scrollbarRect.setAttribute("x", initialX.toFixed(3));
       });
 
       // Drag-and-drop для rect
@@ -4514,8 +4730,8 @@ document.addEventListener('DOMContentLoaded', () => {
       let startClientX = 0; // Координата мыши при начале перетаскивания
       let initialRectX = 0; // Начальная координата rect при начале перетаскивания
 
-      scrollbarRect.addEventListener('mousedown', startDrag);
-      scrollbarRect.addEventListener('touchstart', startDrag);
+      scrollbarRect.addEventListener("mousedown", startDrag);
+      scrollbarRect.addEventListener("touchstart", startDrag);
 
       function startDrag(e) {
         isDragging = true;
@@ -4523,19 +4739,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Получаем начальные координаты
         startClientX = e.clientX || e.touches[0].clientX;
-        initialRectX = parseFloat(scrollbarRect.getAttribute('x'));
+        initialRectX = parseFloat(scrollbarRect.getAttribute("x"));
 
         // Кешируем размер SVG один раз при начале drag
         // Не вызываем getBoundingClientRect на каждый mousemove - дорогая операция
-        const svgEl = document.getElementById('inform__svg');
+        const svgEl = document.getElementById("inform__svg");
         cachedSvgScreenWidth = svgEl.getBoundingClientRect().width;
         // Отключаем CSS transition во время drag - иначе rect плетётся за курсором
-        scrollbarRect.style.transition = 'none';
+        scrollbarRect.style.transition = "none";
 
-        document.addEventListener('mousemove', drag);
-        document.addEventListener('touchmove', drag);
-        document.addEventListener('mouseup', stopDrag);
-        document.addEventListener('touchend', stopDrag);
+        document.addEventListener("mousemove", drag);
+        document.addEventListener("touchmove", drag);
+        document.addEventListener("mouseup", stopDrag);
+        document.addEventListener("touchend", stopDrag);
       }
 
       let cachedSvgScreenWidth = 0;
@@ -4569,7 +4785,7 @@ document.addEventListener('DOMContentLoaded', () => {
         newRectX = Math.max(rectTrackStartX, Math.min(newRectX, rectTrackEndX));
 
         // Обновляем позицию rect
-        scrollbarRect.setAttribute('x', newRectX.toFixed(3));
+        scrollbarRect.setAttribute("x", newRectX.toFixed(3));
 
         // Переводим позицию rect в прогресс слайдера
         const progress = (newRectX - rectTrackStartX) / trackLength;
@@ -4578,31 +4794,34 @@ document.addEventListener('DOMContentLoaded', () => {
         swiper.slideTo(
           Math.round(progress * (swiper.slides.length - 1)),
           // 1 // Без анимации при перетаскивании
-          300
+          300,
         );
       }
 
       function stopDrag() {
         isDragging = false;
 
-        scrollbarRect.style.transition = '';
+        scrollbarRect.style.transition = "";
 
-        document.removeEventListener('mousemove', drag);
-        document.removeEventListener('touchmove', drag);
-        document.removeEventListener('mouseup', stopDrag);
-        document.removeEventListener('touchend', stopDrag);
+        document.removeEventListener("mousemove", drag);
+        document.removeEventListener("touchmove", drag);
+        document.removeEventListener("mouseup", stopDrag);
+        document.removeEventListener("touchend", stopDrag);
       }
     }
-
   })();
 
   /**
    * Функция для пунктов и подпунктов меню
    */
   (function () {
-    const menuListDropdowns = document.querySelectorAll('.menu__list-item--dropdown');
-    const burgerMenu = document.getElementById('burger-menu');
-    const menuListItems = document.querySelectorAll('.menu__list-item:not(.menu__list-item--dropdown)');
+    const menuListDropdowns = document.querySelectorAll(
+      ".menu__list-item--dropdown",
+    );
+    const burgerMenu = document.getElementById("burger-menu");
+    const menuListItems = document.querySelectorAll(
+      ".menu__list-item:not(.menu__list-item--dropdown)",
+    );
 
     let isClosing = false;
 
@@ -4610,12 +4829,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function closeAll() {
       isClosing = true;
 
-      document.documentElement.classList.remove('menu-list--active', 'menu-nav--active');
+      document.documentElement.classList.remove(
+        "menu-list--active",
+        "menu-nav--active",
+      );
 
-      menuListDropdowns.forEach(dropdown => {
-        dropdown.classList.remove('list--active');
-        dropdown.querySelectorAll('.menu__nav-item').forEach(item => {
-          item.classList.remove('item--active');
+      menuListDropdowns.forEach((dropdown) => {
+        dropdown.classList.remove("list--active");
+        dropdown.querySelectorAll(".menu__nav-item").forEach((item) => {
+          item.classList.remove("item--active");
         });
       });
 
@@ -4623,100 +4845,99 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Наводимся на обычный пункт - скрываем дропдаун список
-    menuListItems.forEach(item => {
-      item.addEventListener('mouseenter', () => {
-        burgerMenu.classList.remove('list-dropdown-active');
+    menuListItems.forEach((item) => {
+      item.addEventListener("mouseenter", () => {
+        burgerMenu.classList.remove("list-dropdown-active");
       });
     });
     // Возвращаем класс только при выходе за пределы всего меню
-    burgerMenu.addEventListener('mouseleave', (e) => {
+    burgerMenu.addEventListener("mouseleave", (e) => {
       // Проверяем куда ушёл курсор - если внутрь меню то игнорируем
       if (burgerMenu.contains(e.relatedTarget)) return;
-      if (document.documentElement.classList.contains('menu--open')) return;
-      burgerMenu.classList.add('list-dropdown-active');
+      if (document.documentElement.classList.contains("menu--open")) return;
+      burgerMenu.classList.add("list-dropdown-active");
     });
 
-    menuListDropdowns.forEach(dropdown => {
-      const menuListLink = dropdown.querySelector('.menu__list-link');
-      const menuNavItems = dropdown.querySelectorAll('.menu__nav-item');
+    menuListDropdowns.forEach((dropdown) => {
+      const menuListLink = dropdown.querySelector(".menu__list-link");
+      const menuNavItems = dropdown.querySelectorAll(".menu__nav-item");
 
-      menuListLink.addEventListener('click', e => {
+      menuListLink.addEventListener("click", (e) => {
         e.stopPropagation();
 
-        const isActive = dropdown.classList.contains('list--active');
+        const isActive = dropdown.classList.contains("list--active");
 
         // Закрываем все перед открытием нового - один активный дропдаун
         closeAll();
 
         if (!isActive) {
-          document.documentElement.classList.add('menu-list--active');
-          dropdown.classList.add('list--active');
+          document.documentElement.classList.add("menu-list--active");
+          dropdown.classList.add("list--active");
         }
       });
 
-      menuNavItems.forEach(menuNavItem => {
-        menuNavItem.addEventListener('click', e => {
+      menuNavItems.forEach((menuNavItem) => {
+        menuNavItem.addEventListener("click", (e) => {
           e.stopPropagation();
 
-          const isActive = menuNavItem.classList.contains('item--active');
+          const isActive = menuNavItem.classList.contains("item--active");
 
-          menuNavItems.forEach(item => item.classList.remove('item--active'));
+          menuNavItems.forEach((item) => item.classList.remove("item--active"));
 
           if (isActive) {
-            document.documentElement.classList.remove('menu-nav--active');
+            document.documentElement.classList.remove("menu-nav--active");
           } else {
-            document.documentElement.classList.add('menu-nav--active');
-            menuNavItem.classList.add('item--active');
+            document.documentElement.classList.add("menu-nav--active");
+            menuNavItem.classList.add("item--active");
           }
         });
       });
     });
 
     // Клик вне дропдауна - закрываем всё
-    document.addEventListener('click', e => {
-      if (e.target.closest('.menu__list-item--dropdown')) return;
+    document.addEventListener("click", (e) => {
+      if (e.target.closest(".menu__list-item--dropdown")) return;
       closeAll();
     });
 
-    document.addEventListener('menu:close', () => {
+    document.addEventListener("menu:close", () => {
       closeAll();
       // При закрытии меню возвращаем класс
       // burgerMenu.classList.add('list-dropdown-active');
-      if (!document.documentElement.classList.contains('menu--open')) {
-        burgerMenu.classList.add('list-dropdown-active');
+      if (!document.documentElement.classList.contains("menu--open")) {
+        burgerMenu.classList.add("list-dropdown-active");
       }
     });
 
     // Закрытие меню - сбрасываем все классы внутри дропдаунов
     // Слушаем удаление класса menu--active с html если меню закрывается снаружи
-
   })();
 
   /**
    * Функция аккордиона
    */
   (function accordionFunc() {
-    const accordionContainers = document.querySelectorAll('.accordion-items');
+    const accordionContainers = document.querySelectorAll(".accordion-items");
     if (!accordionContainers.length) return;
 
-    const activeClass = 'accordion-item--active';
+    const activeClass = "accordion-item--active";
 
     // 1. Клик на элементы аккордеона
-    document.addEventListener('click', (e) => {
+    document.addEventListener("click", (e) => {
       // Находим ближайшую кнопку/шапку аккордеона, по которой кликнули
-      const head = e.target.closest('.accordion-head');
+      const head = e.target.closest(".accordion-head");
       if (!head) return;
 
-      const currentItem = head.closest('.accordion-item');
-      const currentContainer = currentItem.closest('.accordion-items');
+      const currentItem = head.closest(".accordion-item");
+      const currentContainer = currentItem.closest(".accordion-items");
 
       // Находим только элементы этого же уровня (не трогаем вложенные внутрь)
-      const siblingItems = Array.from(currentContainer.children).filter(child =>
-        child.classList.contains('accordion-item')
+      const siblingItems = Array.from(currentContainer.children).filter(
+        (child) => child.classList.contains("accordion-item"),
       );
 
       // Закрываем соседей на этом же уровне
-      siblingItems.forEach(i => {
+      siblingItems.forEach((i) => {
         if (i !== currentItem) i.classList.remove(activeClass);
       });
 
@@ -4724,60 +4945,63 @@ document.addEventListener('DOMContentLoaded', () => {
       currentItem.classList.toggle(activeClass);
 
       // Управляем классом activated для текущего контейнера
-      const hasActiveChild = siblingItems.some(i => i.classList.contains(activeClass));
+      const hasActiveChild = siblingItems.some((i) =>
+        i.classList.contains(activeClass),
+      );
       if (hasActiveChild) {
-        currentContainer.classList.add('activated');
+        currentContainer.classList.add("activated");
       } else {
-        currentContainer.classList.remove('activated');
+        currentContainer.classList.remove("activated");
       }
 
-      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.update();
+      if (typeof ScrollTrigger !== "undefined") ScrollTrigger.update();
     });
 
     // 2. Глобальный обработчик для закрытия при клике ВНЕ аккордеона
-    document.addEventListener('click', (e) => {
+    document.addEventListener("click", (e) => {
       // Если кликнули внутрь какого-то аккордеона, эту логику пропускаем
-      if (e.target.closest('.accordion-items')) return;
+      if (e.target.closest(".accordion-items")) return;
 
-      document.querySelectorAll('.accordion-item').forEach(item => {
+      document.querySelectorAll(".accordion-item").forEach((item) => {
         item.classList.remove(activeClass);
       });
-      accordionContainers.forEach(container => {
-        container.classList.remove('activated');
+      accordionContainers.forEach((container) => {
+        container.classList.remove("activated");
       });
 
-      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.update();
+      if (typeof ScrollTrigger !== "undefined") ScrollTrigger.update();
     });
 
     // 3. Глобальный обработчик Escape
-    window.addEventListener('keydown', (e) => {
-      if (e.key !== 'Escape') return;
+    window.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
 
-      document.querySelectorAll('.accordion-item').forEach(item => {
+      document.querySelectorAll(".accordion-item").forEach((item) => {
         item.classList.remove(activeClass);
       });
-      accordionContainers.forEach(container => {
-        container.classList.remove('activated');
+      accordionContainers.forEach((container) => {
+        container.classList.remove("activated");
       });
 
-      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.update();
+      if (typeof ScrollTrigger !== "undefined") ScrollTrigger.update();
     });
-
   })();
 
   /**
    * Функция для добавления активного класса при наведении на пункты меню
    */
   (function () {
-    const menuListDropdowns = document.querySelectorAll('.menu__list-item--dropdown');
+    const menuListDropdowns = document.querySelectorAll(
+      ".menu__list-item--dropdown",
+    );
 
     if (menuListDropdowns.length) {
-      menuListDropdowns.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-          document.documentElement.classList.add('menu-item-hover');
+      menuListDropdowns.forEach((item) => {
+        item.addEventListener("mouseenter", () => {
+          document.documentElement.classList.add("menu-item-hover");
         });
-        item.addEventListener('mouseleave', () => {
-          document.documentElement.classList.remove('menu-item-hover');
+        item.addEventListener("mouseleave", () => {
+          document.documentElement.classList.remove("menu-item-hover");
         });
       });
     }
@@ -4785,40 +5009,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /**
    * ВЫПАДАЮЩИЙ СПИСОК (dropdown--js)
-   *    
+   *
    * Кастомный select на основе radio-инпутов.
    * Открывается кликом, закрывается кликом вне или выбором опции.
    */
   (function () {
     const html = document.documentElement;
 
-    const dropdowns = document.querySelectorAll('.dropdown--js');
+    const dropdowns = document.querySelectorAll(".dropdown--js");
     if (!dropdowns.length) return;
 
-    dropdowns.forEach(dropdown => {
-      const isCityDropdown = dropdown.classList.contains('js-city-dropdown');
+    dropdowns.forEach((dropdown) => {
+      const isCityDropdown = dropdown.classList.contains("js-city-dropdown");
 
-      const selectedJs = dropdown.querySelector('.dropdown__selected--js');
-      const selectedInputJs = dropdown.querySelector('.dropdown__selected-input--js');
-      const selectedLabelJs = dropdown.querySelector('.dropdown__selected-label--js');
-      const dropdownRadios = dropdown.querySelectorAll('.dropdown__radio');
-      const dropdownValue = dropdown.querySelector('.dropdown__value');
+      const selectedJs = dropdown.querySelector(".dropdown__selected--js");
+      const selectedInputJs = dropdown.querySelector(
+        ".dropdown__selected-input--js",
+      );
+      const selectedLabelJs = dropdown.querySelector(
+        ".dropdown__selected-label--js",
+      );
+      const dropdownRadios = dropdown.querySelectorAll(".dropdown__radio");
+      const dropdownValue = dropdown.querySelector(".dropdown__value");
 
       if (!selectedJs) return;
 
-      selectedJs.addEventListener('click', e => {
+      selectedJs.addEventListener("click", (e) => {
         e.stopPropagation();
-        dropdown.classList.toggle('is-active');
+        dropdown.classList.toggle("is-active");
       });
 
-      document.addEventListener('click', e => {
+      document.addEventListener("click", (e) => {
         if (!dropdown.contains(e.target)) {
-          dropdown.classList.remove('is-active');
+          dropdown.classList.remove("is-active");
         }
       });
 
-      dropdownRadios.forEach(radio => {
-        radio.addEventListener('change', () => {
+      dropdownRadios.forEach((radio) => {
+        radio.addEventListener("change", () => {
           if (!radio.checked) return;
 
           const dataValue = radio.dataset.city;
@@ -4833,20 +5061,28 @@ document.addEventListener('DOMContentLoaded', () => {
           if (isCityDropdown) {
             // 1) Синхронизируем ВСЕ js-city-dropdown:
             // меняем текст и input, а также отмечаем нужную радиокнопку в каждом dropdown
-            const allCityDropdowns = document.querySelectorAll('.dropdown--js.js-city-dropdown');
+            const allCityDropdowns = document.querySelectorAll(
+              ".dropdown--js.js-city-dropdown",
+            );
 
-            allCityDropdowns.forEach(cityDropdown => {
-              const label = cityDropdown.querySelector('.dropdown__selected-label--js');
-              const input = cityDropdown.querySelector('.dropdown__selected-input--js');
-              const hiddenValue = cityDropdown.querySelector('.dropdown__value');
+            allCityDropdowns.forEach((cityDropdown) => {
+              const label = cityDropdown.querySelector(
+                ".dropdown__selected-label--js",
+              );
+              const input = cityDropdown.querySelector(
+                ".dropdown__selected-input--js",
+              );
+              const hiddenValue =
+                cityDropdown.querySelector(".dropdown__value");
 
               if (label) label.textContent = value;
               if (input) input.value = value;
               if (hiddenValue) hiddenValue.value = value;
 
               // Отмечаем нужную радиокнопку в каждом dropdown по data-city
-              const cityRadios = cityDropdown.querySelectorAll('.dropdown__radio');
-              cityRadios.forEach(r => {
+              const cityRadios =
+                cityDropdown.querySelectorAll(".dropdown__radio");
+              cityRadios.forEach((r) => {
                 // dataset.city хранит код города, который мы и используем для синхронизации
                 if (r.dataset.city === dataValue) {
                   r.checked = true;
@@ -4855,8 +5091,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
           }
 
-          dropdown.classList.remove('is-active');
-          dropdown.classList.add('filled');
+          dropdown.classList.remove("is-active");
+          dropdown.classList.add("filled");
         });
       });
     });
@@ -4867,12 +5103,12 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   (function () {
     // Находим все формы на странице
-    const forms = document.querySelectorAll('form');
+    const forms = document.querySelectorAll("form");
 
-    forms.forEach(form => {
+    forms.forEach((form) => {
       // Находим кнопку отправки внутри подвала конкретной формы
-      const formFoot = form.querySelector('.form-foot');
-      const submitBtn = form.querySelector('.form-foot button');
+      const formFoot = form.querySelector(".form-foot");
+      const submitBtn = form.querySelector(".form-foot button");
 
       // Если кнопки или обязательных полей в форме нет — пропускаем её
       if (!submitBtn) return;
@@ -4880,35 +5116,37 @@ document.addEventListener('DOMContentLoaded', () => {
       // Функция проверки всех обязательных полей в текущей форме
       const checkRequiredFields = () => {
         // Находим ВСЕ обязательные поля в этой форме
-        const requiredInputs = formFoot.querySelectorAll('[required]');
+        const requiredInputs = formFoot.querySelectorAll("[required]");
 
         // Если обязательных полей нет, кнопка всегда активна
         if (requiredInputs.length === 0) {
-          submitBtn.removeAttribute('disabled');
+          submitBtn.removeAttribute("disabled");
           return;
         }
 
         // Проверяем, есть ли хотя бы одно незаполненное обязательное поле.
         // Метод checkValidity() встроен в браузер и идеально проверяет заполненность,
         // тип email, состояние чекбоксов required и т.д.
-        const hasInvalidField = Array.from(requiredInputs).some(input => !input.checkValidity());
+        const hasInvalidField = Array.from(requiredInputs).some(
+          (input) => !input.checkValidity(),
+        );
 
         if (hasInvalidField) {
-          submitBtn.setAttribute('disabled', 'disabled');
+          submitBtn.setAttribute("disabled", "disabled");
         } else {
-          submitBtn.removeAttribute('disabled');
+          submitBtn.removeAttribute("disabled");
         }
       };
 
-      // Запускаем проверку один раз при загрузке страницы, 
+      // Запускаем проверку один раз при загрузке страницы,
       // чтобы сразу заблокировать кнопку, если поля пустые
       checkRequiredFields();
 
       // Следим за вводом данных во всей форме (событие всплывает от инпутов к форме)
-      form.addEventListener('input', checkRequiredFields);
+      form.addEventListener("input", checkRequiredFields);
 
       // Дополнительно следим за изменением (полезно для селектов, радиокнопок и чекбоксов)
-      form.addEventListener('change', checkRequiredFields);
+      form.addEventListener("change", checkRequiredFields);
     });
   })();
 
@@ -4916,12 +5154,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const html = document.documentElement;
 
     // 1. Логика для кнопки внутри попапа .tender
-    const tenderBtn = document.querySelector('.tender .form-btn');
+    const tenderBtn = document.querySelector(".tender .form-btn");
 
     if (tenderBtn) {
-      tenderBtn.addEventListener('click', () => {
-        if (html.classList.contains('tender--open')) {
-          html.classList.add('tender--change');
+      tenderBtn.addEventListener("click", () => {
+        if (html.classList.contains("tender--open")) {
+          html.classList.add("tender--change");
         }
       });
     }
@@ -4930,27 +5168,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new MutationObserver((mutations) => {
       // Используем простой цикл for для максимальной производительности
       for (let i = 0; i < mutations.length; i++) {
-        if (mutations[i].attributeName === 'class') {
-
-          // Главное условие: если попап закрыт (НЕТ tender--open) 
+        if (mutations[i].attributeName === "class") {
+          // Главное условие: если попап закрыт (НЕТ tender--open)
           // И при этом в разметке всё еще ЕСТЬ класс tender--change
-          if (!html.classList.contains('tender--open') && html.classList.contains('tender--change')) {
-            html.classList.remove('tender--change'); // Изменяет DOM всего 1 раз и останавливает рекурсию
+          if (
+            !html.classList.contains("tender--open") &&
+            html.classList.contains("tender--change")
+          ) {
+            html.classList.remove("tender--change"); // Изменяет DOM всего 1 раз и останавливает рекурсию
             break; // Выходим из цикла, так как цель достигнута
           }
-
         }
       }
     });
 
     // Запускаем слежку за атрибутом class у тега <html>
-    observer.observe(html, { attributes: true, attributeFilter: ['class'] });
+    observer.observe(html, { attributes: true, attributeFilter: ["class"] });
   })();
 
   /**
    * Инициализация Fancybox
    */
-  Fancybox.bind('[data-fancybox]', {
+  Fancybox.bind("[data-fancybox]", {
     // Закрывать существующие окна при открытии нового
     closeExisting: true,
     // Отключаем закрытие свайпом вниз
@@ -4959,7 +5198,7 @@ document.addEventListener('DOMContentLoaded', () => {
     Carousel: {
       Panzoom: {
         // Отключаем pan (перетаскивание контента)
-        panMode: 'mousemove',
+        panMode: "mousemove",
         // или полностью:
         // touch: false,
       },
@@ -4998,7 +5237,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // orientationchange - основной триггер поворота на мобильных
-    window.addEventListener('orientationchange', () => {
+    window.addEventListener("orientationchange", () => {
       // Дополнительная задержка: браузер применяет новые размеры
       // не сразу после события а через ~300-500ms
       clearTimeout(resizeTimer);
@@ -5011,32 +5250,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // window.resize - для десктопа и Android
-    window.addEventListener('resize', safeRefresh);
+    window.addEventListener("resize", safeRefresh);
 
     // visualViewport.resize - для iOS Safari (надёжнее чем window.resize)
     if (window.visualViewport) {
-      window.visualViewport.addEventListener('resize', safeRefresh);
+      window.visualViewport.addEventListener("resize", safeRefresh);
     }
   })();
 
   /**
-   * УВЕДОМЛЕНИЕ О COOKIE                     
-   *    
-   * Показывает плашку если cookie COOKIE_ACCEPT ≠ '1'.            
-   * checkCookies() вызывается из HTML при клике на кнопку.         
+   * УВЕДОМЛЕНИЕ О COOKIE
+   *
+   * Показывает плашку если cookie COOKIE_ACCEPT ≠ '1'.
+   * checkCookies() вызывается из HTML при клике на кнопку.
    */
   const cookieAccepted =
-    ('; ' + document.cookie).split(`; COOKIE_ACCEPT=`).pop().split(';')[0] === '1';
+    ("; " + document.cookie).split(`; COOKIE_ACCEPT=`).pop().split(";")[0] ===
+    "1";
 
   if (!cookieAccepted) {
-    const cookiesNotify = document.getElementById('plate_cookie');
+    const cookiesNotify = document.getElementById("plate_cookie");
     if (cookiesNotify) {
+      cookiesNotify.addEventListener("click", (e) => {
+        e.stopPropagation();
+      });
       setTimeout(() => {
-        cookiesNotify.classList.add('cookie--active');
+        cookiesNotify.classList.add("cookie--active");
       }, 500);
     }
   }
-
 });
 
 /**
@@ -5045,12 +5287,16 @@ document.addEventListener('DOMContentLoaded', () => {
  * Устанавливает COOKIE_ACCEPT=1 сроком на 1 год.
  */
 function checkCookies() {
+  if (window.event) {
+    window.event.stopPropagation();
+  }
+
   const expires = new Date(Date.now() + 86400e3 * 365).toUTCString();
   document.cookie = `COOKIE_ACCEPT=1;path=/;expires=${expires}`;
 
-  const plate = document.getElementById('plate_cookie');
+  const plate = document.getElementById("plate_cookie");
   if (!plate) return;
-  plate.classList.remove('cookie--active');
+  plate.classList.remove("cookie--active");
 
   setTimeout(() => plate.remove(), 5000);
 }
