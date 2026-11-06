@@ -242,26 +242,10 @@ img {
 }
 
 @font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Thin.woff2") format("woff2"), url("../fonts/Roboto-Thin.woff") format("woff");
-  font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
   font-family: RobotoCondensed;
   font-display: swap;
   src: url("../fonts/RobotoCondensed-Black.woff2") format("woff2"), url("../fonts/RobotoCondensed-Black.woff") format("woff");
   font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: RobotoCondensed;
-  font-display: swap;
-  src: url("../fonts/RobotoCondensed-Bold.woff2") format("woff2"), url("../fonts/RobotoCondensed-Bold.woff") format("woff");
-  font-weight: 700;
   font-style: normal;
 }
 
@@ -284,24 +268,16 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Light.woff2") format("woff2"), url("../fonts/RobotoCondensed-Light.woff") format("woff");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: RobotoCondensed;
-  font-display: swap;
   src: url("../fonts/RobotoCondensed-Medium.woff2") format("woff2"), url("../fonts/RobotoCondensed-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: RobotoCondensed;
+  font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Regular.woff2") format("woff2"), url("../fonts/RobotoCondensed-Regular.woff") format("woff");
-  font-weight: 400;
+  src: url("../fonts/Roboto-Thin.woff2") format("woff2"), url("../fonts/Roboto-Thin.woff") format("woff");
+  font-weight: 100;
   font-style: normal;
 }
 
@@ -316,8 +292,32 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
+  src: url("../fonts/RobotoCondensed-Regular.woff2") format("woff2"), url("../fonts/RobotoCondensed-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoCondensed;
+  font-display: swap;
   src: url("../fonts/RobotoCondensed-Thin.woff2") format("woff2"), url("../fonts/RobotoCondensed-Thin.woff") format("woff");
   font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoCondensed;
+  font-display: swap;
+  src: url("../fonts/RobotoCondensed-Light.woff2") format("woff2"), url("../fonts/RobotoCondensed-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoCondensed;
+  font-display: swap;
+  src: url("../fonts/RobotoCondensed-Bold.woff2") format("woff2"), url("../fonts/RobotoCondensed-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -354,6 +354,12 @@ img {
 
 .general__title span {
   color: var(--red);
+}
+
+.asd .general__title {
+  max-width: 133rem;
+  font-size: 7rem;
+  line-height: 100%;
 }
 
 .general__text {
@@ -1978,7 +1984,7 @@ p {
   -ms-grid-columns: 1fr;
   grid-template-columns: 1fr;
   background-color: var(--black);
-  width: calc(var(--callback-mini-width) + 19.2rem);
+  width: var(--callback-mini-width);
   height: 100%;
   position: absolute;
   right: 0;
@@ -2026,11 +2032,7 @@ p {
 
 .callback.callback-mini .callback__inner {
   gap: 4rem;
-  padding: 21rem 23.2rem 8rem 4rem;
-}
-
-.contacts-page .callback.callback-mini .callback__inner {
-  padding: 23rem 23.2rem 8rem 4rem;
+  padding: 21rem 4rem 8rem 4rem;
 }
 
 .callback.callback-mini .request__cover {
@@ -2295,6 +2297,7 @@ p {
 }
 
 .footer {
+  --refRes: 1920;
   --container-padding: 13rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3954,6 +3957,10 @@ canvas {
   min-height: 36.5rem;
 }
 
+.services-page .template__title {
+  min-height: 28rem;
+}
+
 .template__title h1,
 .template__title * {
   font-family: var(--second-family);
@@ -4470,7 +4477,7 @@ html.tender--open .tender-btn .object-body::before {
   text-align: right;
   position: absolute;
   top: -25rem;
-  right: -8.5rem;
+  right: -26.5rem;
   z-index: -1;
 }
 
@@ -4488,7 +4495,7 @@ html.tender--open .tender-btn .object-body::before {
   height: 115.8rem;
   position: absolute;
   top: 25.2rem;
-  left: -9rem;
+  left: -27rem;
   z-index: 1;
 }
 
@@ -4594,12 +4601,13 @@ html.tender--open .tender-btn .object-body::before {
   height: calc(100vw / (var(--refRes) / 878));
   pointer-events: none;
   position: absolute;
-  top: calc(-100vw / (var(--refRes) / 53));
-  right: 9.7rem;
+  top: -5.3rem;
+  right: -9.5rem;
   z-index: 3;
 }
 
 .branding-page .awards__img {
+  top: calc(-100vw / (var(--refRes) / 10));
   top: calc(-100vw / (var(--refRes) / 10));
 }
 
@@ -4937,7 +4945,7 @@ html.tender--open .tender-btn .object-body::before {
   height: 103.9rem;
   position: absolute;
   bottom: 0;
-  right: calc(var(--callback-mini-width) + 7.1rem + 19.2rem);
+  right: calc(var(--callback-mini-width) + 7.1rem);
   z-index: 2;
 }
 
@@ -4962,7 +4970,7 @@ html.tender--open .tender-btn .object-body::before {
   -webkit-box-align: end;
   -ms-flex-align: end;
   align-items: flex-end;
-  width: calc(100% - var(--callback-mini-width) - 19.2rem);
+  width: calc(100% - var(--callback-mini-width));
   height: 33.8rem;
   position: absolute;
   left: 0;
@@ -6351,7 +6359,7 @@ html.tender--open .tender-btn .object-body::before {
 .branding-page .growth__cover {
   height: 88.1rem;
   top: 30.7rem;
-  right: 4.6rem;
+  right: -14.6rem;
 }
 
 .growth__cover img {
@@ -6635,7 +6643,7 @@ html.tender--open .tender-btn .object-body::before {
   height: 73.1rem;
   position: absolute;
   top: calc(((var(--header-height)) + 20.2rem) * -1);
-  right: 41.1rem;
+  right: 21.9rem;
   z-index: 1;
 }
 
@@ -6778,7 +6786,7 @@ html.tender--open .tender-btn .object-body::before {
   height: 78rem;
   position: absolute;
   top: 18.5rem;
-  left: -2.1rem;
+  left: -23.2rem;
   z-index: 1;
 }
 
@@ -7028,7 +7036,7 @@ html.tender--open .tender-btn .object-body::before {
   height: 112.4rem;
   position: absolute;
   top: -2.5rem;
-  right: calc(var(--callback-mini-width) + 19.2rem);
+  right: var(--callback-mini-width);
   z-index: 1;
 }
 
@@ -7519,6 +7527,60 @@ html.tender--open .tender-btn .object-body::before {
   z-index: 1;
 }
 
+.sample__inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.sample h2 {
+  margin-bottom: 2rem;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 140%;
+  text-decoration-line: underline;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.sample p {
+  margin-bottom: 2rem;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 140%;
+}
+
+.sample ul {
+  margin-bottom: 2rem;
+}
+
+.sample ul li {
+  padding: 0 0 0 1rem;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 140%;
+  position: relative;
+}
+
+.sample ul li::before {
+  content: "";
+  display: block;
+  width: 0.3rem;
+  height: 0.3rem;
+  border-radius: 50%;
+  background-color: var(--black);
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  position: absolute;
+  top: 0.7rem;
+  left: 0.4rem;
+}
+
 .services__inner {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -7700,6 +7762,10 @@ html.tender--open .tender-btn .object-body::before {
 }
 
 @media (min-width: 601px) {
+  .main-page html {
+    --refRes: 2304;
+  }
+
   .overlay {
     display: none;
   }
@@ -7862,10 +7928,19 @@ html.tender--open .tender-btn .object-body::before {
     letter-spacing: unset;
   }
 
+  .services-page .template__title h1,
+  .services-page .template__title * {
+    font-size: 14rem;
+  }
+
+  .services-page .template__text * {
+    font-size: 3rem;
+  }
+
   .services-page .template__cover {
-    height: 75.3rem;
-    top: -9rem;
-    right: 38.8rem;
+    height: 83.1rem;
+    top: -7.1rem;
+    right: 26.4rem;
   }
 
   .naming-page .template__cover {
@@ -7928,10 +8003,6 @@ html.tender--open .tender-btn .object-body::before {
   .coming-soon__head-title {
     margin-bottom: 2rem;
     min-height: 20.3rem;
-  }
-
-  .coming-soon__frame {
-    padding: 0 0 0 18.2rem;
   }
 
   .contacts-page .general__title {
@@ -8249,6 +8320,10 @@ html.tender--open .tender-btn .object-body::before {
 
   .general__title {
     font-size: 4rem;
+  }
+
+  .asd .general__title {
+    font-size: 3rem;
   }
 
   .general__text {
@@ -8599,10 +8674,6 @@ html.tender--open .tender-btn .object-body::before {
   .callback.callback-mini .callback__inner {
     padding: 5rem 1.5rem 31rem;
     position: relative;
-  }
-
-  .contacts-page .callback.callback-mini .callback__inner {
-    padding: 5rem 1.5rem 31rem;
   }
 
   .callback.callback-mini .request__cover {
@@ -9321,6 +9392,10 @@ html.tender--open .tender-btn .object-body::before {
     padding: 0 0 41rem 0;
   }
 
+  .services-page .template__title {
+    min-height: 10rem;
+  }
+
   .template__title {
     margin-bottom: 1.5rem;
     min-height: 11rem;
@@ -9334,7 +9409,7 @@ html.tender--open .tender-btn .object-body::before {
 
   .services-page .template__title h1,
   .services-page .template__title * {
-    font-size: 4rem;
+    font-size: 5rem;
   }
 
   .template__title h1 span,
@@ -10399,6 +10474,10 @@ html.tender--open .tender-btn .object-body::before {
     -webkit-transform: translate(-0.5rem, -1.135rem);
     -ms-transform: translate(-0.5rem, -1.135rem);
     transform: translate(-0.5rem, -1.135rem);
+  }
+
+  .sample__inner {
+    gap: 2rem;
   }
 
   .services__block {
