@@ -129,7 +129,6 @@ img {
 .box.html,
 .box body {
   overflow-x: hidden;
-  /* Убирает горизонтальный скролл */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -137,7 +136,6 @@ img {
 .box .slide-box {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  /* Улучшает рендеринг на GPU */
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
@@ -182,6 +180,14 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
+  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
   src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
@@ -208,14 +214,6 @@ img {
   font-display: swap;
   src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
   font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
-  font-weight: 900;
   font-style: normal;
 }
 
@@ -294,16 +292,16 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Regular.woff2") format("woff2"), url("../fonts/RobotoCondensed-Regular.woff") format("woff");
-  font-weight: 400;
+  src: url("../fonts/RobotoCondensed-Medium.woff2") format("woff2"), url("../fonts/RobotoCondensed-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Medium.woff2") format("woff2"), url("../fonts/RobotoCondensed-Medium.woff") format("woff");
-  font-weight: 500;
+  src: url("../fonts/RobotoCondensed-Regular.woff2") format("woff2"), url("../fonts/RobotoCondensed-Regular.woff") format("woff");
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -356,6 +354,12 @@ img {
 
 .general__title span {
   color: var(--red);
+}
+
+.asd .general__title {
+  max-width: 133rem;
+  font-size: 7rem;
+  line-height: 100%;
 }
 
 .general__text {
@@ -2031,10 +2035,6 @@ p {
   padding: 21rem 4rem 8rem 4rem;
 }
 
-.contacts-page .callback.callback-mini .callback__inner {
-  padding: 23rem 4rem 8rem 4rem;
-}
-
 .callback.callback-mini .request__cover {
   display: none;
 }
@@ -2297,6 +2297,7 @@ p {
 }
 
 .footer {
+  --refRes: 1920;
   --container-padding: 13rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2838,11 +2839,6 @@ p {
   max-height: 100dvh;
 }
 
-.menu .container {
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
 .menu .container::-webkit-scrollbar {
   display: none;
   width: 0;
@@ -2857,7 +2853,6 @@ p {
   height: fit-content;
   min-height: 100%;
   padding: 3.5rem 0;
-  overflow: hidden;
   position: relative;
 }
 
@@ -3962,6 +3957,10 @@ canvas {
   min-height: 36.5rem;
 }
 
+.services-page .template__title {
+  min-height: 28rem;
+}
+
 .template__title h1,
 .template__title * {
   font-family: var(--second-family);
@@ -3994,6 +3993,7 @@ canvas {
 
 .template__btn {
   --btn-padding-x: 6.5rem;
+  --btn-height: 8rem;
 }
 
 .services-page .template__btn {
@@ -4006,8 +4006,8 @@ canvas {
   height: 69.9rem;
   pointer-events: none;
   position: absolute;
-  top: -12.6rem;
-  right: 10.3rem;
+  top: -11rem;
+  right: 29.5rem;
   z-index: 1;
 }
 
@@ -4028,7 +4028,7 @@ canvas {
   pointer-events: none;
   position: absolute;
   top: -16.8rem;
-  right: 0;
+  right: -1.2rem;
   z-index: 2;
 }
 
@@ -4492,10 +4492,10 @@ html.tender--open .tender-btn .object-body::before {
 }
 
 .approach__cover {
-  height: 90.6rem;
+  height: 115.8rem;
   position: absolute;
   top: 25.2rem;
-  left: 0;
+  left: -27rem;
   z-index: 1;
 }
 
@@ -4602,13 +4602,12 @@ html.tender--open .tender-btn .object-body::before {
   pointer-events: none;
   position: absolute;
   top: -5.3rem;
-  top: calc(-100vw / (var(--refRes) / 53));
-  right: 0;
+  right: -9.5rem;
   z-index: 3;
 }
 
 .branding-page .awards__img {
-  top: -0.5208333333vw;
+  top: calc(-100vw / (var(--refRes) / 10));
 }
 
 .awards__img img {
@@ -4889,6 +4888,10 @@ html.tender--open .tender-btn .object-body::before {
   --section-padding-top: 4rem;
   --section-padding-bottom: 39.6rem;
   overflow: visible;
+}
+
+.coming-soon__inner {
+  width: calc(100% - var(--callback-mini-width) + var(--container-padding));
 }
 
 .coming-soon__head {
@@ -6593,7 +6596,6 @@ html.tender--open .tender-btn .object-body::before {
 
 .hero__cover {
   z-index: 2;
-  /* add new */
   -ms-grid-column: 3;
   -ms-grid-column-span: 2;
   grid-column: 3/5;
@@ -6601,7 +6603,6 @@ html.tender--open .tender-btn .object-body::before {
   -ms-grid-row-span: 3;
   grid-row: 1/4;
   position: relative;
-  /* ./add new */
 }
 
 .hero__cover-img {
@@ -6784,7 +6785,7 @@ html.tender--open .tender-btn .object-body::before {
   height: 78rem;
   position: absolute;
   top: 18.5rem;
-  left: -21.3rem;
+  left: -23.2rem;
   z-index: 1;
 }
 
@@ -7525,6 +7526,60 @@ html.tender--open .tender-btn .object-body::before {
   z-index: 1;
 }
 
+.sample__inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.sample h2 {
+  margin-bottom: 2rem;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 140%;
+  text-decoration-line: underline;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.sample p {
+  margin-bottom: 2rem;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 140%;
+}
+
+.sample ul {
+  margin-bottom: 2rem;
+}
+
+.sample ul li {
+  padding: 0 0 0 1rem;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 140%;
+  position: relative;
+}
+
+.sample ul li::before {
+  content: "";
+  display: block;
+  width: 0.3rem;
+  height: 0.3rem;
+  border-radius: 50%;
+  background-color: var(--black);
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  position: absolute;
+  top: 0.7rem;
+  left: 0.4rem;
+}
+
 .services__inner {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -7706,7 +7761,7 @@ html.tender--open .tender-btn .object-body::before {
 }
 
 @media (min-width: 601px) {
-  html.test-page {
+  .main-page html {
     --refRes: 2304;
   }
 
@@ -7872,39 +7927,47 @@ html.tender--open .tender-btn .object-body::before {
     letter-spacing: unset;
   }
 
+  .services-page .template__title h1,
+  .services-page .template__title * {
+    font-size: 14rem;
+  }
+
+  .services-page .template__text * {
+    font-size: 3rem;
+  }
+
   .services-page .template__cover {
-    height: 75.3rem;
-    top: -9rem;
-    right: 19.6rem;
+    height: 83.1rem;
+    top: -7.1rem;
+    right: 26.4rem;
   }
 
   .naming-page .template__cover {
     height: 99.6rem;
     top: -17rem;
-    right: 11.9rem;
+    right: 35.1rem;
   }
 
   .firm-style-page .template__cover {
     height: 99rem;
-    top: -17rem;
-    right: 15.4rem;
+    top: -15.5rem;
+    right: 34.6rem;
+  }
+
+  .firm-style-page .template__mask {
+    top: -15.8rem;
+    right: -2.2rem;
   }
 
   .tender .typewriter__word::after {
     background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNiAxNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik03LjYwODQgMEw5LjQwNDUxIDUuNTI3ODZIMTUuMjE2OUwxMC41MTQ2IDguOTQ0MjdMMTIuMzEwNyAxNC40NzIxTDcuNjA4NCAxMS4wNTU3TDIuOTA2MTIgMTQuNDcyMUw0LjcwMjIzIDguOTQ0MjdMLTUuMzg4MjZlLTA1IDUuNTI3ODZINS44MTIyOUw3LjYwODQgMFoiIGZpbGw9IiNGQUY0RUQiLz4NCjwvc3ZnPg0K) !important;
   }
 
-  .test-page .approach__block {
-    right: -8.5rem;
+  .approach__cover::before {
+    display: none;
   }
 
-  .test-page .approach__cover {
-    left: -9rem;
-    height: 115.8rem;
-  }
-
-  .test-page .approach__cover::before,
-  .test-page .approach__cover::after {
+  .approach__cover::after {
     display: none;
   }
 
@@ -8000,7 +8063,7 @@ html.tender--open .tender-btn .object-body::before {
   .firm-style-page .desc__cover {
     width: 77.3rem;
     top: unset;
-    right: 13.3rem;
+    right: 2.9rem;
     bottom: -4.1rem;
   }
 
@@ -8090,11 +8153,7 @@ html.tender--open .tender-btn .object-body::before {
     --section-padding-bottom: 6.5rem;
   }
 
-  .test-page .hero__mask {
-    right: 39.9rem;
-  }
-
-  .test-page .inform__body {
+  .inform__body {
     overflow: visible;
   }
 
@@ -8118,10 +8177,6 @@ html.tender--open .tender-btn .object-body::before {
   .inform__slide.swiper-slide-next + .swiper-slide {
     opacity: 1;
     visibility: visible;
-  }
-
-  .test-page .inform__cover {
-    left: -3.3rem;
   }
 
   .investment {
@@ -8264,6 +8319,10 @@ html.tender--open .tender-btn .object-body::before {
 
   .general__title {
     font-size: 4rem;
+  }
+
+  .asd .general__title {
+    font-size: 3rem;
   }
 
   .general__text {
@@ -8616,10 +8675,6 @@ html.tender--open .tender-btn .object-body::before {
     position: relative;
   }
 
-  .contacts-page .callback.callback-mini .callback__inner {
-    padding: 5rem 1.5rem 31rem;
-  }
-
   .callback.callback-mini .request__cover {
     display: block;
     height: 41rem;
@@ -8949,6 +9004,11 @@ html.tender--open .tender-btn .object-body::before {
     pointer-events: none;
   }
 
+  .menu .container {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
   .menu__inner {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -8960,7 +9020,6 @@ html.tender--open .tender-btn .object-body::before {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    overflow: unset;
     padding: 2.5rem 0 0;
   }
 
@@ -9332,6 +9391,10 @@ html.tender--open .tender-btn .object-body::before {
     padding: 0 0 41rem 0;
   }
 
+  .services-page .template__title {
+    min-height: 10rem;
+  }
+
   .template__title {
     margin-bottom: 1.5rem;
     min-height: 11rem;
@@ -9345,7 +9408,7 @@ html.tender--open .tender-btn .object-body::before {
 
   .services-page .template__title h1,
   .services-page .template__title * {
-    font-size: 4rem;
+    font-size: 5rem;
   }
 
   .template__title h1 span,
@@ -9421,6 +9484,7 @@ html.tender--open .tender-btn .object-body::before {
     width: 100%;
     height: auto;
     top: 44.6rem;
+    right: 0;
   }
 
   .template__mask img {
@@ -9572,14 +9636,6 @@ html.tender--open .tender-btn .object-body::before {
     top: 0.5rem;
     right: 0;
     left: unset;
-  }
-
-  .approach__cover::before {
-    display: none;
-  }
-
-  .approach__cover::after {
-    display: none;
   }
 
   .approach__satellite-wrap {
@@ -10417,6 +10473,10 @@ html.tender--open .tender-btn .object-body::before {
     -webkit-transform: translate(-0.5rem, -1.135rem);
     -ms-transform: translate(-0.5rem, -1.135rem);
     transform: translate(-0.5rem, -1.135rem);
+  }
+
+  .sample__inner {
+    gap: 2rem;
   }
 
   .services__block {

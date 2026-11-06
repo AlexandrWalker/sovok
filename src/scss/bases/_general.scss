@@ -1,7 +1,6 @@
-@use './../mixins' as *;
+@use "./../mixins" as *;
 
 .general {
-
   &__head {
     display: flex;
     flex-direction: column;
@@ -27,7 +26,6 @@
     }
 
     br {
-
       @include sm {
         display: none;
       }
@@ -48,6 +46,17 @@
 
     span {
       color: var(--red);
+    }
+
+    .asd & {
+      max-width: 133rem;
+
+      font-size: 7rem;
+      line-height: 100%;
+
+      @include sm {
+        font-size: 3rem;
+      }
     }
   }
 
@@ -87,7 +96,8 @@
     }
   }
 
-  &__control {}
+  &__control {
+  }
 }
 
 .line-col {
@@ -129,7 +139,6 @@
   .tender--open &,
   .callback--open &,
   .menu--open & {
-
     @include sm {
       opacity: 1;
       visibility: visible;
@@ -141,9 +150,7 @@
   position: relative;
 
   &:hover {
-
     @include dosm {
-
       &::after {
         width: 100%;
       }
