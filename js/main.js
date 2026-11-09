@@ -3798,8 +3798,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const digits = el.dataset.number.split("");
       el.innerHTML = digits
         .map((ch) => {
-          if (ch === ".")
-            return `<span class="digit-container"><span class="digit"><span>.</span></span></span>`;
+          if (ch === "." || ch === ",")
+            return `<span class="digit-container"><span class="digit"><span class="digit-symbol">,</span></span></span>`;
           let numSpan = "";
           for (let j = 0; j < 2; j++)
             for (let i = 0; i <= 9; i++) numSpan += `<span>${i}</span>`;
@@ -3814,7 +3814,7 @@ document.addEventListener("DOMContentLoaded", () => {
         onEnter: () =>
           el.querySelectorAll(".digit-container").forEach((container, i) => {
             const target = digits[i];
-            if (target === ".") return;
+            if (target === "." || target === ",") return;
             const digitEl = container.querySelector(".digit");
             const t = gsap.to(digitEl, {
               y: "-10em",
