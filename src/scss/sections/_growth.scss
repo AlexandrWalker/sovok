@@ -179,7 +179,8 @@
 
     position: absolute;
     top: -6.1rem;
-    right: calc(4.4rem + var(--callback-width));
+    // right: calc(4.4rem + var(--callback-width));
+    right: calc(4.4rem + 19.2rem + var(--callback-width));
 
     .branding-page & {
       height: 88.1rem;

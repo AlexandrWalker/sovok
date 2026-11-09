@@ -94,8 +94,8 @@
 
     position: absolute;
     top: -25rem;
-    right: -26.5rem;
-    // right: -8.5rem;
+    // right: -26.5rem;
+    right: -8.5rem;
     z-index: -1;
 
     @include sm {
@@ -139,8 +139,8 @@
     position: absolute;
     top: 25.2rem;
     // left: 0;
-    // left: -9rem;
-    left: -27rem;
+    left: -9rem;
+    // left: -27rem;
     z-index: 1;
 
     @include sm {

@@ -46,14 +46,6 @@
     margin-bottom: 2rem;
     min-height: 36.5rem;
 
-    .services-page & {
-      min-height: 28rem;
-
-      @include sm {
-        min-height: 10rem;
-      }
-    }
-
     @include sm {
       margin-bottom: 1.5rem;
       min-height: 11rem;
@@ -73,27 +65,15 @@
 
       @include dosm {
         letter-spacing: unset;
-
-        .services-page & {
-          font-size: 14rem;
-        }
       }
 
       @include sm {
         font-size: 6rem;
         line-height: 5rem;
 
-        .services-page & {
-          font-size: 5rem;
-        }
-
         span {
           font-size: 4rem;
           line-height: 4rem;
-
-          .services-page & {
-            font-size: 6rem;
-          }
         }
       }
     }
@@ -107,10 +87,6 @@
       margin-bottom: 2rem;
     }
 
-    .services-page & {
-      z-index: 2;
-    }
-
     * {
       font-weight: 700;
       font-size: 4rem;
@@ -119,12 +95,6 @@
 
       @include sm {
         font-size: 2rem;
-      }
-
-      .services-page & {
-        @include dosm {
-          font-size: 3rem;
-        }
       }
     }
   }
@@ -136,9 +106,78 @@
     @include sm {
       --btn-padding-x: 2.4rem;
     }
+  }
 
-    .services-page & {
-      z-index: 2;
+  &__feat {
+    // max-width: 93rem;
+    margin-top: 28.8rem;
+
+    position: relative;
+    z-index: 3;
+
+    @include dosm {
+      margin-top: 10rem;
+    }
+
+    &-items {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 1.5rem 0;
+
+      @include dosm {
+        grid-template-columns: repeat(2, 48rem);
+        gap: 4rem 0;
+      }
+    }
+
+    &-item {
+      display: flex;
+      flex-direction: column;
+
+      text-transform: uppercase;
+
+      @include sm {
+        max-width: 22rem;
+      }
+    }
+
+    &-count {
+      margin-bottom: 1.5rem;
+
+      font-family: var(--second-family);
+      font-weight: 900;
+      font-size: 3rem;
+      line-height: 100%;
+      color: var(--red);
+
+      @include dosm {
+        margin-bottom: 2rem;
+
+        font-size: 7rem;
+      }
+    }
+
+    &-title {
+      margin-bottom: 1rem;
+
+      font-family: var(--second-family);
+      font-weight: 900;
+      font-size: 1.4rem;
+      line-height: 140%;
+
+      @include dosm {
+        font-size: 3rem;
+      }
+    }
+
+    &-text {
+      font-weight: 400;
+      font-size: 1.4rem;
+      line-height: 140%;
+
+      @include dosm {
+        font-size: 2rem;
+      }
     }
   }
 
@@ -164,31 +203,6 @@
       top: 20.5rem;
       right: unset;
       left: -2rem;
-    }
-
-    .services-page & {
-      z-index: 1;
-
-      @include dosm {
-        height: 83.1rem;
-
-        top: -7.1rem;
-        // right: 19.6rem;
-        // right: 38.8rem;
-        right: 26.4rem;
-      }
-
-      @include sm {
-        width: auto;
-        height: 38rem;
-
-        transform: scale(1, 1);
-
-        top: unset;
-        right: 3rem;
-        bottom: 5rem;
-        left: unset;
-      }
     }
 
     .naming-page & {
@@ -229,13 +243,6 @@
       @include sm {
         width: 100%;
         height: auto;
-      }
-
-      .services-page & {
-        @include sm {
-          width: auto;
-          height: 100%;
-        }
       }
     }
   }

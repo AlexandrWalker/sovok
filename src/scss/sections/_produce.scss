@@ -112,10 +112,6 @@
       overflow: hidden;
       transition: all 0.3s ease;
 
-      .services-page & {
-        max-width: 45.3rem;
-      }
-
       .produce__item--active & {
 
         @include sm {
@@ -181,15 +177,6 @@
 
       @include sm {
         display: none;
-      }
-
-      .services-page .flagship & {
-
-        @include dosm {
-          height: 21.9rem !important;
-
-          top: 4rem !important;
-        }
       }
 
       img {

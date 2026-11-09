@@ -1,0 +1,149 @@
+@use "./../mixins" as *;
+
+.services-page {
+  .template {
+    &__inner {
+
+      @include sm {
+        gap: 3rem;
+      }
+    }
+
+    &__body {
+      padding-bottom: 3rem;
+    }
+
+    &__title {
+      min-height: 28rem;
+
+      @include sm {
+        min-height: 10rem;
+      }
+
+      h1,
+      * {
+        font-size: 5rem;
+
+        @include dosm {
+          font-size: 14rem;
+        }
+
+        span {
+          @include sm {
+            font-size: 6rem;
+          }
+        }
+      }
+    }
+
+    &__text {
+      z-index: 2;
+
+      @include sm {
+        max-width: 19rem;
+        margin-bottom: 3rem;
+      }
+
+      * {
+        font-weight: 400;
+        font-size: 1.4rem;
+
+        @include dosm {
+          font-size: 3rem;
+        }
+      }
+    }
+
+    &__btn {
+      z-index: 2;
+    }
+
+    &__cover {
+      z-index: 1;
+
+      @include dosm {
+        height: 83.1rem;
+
+        top: -7.1rem;
+        // right: 19.6rem;
+        // right: 38.8rem;
+        right: 26.4rem;
+      }
+
+      @include sm {
+        width: auto;
+        height: 48.8579rem;
+
+        transform: scale(1, 1);
+
+        top: 16.4rem;
+        right: -2.7rem;
+        bottom: unset;
+        left: unset;
+      }
+
+      img {
+        @include sm {
+          width: auto;
+          height: 100%;
+        }
+      }
+    }
+
+    &__mask {
+      width: 69.3rem;
+      top: 24.1rem;
+      right: -45rem;
+
+      @include dosm {
+        top: -16rem;
+        right: -18rem;
+      }
+    }
+  }
+
+  .produce {
+    &__item {
+      &-wrap {
+        max-width: 45.3rem;
+      }
+
+      &-cover {
+        .flagship & {
+          @include dosm {
+            height: 21.9rem !important;
+
+            top: 4rem !important;
+          }
+        }
+      }
+    }
+  }
+
+  .faq {
+    @include dosm {
+      --section-padding-bottom: 9rem;
+    }
+  }
+
+  .cases {
+    @include dosm {
+      --section-padding-bottom: 17.5rem;
+    }
+  }
+
+  .request {
+    background-color: var(--red);
+
+    .general {
+
+      &__suptitle {
+        color: var(--black);
+      }
+
+      &__title {
+        color: var(--white);
+      }
+    }
+  }
+}
