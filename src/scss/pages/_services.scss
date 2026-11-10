@@ -1,7 +1,13 @@
 @use "./../mixins" as *;
 
 .services-page {
+
   .template {
+
+    @include sm {
+      --section-padding-bottom: 2rem;
+    }
+
     &__inner {
 
       @include sm {
@@ -10,7 +16,11 @@
     }
 
     &__body {
-      padding-bottom: 3rem;
+      padding-bottom: 0;
+
+      @include dosm {
+        padding-bottom: 3rem;
+      }
     }
 
     &__title {
@@ -29,6 +39,7 @@
         }
 
         span {
+
           @include sm {
             font-size: 6rem;
           }
@@ -56,6 +67,13 @@
 
     &__btn {
       z-index: 2;
+
+      @include sm {
+        height: auto;
+        padding: 2rem;
+
+        font-size: 1.4rem;
+      }
     }
 
     &__cover {
@@ -65,8 +83,6 @@
         height: 83.1rem;
 
         top: -7.1rem;
-        // right: 19.6rem;
-        // right: 38.8rem;
         right: 26.4rem;
       }
 
@@ -83,6 +99,7 @@
       }
 
       img {
+
         @include sm {
           width: auto;
           height: 100%;
@@ -91,29 +108,132 @@
     }
 
     &__mask {
-      width: 69.3rem;
-      top: 24.1rem;
-      right: -45rem;
 
-      @include dosm {
-        top: -16rem;
-        right: -18rem;
+      @include sm {
+        width: 69.3rem;
+        width: 89.2rem;
+
+        top: 23.6rem;
+        right: -45rem;
+        left: unset;
       }
     }
   }
 
   .produce {
+
+    &.flagship {
+
+      .produce__item {
+        background-color: var(--white);
+        border: 0.1rem solid var(--black);
+        transition: background-color 0.3s ease;
+
+        &::after {
+          display: none;
+        }
+
+        &:hover {
+
+          @include dosm {
+            background-color: var(--black);
+
+            .produce__item-title {
+              color: var(--red);
+            }
+
+            .produce__item-wrapper {
+              color: var(--white);
+
+              ul {
+
+                li {
+                  // color: var(--white);
+                }
+              }
+            }
+          }
+        }
+
+        &-title {
+          transition: color 0.3s ease;
+
+          color: var(--black);
+        }
+
+        &-wrapper {
+          color: var(--black);
+
+          ul {
+
+            li {
+              color: inherit;
+
+              &:hover {
+
+                @include dosm {
+                  color: var(--red);
+                }
+              }
+            }
+          }
+        }
+
+        &-cover {
+
+          @include sm {
+            height: 15rem !important;
+          }
+        }
+      }
+    }
+
     &__item {
+
       &-wrap {
         max-width: 45.3rem;
       }
 
       &-cover {
-        .flagship & {
-          @include dosm {
-            height: 21.9rem !important;
+        top: 2rem !important;
+        left: -1rem !important;
 
-            top: 4rem !important;
+        @include dosm {
+          width: auto;
+          height: 25rem !important;
+
+          top: 1.8rem !important;
+          left: -1.8rem !important;
+          transform: none;
+        }
+      }
+
+      .object-shadow {
+        transform: rotate(2deg) !important;
+      }
+
+      &--2 {
+
+        .produce__item-cover {
+          top: 2rem !important;
+          left: 1rem !important;
+
+          @include dosm {
+            top: 1.6rem !important;
+            left: 1.9rem !important;
+          }
+        }
+      }
+
+      &--3 {
+
+        .produce__item-cover {
+          top: 2rem !important;
+          left: -2rem !important;
+
+          @include dosm {
+            top: 2.4rem !important;
+            left: -1.5rem !important;
           }
         }
       }
@@ -121,28 +241,143 @@
   }
 
   .faq {
+
     @include dosm {
-      --section-padding-bottom: 9rem;
+      --section-padding-bottom: 5.5rem;
     }
   }
 
   .cases {
+
     @include dosm {
       --section-padding-bottom: 17.5rem;
     }
   }
 
   .request {
+    --section-padding-top: 6rem;
+    --section-padding-bottom: 31rem;
+
+    margin: 2rem 0;
+
+    @include dosm {
+      --section-padding-top: 14rem;
+      --section-padding-bottom: 12rem;
+
+      margin: 0;
+    }
+
     background-color: var(--red);
 
     .general {
 
       &__suptitle {
-        color: var(--black);
+        font-size: 5rem;
+        color: var(--white);
+
+        @include dosm {
+          font-size: 7rem;
+          color: var(--black);
+        }
       }
 
       &__title {
-        color: var(--white);
+        font-size: 5rem;
+        color: var(--black);
+
+        @include dosm {
+          font-size: 14rem;
+          color: var(--white);
+        }
+      }
+    }
+
+    &__inner {
+
+      @include dosm {
+        gap: 5rem;
+      }
+    }
+
+    &__cover {
+      height: 81rem;
+
+      top: 15.5rem;
+      right: -53.2rem;
+
+      @include sm {
+        width: max-content;
+        height: 28.4rem;
+
+        top: unset;
+        right: unset;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
+    .form {
+
+      &-inner {
+
+        @include sm {
+          gap: 3rem;
+        }
+      }
+
+      &-input:required+.form-label .typewriter__word::after {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNiAxNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik03LjYwOTM4IDBMOS40MDU0OSA1LjUyNzg2SDE1LjIxNzhMMTAuNTE1NSA4Ljk0NDI3TDEyLjMxMTcgMTQuNDcyMUw3LjYwOTM4IDExLjA1NTdMMi45MDcwOSAxNC40NzIxTDQuNzAzMjEgOC45NDQyN0wwLjAwMDkyMjY4IDUuNTI3ODZINS44MTMyNkw3LjYwOTM4IDBaIiBmaWxsPSIjMTcxNzFBIi8+DQo8L3N2Zz4NCg==);
+      }
+
+      &-label {
+        font-size: 1.6rem;
+
+        @include dosm {
+          font-size: 2rem;
+        }
+
+        &::before {
+          background-color: var(--black-50);
+        }
+
+        &::after {
+          background-color: var(--black);
+        }
+      }
+
+      &-btn {
+        --btn-color: var(--black);
+        --btn-background: var(--white);
+        --btn-hover-color: var(--white);
+        --btn-hover-background: var(--black);
+      }
+
+      &-text {
+        color: var(--black);
+      }
+
+      &-foot {
+        gap: 2rem;
+
+        a {
+          color: var(--black);
+        }
+      }
+
+      &-wrap {
+        gap: 1rem;
+      }
+
+      &-checkbox {
+
+        &--item {
+          background-color: var(--black-30);
+
+          &::before {
+            background-color: var(--white);
+          }
+        }
       }
     }
   }

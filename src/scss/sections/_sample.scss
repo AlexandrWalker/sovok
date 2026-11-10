@@ -1,6 +1,11 @@
 @use "./../mixins" as *;
 
 .sample {
+  --section-padding-bottom: 4rem;
+
+  @include dosm {
+    --section-padding-bottom: 8rem;
+  }
 
   &__inner {
     display: flex;
@@ -11,50 +16,91 @@
       gap: 2rem;
     }
   }
-  
-  h2 {
-    margin-bottom: 2rem;
 
-    font-weight: 700;
-    font-size: 2rem;
-    line-height: 140%;
-    text-decoration-line: underline;
-    text-transform: uppercase;
-    color: var(--red);
-  }
+  &__content {
 
-  p {
-    margin-bottom: 2rem;
+    a {
+      display: block;
+      width: fit-content;
+      margin-bottom: 2rem;
 
-    font-weight: 400;
-    font-size: 1.6rem;
-    line-height: 140%;
-  }
+      font-weight: 700;
+      font-size: 2rem;
+      line-height: 140%;
+      text-decoration-line: underline;
+      text-transform: uppercase;
+      color: var(--red);
+    }
 
-  ul {
-    margin-bottom: 2rem;
-
-    li {
-      padding: 0 0 0 1rem;
+    p {
+      margin-bottom: 2rem;
 
       font-weight: 400;
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       line-height: 140%;
 
-      position: relative;
+      @include dosm {
+        font-size: 1.6rem;
+      }
+    }
 
-      &::before {
-        content: "";
-        display: block;
-        width: 0.3rem;
-        height: 0.3rem;
-        border-radius: 50%;
-        background-color: var(--black);
-        flex-shrink: 0;
+    ul {
+      margin-bottom: 2rem;
 
-        position: absolute;
-        top: 0.7rem;
-        left: 0.4rem;
+      li {
+        padding: 0 0 0 1rem;
+
+        font-weight: 400;
+        font-size: 1.4rem;
+        line-height: 140%;
+
+        position: relative;
+
+        @include dosm {
+          font-size: 1.6rem;
+        }
+
+        &::before {
+          content: "";
+          display: block;
+          width: 0.3rem;
+          height: 0.3rem;
+          border-radius: 50%;
+          background-color: var(--black);
+          flex-shrink: 0;
+
+          position: absolute;
+          top: 0.7rem;
+          left: 0.1rem;
+        }
+      }
+    }
+  }
+
+  &__tags {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem 1rem;
+
+    a {
+      background-color: transparent;
+      padding: 1rem 2rem;
+      border: 0.1rem solid var(--black-10);
+      flex-shrink: 0;
+
+      font-weight: 700;
+      font-size: 1.4rem;
+      line-height: 100%;
+      text-align: center;
+      text-transform: uppercase;
+      color: var(--black);
+
+      &:hover {
+
+        @include dosm {
+          color: var(--red);
+        }
       }
     }
   }

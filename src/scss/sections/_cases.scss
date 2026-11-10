@@ -8,14 +8,7 @@
 
   @include sm {
     --section-padding-top: 2rem;
-    --section-padding-bottom: 10rem;
-  }
-
-  .branding-page & {
-
-    @include sm {
-      --section-padding-bottom: 4rem;
-    }
+    --section-padding-bottom: 4rem;
   }
 
   .general {
@@ -62,7 +55,7 @@
 
     position: absolute;
     top: -2rem;
-    left: 0;
+    left: -20.7rem;
     z-index: 2;
 
     @include sm {
@@ -104,19 +97,13 @@
       z-index: 2;
 
       @include sm {
+        display: none;
         width: 11.2rem;
         height: 6.4rem;
         background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTEzIiBoZWlnaHQ9IjY1IiB2aWV3Qm94PSIwIDAgMTEzIDY1IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KPHJlY3QgeD0iNzEuNzg0MiIgd2lkdGg9IjEyLjQxNDUiIGhlaWdodD0iOTAuMjM1NiIgdHJhbnNmb3JtPSJyb3RhdGUoNTIuNzA0NiA3MS43ODQyIDApIiBmaWxsPSIjREMxNDNDIi8+DQo8Y2lyY2xlIGN4PSI5NS42Njg4IiBjeT0iMzIuOTM2NyIgcj0iMTMuNzk2NyIgdHJhbnNmb3JtPSJyb3RhdGUoMTIuMzAwMSA5NS42Njg4IDMyLjkzNjcpIiBmaWxsPSIjREMxNDNDIi8+DQo8L3N2Zz4NCg==);
 
         right: 0;
         bottom: -4.455rem;
-      }
-
-      .branding-page & {
-
-        @include sm {
-          display: none;
-        }
       }
     }
 
@@ -133,14 +120,6 @@
 
         font-size: 1.6rem;
       }
-    }
-  }
-
-  &__slider {
-    // overflow: hidden;
-
-    @include sm {
-      // overflow: visible;
     }
   }
 
@@ -321,15 +300,7 @@
   &__btn {
 
     @include sm {
-      display: none;
-    }
-
-    .branding-page & {
-
-      @include sm {
-        display: flex;
-        width: 100%;
-      }
+      width: 100%;
     }
   }
 }

@@ -1,0 +1,101 @@
+@use "./../mixins" as *;
+
+.dev-page {
+
+  .template {
+
+    &__title {
+      min-height: 28rem;
+      margin-bottom: 3rem;
+
+      @include sm {
+        min-height: 10rem;
+        margin-bottom: 1.5rem;
+      }
+
+      h1,
+      * {
+        font-size: 5rem;
+
+        @include dosm {
+          font-size: 14rem;
+        }
+
+        span {
+
+          @include sm {
+            font-size: 5rem;
+          }
+        }
+      }
+    }
+
+    &__text {
+      margin-bottom: 5rem;
+
+      z-index: 2;
+
+      @include sm {
+        max-width: 19rem;
+        margin-bottom: 3rem;
+      }
+
+      * {
+        font-weight: 400;
+        font-size: 1.4rem;
+
+        @include dosm {
+          font-size: 3rem;
+        }
+      }
+    }
+
+    &__btn {
+
+      @include sm {
+        height: auto;
+        padding: 2rem;
+
+        font-family: var(--font-family);
+        font-weight: 400;
+        font-size: 1.4rem;
+      }
+    }
+
+    &__cover {
+      width: 30.6rem;
+      height: auto;
+
+      top: 6.9rem;
+      right: -11.1rem;
+
+      transform: none;
+
+      @include dosm {
+        width: auto;
+        height: 84.7rem;
+
+        top: -11.8rem;
+        right: 26.5rem;
+      }
+
+      @include sm {
+        left: unset;
+      }
+    }
+
+    &__mask {
+      height: 161.9rem;
+
+      right: -126.1rem;
+
+      @include sm {
+        width: 123.5rem;
+
+        top: 23.6rem;
+        right: -45rem;
+        left: unset;
+      }
+    }
+  }
+}

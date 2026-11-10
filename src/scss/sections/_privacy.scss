@@ -2,26 +2,6 @@
 
 .privacy {
 
-  &-page {
-
-    .template {
-
-      h1 {
-        font-size: 2.5rem;
-
-        @include dosm {
-          font-size: 6rem;
-        }
-      }
-
-      &__inner {
-        gap: 4rem;
-      }
-    }
-  }
-
-  &__inner {}
-
   &__content {
     max-width: 166.5rem;
 
@@ -75,9 +55,7 @@
     }
 
     ol {
-      // padding-left: 2rem;
       margin-bottom: 2rem;
-      // list-style: russian-with-yo;
       list-style: none;
 
       li {

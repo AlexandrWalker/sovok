@@ -31,7 +31,9 @@
       overflow-x: hidden;
     }
 
-    .inner-page & {
+    .notfound-page &,
+    .coming-soon-page &,
+    .contacts-page & {
 
       @include dosm {
         display: none;

@@ -4,19 +4,15 @@
   --section-padding-bottom: 7.5rem;
 
   overflow: visible;
-  // min-height: 100dvh;
+
+  @include dosm {
+    margin-top: 4.5rem;
+  }
 
   @include sm {
     --section-padding-bottom: 2.5rem;
 
     min-height: auto;
-  }
-
-  .branding-page & {
-
-    @include dosm {
-      margin-top: 4.5rem;
-    }
   }
 
   .general {
@@ -66,7 +62,6 @@
 
       @include sm {
         margin: 0 !important;
-        // transform: translateY(16.8rem);
 
         position: absolute;
         top: 50%;
@@ -79,24 +74,15 @@
 
   &__img {
     height: 87.8rem;
-    height: calc(100vw/(var(--refRes)/878));
     pointer-events: none;
 
     position: absolute;
-    top: -5.3rem;
-    // top: calc(-100vw/(var(--refRes)/53));
-    // right: 0;
-    right: 9.7rem;
-    // right: -9.5rem;
+    top: calc(-100vw/(var(--refRes)/10));
+    right: -9.7rem;
     z-index: 3;
 
     @include sm {
       display: none;
-    }
-
-    .branding-page & {
-      top: calc(-100vw/(var(--refRes)/10));
-      top: calc(-100vw/(var(--refRes)/10));
     }
 
     img {
@@ -108,7 +94,6 @@
 
   &__cover {
     width: auto;
-    height: 63.8rem;
     height: calc(100vw/(var(--refRes)/638));
 
     position: absolute;

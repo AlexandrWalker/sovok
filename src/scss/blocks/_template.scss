@@ -59,10 +59,6 @@
       line-height: 100%;
       text-transform: uppercase;
 
-      span {
-        color: var(--red);
-      }
-
       @include dosm {
         letter-spacing: unset;
       }
@@ -70,8 +66,12 @@
       @include sm {
         font-size: 6rem;
         line-height: 5rem;
+      }
 
-        span {
+      span {
+        color: var(--red);
+
+        @include sm {
           font-size: 4rem;
           line-height: 4rem;
         }
@@ -109,7 +109,6 @@
   }
 
   &__feat {
-    // max-width: 93rem;
     margin-top: 28.8rem;
 
     position: relative;
@@ -188,10 +187,8 @@
     pointer-events: none;
 
     position: absolute;
-    // top: -12.6rem;
-    top: -11rem;
-    // right: 10.3rem;
-    right: 29.5rem;
+    top: -12.6rem;
+    right: 10.3rem;
     z-index: 1;
 
     @include sm {
@@ -203,36 +200,6 @@
       top: 20.5rem;
       right: unset;
       left: -2rem;
-    }
-
-    .naming-page & {
-      @include dosm {
-        height: 99.6rem;
-
-        top: -17rem;
-        // right: 11.9rem;
-        // right: 31.1rem;
-        right: 35.1rem;
-      }
-
-      @include sm {
-        transform: rotate(-8.19deg);
-      }
-    }
-
-    .firm-style-page & {
-      @include dosm {
-        height: 99rem;
-
-        // top: -17rem;
-        top: -15.5rem;
-        // right: 15.4rem;
-        right: 34.6rem;
-      }
-
-      @include sm {
-        transform: rotate(-8.19deg) scale(-1, 1);
-      }
     }
 
     img {
@@ -249,28 +216,21 @@
 
   &__mask {
     width: auto;
-    height: 139rem;
+    height: 151.4rem;
     pointer-events: none;
 
     position: absolute;
-    top: -16.8rem;
-    right: -1.2rem;
-    // right: 19.2rem;
+    top: -29.2rem;
+    right: -121rem;
     z-index: 2;
 
     @include sm {
-      width: 100%;
+      width: 75.8rem;
       height: auto;
 
-      top: 44.6rem;
-      right: 0;
-    }
-
-    .firm-style-page & {
-      @include dosm {
-        top: -15.8rem;
-        right: -2.2rem;
-      }
+      top: 44.1rem;
+      right: unset;
+      left: -13.4rem;
     }
 
     img {
@@ -282,6 +242,22 @@
         width: 100%;
         height: auto;
       }
+    }
+  }
+
+  &__img {
+    width: auto;
+    height: 68.2rem;
+
+    transform: rotate(16.43deg);
+
+    position: absolute;
+    top: 96.1rem;
+    right: 7.4rem;
+    z-index: 2;
+
+    @include sm {
+      display: none;
     }
   }
 }

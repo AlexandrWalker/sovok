@@ -12,7 +12,9 @@
   }
 
   .general {
+
     &__title {
+
       .general__suptitle {
         display: block;
       }
@@ -37,7 +39,9 @@
   }
 
   &__head {
+
     .general {
+
       &__text {
         margin-left: 54rem;
 
@@ -53,6 +57,7 @@
   &__body {
 
     .general {
+
       &__title {
         color: var(--black);
 
@@ -94,7 +99,6 @@
 
     position: absolute;
     top: -25rem;
-    // right: -26.5rem;
     right: -8.5rem;
     z-index: -1;
 
@@ -109,25 +113,28 @@
       right: -15.5rem;
     }
 
-    .general__head {
-      position: relative;
-      z-index: 2;
-    }
+    .general {
 
-    .general__suptitle {
-      font-weight: 400;
-      color: var(--white);
-    }
-
-    .general__text {
-
-      @include sm {
-        font-size: 2rem;
+      &__head {
+        position: relative;
+        z-index: 2;
       }
 
-      br:last-child {
+      &__suptitle {
+        font-weight: 400;
+        color: var(--white);
+      }
+
+      &__text {
+
         @include sm {
-          display: none;
+          font-size: 2rem;
+        }
+
+        br:last-child {
+          @include sm {
+            display: none;
+          }
         }
       }
     }
@@ -138,9 +145,7 @@
 
     position: absolute;
     top: 25.2rem;
-    // left: 0;
     left: -9rem;
-    // left: -27rem;
     z-index: 1;
 
     @include sm {

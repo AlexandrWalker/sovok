@@ -1,0 +1,15 @@
+@use "./../mixins" as *;
+
+.contacts-page {
+
+  .general {
+
+    &_title {
+      height: 3.5rem;
+
+      @include dosm {
+        height: 13.6rem;
+      }
+    }
+  }
+}

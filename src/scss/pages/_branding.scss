@@ -1,0 +1,14 @@
+@use './../mixins' as *;
+
+.branding-page {
+
+  .template {
+
+    &__title {
+
+      @include dosm {
+        transform: translateY(-1.5rem);
+      }
+    }
+  }
+}

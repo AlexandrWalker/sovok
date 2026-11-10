@@ -1,0 +1,19 @@
+@use "./../mixins" as *;
+
+.privacy-page {
+
+  .template {
+
+    h1 {
+      font-size: 2.5rem;
+
+      @include dosm {
+        font-size: 6rem;
+      }
+    }
+
+    &__inner {
+      gap: 4rem;
+    }
+  }
+}

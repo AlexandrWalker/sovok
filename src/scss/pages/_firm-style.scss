@@ -1,0 +1,77 @@
+@use './../mixins' as *;
+
+.firm-style-page {
+
+  .template {
+
+    @include dosm {
+      --section-padding-bottom: 5rem;
+    }
+
+    &__body {
+
+      @include dosm {
+        padding: 7rem 0 0;
+      }
+    }
+
+    &__cover {
+
+      @include dosm {
+        height: 99rem;
+
+        top: -15.8rem;
+        right: 15.4rem;
+      }
+
+      @include sm {
+        transform: rotate(-8.19deg) scale(-1, 1);
+      }
+    }
+  }
+
+  .desc {
+
+    @include dosm {
+      --section-padding-top: 7rem;
+      --section-padding-bottom: 17rem;
+    }
+
+    &__inner {
+
+      @include sm {
+        padding-bottom: 16.7rem;
+      }
+    }
+
+    &__title {
+
+      @include sm {
+        color: var(--black);
+      }
+    }
+
+    &__text {
+
+      @include sm {
+        margin-bottom: 4.5rem;
+      }
+    }
+
+    &__cover {
+      width: 29.5rem;
+      transform: rotate(5.74deg);
+
+      right: -8rem;
+      left: unset;
+
+      @include dosm {
+        width: 77.3rem;
+
+        top: unset;
+        right: 2.9rem;
+        bottom: -4.1rem;
+      }
+    }
+  }
+}

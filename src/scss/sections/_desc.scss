@@ -3,21 +3,6 @@
 .desc {
   overflow-x: clip;
 
-  .firm-style-page & {
-
-    @include dosm {
-      --section-padding-top: 7rem;
-      --section-padding-bottom: 17rem;
-    }
-  }
-
-  .naming-page & {
-
-    @include dosm {
-      --section-padding-bottom: 12rem;
-    }
-  }
-
   &::before {
     content: "";
     display: none;
@@ -39,13 +24,6 @@
 
     @include sm {
       padding-bottom: 14.4rem;
-    }
-
-    .firm-style-page & {
-
-      @include sm {
-        padding-bottom: 16.7rem;
-      }
     }
   }
 
@@ -77,13 +55,6 @@
     @include sm {
       color: var(--white);
     }
-
-    .firm-style-page & {
-
-      @include sm {
-        color: var(--black);
-      }
-    }
   }
 
   &__text {
@@ -98,13 +69,6 @@
       margin-bottom: 4rem;
 
       font-size: 3rem;
-    }
-
-    .firm-style-page & {
-
-      @include sm {
-        margin-bottom: 4.5rem;
-      }
     }
   }
 
@@ -139,23 +103,6 @@
       right: 0;
       bottom: unset;
       left: unset;
-    }
-
-    .firm-style-page & {
-      width: 29.5rem;
-      transform: rotate(5.74deg);
-
-      right: -8rem;
-      left: unset;
-
-      @include dosm {
-        width: 77.3rem;
-
-        top: unset;
-        // right: 13.3rem;
-        right: 2.9rem;
-        bottom: -4.1rem;
-      }
     }
 
     img {

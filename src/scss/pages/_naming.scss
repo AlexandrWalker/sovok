@@ -1,0 +1,45 @@
+@use './../mixins' as *;
+
+.naming-page {
+
+  .template {
+
+    &__text {
+
+      @include dosm {
+        margin-bottom: 4rem;
+      }
+    }
+
+    &__btn {
+
+      @include dosm {
+        max-width: 45.5rem;
+        width: 100%;
+
+        font-size: 3rem;
+      }
+    }
+
+    &__cover {
+
+      @include dosm {
+        height: 99.6rem;
+
+        top: -17rem;
+        right: 17.1rem;
+      }
+
+      @include sm {
+        transform: rotate(-8.19deg);
+      }
+    }
+  }
+
+  .desc {
+
+    @include dosm {
+      --section-padding-bottom: 12rem;
+    }
+  }
+}

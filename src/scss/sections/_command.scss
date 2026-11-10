@@ -1,0 +1,106 @@
+@use "./../mixins" as *;
+
+.command {
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    @include dosm {
+      gap: 5rem;
+    }
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+
+    @include dosm {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4rem;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border: 0.1rem solid var(--black);
+    overflow: hidden;
+
+    @include dosm {
+      gap: 4rem;
+    }
+
+    &-img {
+      width: 18.3rem;
+      height: 18.3rem;
+
+      @include dosm {
+        width: 33.4rem;
+        height: 33.4rem;
+      }
+
+      img {
+        margin-top: -6.2rem;
+        margin-left: -4.7rem;
+
+        @include dosm {
+          margin-top: -5.3rem;
+          margin-left: -5.3rem;
+        }
+      }
+    }
+
+    &-body {
+      display: flex;
+      flex-direction: column;
+      padding: 0 1rem 2.2rem 1rem;
+
+      @include dosm {
+        padding: 0 4rem 1.2rem 4rem;
+      }
+    }
+
+    &-post {
+      margin-bottom: 1rem;
+
+      font-family: var(--second-family);
+      font-weight: 900;
+      font-size: 1.4rem;
+      line-height: 120%;
+      text-transform: uppercase;
+
+      @include dosm {
+        font-size: 3rem;
+      }
+    }
+
+    &-name {
+      margin-bottom: 1rem;
+
+      font-weight: 400;
+      font-size: 1.4rem;
+      line-height: 140%;
+      text-transform: uppercase;
+      color: var(--red);
+
+      @include dosm {
+        margin-bottom: 2rem;
+      }
+    }
+
+    &-text {
+      font-weight: 400;
+      font-size: 1.4rem;
+      line-height: 140%;
+      text-transform: uppercase;
+
+      @include dosm {
+        font-size: 2rem;
+      }
+    }
+  }
+}

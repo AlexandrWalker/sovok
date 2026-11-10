@@ -4,15 +4,12 @@
   overflow: visible;
   background-color: transparent;
 
-  .branding-page & {
+  @include dosm {
+    --section-padding-bottom: 6.5rem;
+  }
 
-    @include dosm {
-      --section-padding-bottom: 6.5rem;
-    }
-
-    @include sm {
-      --section-padding-top: 25.2rem;
-    }
+  @include sm {
+    --section-padding-top: 25.2rem;
   }
 
   .general {
@@ -33,7 +30,6 @@
         pointer-events: none;
 
         position: absolute;
-        // top: -14.5rem;
         left: -30rem;
         bottom: 0.8rem;
         z-index: 0;
@@ -45,7 +41,6 @@
 
           top: unset;
           bottom: 0.8rem;
-          // left: -7.5rem;
           right: calc(var(--container-padding) * -1);
           left: calc(var(--container-padding) * -1);
         }
@@ -57,7 +52,6 @@
 
       @include sm {
         font-size: 10rem;
-        // font-size: calc(100vw/(402/100));
       }
     }
 
@@ -65,7 +59,6 @@
 
       @include sm {
         font-size: 6.5rem;
-        // font-size: calc(100vw/(402/65));
       }
     }
   }
@@ -174,37 +167,19 @@
 
   &__cover {
     width: auto;
-    height: 101rem;
+    height: 88.1rem;
     pointer-events: none;
 
     position: absolute;
-    top: -6.1rem;
-    // right: calc(4.4rem + var(--callback-width));
-    right: calc(4.4rem + 19.2rem + var(--callback-width));
-
-    .branding-page & {
-      height: 88.1rem;
-
-      top: 30.7rem;
-      right: -14.6rem;
-      // right: 4.6rem;
-
-      @include sm {
-        width: auto;
-        height: 35.5rem;
-
-        top: 0;
-        right: unset;
-        left: calc((var(--container-padding) + 1rem) * -1);
-      }
-    }
+    top: 30.7rem;
+    right: -14.6rem;
 
     @include sm {
-      width: 26rem;
-      height: auto;
+      height: 35.5rem;
 
-      top: -26.3rem;
-      right: 12rem;
+      top: 0;
+      right: unset;
+      left: calc((var(--container-padding) + 1rem) * -1);
       z-index: -1;
     }
 
@@ -212,20 +187,6 @@
       width: auto;
       height: 100%;
       object-fit: contain;
-
-      @include sm {
-        width: 100%;
-        height: auto;
-      }
-
-      .branding-page & {
-
-        @include sm {
-          width: auto;
-          height: 100%;
-          object-fit: contain;
-        }
-      }
     }
 
     &-shadow {

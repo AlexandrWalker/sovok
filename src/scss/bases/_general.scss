@@ -1,6 +1,7 @@
 @use "./../mixins" as *;
 
 .general {
+
   &__head {
     display: flex;
     flex-direction: column;
@@ -47,17 +48,6 @@
     span {
       color: var(--red);
     }
-
-    .asd & {
-      max-width: 133rem;
-
-      font-size: 7rem;
-      line-height: 100%;
-
-      @include sm {
-        font-size: 3rem;
-      }
-    }
   }
 
   &__text {
@@ -82,7 +72,6 @@
     gap: 2rem;
     width: fit-content;
 
-    /* Кнопка слайдера */
     [class^="swiper-button-"],
     [class*=" swiper-button-"] {
       transform: unset;
@@ -95,9 +84,6 @@
       justify-content: space-between;
     }
   }
-
-  &__control {
-  }
 }
 
 .line-col {
@@ -106,14 +92,9 @@
   background-color: var(--black);
   flex-shrink: 0;
   transition: background-color 0.5s ease;
-
-  @include sm {
-    // height: 5rem;
-  }
 }
 
 [data-animate] {
-  // top: unset !important;
   z-index: 3;
 }
 
@@ -139,6 +120,7 @@
   .tender--open &,
   .callback--open &,
   .menu--open & {
+
     @include sm {
       opacity: 1;
       visibility: visible;
@@ -150,7 +132,9 @@
   position: relative;
 
   &:hover {
+
     @include dosm {
+
       &::after {
         width: 100%;
       }

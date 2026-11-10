@@ -4,8 +4,13 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  min-height: 7rem;
 
   white-space: nowrap;
+
+  @include sm {
+    min-height: 3rem;
+  }
 
   &-x {
     display: flex;
