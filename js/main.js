@@ -433,7 +433,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function clearSafety() {
       try {
         clearTimeout(safetyTimer);
-      } catch (e) {}
+      } catch (e) { }
     }
 
     const canvas = document.getElementById("logo-canvas");
@@ -3838,6 +3838,85 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /**
+   * Анимация прогесса блока stages
+   */
+  window.initQueue.push(function initStagesHover() {
+    const stagesBodies = document.querySelectorAll(".stages__body");
+
+    // Ширина заполнения линии для каждого этапа (1..5)
+    const progressMap = {
+      1: 0,    // 20%
+      2: 0.25, // 40%
+      3: 0.5,  // 60%
+      4: 0.75, // 80%
+      5: 1,    // 100%
+    };
+
+    stagesBodies.forEach((body) => {
+      const items = body.querySelectorAll(".stages__item");
+      const progressWrap = body.querySelector(".stages__progress");
+
+      if (!progressWrap) return;
+
+      items.forEach((item) => {
+        item.addEventListener("mouseenter", () => {
+          const targetStage = Number(item.dataset.stage);
+          const scaleValue = progressMap[targetStage] ?? 0;
+
+          progressWrap.style.setProperty("--progress", scaleValue);
+        });
+      });
+
+      // Сбрасываем прогресс в 0 только при выходе курсора за пределы всего блока
+      body.addEventListener("mouseleave", () => {
+        progressWrap.style.setProperty("--progress", 0);
+      });
+    });
+  });
+
+  /**
+   * Слайдер stages в моб версии
+   */
+  var stagesSlider = new Swiper('.stages__slider', {
+    slidesPerGroup: 1,
+    slidesPerView: 2,
+    spaceBetween: 10,
+    pagination: {
+      el: '.swiper-pagination',
+      type: 'progressbar',
+    },
+    on: {
+      init: function (swiper) {
+        updateSliderPercent(swiper);
+      },
+      slideChange: function (swiper) {
+        updateSliderPercent(swiper);
+      },
+    },
+  });
+
+  function updateSliderPercent(swiper) {
+    const percentEl = swiper.el.querySelector('.stages__slider-percent');
+    const progressBar = swiper.el.querySelector('.swiper-pagination-progressbar-fill');
+    if (!percentEl) return;
+
+    const totalSlides = swiper.slides.length;
+    // Определяем количество видимых слайдов (учитывая адаптив)
+    const visibleSlides = Math.floor(swiper.params.slidesPerView) || 1;
+
+    // Считаем, сколько слайдов пользователь уже увидел (на старте: 0 + 2 = 2 слайда)
+    const seenSlides = Math.min(totalSlides, swiper.activeIndex + visibleSlides);
+    const percent = Math.round((seenSlides / totalSlides) * 100);
+
+    percentEl.textContent = `${percent}%`;
+
+    // Синхронизируем ширину стандартной полосы Swiper с нашими процентами (40%, 60%, 80%, 100%)
+    if (progressBar) {
+      progressBar.style.transform = `translate3d(0px, 0px, 0px) scaleX(${percent / 100}) scaleY(1)`;
+    }
+  }
+
+  /**
    * Функция для блока produce
    * Индикатор для наведения на ссылки внутри produce__item-list
    * Метод обработки клика produce__item для присвоения активного класса в моб версии
@@ -4249,7 +4328,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return {
         handleEdgeNext: () => false,
         handleEdgePrev: () => false,
-        clearVirtual: () => {},
+        clearVirtual: () => { },
         getVirtualIndex: () => null,
       };
     }
@@ -4282,8 +4361,8 @@ document.addEventListener("DOMContentLoaded", () => {
       // edgeTracker использует getGeometry для расчётов даже без визуала
       if (!fromEl || !toEl) {
         return {
-          animateTo: () => {},
-          snapInstant: () => {},
+          animateTo: () => { },
+          snapInstant: () => { },
           getGeometry: (index) => {
             const slide = swiper.slides[index];
             if (!slide) return null;
@@ -4538,9 +4617,9 @@ document.addEventListener("DOMContentLoaded", () => {
         extraImpulse =
           delta < fastClickDelay
             ? Math.min(
-                extraImpulse + (fastClickDelay - delta) * accelerationFactor,
-                maxExtraSteps,
-              )
+              extraImpulse + (fastClickDelay - delta) * accelerationFactor,
+              maxExtraSteps,
+            )
             : 0;
 
         lastClickTime = now;
