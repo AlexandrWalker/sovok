@@ -2,6 +2,16 @@
 
 .common {
 
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    @include dosm {
+      gap: 5rem;
+    }
+  }
+
   &__head {
     display: flex;
     flex-direction: column;
@@ -34,6 +44,17 @@
     text-transform: uppercase;
 
     @include sm {
+      font-size: 3rem;
+    }
+  }
+
+  &__text {
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 140%;
+    text-transform: uppercase;
+
+    @include dosm {
       font-size: 3rem;
     }
   }

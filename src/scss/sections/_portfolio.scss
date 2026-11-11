@@ -1,0 +1,182 @@
+@use "./../mixins" as *;
+
+.portfolio {
+
+  .container {
+
+    @include dosm {
+      padding-right: calc(var(--container-padding) + var(--callback-width));
+    }
+  }
+
+  .common {
+
+    &__head {
+
+      @include dosm {
+        grid-column: 1/2;
+        grid-row: 1/2;
+      }
+
+      @include sm {
+        max-width: 24.8rem;
+
+        order: 1;
+      }
+    }
+
+    &__btn {
+
+      @include dosm {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+
+        grid-column: 2/3;
+        grid-row: 1/2;
+      }
+
+      @include sm {
+        order: 3;
+      }
+
+      .btn {
+
+        @include dosm {
+          --btn-padding-x: 6.8rem;
+          --btn-height: 8rem;
+        }
+
+        @include sm {
+          width: 100%;
+          height: auto;
+          padding: 2rem;
+
+          font-family: var(--font-family);
+          font-weight: 700;
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 100%;
+
+    @include dosm {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 5rem 1rem;
+    }
+  }
+
+  &__body {
+
+    @include dosm {
+      grid-column: 1/3;
+      grid-row: 2/3;
+    }
+
+    @include sm {
+      order: 2;
+    }
+  }
+
+  &__slider {
+    overflow: hidden;
+  }
+
+  &__item {
+    height: 100%;
+    min-height: 24.3rem;
+    padding: 2rem;
+
+    position: relative;
+
+    @include dosm {
+      min-height: 54.8rem;
+      padding: 5rem 4rem;
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+
+      position: relative;
+      z-index: 2;
+    }
+
+    &-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    &-title {
+      max-width: 20.7rem;
+
+      font-family: var(--second-family);
+      font-weight: 900;
+      font-size: 2rem;
+      line-height: 120%;
+      text-transform: uppercase;
+      color: var(--white);
+
+      @include dosm {
+        max-width: 47.7rem;
+
+        font-size: 4rem;
+      }
+    }
+
+    &-text {
+      max-width: 37.4rem;
+
+      font-weight: 400;
+      font-size: 2rem;
+      line-height: 140%;
+      text-transform: uppercase;
+      color: var(--white);
+
+      @include sm {
+        display: none;
+      }
+    }
+
+    &-btn {
+      margin-top: auto;
+
+      .btn {
+        --btn-hover-background: var(--red);
+
+        @include sm {
+          height: auto;
+          padding: 2rem;
+
+          font-family: var(--font-family);
+          font-size: 1.4rem;
+        }
+      }
+    }
+
+    &-bg {
+      width: 100%;
+      height: 100%;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+
+      img {
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}

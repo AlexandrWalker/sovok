@@ -4,6 +4,21 @@
 
   .template {
 
+    @include dosm {
+      --section-padding-bottom: 5rem;
+    }
+
+    &__body {
+
+      @include dosm {
+        padding: 7rem 0 0 0;
+      }
+
+      @include sm {
+        padding: 0;
+      }
+    }
+
     &__title {
       min-height: 28rem;
       margin-bottom: 3rem;
@@ -95,6 +110,13 @@
         top: 23.6rem;
         right: -45rem;
         left: unset;
+      }
+    }
+
+    &__img {
+
+      @include dosm {
+        top: 88.5rem;
       }
     }
   }

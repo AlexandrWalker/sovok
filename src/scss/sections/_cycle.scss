@@ -1,0 +1,171 @@
+@use "./../mixins" as *;
+
+.cycle {
+
+  .container {
+
+    @include dosm {
+      padding-right: calc(var(--container-padding) + var(--callback-width));
+    }
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+
+    @include dosm {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4rem;
+    }
+  }
+
+  &__item {
+    min-height: 24.3rem;
+    padding: 2rem;
+    background-color: var(--red);
+    overflow: hidden;
+
+    position: relative;
+
+    @include dosm {
+      min-height: 54.8rem;
+      padding: 5rem 4rem;
+    }
+
+    &--2 {
+      background-color: var(--black);
+
+      .cycle__item-cover {
+        height: 50.4rem;
+
+        top: -14rem;
+        right: -7rem;
+
+        @include dosm {
+          height: 117.9rem;
+
+          top: -31.6rem;
+          right: -10.5rem;
+        }
+      }
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      max-width: 22rem;
+      height: 100%;
+
+      position: relative;
+      z-index: 2;
+
+      @include dosm {
+        max-width: 47.7rem;
+      }
+    }
+
+    &-title {
+      margin-bottom: 1.5rem;
+
+      font-family: var(--second-family);
+      font-weight: 900;
+      font-size: 2rem;
+      line-height: 120%;
+      text-transform: uppercase;
+      color: var(--white);
+
+      @include dosm {
+        margin-bottom: 3rem;
+
+        font-size: 4rem;
+      }
+    }
+
+    &-text {
+      max-width: 16.1rem;
+      margin-bottom: 1.5rem;
+
+      font-weight: 400;
+      font-size: 1.4rem;
+      line-height: 140%;
+      color: var(--white);
+
+      @include dosm {
+        max-width: 36.2rem;
+        margin-bottom: 3rem;
+
+        font-size: 2rem;
+      }
+    }
+
+    &-list {
+
+      ul {
+
+        li {
+          width: fit-content;
+          margin-bottom: 1.5rem;
+
+          font-weight: 400;
+          font-size: 1.4rem;
+          line-height: 100%;
+          text-decoration-line: underline;
+          text-transform: uppercase;
+          color: var(--white);
+
+          @include dosm {
+            margin-bottom: 2rem;
+
+            font-size: 2rem;
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          &:hover {
+
+            @include dosm {
+              color: var(--black);
+            }
+          }
+        }
+      }
+    }
+
+    &-btn {
+      --btn-hover-background: var(--white);
+
+      margin-top: auto;
+
+      &:hover {
+
+        @include dosm {
+          --btn-color: var(--black);
+        }
+      }
+
+      @include sm {
+        display: none;
+      }
+    }
+
+    &-cover {
+      width: auto;
+      height: 29.1rem;
+
+      position: absolute;
+      top: -0.9rem;
+      right: -2.5rem;
+      z-index: 1;
+
+      @include dosm {
+        height: 75.3rem;
+
+        top: -5.8rem;
+        right: -4.4rem;
+      }
+    }
+  }
+}

@@ -53,25 +53,39 @@
   }
 
   &-pagination {
-    line-height: 0.5rem;
-    font-size: 0.5rem;
+    margin-top: 2rem;
 
-    top: calc(100% + 1.5rem) !important;
-    bottom: unset !important;
+    position: static;
 
-    @include domd {
-      // display: none;
+    @include dosm {
+      margin-top: 4rem;
     }
 
     &-bullet {
-      width: 0.5rem;
-      height: 0.5rem;
+      width: 1.4rem;
+      height: 1.4rem;
       margin: 0 0.25rem !important;
-      background-color: var(--gray);
+      background-color: var(--black);
+      border-radius: unset;
       opacity: 1;
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      transition: background-color 0.3s ease;
+
+      @include dosm {
+        width: 2.8rem;
+        height: 2.8rem;
+        margin: 0 0.7rem !important;
+      }
+
+      &:hover {
+
+        @include dosm {
+          background-color: var(--red);
+        }
+      }
 
       &-active {
-        background-color: var(--black);
+        background-color: var(--red);
       }
     }
   }

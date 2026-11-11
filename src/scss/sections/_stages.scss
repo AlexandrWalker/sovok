@@ -13,16 +13,6 @@
     }
   }
 
-  &__inner {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-
-    @include dosm {
-      gap: 5rem;
-    }
-  }
-
   &__body {
     display: none;
     flex-direction: column;
