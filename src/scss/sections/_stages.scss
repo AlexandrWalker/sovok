@@ -1,0 +1,260 @@
+@use "./../mixins" as *;
+
+.stages {
+
+  @include dosm {
+    --section-padding-bottom: 7.5rem;
+  }
+
+  .container {
+
+    @include dosm {
+      padding-right: calc(var(--container-padding) + var(--callback-width));
+    }
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    @include dosm {
+      gap: 5rem;
+    }
+  }
+
+  &__body {
+    display: none;
+    flex-direction: column;
+    gap: 4rem;
+
+    @include dosm {
+      display: flex;
+    }
+  }
+
+  &__content {
+    display: block;
+
+    @include dosm {
+      display: none;
+    }
+  }
+
+  &__slider {
+    overflow: hidden;
+
+    &-controls {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      margin-top: 4rem;
+
+      position: relative;
+    }
+
+    &-percent {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 4.7rem;
+      height: 4.7rem;
+      background-color: var(--red);
+      border-radius: 50%;
+      padding-left: 0.4rem;
+      flex-shrink: 0;
+
+      font-family: var(--third-family);
+      font-weight: 700;
+      font-size: 1.6rem;
+      line-height: 120%;
+      color: var(--white);
+      text-align: center;
+
+      position: relative;
+      z-index: 2;
+    }
+
+    .swiper-pagination-progressbar,
+    .stages__slider-pagination {
+      width: 100%;
+      height: 0.7rem;
+      margin: 0;
+      background-color: var(--black);
+
+      position: absolute;
+      top: 50% !important;
+      right: 0;
+      left: 0;
+      z-index: 1;
+
+      transform: translateY(-50%);
+    }
+
+    .swiper-pagination-progressbar-fill {
+      background-color: var(--red);
+    }
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6rem;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    @include dosm {
+      flex-direction: row;
+      gap: 4rem;
+    }
+
+    &-head {
+      flex-shrink: 0;
+    }
+
+    &-img {
+      width: 18.1rem;
+      height: 18.1rem;
+
+      @include dosm {
+        width: 12rem;
+        height: 12rem;
+      }
+    }
+
+    &-body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-count {
+      margin-bottom: 1.5rem;
+
+      font-family: var(--second-family);
+      font-weight: 900;
+      font-size: 5rem;
+      line-height: 100%;
+      color: var(--red);
+
+      @include dosm {
+        margin-bottom: 2rem;
+
+        font-size: 7rem;
+      }
+    }
+
+    &-title {
+      margin-bottom: 1rem;
+
+      font-family: var(--second-family);
+      font-weight: 400;
+      font-size: 2rem;
+      line-height: 140%;
+      text-transform: uppercase;
+
+      @include dosm {
+        font-weight: 900;
+        font-size: 3rem;
+      }
+    }
+
+    &-text {
+      font-weight: 400;
+      font-size: 1.4rem;
+      line-height: 140%;
+      text-transform: uppercase;
+
+      @include dosm {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  &__progress {
+    --progress: 0;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    position: relative;
+
+    &-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      position: relative;
+
+      &:first-child {
+
+        .stages__progress-count {
+          transform: none;
+        }
+      }
+
+      &:nth-child(4) {
+
+        .stages__progress-count {
+
+          &:last-child {
+            transform: none;
+          }
+        }
+      }
+    }
+
+    &-count {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 4.7rem;
+      height: 4.7rem;
+      background-color: var(--red);
+      border-radius: 50%;
+      padding-left: 0.4rem;
+      flex-shrink: 0;
+      transform: translateX(-50%);
+
+      font-family: var(--third-family);
+      font-weight: 700;
+      font-size: 1.6rem;
+      line-height: 120%;
+      color: var(--white);
+      text-align: center;
+
+      position: relative;
+      z-index: 2;
+    }
+
+    &-line {
+      width: calc(100% - 0.6rem);
+      height: 0.7rem;
+      background-color: var(--black);
+
+      position: absolute;
+      top: 50%;
+      left: 0.3rem;
+      z-index: 1;
+      transform: translateY(-50%);
+
+      &::before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: var(--red);
+        transform: scaleX(var(--progress));
+        transform-origin: left center;
+        transition: transform 0.4s ease;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+      }
+    }
+  }
+}

@@ -98,4 +98,30 @@
       }
     }
   }
+
+  .command {
+    overflow: visible;
+
+    position: relative;
+
+    &::before {
+      content: "";
+      display: none;
+      width: 165.2rem;
+      height: 107.7rem;
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTY1MiIgaGVpZ2h0PSIxMDc3IiB2aWV3Qm94PSIwIDAgMTY1MiAxMDc3IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzMwMzBfODEpIj4NCjxwYXRoIGQ9Ik0yNjguNDgzIDY3Mi40MjZMMTI0Ni44NiAxNDQuNTQyTDE2NTEuOTEgMjU5LjM2M0wxNDAuMjkyIDEwNzcuMDFMMjY4LjQ4MyA2NzIuNDI2WiIgZmlsbD0iI0RDMTQzQyIvPg0KPC9nPg0KPGRlZnM+DQo8Y2xpcFBhdGggaWQ9ImNsaXAwXzMwMzBfODEiPg0KPHJlY3Qgd2lkdGg9IjE2NTIiIGhlaWdodD0iMTA3NyIgZmlsbD0id2hpdGUiLz4NCjwvY2xpcFBhdGg+DQo8L2RlZnM+DQo8L3N2Zz4NCg==);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      pointer-events: none;
+
+      position: absolute;
+      bottom: -79.2rem;
+      left: 50.5rem;
+      z-index: 1;
+
+      @include dosm {
+        display: block;
+      }
+    }
+  }
 }

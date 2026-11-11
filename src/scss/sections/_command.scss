@@ -2,6 +2,13 @@
 
 .command {
 
+  .container {
+
+    @include dosm {
+      padding-right: calc(var(--container-padding) + var(--callback-width));
+    }
+  }
+
   &__inner {
     display: flex;
     flex-direction: column;

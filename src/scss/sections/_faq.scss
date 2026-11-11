@@ -19,6 +19,16 @@
     }
   }
 
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    @include dosm {
+      gap: 5rem;
+    }
+  }
+
   &__items {
     display: flex;
     flex-direction: column;

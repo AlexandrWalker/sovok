@@ -157,6 +157,7 @@
     }
 
     &::before {
+      display: none;
       content: "";
       width: 16rem;
       height: 1.2rem;
@@ -175,6 +176,7 @@
     }
 
     &::after {
+      display: none;
       content: "";
       width: 60.1rem;
       height: 40.4rem;

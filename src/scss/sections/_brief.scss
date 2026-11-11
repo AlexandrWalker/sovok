@@ -1,0 +1,131 @@
+@use "./../mixins" as *;
+
+.brief {
+  --section-padding-top: 4rem;
+  --section-padding-bottom: 24rem;
+
+  background-color: var(--black);
+  overflow: hidden;
+  margin-top: 1.6rem;
+  margin-bottom: 3.6rem;
+
+  position: relative;
+
+  @include dosm {
+    --section-padding-top: 8rem;
+    --section-padding-bottom: 11.2rem;
+
+    margin-top: 4.5rem;
+    margin-bottom: 5.5rem;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+    z-index: 3;
+  }
+
+  &__title {
+    margin-bottom: 2rem;
+
+    font-family: var(--second-family);
+    font-weight: 900;
+    font-size: 3rem;
+    line-height: 100%;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    color: var(--white);
+
+    @include dosm {
+      margin-bottom: 3rem;
+
+      font-size: 7rem;
+    }
+
+    @include sm {
+      max-width: 24.8rem;
+    }
+
+    span {
+      color: var(--red);
+    }
+  }
+
+  &__text {
+    max-width: 34.1rem;
+    margin-bottom: 3rem;
+
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 140%;
+    text-transform: uppercase;
+    color: var(--white);
+
+    @include dosm {
+      max-width: 69.6rem;
+      margin-bottom: 5rem;
+
+      font-size: 2rem;
+    }
+  }
+
+  &__btn {
+    --btn-hover-background: var(--white);
+
+    @include dosm {
+      --btn-padding-x: 7.3rem;
+    }
+
+    @include sm {
+      padding: 2rem;
+
+      font-family: var(--font-family);
+      font-size: 1.4rem;
+    }
+
+    &:hover {
+
+      @include dosm {
+        --btn-color: var(--black);
+      }
+    }
+  }
+
+  &__img {
+    width: max-content;
+    height: 45.8rem;
+    pointer-events: none;
+
+    position: absolute;
+    top: 25.1rem;
+    right: -11.6rem;
+    z-index: 2;
+
+    @include dosm {
+      height: 134rem;
+
+      top: -6.6rem;
+      right: 0;
+    }
+  }
+
+  &__mask {
+    width: max-content;
+    height: 113.1rem;
+    pointer-events: none;
+
+    position: absolute;
+    top: -24.2rem;
+    left: -32.2rem;
+    z-index: 1;
+
+    @include dosm {
+      height: 166.3rem;
+
+      top: -43.6rem;
+      left: -24rem;
+    }
+  }
+}
