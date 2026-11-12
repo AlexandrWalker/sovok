@@ -16,10 +16,6 @@
   position: relative;
   z-index: 300;
 
-  @include dosm {
-    --refRes: 1920;
-  }
-
   @include sm {
     --container-padding: 1.5rem;
 
@@ -132,11 +128,9 @@
     pointer-events: none;
 
     position: absolute;
-    bottom: clamp(
-      calc(-100vw / (var(--refRes) / 360)),
-      calc(-100vw / (var(--refRes) / 500)),
-      calc(-100vw / (var(--refRes) / 500))
-    );
+    bottom: clamp(calc(-100vw / (var(--refRes) / 360)),
+        calc(-100vw / (var(--refRes) / 500)),
+        calc(-100vw / (var(--refRes) / 500)));
     left: -19.7rem;
     left: calc(-100vw / (var(--refRes) / 197));
     z-index: 2;
@@ -187,10 +181,11 @@
     justify-content: space-between;
     gap: 2rem;
     height: 100%;
-    padding: 32.8rem 0 0 83rem;
-    padding: calc(100vw / (var(--refRes) / 328)) 0 0
-      calc(100vw / (var(--refRes) / 830));
-    padding: 0 0 0 calc(100vw / (var(--refRes) / 830));
+    // padding: 32.8rem 0 0 83rem;
+    // padding: calc(100vw / (var(--refRes) / 328)) 0 0
+    //   calc(100vw / (var(--refRes) / 830));
+    // padding: 0 0 0 calc(100vw / (var(--refRes) / 830));
+    padding: 0 0 0 50%;
 
     @include sm {
       padding: 0;
@@ -325,6 +320,7 @@
         }
 
         &.underline {
+
           &::before,
           &::after {
             bottom: 0.2rem;

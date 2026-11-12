@@ -1,6 +1,8 @@
 @use './../mixins' as *;
 
 .tender {
+  --tender-left-side: 5rem;
+
   display: grid;
   grid-template-columns: 1fr;
   width: 100vw;
@@ -8,7 +10,6 @@
   height: 100vh;
   height: 100dvh;
   transition: all 0.5s ease, opacity 0.3s ease;
-  // pointer-events: none;
 
   position: fixed;
   top: 0;
@@ -51,7 +52,7 @@
 
   .tender--open & {
     grid-template-columns: 1fr;
-    left: 4.2rem;
+    left: var(--tender-left-side);
 
     @include sm {
       left: 0;
@@ -248,13 +249,15 @@
     gap: 5rem;
     padding: 7.7rem 0 7rem 0;
     background-color: var(--black);
-    // pointer-events: none;
     overflow-y: auto;
     overflow-x: hidden;
-
     width: 100%;
     height: 100%;
     transition: all 0.5s ease;
+
+    @include dosm {
+      width: calc(100% - var(--tender-left-side));
+    }
 
     @include sm {
       gap: 3.6rem;
@@ -273,17 +276,6 @@
         padding: 11rem 1.5rem 13.7rem 1.5rem;
       }
     }
-
-    &::-webkit-scrollbar {
-      display: none;
-      width: 0;
-      height: 0;
-      padding: 0;
-      margin: 0;
-    }
-
-    .header-at-footer &,
-    .menu--open & {}
 
     &::-webkit-scrollbar {
       display: none;

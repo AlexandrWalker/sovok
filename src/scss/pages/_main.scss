@@ -77,4 +77,98 @@
       right: 9.7rem;
     }
   }
+
+  .footer {
+
+    @include dosm {
+      --refRes: 1920;
+      --container-padding: 6rem;
+      --container-width: 218.4rem;
+
+      &__body {
+        gap: 6rem 12rem;
+      }
+
+      &__phone {
+        min-height: 24rem;
+
+        font-size: calc(19.5rem * 1.2);
+      }
+
+      &__menu {
+        gap: 3.6rem;
+
+        &-link {
+          font-size: 3.6rem;
+        }
+      }
+
+      &__link {
+        font-size: 2.4rem;
+      }
+
+      &__contacts-wrap {
+        gap: 2.4rem;
+
+        p {
+          font-size: 2.4rem;
+        }
+      }
+
+      &__download a {
+        font-size: 2.4rem;
+      }
+
+      &__foot {
+        font-size: 2.4rem;
+      }
+
+      .social {
+        gap: 2.4rem;
+
+        &__title {
+          font-size: 3.6rem;
+        }
+
+        &__text {
+          font-size: 1.68rem;
+        }
+
+        &__links {
+          grid-template-columns: repeat(5, 4.8rem);
+          gap: 1.2rem;
+          max-width: 30rem;
+        }
+
+        &__link {
+
+          i {
+            --font-size: 4.8rem;
+          }
+        }
+      }
+    }
+  }
+
+  .tender {
+
+    @include dosm {
+      --tender-left-side: 23rem;
+
+      &__cover {
+        right: calc(100vw / (var(--refRes) / 42) + var(--tender-left-side));
+      }
+    }
+  }
+
+  .callback {
+
+    @include dosm {
+      --callback-left-side: 23rem;
+
+      &__cover {
+        right: calc(100vw / (var(--refRes) / 42) + var(--callback-left-side));
+      }
+    }
+  }
 }

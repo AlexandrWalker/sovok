@@ -1,0 +1,511 @@
+@use "./../mixins" as *;
+
+.complex {
+  --section-padding-bottom: 4rem;
+
+  @include dosm {
+    --section-padding-bottom: 8rem;
+  }
+
+  .container {
+
+    @include dosm {
+      padding-right: calc(var(--container-padding) + var(--callback-width));
+    }
+  }
+
+  .faq {
+
+    &__items {
+      position: relative;
+
+      @include sm {
+        gap: 1rem;
+      }
+    }
+
+    &__item {
+
+      @include dosm {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      &.accordion-item--active {
+        background-color: var(--red);
+
+        @include dosm {
+          background-color: transparent;
+        }
+
+        .faq__item {
+
+          &-head {
+
+            @include dosm {
+              pointer-events: none;
+            }
+
+            @include sm {
+              padding: 2rem;
+            }
+          }
+
+          &-arrow {
+            pointer-events: auto;
+            cursor: pointer;
+
+            i {
+
+              @include sm {
+                .path1 {
+
+                  &::before {
+                    color: var(--white);
+                  }
+                }
+
+                .path2 {
+
+                  &::before {
+                    color: var(--white);
+                  }
+                }
+
+                .path3 {
+
+                  &::before {
+                    color: var(--black);
+                  }
+                }
+
+                .path4 {
+
+                  &::before {
+                    color: var(--black);
+                  }
+                }
+              }
+            }
+          }
+
+          &-title {
+            color: var(--black);
+
+            @include dosm {
+              opacity: 0;
+            }
+          }
+
+          &-body {
+
+            @include dosm {
+              opacity: 1;
+              visibility: visible;
+            }
+          }
+        }
+      }
+
+      &-title {
+        transition: opacity 0.3s ease, color 0.3s ease;
+        font-family: var(--second-family);
+        font-weight: 900;
+        font-size: 2rem;
+
+        @include dosm {
+          font-size: 4rem;
+        }
+
+        @include sm {
+          max-width: 25rem;
+        }
+      }
+
+      &-head {
+        height: fit-content;
+        transition: all 0.3s ease;
+
+        z-index: 2;
+
+        @include dosm {
+          padding: 7rem 5rem 7rem 5rem;
+
+          grid-column: 1/2;
+          grid-row: 1/2;
+        }
+      }
+
+      &-arrow {
+
+        i {
+
+          .path1 {
+
+            &::before {
+              color: var(--black);
+            }
+          }
+
+          .path2 {
+
+            &::before {
+              color: var(--black);
+            }
+          }
+
+          .path3 {
+
+            &::before {
+              color: var(--red);
+            }
+          }
+
+          .path4 {
+
+            &::before {
+              color: var(--red);
+            }
+          }
+        }
+      }
+
+      &-body {
+        padding: 0 !important;
+        transition: all 0.3s ease;
+        z-index: 1;
+
+        @include dosm {
+          display: block !important;
+          overflow: hidden;
+          transition: height 0.3s ease, opacity 0.25s ease, visibility 0.25s ease;
+
+          grid-column: 1/2;
+          grid-row: 1/2;
+          background: linear-gradient(to right, var(--red) 35%, var(--white) 35%);
+          opacity: 0;
+          visibility: hidden;
+
+          position: relative;
+        }
+      }
+
+      &-content {
+        max-width: 100%;
+        gap: 2rem;
+
+        @include dosm {
+          gap: 4rem;
+        }
+
+        p {
+          font-size: 1.6rem;
+
+          @include dosm {
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+  }
+
+  &__title {
+    display: none;
+
+    @include dosm {
+      display: block;
+      max-width: 35%;
+      padding: 4rem 6rem 0 4rem;
+
+      font-family: var(--second-family);
+      font-weight: 900;
+      font-size: 4rem;
+      line-height: 120%;
+      cursor: pointer;
+
+      position: relative;
+      z-index: 3;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 2rem 3.5rem;
+
+    @include dosm {
+      gap: 0;
+      padding: 0 0 4rem 0;
+    }
+  }
+
+  &__indicator {
+    position: absolute;
+    left: 5rem;
+    top: 0;
+    z-index: 4;
+
+    width: 3.4rem;
+    height: 2rem;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzQiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAzNCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik0zNCAxMEwwIDIwTDMuODI4MjNlLTA2IDBMMzQgMTBaIiBmaWxsPSIjMTcxNzFBIi8+DQo8L3N2Zz4NCg==);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center center;
+
+    transform: translateY(-50%) scale(0);
+    transition:
+      top 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.2s ease;
+    pointer-events: none;
+    display: none;
+
+    @include dosm {
+      display: block;
+    }
+
+    &.is-visible {
+      transform: translateY(-50%) scale(1);
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    transition: background-color 0.3s ease, padding 0.3s ease;
+
+    @include dosm {
+      display: grid;
+      grid-template-columns: 35% 65%;
+    }
+
+    &.accordion-item--active {
+      background-color: var(--white);
+      padding: 2rem 0;
+
+      @include dosm {
+        background-color: transparent;
+        padding: 0;
+      }
+
+      .complex__item {
+
+        &-head {
+
+          @include sm {
+            padding: 0 2rem;
+          }
+
+          &--title {
+            color: var(--black);
+
+            @include dosm {
+              // background-color: var(--white);
+              // padding: 2rem;
+              padding: 1.5rem 2rem 1.5rem 2rem;
+              text-decoration-line: none;
+            }
+
+            &::after {
+
+              @include dosm {
+                opacity: 1;
+                width: 100%;
+              }
+            }
+          }
+        }
+
+        &-body {
+          margin-top: 2rem;
+
+          @include dosm {
+            margin-top: 0;
+            opacity: 1;
+            visibility: visible;
+            // clip-path: inset(0 0 0 0);
+          }
+        }
+      }
+    }
+
+    &-head {
+      transition: padding 0.3s ease;
+
+      cursor: pointer;
+
+      @include dosm {
+        padding: 0 0 0 10.4rem;
+        position: relative;
+        z-index: 3;
+      }
+
+      &--title {
+        width: 100%;
+        background-color: transparent;
+        transition: all 0.3s ease;
+
+        font-weight: 700;
+        font-size: 2rem;
+        line-height: 120%;
+        text-decoration-line: underline;
+        text-transform: uppercase;
+        color: var(--white);
+
+        position: relative;
+
+        @include dosm {
+          padding: 1.5rem 2rem 1.5rem 0;
+
+          font-size: 2rem;
+          line-height: 100%;
+        }
+
+        @include sm {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 1rem;
+        }
+
+        span {
+          position: relative;
+          z-index: 2;
+        }
+
+        &::before {
+          content: "";
+          width: 3.4rem;
+          height: 2rem;
+          flex-shrink: 0;
+          background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzQiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAzNCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik0zNCAxMEwwIDIwTDMuODI4MjNlLTA2IDBMMzQgMTBaIiBmaWxsPSIjMTcxNzFBIi8+DQo8L3N2Zz4NCg==);
+          background-repeat: no-repeat;
+          background-size: contain;
+
+          @include dosm {
+            display: none;
+          }
+        }
+
+        &::after {
+          content: "";
+          display: block;
+          width: 0%;
+          height: 100%;
+          margin-left: auto;
+          background-color: var(--white);
+          opacity: 0;
+          transition: opacity 0.3s ease, width 0.3s ease;
+
+          position: absolute;
+          top: -0.25rem;
+          right: 0;
+          bottom: -0.25rem;
+          left: 0;
+          z-index: 1;
+        }
+      }
+    }
+
+    &-body {
+      padding: 0 2rem;
+
+      @include dosm {
+        display: block;
+        width: 65%;
+        height: auto;
+        padding: 5rem 15rem 5rem 5rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        // transition: opacity 0.3s ease, visibility 0.3s ease, clip-path 0.3s ease;
+        // clip-path: inset(0 100% 0 0);
+        overflow: hidden;
+
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+      }
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 3rem;
+
+      @include dosm {
+        gap: 4rem;
+        height: 100%;
+        overflow: visible;
+      }
+    }
+
+    &-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      @include dosm {
+        gap: 3rem;
+        max-width: 69rem;
+      }
+    }
+
+    &-title {
+      display: none;
+
+      @include dosm {
+        display: block;
+        font-family: var(--second-family);
+        font-weight: 900;
+        font-size: 4rem;
+        line-height: 120%;
+        text-transform: uppercase;
+        color: var(--red);
+      }
+    }
+
+    &-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      @include dosm {
+        gap: 2rem;
+      }
+    }
+
+    &-feat {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      color: var(--red);
+
+      @include dosm {
+        flex-direction: row;
+        gap: 5rem;
+      }
+    }
+
+    &-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    &-count {
+      font-family: var(--second-family);
+      font-weight: 900;
+      font-size: 6rem;
+      line-height: 100%;
+      text-transform: uppercase;
+
+      @include dosm {
+        font-size: 16rem;
+      }
+    }
+  }
+}

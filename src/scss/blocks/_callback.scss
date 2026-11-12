@@ -1,6 +1,8 @@
 @use './../mixins' as *;
 
 .callback {
+  --callback-left-side: 5rem;
+
   display: grid;
   grid-template-columns: var(--callback-width) 1fr;
   background-color: var(--red);
@@ -43,7 +45,7 @@
     .callback--open & {
       grid-template-columns: 0fr 1fr;
 
-      left: 4.2rem;
+      left: var(--callback-left-side);
 
       @include sm {
         grid-template-columns: 1fr;
@@ -354,11 +356,13 @@
     padding: 11rem 9rem 8rem 9rem;
     overflow-y: auto;
     overflow-x: hidden;
+    width: calc(100% - var(--callback-left-side));
 
     @include sm {
       gap: 3.6rem;
       padding: 11rem 1.5rem 28.6rem 1.5rem;
       margin-bottom: -14.4rem;
+      width: 100%;
       height: fit-content;
       min-height: 100%;
       overflow: unset;
