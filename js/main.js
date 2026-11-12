@@ -5037,35 +5037,119 @@ document.addEventListener("DOMContentLoaded", () => {
   /**
    * Функция аккордиона
    */
+  // (function accordionFunc() {
+  //   const accordionContainers = document.querySelectorAll(".accordion-items");
+  //   if (!accordionContainers.length) return;
+
+  //   const activeClass = "accordion-item--active";
+
+  //   // 1. Клик на элементы аккордеона
+  //   document.addEventListener("click", (e) => {
+  //     // Находим ближайшую кнопку/шапку аккордеона, по которой кликнули
+  //     const head = e.target.closest(".accordion-head");
+  //     if (!head) return;
+
+  //     const currentItem = head.closest(".accordion-item");
+  //     const currentContainer = currentItem.closest(".accordion-items");
+
+  //     // Находим только элементы этого же уровня (не трогаем вложенные внутрь)
+  //     const siblingItems = Array.from(currentContainer.children).filter(
+  //       (child) => child.classList.contains("accordion-item"),
+  //     );
+
+  //     // Закрываем соседей на этом же уровне
+  //     siblingItems.forEach((i) => {
+  //       if (i !== currentItem) i.classList.remove(activeClass);
+  //     });
+
+  //     // Переключаем текущий элемент
+  //     currentItem.classList.toggle(activeClass);
+
+  //     // Управляем классом activated для текущего контейнера
+  //     const hasActiveChild = siblingItems.some((i) =>
+  //       i.classList.contains(activeClass),
+  //     );
+  //     if (hasActiveChild) {
+  //       currentContainer.classList.add("activated");
+  //     } else {
+  //       currentContainer.classList.remove("activated");
+  //     }
+
+  //     if (typeof ScrollTrigger !== "undefined") ScrollTrigger.update();
+  //   });
+
+  //   // 2. Глобальный обработчик для закрытия при клике ВНЕ аккордеона
+  //   document.addEventListener("click", (e) => {
+  //     // Если кликнули внутрь какого-то аккордеона, эту логику пропускаем
+  //     if (e.target.closest(".accordion-items")) return;
+
+  //     document.querySelectorAll(".accordion-item").forEach((item) => {
+  //       item.classList.remove(activeClass);
+  //     });
+  //     accordionContainers.forEach((container) => {
+  //       container.classList.remove("activated");
+  //     });
+
+  //     if (typeof ScrollTrigger !== "undefined") ScrollTrigger.update();
+  //   });
+
+  //   // 3. Глобальный обработчик Escape
+  //   window.addEventListener("keydown", (e) => {
+  //     if (e.key !== "Escape") return;
+
+  //     document.querySelectorAll(".accordion-item").forEach((item) => {
+  //       item.classList.remove(activeClass);
+  //     });
+  //     accordionContainers.forEach((container) => {
+  //       container.classList.remove("activated");
+  //     });
+
+  //     if (typeof ScrollTrigger !== "undefined") ScrollTrigger.update();
+  //   });
+  // })();
+
+  /**
+   * С проверкой на комплекс
+  */
   (function accordionFunc() {
     const accordionContainers = document.querySelectorAll(".accordion-items");
     if (!accordionContainers.length) return;
 
     const activeClass = "accordion-item--active";
+    const desktopMedia = window.matchMedia("(min-width: 600px)");
 
-    // 1. Клик на элементы аккордеона
     document.addEventListener("click", (e) => {
-      // Находим ближайшую кнопку/шапку аккордеона, по которой кликнули
       const head = e.target.closest(".accordion-head");
       if (!head) return;
 
       const currentItem = head.closest(".accordion-item");
       const currentContainer = currentItem.closest(".accordion-items");
 
-      // Находим только элементы этого же уровня (не трогаем вложенные внутрь)
+      const isComplexDesktopTabs =
+        desktopMedia.matches && currentContainer.classList.contains("complex__content");
+
+      if (isComplexDesktopTabs && currentItem.classList.contains(activeClass)) {
+        return;
+      }
+
       const siblingItems = Array.from(currentContainer.children).filter(
         (child) => child.classList.contains("accordion-item"),
       );
 
-      // Закрываем соседей на этом же уровне
       siblingItems.forEach((i) => {
         if (i !== currentItem) i.classList.remove(activeClass);
       });
 
-      // Переключаем текущий элемент
       currentItem.classList.toggle(activeClass);
 
-      // Управляем классом activated для текущего контейнера
+      if (desktopMedia.matches && currentItem.classList.contains(activeClass)) {
+        const innerComplex = currentItem.querySelector(".complex__content");
+        if (innerComplex && !innerComplex.querySelector(`.${activeClass}`)) {
+          const firstTab = innerComplex.querySelector(".complex__item");
+          if (firstTab) firstTab.classList.add(activeClass);
+        }
+      }
+
       const hasActiveChild = siblingItems.some((i) =>
         i.classList.contains(activeClass),
       );
@@ -5078,12 +5162,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (typeof ScrollTrigger !== "undefined") ScrollTrigger.update();
     });
 
-    // 2. Глобальный обработчик для закрытия при клике ВНЕ аккордеона
     document.addEventListener("click", (e) => {
-      // Если кликнули внутрь какого-то аккордеона, эту логику пропускаем
       if (e.target.closest(".accordion-items")) return;
 
       document.querySelectorAll(".accordion-item").forEach((item) => {
+        if (desktopMedia.matches && item.classList.contains("complex__item")) return;
         item.classList.remove(activeClass);
       });
       accordionContainers.forEach((container) => {
@@ -5093,11 +5176,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (typeof ScrollTrigger !== "undefined") ScrollTrigger.update();
     });
 
-    // 3. Глобальный обработчик Escape
     window.addEventListener("keydown", (e) => {
       if (e.key !== "Escape") return;
 
       document.querySelectorAll(".accordion-item").forEach((item) => {
+        if (desktopMedia.matches && item.classList.contains("complex__item")) return;
         item.classList.remove(activeClass);
       });
       accordionContainers.forEach((container) => {
@@ -5108,9 +5191,221 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   })();
 
-  /**
-   * Функция для добавления активного класса при наведении на пункты меню
-   */
+  window.initQueue.push(function initComplexSection() {
+    const desktopMedia = window.matchMedia("(min-width: 600px)");
+    const activeClass = "accordion-item--active";
+    const faqItems = document.querySelectorAll(".complex .faq__item");
+
+    if (!faqItems.length) return;
+
+    // Таймер для отложенного пересчёта ScrollTrigger после завершения CSS-перехода
+    let refreshTimer = null;
+    const refreshScrollTrigger = () => {
+      if (typeof ScrollTrigger === "undefined") return;
+      clearTimeout(refreshTimer);
+      // Ждём 420мс (чуть больше вашего transition: height 0.4s), чтобы высота зафиксировалась
+      refreshTimer = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 320);
+    };
+
+    const updateHeight = (faqItem) => {
+      const faqBody = faqItem.querySelector(".faq__item-body");
+      const faqHead = faqItem.querySelector(".faq__item-head");
+      const complexTitle = faqItem.querySelector(".complex__title");
+      const complexContent = faqItem.querySelector(".complex__content");
+      if (!faqBody) return;
+
+      if (!desktopMedia.matches) {
+        faqBody.style.height = "";
+        refreshScrollTrigger();
+        return;
+      }
+
+      const isParentOpen = faqItem.classList.contains(activeClass);
+      const closedHeight = faqHead ? faqHead.offsetHeight : 0;
+
+      if (!isParentOpen) {
+        faqBody.style.height = `${closedHeight}px`;
+        refreshScrollTrigger();
+        return;
+      }
+
+      const activeTabBody = faqItem.querySelector(
+        `.complex__item.${activeClass} .complex__item-body`
+      );
+
+      if (activeTabBody) {
+        // 1. Высота левой колонки (заголовок + список + gap)
+        const titleHeight = complexTitle ? complexTitle.offsetHeight : 0;
+        const listHeight = complexContent ? complexContent.offsetHeight : 0;
+        const gap = complexTitle && complexContent ? 40 : 0;
+        const leftColumnHeight = titleHeight + listHeight + gap;
+
+        // 2. Считаем реальную высоту содержимого правого блока + его верхний и нижний padding
+        const innerContent = activeTabBody.querySelector(".complex__item-content");
+        const styles = window.getComputedStyle(activeTabBody);
+        const paddingY =
+          parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom);
+        const contentHeight = innerContent ? innerContent.scrollHeight : 0;
+
+        const rightColumnHeight = contentHeight + paddingY;
+
+        // 3. Берем максимум между левой и правой колонкой
+        const targetHeight = Math.max(leftColumnHeight, rightColumnHeight);
+
+        faqBody.style.height = `${targetHeight}px`;
+      } else {
+        faqBody.style.height = `${closedHeight}px`;
+      }
+
+      refreshScrollTrigger();
+    };
+
+    faqItems.forEach((faqItem) => {
+      const container = faqItem.querySelector(".complex__content");
+      const items = container
+        ? Array.from(container.querySelectorAll(".complex__item"))
+        : [];
+
+      const activateTab = (targetItem) => {
+        items.forEach((item) => item.classList.remove(activeClass));
+        targetItem.classList.add(activeClass);
+        if (container) container.classList.add("activated");
+
+        updateHeight(faqItem);
+        if (typeof ScrollTrigger !== "undefined") ScrollTrigger.update();
+      };
+
+      if (desktopMedia.matches && items.length && !container.querySelector(`.${activeClass}`)) {
+        items[0].classList.add(activeClass);
+      }
+
+      items.forEach((item) => {
+        const head = item.querySelector(".complex__item-head");
+        if (!head) return;
+
+        head.addEventListener("mouseenter", () => {
+          if (!desktopMedia.matches) return;
+          if (!item.classList.contains(activeClass)) {
+            activateTab(item);
+          }
+        });
+
+        head.addEventListener("click", (e) => {
+          if (desktopMedia.matches) {
+            e.stopPropagation();
+          }
+        });
+      });
+
+      const complexTitle = faqItem.querySelector(".complex__title");
+      if (complexTitle) {
+        complexTitle.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const mainHead = faqItem.querySelector(".faq__item-head");
+          if (mainHead) {
+            mainHead.click();
+          }
+        });
+      }
+
+      const resizeObserver = new ResizeObserver(() => updateHeight(faqItem));
+      faqItem.querySelectorAll(".complex__item-body").forEach((tabBody) => {
+        resizeObserver.observe(tabBody);
+      });
+
+      const mutationObserver = new MutationObserver(() => {
+        if (
+          desktopMedia.matches &&
+          faqItem.classList.contains(activeClass) &&
+          items.length &&
+          !container.querySelector(`.${activeClass}`)
+        ) {
+          items[0].classList.add(activeClass);
+        }
+        updateHeight(faqItem);
+      });
+
+      mutationObserver.observe(faqItem, {
+        attributes: true,
+        subtree: true,
+        attributeFilter: ["class"],
+      });
+
+      updateHeight(faqItem);
+    });
+
+    desktopMedia.addEventListener("change", (e) => {
+      faqItems.forEach((faqItem) => {
+        if (e.matches) {
+          const container = faqItem.querySelector(".complex__content");
+          const firstItem = container?.querySelector(".complex__item");
+          if (container && firstItem && !container.querySelector(`.${activeClass}`)) {
+            firstItem.classList.add(activeClass);
+          }
+        }
+        updateHeight(faqItem);
+      });
+    });
+  });
+
+  window.initQueue.push(function initComplexIndicator() {
+    const desktopMedia = window.matchMedia("(min-width: 600px)");
+    const activeClass = "accordion-item--active";
+    const faqItems = document.querySelectorAll(".complex .faq__item");
+
+    if (!faqItems.length) return;
+
+    faqItems.forEach((faqItem) => {
+      const faqBody = faqItem.querySelector(".faq__item-body");
+      const indicator = faqItem.querySelector(".complex__indicator");
+      const tabHeads = faqItem.querySelectorAll(".complex__item-head");
+      if (!faqBody || !indicator) return;
+
+      const moveIndicatorTo = (targetHead) => {
+        if (!desktopMedia.matches || !targetHead) {
+          indicator.classList.remove("is-visible");
+          return;
+        }
+
+        const bodyRect = faqBody.getBoundingClientRect();
+        const headRect = targetHead.getBoundingClientRect();
+        const centerTop = headRect.top - bodyRect.top + headRect.height / 2;
+
+        indicator.style.top = `${centerTop}px`;
+        indicator.classList.add("is-visible");
+      };
+
+      const syncWithActive = () => {
+        if (!desktopMedia.matches || !faqItem.classList.contains(activeClass)) {
+          indicator.classList.remove("is-visible");
+          return;
+        }
+
+        const activeHead = faqBody.querySelector(
+          `.complex__item.${activeClass} .complex__item-head`
+        );
+        moveIndicatorTo(activeHead);
+      };
+
+      // Двигаем индикатор при наведении на любой пункт списка
+      tabHeads.forEach((head) => {
+        head.addEventListener("mouseenter", () => {
+          moveIndicatorTo(head);
+        });
+      });
+
+      // Обновляем позицию при клике на главный аккордеон (после смены классов)
+      faqItem.addEventListener("click", () => {
+        requestAnimationFrame(syncWithActive);
+      });
+
+      window.addEventListener("resize", syncWithActive);
+      syncWithActive();
+    });
+  });
+
   (function () {
     const menuListDropdowns = document.querySelectorAll(
       ".menu__list-item--dropdown",
