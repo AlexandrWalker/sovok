@@ -180,16 +180,16 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
-  font-weight: 900;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
+  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
+  font-weight: 900;
   font-style: normal;
 }
 
@@ -4513,12 +4513,14 @@ html.tender--open .tender-btn .object-body::before {
 
 .dev-page .template__text {
   margin-bottom: 5rem;
+  max-width: 90.7rem;
   z-index: 2;
 }
 
 .dev-page .template__text * {
   font-weight: 400;
   font-size: 1.4rem;
+  text-transform: none;
 }
 
 .dev-page .template__cover {
@@ -4608,6 +4610,7 @@ html.tender--open .tender-btn .object-body::before {
 .services-page .template__text * {
   font-weight: 400;
   font-size: 1.4rem;
+  text-transform: none;
 }
 
 .services-page .template__btn {
@@ -5037,7 +5040,7 @@ html.tender--open .tender-btn .object-body::before {
 }
 
 .beliefs .common__text {
-  max-width: 72.2rem;
+  max-width: 33.7rem;
 }
 
 .beliefs__inner {
@@ -9213,6 +9216,7 @@ html.tender--open .tender-btn .object-body::before {
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;
+  background-color: var(--red);
 }
 
 .stages__progress-item:nth-child(4) .stages__progress-count:last-child {
@@ -9233,7 +9237,7 @@ html.tender--open .tender-btn .object-body::before {
   align-items: center;
   width: 4.7rem;
   height: 4.7rem;
-  background-color: var(--red);
+  background-color: var(--black);
   border-radius: 50%;
   padding-left: 0.4rem;
   -ms-flex-negative: 0;
@@ -9241,6 +9245,8 @@ html.tender--open .tender-btn .object-body::before {
   -webkit-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
+  -webkit-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
   font-family: var(--third-family);
   font-weight: 700;
   font-size: 1.6rem;
@@ -9249,6 +9255,10 @@ html.tender--open .tender-btn .object-body::before {
   text-align: center;
   position: relative;
   z-index: 2;
+}
+
+.stages__progress-count.is-active {
+  background-color: var(--red);
 }
 
 .stages__progress-line {
@@ -9802,6 +9812,10 @@ html.tender--open .tender-btn .object-body::before {
 
   .beliefs .common__head {
     margin-top: 9.4rem;
+  }
+
+  .beliefs .common__text {
+    max-width: 48.6rem;
   }
 
   .beliefs__block {
