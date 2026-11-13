@@ -183,6 +183,7 @@
 
         .stages__progress-count {
           transform: none;
+          background-color: var(--red);
         }
       }
 
@@ -203,11 +204,12 @@
       align-items: center;
       width: 4.7rem;
       height: 4.7rem;
-      background-color: var(--red);
+      background-color: var(--black);
       border-radius: 50%;
       padding-left: 0.4rem;
       flex-shrink: 0;
       transform: translateX(-50%);
+      transition: background-color 0.3s ease;
 
       font-family: var(--third-family);
       font-weight: 700;
@@ -218,6 +220,10 @@
 
       position: relative;
       z-index: 2;
+
+      &.is-active {
+        background-color: var(--red);
+      }
     }
 
     &-line {

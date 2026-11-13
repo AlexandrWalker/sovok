@@ -58,6 +58,7 @@
       * {
         font-weight: 400;
         font-size: 1.4rem;
+        text-transform: none;
 
         @include dosm {
           font-size: 3rem;

@@ -3855,6 +3855,7 @@ document.addEventListener("DOMContentLoaded", () => {
     stagesBodies.forEach((body) => {
       const items = body.querySelectorAll(".stages__item");
       const progressWrap = body.querySelector(".stages__progress");
+      const progressCounts = body.querySelectorAll(".stages__progress-count");
 
       if (!progressWrap) return;
 
@@ -3864,12 +3865,21 @@ document.addEventListener("DOMContentLoaded", () => {
           const scaleValue = progressMap[targetStage] ?? 0;
 
           progressWrap.style.setProperty("--progress", scaleValue);
+
+          progressCounts.forEach((count, index) => {
+            if (index < targetStage) {
+              count.classList.add("is-active");
+            } else {
+              count.classList.remove("is-active");
+            }
+          });
         });
       });
 
       // Сбрасываем прогресс в 0 только при выходе курсора за пределы всего блока
       body.addEventListener("mouseleave", () => {
         progressWrap.style.setProperty("--progress", 0);
+        progressCounts.forEach((count) => count.classList.remove("is-active"));
       });
     });
   });

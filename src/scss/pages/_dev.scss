@@ -47,6 +47,7 @@
 
     &__text {
       margin-bottom: 5rem;
+      max-width: 90.7rem;
 
       z-index: 2;
 
@@ -58,6 +59,7 @@
       * {
         font-weight: 400;
         font-size: 1.4rem;
+        text-transform: none;
 
         @include dosm {
           font-size: 3rem;

@@ -28,7 +28,11 @@
     }
 
     &__text {
-      max-width: 72.2rem;
+      max-width: 33.7rem;
+
+      @include dosm {
+        max-width: 48.6rem;
+      }
     }
   }
 
