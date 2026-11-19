@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ru" class="blog-page">
+@@include('blocks/head.html', {"title": "СОВОК"})
+
+<body>
+  <div class="wrapper">
+    <!-- Прелоадер -->
+    @@include('./blocks/preloader.html')
+    <!-- Шапка -->
+    @@include('./blocks/header.html')
+    <!-- Меню -->
+    @@include('./blocks/menu.html')
+    <!-- callback -->
+    @@include('./blocks/callback.html')
+    <!-- Тендер -->
+    @@include('./blocks/tender.html')
+    <main class="main">
+
+      <section class="template">
+        <div class="container">
+          <div class="template__inner">
+
+            <div class="breadcrumbs">
+              <ul>
+                <li>
+                  <a class="underline" href="/sovok">
+                    Главная
+                  </a>
+                </li>
+                <li>
+                  Блог
+                </li>
+              </ul>
+            </div>
+
+            <div class="template__body">
+              <div class="template__title" data-type="once">
+                <h1>
+                  Говорит <br>
+                  <span>Совок</span>
+                </h1>
+              </div>
+              <div class="template__text" data-split="text">
+                <p>
+                  Одно агентство&nbsp;&mdash; все маркетинговые направления. Комплексно, честно, на&nbsp;совесть
+                </p>
+              </div>
+              <div class="template__cover" data-anim="fadeUp">
+                <img src="./../images/temp/blog-cover.webp" alt="">
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="blog">
+        <div class="container">
+          <div class="blog__inner common__inner">
+
+            <div class="common__head">
+              <div class="common__suptitle">
+                статьи
+              </div>
+              <div class="common__title">
+                для вашего просвещения
+              </div>
+              <div class="common__nav">
+                <div class="common__nav-items">
+                  <div class="common__nav-item is-active">
+                    SEO
+                  </div>
+                  <div class="common__nav-item">
+                    Дизайн
+                  </div>
+                  <div class="common__nav-item">
+                    КОд
+                  </div>
+                  <div class="common__nav-item">
+                    продвижение
+                  </div>
+                  <div class="common__nav-item common__nav-item--all">
+                    Все
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="blog__body">
+              <div class="blog__items anim-items">
+                @@loop('./elements/blog-item.html', './data/blog-items.json')
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="blog">
+        <div class="container">
+          <div class="blog__inner common__inner">
+
+            <div class="common__head">
+              <div class="common__suptitle">
+                новости
+              </div>
+              <div class="common__title">
+                будьте в курсе
+              </div>
+              <div class="common__nav">
+                <div class="common__nav-items">
+                  <div class="common__nav-item is-active">
+                    2022
+                  </div>
+                  <div class="common__nav-item">
+                    2024
+                  </div>
+                  <div class="common__nav-item">
+                    2025
+                  </div>
+                  <div class="common__nav-item common__nav-item--all">
+                    Все
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="blog__body">
+              <div class="blog__items anim-items">
+                @@loop('./elements/blog-item.html', './data/blog-items.json')
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="request request--second" data-header-theme="dark">
+        <div class="container">
+          <div class="request__inner">
+
+            <div class="general__head">
+              <div class="general__suptitle" data-anim="fadeLeft">
+                не нашли
+              </div>
+              <div class="general__title" data-anim="fadeLeft">
+                что искали?
+              </div>
+            </div>
+
+            <form class="form" action="">
+              <div class="form-inner">
+                <div class="form-body">
+                  <div class="form-group">
+                    <input id="request_name_input" class="form-input" type="text" name="names" required>
+                    <label class="form-label">
+                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07" data-type-variance="0.04"
+                        data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                        data-input="#request_name_input" data-stop-text="Имя субъекта">
+                        <div class="typewriter__line">
+                          <span class="typewriter__word" data-words="Давай знакомиться!|Сюда писать имя"></span>
+                        </div>
+                        <span class="typewriter__cursor">|</span>
+                      </div>
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <input id="request_tel_input" class="form-input" type="tel" name="tel" required>
+                    <label class="form-label">
+                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07" data-type-variance="0.04"
+                        data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                        data-input="#request_tel_input" data-stop-text="КАНАЛ СВЯЗИ">
+                        <div class="typewriter__line">
+                          <span class="typewriter__word"
+                            data-words="Номер телефона|Можно указать почту|Ждем обращения)"></span>
+                        </div>
+                        <span class="typewriter__cursor">|</span>
+                      </div>
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <input id="request_comments_input" class="form-input" type="text" name="comments" required>
+                    <label class="form-label">
+                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07" data-type-variance="0.04"
+                        data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                        data-input="#request_comments_input" data-stop-text="СУТЬ ОБРАЩЕНИЯ">
+                        <div class="typewriter__line">
+                          <span class="typewriter__word"
+                            data-words="суть нашего разговора|главная идея моего сообщения|основная цель"></span>
+                        </div>
+                        <span class="typewriter__cursor">|</span>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <div class="form-foot">
+                  <button class="form-btn" type="button" data-btn-sound="poehali" disabled>
+                    <div class="form-btn__text">
+                      поехали!
+                    </div>
+                  </button>
+                  <div class="form-wrap">
+                    <div class="form-text">
+                      Нажимая на кнопку «Отправить» вы соглашаетесь с <a href="/sovok/privacy.html">Политикой обработки
+                        персональных
+                        данных</a>
+                    </div>
+                    <div class="form-group">
+                      <input id="form-checkbox-3" class="form-checkbox" type="checkbox" data-btn-sound="shutdown_sound"
+                        required>
+                      <label for="form-checkbox-3" class="form-checkbox-label">
+                        <div class="form-checkbox--item"></div>
+                        <div class="form-text">
+                          Я согласен на обработку персональных данных
+                        </div>
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <input id="form-checkbox-4" class="form-checkbox" type="checkbox" data-btn-sound="shutdown_sound"
+                        required>
+                      <label for="form-checkbox-4" class="form-checkbox-label">
+                        <div class="form-checkbox--item"></div>
+                        <div class="form-text">
+                          Я согласен на рекламные уведомления
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <div class="request__cover">
+              <img class="request__cover-img ufo" src="./images/temp/ufo-object.webp" alt="">
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="sample">
+        <div class="container">
+          <div class="sample__inner">
+
+            <div class="common__head">
+              <div class="common__title" data-anim="fadeLeft">
+                SEO блок который никто не&nbsp;читает
+              </div>
+            </div>
+
+            <div class="sample__body">
+              <div class="sample__content">
+                <a>
+                  Позиционирование и УТП 
+                </a>
+                <p>
+                  Кому нужен: стартапам при запуске, компаниям при ребрендинге или выходе на новые рынки, а также при
+                  создании новых линеек продуктов. На выходе — имя, готовое к регистрации в Роспатенте и свободной жизни
+                  в сети.
+                </p>
+                <p>
+                  <b>
+                    В 100 г консервированной печени трески содержится около 4 400 мкг ретинола (витамина А), а в сыром
+                    жире печени трески — до 30 000 мкг.
+                  </b>
+                </p>
+                <ul>
+                  <li>
+                    Суточная норма витамина А: составляет примерно 800–900 мкг в день для взрослых (при этом верхний
+                    безопасный предел — 3 000 мкг в сутки).
+                  </li>
+                  <li>
+                    Процент от нормы в 100 г печени трески: около 440–480% от суточной потребности (а в чистом рыбьем
+                    жире из печени трески содержание витамина А
+                  </li>
+                </ul>
+                <p>
+                  превышает суточную норму более чем в 3 000%).
+                </p>
+                <p>
+                  Кому нужен: стартапам при запуске, компаниям при ребрендинге или выходе на новые рынки, а также при
+                  создании новых линеек продуктов. На выходе — имя, готовое к регистрации в Роспатенте и свободной жизни
+                  в сети.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+    <!-- Подвал -->
+    @@include('blocks/footer.html')

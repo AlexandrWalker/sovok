@@ -1,0 +1,113 @@
+@use "./../mixins" as *;
+
+.blog-page {
+
+  .template {
+    --section-padding-bottom: 7.5rem;
+
+    @include sm {
+      --section-padding-bottom: 28.3rem;
+    }
+
+    &__inner {
+
+      @include sm {
+        gap: 3rem;
+      }
+    }
+
+    &__body {
+      padding-bottom: 0;
+
+      @include dosm {
+        padding-bottom: 0;
+      }
+    }
+
+    &__title {
+      min-height: 28rem;
+      margin-bottom: 3rem;
+
+      @include sm {
+        min-height: 10rem;
+        margin-bottom: 1.5rem;
+      }
+
+      h1,
+      * {
+        font-size: 5rem;
+
+        @include dosm {
+          font-size: 14rem;
+        }
+
+        span {
+
+          @include sm {
+            font-size: 5rem;
+          }
+        }
+      }
+    }
+
+    &__text {
+      margin-bottom: 0;
+
+      z-index: 2;
+
+      @include sm {
+        max-width: 22.4rem;
+        margin-bottom: 0;
+      }
+
+      * {
+        font-family: var(--third-family);
+        font-weight: 400;
+        font-size: 1.4rem;
+        text-transform: none;
+
+        @include dosm {
+          font-size: 3rem;
+        }
+      }
+    }
+
+    &__cover {
+      z-index: 1;
+
+      @include dosm {
+        height: 102.6rem;
+
+        top: -20.6rem;
+        right: 5.5rem;
+      }
+
+      @include sm {
+        width: auto;
+        height: 44.6rem;
+        transform: none;
+
+        top: 10rem;
+        right: -7rem;
+        bottom: unset;
+        left: unset;
+      }
+
+      img {
+
+        @include sm {
+          width: auto;
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  .request.request--second {
+    margin-top: 2rem;
+
+    @include dosm {
+      margin-top: 4.5rem;
+    }
+  }
+}

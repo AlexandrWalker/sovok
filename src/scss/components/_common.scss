@@ -58,4 +58,51 @@
       font-size: 3rem;
     }
   }
+
+  &__nav {
+
+    &-items {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 1rem;
+
+      @include dosm {
+        gap: 2rem;
+      }
+    }
+
+    &-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.3rem 2rem;
+      border: 0.1rem solid var(--black);
+      transition: all 0.3s ease;
+
+      font-weight: 700;
+      font-size: 1.6rem;
+      line-height: 100%;
+      text-transform: uppercase;
+      cursor: pointer;
+
+      @include dosm {
+        padding: 2rem;
+
+        font-size: 2rem;
+      }
+
+      &:hover,
+      &.is-active {
+        background-color: var(--red);
+        border-color: var(--red);
+
+        color: var(--white);
+      }
+
+      &--all {
+        color: var(--red);
+      }
+    }
+  }
 }

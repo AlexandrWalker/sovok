@@ -14,6 +14,137 @@
     --section-padding-bottom: 31rem;
   }
 
+  &.request--second {
+    --section-padding-top: 6rem;
+    --section-padding-bottom: 31rem;
+
+    margin: 2rem 0;
+
+    @include dosm {
+      --section-padding-top: 14rem;
+      --section-padding-bottom: 12rem;
+
+      margin: 0 0 6.5rem 0;
+    }
+
+    background-color: var(--red);
+
+    .general {
+
+      &__suptitle {
+        font-size: 5rem;
+        color: var(--white);
+
+        @include dosm {
+          font-size: 7rem;
+          color: var(--black);
+        }
+      }
+
+      &__title {
+        font-size: 5rem;
+        color: var(--black);
+
+        @include dosm {
+          font-size: 14rem;
+          color: var(--white);
+        }
+      }
+    }
+
+    .request {
+
+      &__inner {
+
+        @include dosm {
+          gap: 5rem;
+        }
+      }
+
+      &__cover {
+        height: 81rem;
+
+        top: 15.5rem;
+        right: -53.2rem;
+
+        @include sm {
+          width: max-content;
+          height: 28.4rem;
+
+          top: unset;
+          right: unset;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+    }
+
+    .form {
+
+      &-inner {
+
+        @include sm {
+          gap: 3rem;
+        }
+      }
+
+      &-input:required+.form-label .typewriter__word::after {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCAxNiAxNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik03LjYwOTM4IDBMOS40MDU0OSA1LjUyNzg2SDE1LjIxNzhMMTAuNTE1NSA4Ljk0NDI3TDEyLjMxMTcgMTQuNDcyMUw3LjYwOTM4IDExLjA1NTdMMi45MDcwOSAxNC40NzIxTDQuNzAzMjEgOC45NDQyN0wwLjAwMDkyMjY4IDUuNTI3ODZINS44MTMyNkw3LjYwOTM4IDBaIiBmaWxsPSIjMTcxNzFBIi8+DQo8L3N2Zz4NCg==);
+      }
+
+      &-label {
+        font-size: 1.6rem;
+
+        @include dosm {
+          font-size: 2rem;
+        }
+
+        &::before {
+          background-color: var(--black-50);
+        }
+
+        &::after {
+          background-color: var(--black);
+        }
+      }
+
+      &-btn {
+        --btn-color: var(--black);
+        --btn-background: var(--white);
+        --btn-hover-color: var(--white);
+        --btn-hover-background: var(--black);
+      }
+
+      &-text {
+        color: var(--black);
+      }
+
+      &-foot {
+        gap: 2rem;
+
+        a {
+          color: var(--black);
+        }
+      }
+
+      &-wrap {
+        gap: 1rem;
+      }
+
+      &-checkbox {
+
+        &--item {
+          background-color: var(--black-30);
+
+          &::before {
+            background-color: var(--white);
+          }
+        }
+      }
+    }
+  }
+
   .general {
 
     &__head {
@@ -42,7 +173,7 @@
     max-width: 59rem;
 
     z-index: 2;
-    
+
     &-label {
 
       &::before {

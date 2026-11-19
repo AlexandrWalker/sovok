@@ -1,0 +1,26 @@
+<div class="blog__item anim-item">
+  <div class="blog__item-head">
+    <div class="blog__item-img">
+      <img src="@@img" alt="">
+    </div>
+  </div>
+  <div class="blog__item-body">
+    <div class="blog__item-title">
+      @@title
+    </div>
+    <div class="blog__item-date">
+      @@date
+    </div>
+    @@if (tags !== '') {
+    <div class="blog__item-tags">
+      @@tags
+    </div>
+    }
+    @@if (text !== '') {
+    <div class="blog__item-text">
+      @@text
+    </div>
+    }
+  </div>
+  <a class="blog__item-link" href="/sovok"></a>
+</div>
