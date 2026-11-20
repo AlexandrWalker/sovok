@@ -1,0 +1,16 @@
+@use "./../mixins" as *;
+
+.cases-page {
+
+  .template {
+
+    &__title {
+      min-height: 14rem;
+      margin-bottom: 0;
+
+      @include sm {
+        min-height: 5rem;
+      }
+    }
+  }
+}

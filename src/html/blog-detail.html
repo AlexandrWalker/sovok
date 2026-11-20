@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ru" class="blog-page">
+@@include('blocks/head.html', {"title": "СОВОК"})
+
+<body>
+  <div class="wrapper">
+    <!-- Прелоадер -->
+    @@include('./blocks/preloader.html')
+    <!-- Шапка -->
+    @@include('./blocks/header.html')
+    <!-- Меню -->
+    @@include('./blocks/menu.html')
+    <!-- callback -->
+    @@include('./blocks/callback.html')
+    <!-- Тендер -->
+    @@include('./blocks/tender.html')
+    <main class="main">
+
+      <section class="template">
+        <div class="container">
+          <div class="template__inner">
+
+            <div class="breadcrumbs">
+              <ul>
+                <li>
+                  <a class="underline" href="/sovok">
+                    Главная
+                  </a>
+                </li>
+                <li>
+                  Блог деталка
+                </li>
+              </ul>
+            </div>
+
+            <div class="template__title" data-type="once">
+              <h1>
+                Блог <br>
+                <span>деталка</span>
+              </h1>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="blog">
+        <div class="container">
+          <div class="blog__inner common__inner">
+
+            <div class="common__head">
+              <div class="common__title">
+                ПОхожие статьи
+              </div>
+              <div class="common__nav">
+                <div class="common__nav-items">
+                  <div class="common__nav-item is-active">
+                    маркетинг
+                  </div>
+                  <div class="common__nav-item">
+                    продвижение
+                  </div>
+                  <div class="common__nav-item">
+                    Веб
+                  </div>
+                  <div class="common__nav-item">
+                    Брендинг и айдентика
+                  </div>
+                  <div class="common__nav-item">
+                    цифровые продукты
+                  </div>
+                  <div class="common__nav-item">
+                    Комплексные стратегии
+                  </div>
+                  <div class="common__nav-item common__nav-item--all">
+                    Все
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="blog__body">
+              <div class="swiper blog__slider">
+                <div class="swiper-wrapper">
+                  @@loop('./elements/blog-slide-item.html', './data/blog-items.json')
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="faq">
+        <div class="container">
+          <div class="faq__inner">
+
+            <div class="general__head">
+              <div class="general__title" data-anim="fadeLeft">
+                <span>Ответы</span> <br> на вопросы
+              </div>
+            </div>
+
+            <div class="faq__body">
+              <div class="faq__items accordion-items anim-items">
+                <div class="faq__item accordion-item anim-item">
+                  <div class="faq__item-head accordion-head">
+                    <div class="faq__item-title">
+                      ПРимерный вопрос который тут будет написан
+                    </div>
+                    <div class="faq__item-arrow accordion-icon">
+                      <i class="icon-arrow-double-rb-right">
+                        <div class="path1"></div>
+                        <div class="path2"></div>
+                        <div class="path3"></div>
+                        <div class="path4"></div>
+                      </i>
+                    </div>
+                  </div>
+                  <div class="faq__item-body accordion-body">
+                    <div class="faq__item-content accordion-content">
+                      <p>
+                        Повседневная практика показывает, что новая модель организационной деятельности способствует
+                        подготовки и реализации направлений прогрессивного развития. Товарищи! сложившаяся структура
+                        организации влечет за собой процесс внедрения и модернизации систем массового участия.
+                        Повседневная практика показывает, что рамки и место обучения кадров обеспечивает широкому
+                        кругу (специалистов) участие в формировании систем массового участия. Не следует, однако
+                        забывать, что дальнейшее развитие различных форм деятельности влечет за собой процесс
+                        внедрения и модернизации соответствующий условий активизации.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="faq__item accordion-item anim-item">
+                  <div class="faq__item-head accordion-head">
+                    <div class="faq__item-title">
+                      вопрос который тут будет написан тут
+                    </div>
+                    <div class="faq__item-arrow accordion-icon">
+                      <i class="icon-arrow-double-rb-right">
+                        <div class="path1"></div>
+                        <div class="path2"></div>
+                        <div class="path3"></div>
+                        <div class="path4"></div>
+                      </i>
+                    </div>
+                  </div>
+                  <div class="faq__item-body accordion-body">
+                    <div class="faq__item-content accordion-content">
+                      <p>
+                        Повседневная практика показывает, что новая модель организационной деятельности способствует
+                        подготовки и реализации направлений прогрессивного развития. Товарищи! сложившаяся структура
+                        организации влечет за собой процесс внедрения и модернизации систем массового участия.
+                        Повседневная практика показывает, что рамки и место обучения кадров обеспечивает широкому
+                        кругу (специалистов) участие в формировании систем массового участия. Не следует, однако
+                        забывать, что дальнейшее развитие различных форм деятельности влечет за собой процесс
+                        внедрения и модернизации соответствующий условий активизации.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="faq__item accordion-item anim-item">
+                  <div class="faq__item-head accordion-head">
+                    <div class="faq__item-title">
+                      ПРимерный вопрос который тут будет написан
+                    </div>
+                    <div class="faq__item-arrow accordion-icon">
+                      <i class="icon-arrow-double-rb-right">
+                        <div class="path1"></div>
+                        <div class="path2"></div>
+                        <div class="path3"></div>
+                        <div class="path4"></div>
+                      </i>
+                    </div>
+                  </div>
+                  <div class="faq__item-body accordion-body">
+                    <div class="faq__item-content accordion-content">
+                      <p>
+                        Повседневная практика показывает, что новая модель организационной деятельности способствует
+                        подготовки и реализации направлений прогрессивного развития. Товарищи! сложившаяся структура
+                        организации влечет за собой процесс внедрения и модернизации систем массового участия.
+                        Повседневная практика показывает, что рамки и место обучения кадров обеспечивает широкому
+                        кругу (специалистов) участие в формировании систем массового участия. Не следует, однако
+                        забывать, что дальнейшее развитие различных форм деятельности влечет за собой процесс
+                        внедрения и модернизации соответствующий условий активизации.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="faq__item accordion-item anim-item">
+                  <div class="faq__item-head accordion-head">
+                    <div class="faq__item-title">
+                      вопрос который тут будет написан тут
+                    </div>
+                    <div class="faq__item-arrow accordion-icon">
+                      <i class="icon-arrow-double-rb-right">
+                        <div class="path1"></div>
+                        <div class="path2"></div>
+                        <div class="path3"></div>
+                        <div class="path4"></div>
+                      </i>
+                    </div>
+                  </div>
+                  <div class="faq__item-body accordion-body">
+                    <div class="faq__item-content accordion-content">
+                      <p>
+                        Повседневная практика показывает, что новая модель организационной деятельности способствует
+                        подготовки и реализации направлений прогрессивного развития. Товарищи! сложившаяся структура
+                        организации влечет за собой процесс внедрения и модернизации систем массового участия.
+                        Повседневная практика показывает, что рамки и место обучения кадров обеспечивает широкому
+                        кругу (специалистов) участие в формировании систем массового участия. Не следует, однако
+                        забывать, что дальнейшее развитие различных форм деятельности влечет за собой процесс
+                        внедрения и модернизации соответствующий условий активизации.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="faq__item accordion-item anim-item">
+                  <div class="faq__item-head accordion-head">
+                    <div class="faq__item-title">
+                      ПРимерный вопрос который тут будет написан
+                    </div>
+                    <div class="faq__item-arrow accordion-icon">
+                      <i class="icon-arrow-double-rb-right">
+                        <div class="path1"></div>
+                        <div class="path2"></div>
+                        <div class="path3"></div>
+                        <div class="path4"></div>
+                      </i>
+                    </div>
+                  </div>
+                  <div class="faq__item-body accordion-body">
+                    <div class="faq__item-content accordion-content">
+                      <p>
+                        Повседневная практика показывает, что новая модель организационной деятельности способствует
+                        подготовки и реализации направлений прогрессивного развития. Товарищи! сложившаяся структура
+                        организации влечет за собой процесс внедрения и модернизации систем массового участия.
+                        Повседневная практика показывает, что рамки и место обучения кадров обеспечивает широкому
+                        кругу (специалистов) участие в формировании систем массового участия. Не следует, однако
+                        забывать, что дальнейшее развитие различных форм деятельности влечет за собой процесс
+                        внедрения и модернизации соответствующий условий активизации.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+    <!-- Подвал -->
+    @@include('blocks/footer.html')

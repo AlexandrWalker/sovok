@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="ru" class="cases-page">
+@@include('blocks/head.html', {"title": "СОВОК"})
+
+<body>
+  <div class="wrapper">
+    <!-- Прелоадер -->
+    @@include('./blocks/preloader.html')
+    <!-- Шапка -->
+    @@include('./blocks/header.html')
+    <!-- Меню -->
+    @@include('./blocks/menu.html')
+    <!-- callback -->
+    @@include('./blocks/callback.html')
+    <!-- Тендер -->
+    @@include('./blocks/tender.html')
+    <main class="main">
+
+      <section class="template">
+        <div class="container">
+          <div class="template__inner">
+
+            <div class="breadcrumbs">
+              <ul>
+                <li>
+                  <a class="underline" href="/sovok">
+                    Главная
+                  </a>
+                </li>
+                <li>
+                  кейсы
+                </li>
+              </ul>
+            </div>
+
+            <div class="template__title" data-type="once">
+              <h1>
+                <span>кейсы</span>
+              </h1>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="portfolio">
+        <div class="container">
+          <div class="portfolio__inner">
+
+            <div class="common__head">
+              <div class="common__nav">
+                <div class="common__nav-items">
+                  <div class="common__nav-item is-active">
+                    сайты
+                  </div>
+                  <div class="common__nav-item">
+                    smm
+                  </div>
+                  <div class="common__nav-item">
+                    реклама
+                  </div>
+                  <div class="common__nav-item">
+                    Видеопродакшен
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio__body">
+              <div class="portfolio__items anim-items">
+                @@loop('./elements/portfolio-item.html', './data/portfolio-items.json')
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="command">
+        <div class="container">
+          <div class="command__inner common__inner">
+
+            <div class="common__head">
+              <div class="common__suptitle">
+                комплексный подход
+              </div>
+              <div class="common__title" data-anim="fadeLeft">
+                Рабочая бригада
+              </div>
+            </div>
+
+            <div class="command__body">
+              <div class="command__items anim-items">
+                <div class="command__item anim-item">
+                  <div class="command__item-head">
+                    <div class="command__item-img">
+                      <picture>
+                        <source media="(min-width: 601px)" srcset="./../images/temp/backend-photo.webp">
+                        <source media="(max-width: 600px)" srcset="./../images/temp/backend-photo-mob.webp">
+                        <img src="./../images/temp/backend-photo.webp" alt="">
+                      </picture>
+                    </div>
+                  </div>
+                  <div class="command__item-body">
+                    <div class="command__item-post">
+                      Бэкенд
+                    </div>
+                    <div class="command__item-name">
+                      Василий Петров
+                    </div>
+                    <div class="command__item-text">
+                      Настраивает логику и интеграции. Иногда не с первого раза, но он очень упёртый парень
+                    </div>
+                  </div>
+                </div>
+                <div class="command__item anim-item">
+                  <div class="command__item-head">
+                    <div class="command__item-img">
+                      <picture>
+                        <source media="(min-width: 601px)" srcset="./../images/temp/frontend-photo.webp">
+                        <source media="(max-width: 600px)" srcset="./../images/temp/backend-photo-mob.webp">
+                        <img src="./../images/temp/backend-photo.webp" alt="">
+                      </picture>
+                    </div>
+                  </div>
+                  <div class="command__item-body">
+                    <div class="command__item-post">
+                      Фронтенд
+                    </div>
+                    <div class="command__item-name">
+                      Василий Петров
+                    </div>
+                    <div class="command__item-text">
+                      Превращает макеты в код сайта. Не за счет волшебства, а своих наработанных скилов
+                    </div>
+                  </div>
+                </div>
+                <div class="command__item anim-item">
+                  <div class="command__item-head">
+                    <div class="command__item-img">
+                      <picture>
+                        <source media="(min-width: 601px)" srcset="./../images/temp/uiux-photo.webp">
+                        <source media="(max-width: 600px)" srcset="./../images/temp/backend-photo-mob.webp">
+                        <img src="./../images/temp/backend-photo.webp" alt="">
+                      </picture>
+                    </div>
+                  </div>
+                  <div class="command__item-body">
+                    <div class="command__item-post">
+                      UI/ux
+                    </div>
+                    <div class="command__item-name">
+                      Василий Петров
+                    </div>
+                    <div class="command__item-text">
+                      Строит путь к кнопке «Купить» без лишних лабиринтов так, чтобы даже бабушка разобралась
+                    </div>
+                  </div>
+                </div>
+                <div class="command__item anim-item">
+                  <div class="command__item-head">
+                    <div class="command__item-img">
+                      <picture>
+                        <source media="(min-width: 601px)" srcset="./../images/temp/project-photo.webp">
+                        <source media="(max-width: 600px)" srcset="./../images/temp/backend-photo-mob.webp">
+                        <img src="./../images/temp/backend-photo.webp" alt="">
+                      </picture>
+                    </div>
+                  </div>
+                  <div class="command__item-body">
+                    <div class="command__item-post">
+                      Проджект
+                    </div>
+                    <div class="command__item-name">
+                      Василий Петров
+                    </div>
+                    <div class="command__item-text">
+                      Держит сроки, нервы и вашу коммуникацию в порядке
+                    </div>
+                  </div>
+                </div>
+                <div class="command__item anim-item">
+                  <div class="command__item-head">
+                    <div class="command__item-img">
+                      <picture>
+                        <source media="(min-width: 601px)" srcset="./../images/temp/seo-photo.webp">
+                        <source media="(max-width: 600px)" srcset="./../images/temp/backend-photo-mob.webp">
+                        <img src="./../images/temp/backend-photo.webp" alt="">
+                      </picture>
+                    </div>
+                  </div>
+                  <div class="command__item-body">
+                    <div class="command__item-post">
+                      SEO
+                    </div>
+                    <div class="command__item-name">
+                      Василий Петров
+                    </div>
+                    <div class="command__item-text">
+                      Уговаривает Яндекс и Google полюбить ваш сайт
+                    </div>
+                  </div>
+                </div>
+                <div class="command__item anim-item">
+                  <div class="command__item-head">
+                    <div class="command__item-img">
+                      <picture>
+                        <source media="(min-width: 601px)" srcset="./../images/temp/content-photo.webp">
+                        <source media="(max-width: 600px)" srcset="./../images/temp/backend-photo-mob.webp">
+                        <img src="./../images/temp/backend-photo.webp" alt="">
+                      </picture>
+                    </div>
+                  </div>
+                  <div class="command__item-body">
+                    <div class="command__item-post">
+                      Контент
+                    </div>
+                    <div class="command__item-name">
+                      Василий Петров
+                    </div>
+                    <div class="command__item-text">
+                      Пишет тексты, которые не хочется пролистывать
+                    </div>
+                  </div>
+                </div>
+                <div class="command__item anim-item">
+                  <div class="command__item-head">
+                    <div class="command__item-img">
+                      <picture>
+                        <source media="(min-width: 601px)" srcset="./../images/temp/test-photo.webp">
+                        <source media="(max-width: 600px)" srcset="./../images/temp/backend-photo-mob.webp">
+                        <img src="./../images/temp/backend-photo.webp" alt="">
+                      </picture>
+                    </div>
+                  </div>
+                  <div class="command__item-body">
+                    <div class="command__item-post">
+                      Тестировщик
+                    </div>
+                    <div class="command__item-name">
+                      Василий Петров
+                    </div>
+                    <div class="command__item-text">
+                      Ищет баги до того, как их найдут ваши клиенты
+                    </div>
+                  </div>
+                </div>
+                <div class="command__item anim-item">
+                  <div class="command__item-head">
+                    <div class="command__item-img">
+                      <picture>
+                        <source media="(min-width: 601px)" srcset="./../images/temp/content-photo.webp">
+                        <source media="(max-width: 600px)" srcset="./../images/temp/backend-photo-mob.webp">
+                        <img src="./../images/temp/backend-photo.webp" alt="">
+                      </picture>
+                    </div>
+                  </div>
+                  <div class="command__item-body">
+                    <div class="command__item-post">
+                      Контент
+                    </div>
+                    <div class="command__item-name">
+                      Василий Петров
+                    </div>
+                    <div class="command__item-text">
+                      Пишет тексты, которые не хочется пролистывать
+                    </div>
+                  </div>
+                </div>
+                <div class="command__item anim-item">
+                  <div class="command__item-head">
+                    <div class="command__item-img">
+                      <picture>
+                        <source media="(min-width: 601px)" srcset="./../images/temp/backend-photo.webp">
+                        <source media="(max-width: 600px)" srcset="./../images/temp/backend-photo-mob.webp">
+                        <img src="./../images/temp/backend-photo.webp" alt="">
+                      </picture>
+                    </div>
+                  </div>
+                  <div class="command__item-body">
+                    <div class="command__item-post">
+                      Бэкенд
+                    </div>
+                    <div class="command__item-name">
+                      Василий Петров
+                    </div>
+                    <div class="command__item-text">
+                      Настраивает логику и интеграции. Иногда не с первого раза, но он очень упёртый парень
+                    </div>
+                  </div>
+                </div>
+                <div class="command__item anim-item">
+                  <div class="command__item-head">
+                    <div class="command__item-img">
+                      <picture>
+                        <source media="(min-width: 601px)" srcset="./../images/temp/frontend-photo.webp">
+                        <source media="(max-width: 600px)" srcset="./../images/temp/backend-photo-mob.webp">
+                        <img src="./../images/temp/backend-photo.webp" alt="">
+                      </picture>
+                    </div>
+                  </div>
+                  <div class="command__item-body">
+                    <div class="command__item-post">
+                      Фронтенд
+                    </div>
+                    <div class="command__item-name">
+                      Василий Петров
+                    </div>
+                    <div class="command__item-text">
+                      Превращает макеты в код сайта. Не за счет волшебства, а своих наработанных скилов
+                    </div>
+                  </div>
+                </div>
+                <div class="command__item anim-item">
+                  <div class="command__item-head">
+                    <div class="command__item-img">
+                      <picture>
+                        <source media="(min-width: 601px)" srcset="./../images/temp/uiux-photo.webp">
+                        <source media="(max-width: 600px)" srcset="./../images/temp/backend-photo-mob.webp">
+                        <img src="./../images/temp/backend-photo.webp" alt="">
+                      </picture>
+                    </div>
+                  </div>
+                  <div class="command__item-body">
+                    <div class="command__item-post">
+                      UI/ux
+                    </div>
+                    <div class="command__item-name">
+                      Василий Петров
+                    </div>
+                    <div class="command__item-text">
+                      Строит путь к кнопке «Купить» без лишних лабиринтов так, чтобы даже бабушка разобралась
+                    </div>
+                  </div>
+                </div>
+                <div class="command__item anim-item">
+                  <div class="command__item-head">
+                    <div class="command__item-img">
+                      <picture>
+                        <source media="(min-width: 601px)" srcset="./../images/temp/project-photo.webp">
+                        <source media="(max-width: 600px)" srcset="./../images/temp/backend-photo-mob.webp">
+                        <img src="./../images/temp/backend-photo.webp" alt="">
+                      </picture>
+                    </div>
+                  </div>
+                  <div class="command__item-body">
+                    <div class="command__item-post">
+                      Проджект
+                    </div>
+                    <div class="command__item-name">
+                      Василий Петров
+                    </div>
+                    <div class="command__item-text">
+                      Держит сроки, нервы и вашу коммуникацию в порядке
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="faq">
+        <div class="container">
+          <div class="faq__inner">
+
+            <div class="general__head">
+              <div class="general__title" data-anim="fadeLeft">
+                <span>Ответы</span> <br> на вопросы
+              </div>
+            </div>
+
+            <div class="faq__body">
+              <div class="faq__items accordion-items anim-items">
+                <div class="faq__item accordion-item anim-item">
+                  <div class="faq__item-head accordion-head">
+                    <div class="faq__item-title">
+                      ПРимерный вопрос который тут будет написан
+                    </div>
+                    <div class="faq__item-arrow accordion-icon">
+                      <i class="icon-arrow-double-rb-right">
+                        <div class="path1"></div>
+                        <div class="path2"></div>
+                        <div class="path3"></div>
+                        <div class="path4"></div>
+                      </i>
+                    </div>
+                  </div>
+                  <div class="faq__item-body accordion-body">
+                    <div class="faq__item-content accordion-content">
+                      <p>
+                        Повседневная практика показывает, что новая модель организационной деятельности способствует
+                        подготовки и реализации направлений прогрессивного развития. Товарищи! сложившаяся структура
+                        организации влечет за собой процесс внедрения и модернизации систем массового участия.
+                        Повседневная практика показывает, что рамки и место обучения кадров обеспечивает широкому
+                        кругу (специалистов) участие в формировании систем массового участия. Не следует, однако
+                        забывать, что дальнейшее развитие различных форм деятельности влечет за собой процесс
+                        внедрения и модернизации соответствующий условий активизации.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="faq__item accordion-item anim-item">
+                  <div class="faq__item-head accordion-head">
+                    <div class="faq__item-title">
+                      вопрос который тут будет написан тут
+                    </div>
+                    <div class="faq__item-arrow accordion-icon">
+                      <i class="icon-arrow-double-rb-right">
+                        <div class="path1"></div>
+                        <div class="path2"></div>
+                        <div class="path3"></div>
+                        <div class="path4"></div>
+                      </i>
+                    </div>
+                  </div>
+                  <div class="faq__item-body accordion-body">
+                    <div class="faq__item-content accordion-content">
+                      <p>
+                        Повседневная практика показывает, что новая модель организационной деятельности способствует
+                        подготовки и реализации направлений прогрессивного развития. Товарищи! сложившаяся структура
+                        организации влечет за собой процесс внедрения и модернизации систем массового участия.
+                        Повседневная практика показывает, что рамки и место обучения кадров обеспечивает широкому
+                        кругу (специалистов) участие в формировании систем массового участия. Не следует, однако
+                        забывать, что дальнейшее развитие различных форм деятельности влечет за собой процесс
+                        внедрения и модернизации соответствующий условий активизации.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="faq__item accordion-item anim-item">
+                  <div class="faq__item-head accordion-head">
+                    <div class="faq__item-title">
+                      ПРимерный вопрос который тут будет написан
+                    </div>
+                    <div class="faq__item-arrow accordion-icon">
+                      <i class="icon-arrow-double-rb-right">
+                        <div class="path1"></div>
+                        <div class="path2"></div>
+                        <div class="path3"></div>
+                        <div class="path4"></div>
+                      </i>
+                    </div>
+                  </div>
+                  <div class="faq__item-body accordion-body">
+                    <div class="faq__item-content accordion-content">
+                      <p>
+                        Повседневная практика показывает, что новая модель организационной деятельности способствует
+                        подготовки и реализации направлений прогрессивного развития. Товарищи! сложившаяся структура
+                        организации влечет за собой процесс внедрения и модернизации систем массового участия.
+                        Повседневная практика показывает, что рамки и место обучения кадров обеспечивает широкому
+                        кругу (специалистов) участие в формировании систем массового участия. Не следует, однако
+                        забывать, что дальнейшее развитие различных форм деятельности влечет за собой процесс
+                        внедрения и модернизации соответствующий условий активизации.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="faq__item accordion-item anim-item">
+                  <div class="faq__item-head accordion-head">
+                    <div class="faq__item-title">
+                      вопрос который тут будет написан тут
+                    </div>
+                    <div class="faq__item-arrow accordion-icon">
+                      <i class="icon-arrow-double-rb-right">
+                        <div class="path1"></div>
+                        <div class="path2"></div>
+                        <div class="path3"></div>
+                        <div class="path4"></div>
+                      </i>
+                    </div>
+                  </div>
+                  <div class="faq__item-body accordion-body">
+                    <div class="faq__item-content accordion-content">
+                      <p>
+                        Повседневная практика показывает, что новая модель организационной деятельности способствует
+                        подготовки и реализации направлений прогрессивного развития. Товарищи! сложившаяся структура
+                        организации влечет за собой процесс внедрения и модернизации систем массового участия.
+                        Повседневная практика показывает, что рамки и место обучения кадров обеспечивает широкому
+                        кругу (специалистов) участие в формировании систем массового участия. Не следует, однако
+                        забывать, что дальнейшее развитие различных форм деятельности влечет за собой процесс
+                        внедрения и модернизации соответствующий условий активизации.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="faq__item accordion-item anim-item">
+                  <div class="faq__item-head accordion-head">
+                    <div class="faq__item-title">
+                      ПРимерный вопрос который тут будет написан
+                    </div>
+                    <div class="faq__item-arrow accordion-icon">
+                      <i class="icon-arrow-double-rb-right">
+                        <div class="path1"></div>
+                        <div class="path2"></div>
+                        <div class="path3"></div>
+                        <div class="path4"></div>
+                      </i>
+                    </div>
+                  </div>
+                  <div class="faq__item-body accordion-body">
+                    <div class="faq__item-content accordion-content">
+                      <p>
+                        Повседневная практика показывает, что новая модель организационной деятельности способствует
+                        подготовки и реализации направлений прогрессивного развития. Товарищи! сложившаяся структура
+                        организации влечет за собой процесс внедрения и модернизации систем массового участия.
+                        Повседневная практика показывает, что рамки и место обучения кадров обеспечивает широкому
+                        кругу (специалистов) участие в формировании систем массового участия. Не следует, однако
+                        забывать, что дальнейшее развитие различных форм деятельности влечет за собой процесс
+                        внедрения и модернизации соответствующий условий активизации.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="sample">
+        <div class="container">
+          <div class="sample__inner">
+
+            <div class="common__head">
+              <div class="common__title" data-anim="fadeLeft">
+                SEO блок который никто не&nbsp;читает
+              </div>
+            </div>
+
+            <div class="sample__body">
+              <div class="sample__content">
+                <a>
+                  Позиционирование и УТП 
+                </a>
+                <p>
+                  Кому нужен: стартапам при запуске, компаниям при ребрендинге или выходе на новые рынки, а также при
+                  создании новых линеек продуктов. На выходе — имя, готовое к регистрации в Роспатенте и свободной жизни
+                  в сети.
+                </p>
+                <p>
+                  <b>
+                    В 100 г консервированной печени трески содержится около 4 400 мкг ретинола (витамина А), а в сыром
+                    жире печени трески — до 30 000 мкг.
+                  </b>
+                </p>
+                <ul>
+                  <li>
+                    Суточная норма витамина А: составляет примерно 800–900 мкг в день для взрослых (при этом верхний
+                    безопасный предел — 3 000 мкг в сутки).
+                  </li>
+                  <li>
+                    Процент от нормы в 100 г печени трески: около 440–480% от суточной потребности (а в чистом рыбьем
+                    жире из печени трески содержание витамина А
+                  </li>
+                </ul>
+                <p>
+                  превышает суточную норму более чем в 3 000%).
+                </p>
+                <p>
+                  Кому нужен: стартапам при запуске, компаниям при ребрендинге или выходе на новые рынки, а также при
+                  создании новых линеек продуктов. На выходе — имя, готовое к регистрации в Роспатенте и свободной жизни
+                  в сети.
+                </p>
+              </div>
+              <div class="sample__tags">
+                <a href="/sovok">
+                  # заполнить бриф
+                </a>
+                <a href="/sovok">
+                  # заполнить бриф
+                </a>
+                <a href="/sovok">
+                  # заполнить бриф
+                </a>
+                <a href="/sovok">
+                  # заполнить бриф
+                </a>
+                <a href="/sovok">
+                  # заполнить бриф
+                </a>
+                <a href="/sovok">
+                  # заполнить бриф
+                </a>
+                <a href="/sovok">
+                  # заполнить бриф
+                </a>
+                <a href="/sovok">
+                  # заполнить бриф
+                </a>
+                <a href="/sovok">
+                  # заполнить бриф
+                </a>
+                <a href="/sovok">
+                  # заполнить бриф
+                </a>
+                <a href="/sovok">
+                  # заполнить бриф
+                </a>
+                <a href="/sovok">
+                  # заполнить бриф
+                </a>
+                <a href="/sovok">
+                  # заполнить бриф
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="request" data-header-theme="dark">
+        <div class="container">
+          <div class="request__inner">
+
+            <div class="general__head">
+              <div class="general__suptitle" data-anim="fadeLeft">
+                готовы
+              </div>
+              <div class="general__title" data-anim="fadeLeft">
+                к запуску?
+              </div>
+            </div>
+
+            <form class="form" action="">
+              <div class="form-inner">
+                <div class="form-body">
+                  <div class="form-group">
+                    <input id="request_name_input" class="form-input" type="text" name="names" required>
+                    <label class="form-label">
+                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07" data-type-variance="0.04"
+                        data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                        data-input="#request_name_input" data-stop-text="Имя субъекта">
+                        <div class="typewriter__line">
+                          <span class="typewriter__word" data-words="Давай знакомиться!|Сюда писать имя"></span>
+                        </div>
+                        <span class="typewriter__cursor">|</span>
+                      </div>
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <input id="request_tel_input" class="form-input" type="tel" name="tel" required>
+                    <label class="form-label">
+                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07" data-type-variance="0.04"
+                        data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                        data-input="#request_tel_input" data-stop-text="КАНАЛ СВЯЗИ">
+                        <div class="typewriter__line">
+                          <span class="typewriter__word"
+                            data-words="Номер телефона|Можно указать почту|Ждем обращения)"></span>
+                        </div>
+                        <span class="typewriter__cursor">|</span>
+                      </div>
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <input id="request_comments_input" class="form-input" type="text" name="comments" required>
+                    <label class="form-label">
+                      <div class="typewriter" data-sync-group="request" data-type-speed="0.07" data-type-variance="0.04"
+                        data-delete-speed="0.04" data-pause-after-type="2.0" data-pause-after-delete="0.5"
+                        data-input="#request_comments_input" data-stop-text="СУТЬ ОБРАЩЕНИЯ">
+                        <div class="typewriter__line">
+                          <span class="typewriter__word"
+                            data-words="суть нашего разговора|главная идея моего сообщения|основная цель"></span>
+                        </div>
+                        <span class="typewriter__cursor">|</span>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <div class="form-foot">
+                  <button class="form-btn" type="button" data-btn-sound="poehali" disabled>
+                    <div class="form-btn__text">
+                      поехали!
+                    </div>
+                  </button>
+                  <div class="form-wrap">
+                    <div class="form-text">
+                      Нажимая на кнопку «Отправить» вы соглашаетесь с <a href="/sovok/privacy.html">Политикой обработки
+                        персональных
+                        данных</a>
+                    </div>
+                    <div class="form-group">
+                      <input id="form-checkbox-3" class="form-checkbox" type="checkbox" data-btn-sound="shutdown_sound"
+                        required>
+                      <label for="form-checkbox-3" class="form-checkbox-label">
+                        <div class="form-checkbox--item"></div>
+                        <div class="form-text">
+                          Я согласен на обработку персональных данных
+                        </div>
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <input id="form-checkbox-4" class="form-checkbox" type="checkbox" data-btn-sound="shutdown_sound"
+                        required>
+                      <label for="form-checkbox-4" class="form-checkbox-label">
+                        <div class="form-checkbox--item"></div>
+                        <div class="form-text">
+                          Я согласен на рекламные уведомления
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <div class="request__cover" data-anim="parallax-shadow">
+              <img class="request__cover-img request__cover-img--2" src="./../images/temp/request-cover-2.svg" alt="">
+              <img class="request__cover-img request__cover-img--1" src="./../images/temp/request-cover-1.webp" alt="">
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+    <!-- Подвал -->
+    @@include('blocks/footer.html')

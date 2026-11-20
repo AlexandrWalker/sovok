@@ -4301,6 +4301,46 @@ document.addEventListener("DOMContentLoaded", () => {
           navigation: false,
         },
       },
+      {
+        sliderSelector: ".blog__slider",
+        prevSelector: ".blog-button-prev",
+        nextSelector: ".blog-button-next",
+        highlight: false,
+        edgeTracker: false,
+        swiperOptions: {
+          slidesPerGroup: 1,
+          slidesPerView: 1,
+          spaceBetween: 20,
+          speed: 800,
+          grabCursor: true,
+          loop: true,
+          touchRatio: 1.6,
+          resistance: true,
+          resistanceRatio: 0.4,
+          centeredSlides: false,
+          centeredSlidesBounds: false,
+          simulateTouch: true,
+          direction: "horizontal",
+          touchStartPreventDefault: true,
+          touchMoveStopPropagation: true,
+          threshold: 8,
+          touchAngle: 25,
+          watchOverflow: true,
+          freeMode: false,
+          mousewheel: {
+            forceToAxis: true,
+            sensitivity: 1,
+            releaseOnEdges: true,
+          },
+          breakpoints: {
+            601: {
+              slidesPerView: 3,
+              spaceBetween: 40,
+            },
+          },
+          navigation: false,
+        },
+      },
     ];
 
     // Инициализируем каждый слайдер из конфига

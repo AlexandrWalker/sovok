@@ -123,6 +123,19 @@
     }
   }
 
+  .portfolio {
+
+    .common {
+
+      &__head {
+        
+        @include sm {
+          max-width: 24.8rem;
+        }
+      }
+    }
+  }
+
   .command {
     overflow: visible;
 
