@@ -4313,12 +4313,12 @@ document.addEventListener("DOMContentLoaded", () => {
           spaceBetween: 20,
           speed: 800,
           grabCursor: true,
-          loop: true,
+          loop: false,
           touchRatio: 1.6,
           resistance: true,
           resistanceRatio: 0.4,
           centeredSlides: false,
-          centeredSlidesBounds: false,
+          centeredSlidesBounds: true,
           simulateTouch: true,
           direction: "horizontal",
           touchStartPreventDefault: true,
@@ -4326,7 +4326,14 @@ document.addEventListener("DOMContentLoaded", () => {
           threshold: 8,
           touchAngle: 25,
           watchOverflow: true,
-          freeMode: false,
+          freeMode: {
+            enabled: true,
+            momentum: true,
+            momentumRatio: 0.85,
+            momentumVelocityRatio: 1,
+            momentumBounce: false,
+            sticky: true,
+          },
           mousewheel: {
             forceToAxis: true,
             sensitivity: 1,
@@ -5650,6 +5657,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Запускаем слежку за атрибутом class у тега <html>
     observer.observe(html, { attributes: true, attributeFilter: ["class"] });
+  })();
+
+  (function () {
+    if (!window.matchMedia('(min-width: 601px)').matches) return;
+
+    const layout = document.querySelector('.article');
+    const titleBox = document.querySelector('.article__wrapper .article__title');
+
+    if (!layout || !titleBox) return;
+
+    const setTitleHeight = () => {
+      layout.style.setProperty('--title-height', `${titleBox.offsetHeight}px`);
+    };
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(setTitleHeight);
+    } else {
+      setTitleHeight();
+    }
   })();
 
   /**

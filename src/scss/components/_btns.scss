@@ -138,4 +138,30 @@
     --btn-hover-background: var(--red);
     --btn-color: var(--white);
   }
+
+  &--prev {
+    background-color: var(--red);
+
+    &:hover {
+
+      @include dosm {
+        background-color: var(--black);
+      }
+    }
+
+    i {
+      transform: scale(-1, 1);
+    }
+  }
+
+  &--next {
+    background-color: var(--black);
+
+    &:hover {
+
+      @include dosm {
+        background-color: var(--red);
+      }
+    }
+  }
 }

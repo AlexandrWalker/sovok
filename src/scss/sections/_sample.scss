@@ -100,7 +100,11 @@
       &:hover {
 
         @include dosm {
-          color: var(--red);
+          background-color: var(--red);
+          border-color: var(--red);
+
+          color: var(--white);
+          text-decoration: none;
         }
       }
     }

@@ -13,7 +13,38 @@
 
     &__head {
       max-width: 100%;
-    } 
+    }
+  }
+
+  &__slider {
+
+    .swiper-button-prev {
+      left: -1.5rem;
+
+      @include dosm {
+        left: -5.3rem;
+      }
+
+      @include sm {
+        top: 30%;
+      }
+    }
+
+    .swiper-button-next {
+      right: -1.5rem;
+
+      @include dosm {
+        right: -5.3rem;
+      }
+
+      @include sm {
+        top: 30%;
+      }
+    }
+
+    .swiper-button-disabled {
+      opacity: 0 !important;
+    }
   }
 
   &__items {
